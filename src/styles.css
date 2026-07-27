@@ -34,7 +34,7 @@
   /* ---------- Bandeau indicateurs (signature, sticky) ---------- */
   #bandeau{position:sticky;top:0;z-index:50;background:var(--encre);color:#E8EAF2;border-bottom:3px solid var(--rouge)}
   #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:.4rem .6rem .5rem}
-  @media(min-width:1200px){#bandeau .inner{justify-content:center;padding-right:5rem}}
+  @media(min-width:1500px){#bandeau .inner{justify-content:center;padding-right:5rem}}
   .spark{flex:0 0 auto;padding:.2rem .8rem;border-right:1px solid rgba(255,255,255,.14);min-width:150px}
   .spark:last-child{border-right:none}
   .spark .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#9FB0D6;white-space:nowrap}

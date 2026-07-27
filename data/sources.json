@@ -61,6 +61,24 @@
         ["INSEE — Valeur ajoutée par branche d'activité", "https://www.insee.fr/fr/statistiques/2830197"],
         ["INSEE Première n°1592 — L'industrie manufacturière de 1970 à 2014", "https://www.insee.fr/fr/statistiques/2121532"]
       ]
+    },
+    {
+      "lab": "PISA (compréhension de l'écrit)",
+      "fiabilite": "Bonne, mais couverture historique courte (2000-2022).",
+      "note": "L'OCDE ne publie pas de score unique « moyenne des 3 domaines » : lecture, mathématiques et sciences restent des échelles séparées. La compréhension de l'écrit (lecture) est retenue ici car c'est le domaine majeur fondateur de PISA en 2000, et celui que la DEPP elle-même utilise comme référence de comparaison temporelle même les années où un autre domaine est « majeur ». Aucune donnée avant 2000 (premier cycle) ; le cycle 2025 existe mais ses résultats ne sont publiés qu'en septembre 2026, donc absent ici pour l'instant.",
+      "sources": [
+        ["DEPP — Note d'Information n°08.08 (PISA 2000-2006)", "https://www.education.gouv.fr/"],
+        ["DEPP — Note d'Information n°38 (PISA 2009-2015)", "https://www.education.gouv.fr/"],
+        ["DEPP — Note d'Information n°23.49 (PISA 2018-2022)", "https://www.education.gouv.fr/"]
+      ]
+    },
+    {
+      "lab": "DIRD (recherche)",
+      "fiabilite": "Bonne à partir de 1981, non sourcé avant.",
+      "note": "La dépense intérieure de recherche et développement (DIRD) n'a une série française continue et fiable qu'à partir de 1981 (INSEE lui-même ne publie qu'une fenêtre 1990-2023, la comparaison internationale Banque mondiale ne commence qu'en 1996). La série est régulièrement révisée par rupture méthodologique (dernière en date : 2023, élargissement du périmètre associatif) — la version retenue ici est la plus récente et interne-cohérente sur toute la période. Aucune valeur 2025 : 2024 est la dernière année publiée par l'EESR, encore qualifiée d'estimation.",
+      "sources": [
+        ["EESR n°19 — L'effort de recherche et développement en France", "https://publication.enseignementsup-recherche.gouv.fr/eesr/FR/T923/l_effort_de_recherche_et_developpement_en_france/"]
+      ]
     }
   ]
 }

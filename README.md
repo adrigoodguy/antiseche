@@ -25,7 +25,10 @@ data/                  contenu éditorial, en JSON
   periodes.json          les périodes, leurs réformes imbriquées et leurs
                           repères européens
   indicateurs.json        séries chiffrées du bandeau (croissance, chômage...),
-                          indexées par année puis par KPI
+                          indexées par année puis par KPI ; plus une section
+                          indicateurs_specifiques pour les KPI à couverture
+                          historique partielle (PISA depuis 2000, DIRD depuis
+                          1981), chacun sur son propre axe d'années
   criteres.json           critères de sélection des réformes
   ecartees.json           réformes écartées, candidates à réintégration
   sources.json            fact-checking des indicateurs (fiabilité, sources

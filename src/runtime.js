@@ -10,11 +10,17 @@ const anneeEl = document.getElementById("annee-curseur");
 const vals = [...document.querySelectorAll(".val[data-vi]")];
 
 function valeurA(ind, annee) {
-  if (annee <= ANNEES[0]) return ind.d[0];
-  if (annee >= ANNEES[ANNEES.length - 1]) return ind.d[ind.d.length - 1];
-  for (let k = 0; k < ANNEES.length - 1; k++) {
-    if (annee >= ANNEES[k] && annee <= ANNEES[k + 1]) {
-      const t = (annee - ANNEES[k]) / (ANNEES[k + 1] - ANNEES[k]);
+  const anneesInd = ind.annees || ANNEES;
+  // Indicateurs à couverture partielle (PISA depuis 2000, DIRD depuis 1981...) :
+  // pas de valeur avant leur premier point ni après leur dernier — pas
+  // d'extrapolation inventée. Les indicateurs à grille dense (1950-2025)
+  // gardent le comportement d'origine (clamp sur la première/dernière valeur).
+  const partiel = !!ind.annees;
+  if (annee < anneesInd[0]) return partiel ? null : ind.d[0];
+  if (annee > anneesInd[anneesInd.length - 1]) return partiel ? null : ind.d[ind.d.length - 1];
+  for (let k = 0; k < anneesInd.length - 1; k++) {
+    if (annee >= anneesInd[k] && annee <= anneesInd[k + 1]) {
+      const t = (annee - anneesInd[k]) / (anneesInd[k + 1] - anneesInd[k]);
       return ind.d[k] + t * (ind.d[k + 1] - ind.d[k]);
     }
   }
@@ -36,7 +42,10 @@ function majCurseur() {
   const x = ((Math.max(Y0, annee) - Y0) / (Y1 - Y0)) * SW;
   curseurs.forEach(c => { c.setAttribute("x1", x); c.setAttribute("x2", x) });
   anneeEl.textContent = Math.round(annee);
-  vals.forEach((v, i) => { const val = valeurA(INDIC[i], annee); v.textContent = (Math.abs(val) >= 10 ? val.toFixed(0) : val.toFixed(1)) + " " + INDIC[i].unit });
+  vals.forEach((v, i) => {
+    const val = valeurA(INDIC[i], annee);
+    v.textContent = val === null ? "—" : (Math.abs(val) >= 10 ? val.toFixed(0) : val.toFixed(1)) + " " + INDIC[i].unit;
+  });
 }
 let tick = false;
 addEventListener("scroll", () => { if (!tick) { requestAnimationFrame(() => { majCurseur(); tick = false }); tick = true } }, { passive: true });

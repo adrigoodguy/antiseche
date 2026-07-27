@@ -26,6 +26,20 @@ const INDIC = Object.entries(INDICATEURS.unites).map(([lab, unit]) => ({
   d: ANNEES.map(a => INDICATEURS.annees[String(a)][lab]),
 }));
 
+// Indicateurs à couverture historique partielle (ex. PISA depuis 2000, DIRD
+// depuis 1981) : chacun garde son propre axe d'années plutôt que d'être forcé
+// sur la grille dense 1950-2025 partagée par les indicateurs ci-dessus —
+// aucune valeur inventée avant leur premier point réel.
+for (const [lab, spec] of Object.entries(INDICATEURS.indicateurs_specifiques || {})) {
+  const anneesSpec = Object.keys(spec.valeurs).map(Number).sort((a, b) => a - b);
+  INDIC.push({
+    lab,
+    unit: spec.unit,
+    annees: anneesSpec,
+    d: anneesSpec.map(a => spec.valeurs[String(a)]),
+  });
+}
+
 const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;
 
@@ -35,9 +49,10 @@ function esc(s) {
 
 /* --- Bandeau sparklines --- */
 function sparkSVG(ind, i) {
+  const anneesInd = ind.annees || ANNEES;
   const min = Math.min(...ind.d), max = Math.max(...ind.d), pad = (max - min) * 0.1 || 1;
   const x = a => ((a - Y0) / (Y1 - Y0)) * SW, y = v => SH - ((v - (min - pad)) / ((max + pad) - (min - pad))) * SH;
-  const pts = ind.d.map((v, k) => `${x(ANNEES[k]).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+  const pts = ind.d.map((v, k) => `${x(anneesInd[k]).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
   return `<div class="spark"><div class="lab">${ind.lab} <span class="unit">(${ind.unit})</span></div>
   <svg width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}" aria-hidden="true">
     <line x1="0" y1="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" x2="${SW}" y2="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
@@ -147,12 +162,22 @@ function page() {
 
 /* --- Page « Sources & fiabilité des indicateurs » --- */
 function pageSources() {
-  const labs = INDIC.map(i => i.lab);
+  const denses = INDIC.filter(i => !i.annees);
+  const partiels = INDIC.filter(i => i.annees);
+
+  const labs = denses.map(i => i.lab);
   const thead = `<tr><th>Année</th>${labs.map(l => `<th>${esc(l)}<br>(${esc(INDICATEURS.unites[l])})</th>`).join("")}</tr>`;
   const tbody = ANNEES.map(a => {
     const cells = labs.map(l => `<td>${INDICATEURS.annees[String(a)][l]}</td>`).join("");
     return `<tr><td class="annee">${a}</td>${cells}</tr>`;
   }).join("");
+
+  const tablesPartiels = partiels.map(ind => `
+<h3>${esc(ind.lab)} (${esc(ind.unit)})</h3>
+<div class="table-scroll"><table class="re-table kpi-table">
+<thead><tr>${ind.annees.map(a => `<th>${a}</th>`).join("")}</tr></thead>
+<tbody><tr>${ind.d.map(v => `<td>${v}</td>`).join("")}</tr></tbody>
+</table></div>`).join("");
 
   const kpiNotes = SOURCES.kpis.map(k => `
 <h3>${esc(k.lab)}</h3>
@@ -178,11 +203,14 @@ function pageSources() {
 </header>
 
 <main id="annexe">
-<h2>Indicateurs, année par année</h2>
+<h2>Indicateurs à grille dense, année par année (1950-2025)</h2>
 <div class="table-scroll"><table class="re-table kpi-table">
 <thead>${thead}</thead>
 <tbody>${tbody}</tbody>
 </table></div>
+
+<h2>Indicateurs à couverture partielle</h2>
+${tablesPartiels}
 
 <h2>Sources &amp; fiabilité, KPI par KPI</h2>
 ${kpiNotes}
