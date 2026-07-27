@@ -67,7 +67,8 @@ function sectionPeriode(p) {
   <h2>${esc(p.titre)}</h2>
   <div class="regime">${esc(p.regime)}</div>
   <div class="contexte"><h3>Le monde à ce moment-là</h3><p>${p.ambiance}</p>
-  <div class="chiffres">${p.chips.map(c => `<span class="chip">${c[0]} : <b>${c[1]}</b></span>`).join("")}</div></div>
+  <div class="chiffres">${p.chips.map(c => `<span class="chip">${c[0]} : <b>${c[1]}</b></span>`).join("")}</div>
+  <div class="europe"><h4>Repères européens</h4><ul>${p.europe.map(e => `<li>${e}</li>`).join("")}</ul></div></div>
   ${p.reformes.map(r => carteReforme(r, p.id)).join("")}
 </section>`;
 }
