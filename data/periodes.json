@@ -85,26 +85,6 @@
             "https://fr.wikipedia.org/wiki/Droit_de_vote_des_femmes_en_France"
           ]
         ]
-      },
-      {
-        "id": "ce45",
-        "an": "1945",
-        "t": "Comités d'entreprise",
-        "b": "consensus",
-        "res": "Ordonnance de février 1945 : représentation des salariés dans les entreprises de plus de 50 salariés.",
-        "pro": "Associer les travailleurs à la marche de l'entreprise sans remettre en cause l'autorité patronale.",
-        "deb": "Patronat réticent ; CGT juge le pouvoir consultatif trop faible.",
-        "bil": "Institution durable, fusionnée en 2017 dans le CSE (ordonnances Macron). Le seuil de 50 salariés est devenu un objet d'étude économique (effets de seuil).",
-        "src": [
-          [
-            "Wikipédia — Comité d'entreprise",
-            "https://fr.wikipedia.org/wiki/Comit%C3%A9_d%27entreprise"
-          ],
-          [
-            "Vie-publique",
-            "https://www.vie-publique.fr/"
-          ]
-        ]
       }
     ]
   },
@@ -335,26 +315,6 @@
             "https://www.vie-publique.fr/"
           ]
         ]
-      },
-      {
-        "id": "participation",
-        "an": "1967",
-        "t": "Participation des salariés",
-        "b": "debattu",
-        "res": "Ordonnance instaurant l'intéressement obligatoire aux bénéfices (entreprises > 100 salariés).",
-        "pro": "La « troisième voie » gaullienne entre capitalisme et collectivisme : associer capital et travail.",
-        "deb": "Patronat hostile à l'obligation ; syndicats y voient un substitut aux hausses de salaires.",
-        "bil": "Dispositifs pérennisés et étendus (participation, intéressement, épargne salariale ≈ 10 millions de salariés couverts) mais restés un complément, jamais la transformation du rapport capital-travail annoncée.",
-        "src": [
-          [
-            "Vie-publique — participation",
-            "https://www.vie-publique.fr/fiches/24112-linteressement-et-la-participation"
-          ],
-          [
-            "Wikipédia",
-            "https://fr.wikipedia.org/wiki/Participation_salariale"
-          ]
-        ]
       }
     ]
   },
@@ -426,26 +386,6 @@
           [
             "Cour des comptes",
             "https://www.ccomptes.fr/"
-          ]
-        ]
-      },
-      {
-        "id": "mensualisation",
-        "an": "1970",
-        "t": "Mensualisation des salaires",
-        "b": "consensus",
-        "res": "Accords généralisant le statut mensuel aux ouvriers (paie mensuelle, maladie, préavis).",
-        "pro": "Effacer la frontière ouvriers/employés, sécuriser les revenus populaires.",
-        "deb": "Coût pour l'industrie ; certains syndicats craignent la disparition d'acquis horaires.",
-        "bil": "Généralisée par la loi en 1978, complètement entrée dans les mœurs — exemple de réforme par la négociation collective étendue.",
-        "src": [
-          [
-            "Wikipédia — mensualisation",
-            "https://fr.wikipedia.org/wiki/Mensualisation"
-          ],
-          [
-            "Vie-publique",
-            "https://www.vie-publique.fr/"
           ]
         ]
       },
@@ -991,6 +931,26 @@
             "https://fr.wikipedia.org/wiki/Contrat_premi%C3%A8re_embauche"
           ]
         ]
+      },
+      {
+        "id": "decentralisation2",
+        "an": "2003-04",
+        "t": "Décentralisation, acte II",
+        "b": "debattu",
+        "res": "Révision constitutionnelle inscrivant l'organisation décentralisée de la République (2003), puis lois transférant de nouvelles compétences aux régions et départements (RMI/RSA, routes, personnels techniques des collèges et lycées, 2004).",
+        "pro": "« Libérer les énergies locales » (Raffarin) : achever le mouvement de 1982, donner un droit à l'expérimentation aux collectivités, rapprocher la décision du terrain.",
+        "deb": "Craintes d'un transfert de charges sans compensation financière suffisante (RMI puis RSA notamment) ; syndicats de fonctionnaires d'État hostiles au transfert des personnels techniques.",
+        "bil": "Compétences bien transférées, mais le financement reste un point de friction permanent entre État et collectivités, aggravé par la suppression de la taxe professionnelle en 2010. A ouvert la voie à l'acte III de 2014-15.",
+        "src": [
+          [
+            "Vie-publique — l'acte II de la décentralisation",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Wikipédia — Décentralisation en France",
+            "https://fr.wikipedia.org/wiki/D%C3%A9centralisation_en_France"
+          ]
+        ]
       }
     ]
   },
@@ -1124,6 +1084,26 @@
             "https://www.vie-publique.fr/"
           ]
         ]
+      },
+      {
+        "id": "regimesspeciaux07",
+        "an": "2007-08",
+        "t": "Réforme des régimes spéciaux de retraite",
+        "b": "debattu",
+        "res": "Alignement progressif des régimes spéciaux (SNCF, RATP, EDF-GDF...) sur les paramètres du régime général (40 puis 41 annuités), négocié entreprise par entreprise après les grèves de novembre 2007.",
+        "pro": "Achever l'équité entre régimes promise par la réforme Fillon de 2003, sur un chantier resté en suspens depuis l'échec du plan Juppé de 1995.",
+        "deb": "Grèves massives à la SNCF et à la RATP en novembre 2007, les plus longues depuis 1995 ; les régimes spéciaux dénoncent la remise en cause d'une contrepartie à la pénibilité et à des carrières historiquement plus courtes.",
+        "bil": "Réforme appliquée, contrairement à 1995 — la méthode (négociation entreprise par entreprise plutôt que réforme générale imposée d'en haut) est saluée comme le facteur clé de réussite. Les écarts de règles avec le régime général se sont réduits sans disparaître ; le sujet revient en 2023 avec la fermeture des principaux régimes spéciaux aux nouvelles embauches.",
+        "src": [
+          [
+            "Vie-publique — la réforme des régimes spéciaux",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Wikipédia — Réforme des régimes spéciaux de retraite en France",
+            "https://fr.wikipedia.org/wiki/R%C3%A9forme_des_r%C3%A9gimes_sp%C3%A9ciaux_de_retraite_en_France"
+          ]
+        ]
       }
     ]
   },
@@ -1235,6 +1215,26 @@
           [
             "Haut conseil pour le climat",
             "https://www.hautconseilclimat.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "notre",
+        "an": "2014-15",
+        "t": "Décentralisation, acte III (loi NOTRe, fusion des régions)",
+        "b": "debattu",
+        "res": "Fusion des régions métropolitaines de 22 à 13, loi NOTRe redistribuant les compétences entre régions, départements et intercommunalités, suppression de la clause de compétence générale des départements et régions.",
+        "pro": "Simplifier le « millefeuille territorial », créer des régions à taille européenne capables de peser économiquement.",
+        "deb": "Fusions décidées sans réel débat démocratique local ni référendum ; perte d'identité régionale dénoncée dans plusieurs nouvelles grandes régions, en particulier en Alsace ; craintes sur l'éloignement des services publics.",
+        "bil": "Le millefeuille n'a pas disparu (un échelon s'est parfois ajouté plutôt que simplifié) ; le gain d'efficacité économique des grandes régions n'est pas clairement documenté ; la question identitaire alsacienne a débouché sur la création d'une Collectivité européenne d'Alsace en 2021 — signe que la fusion n'a pas complètement pris.",
+        "src": [
+          [
+            "Vie-publique — la loi NOTRe",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Wikipédia — Loi NOTRe",
+            "https://fr.wikipedia.org/wiki/Loi_portant_nouvelle_organisation_territoriale_de_la_R%C3%A9publique"
           ]
         ]
       }
@@ -1392,6 +1392,26 @@
           [
             "Wikipédia — dissolution de 2024",
             "https://fr.wikipedia.org/wiki/Dissolution_de_l%27Assembl%C3%A9e_nationale_fran%C3%A7aise_de_2024"
+          ]
+        ]
+      },
+      {
+        "id": "immigration24",
+        "an": "2023-24",
+        "t": "Loi immigration (loi Darmanin)",
+        "b": "debattu",
+        "res": "Durcissement de l'accès aux titres de séjour et à certaines prestations sociales, quotas migratoires annuels débattus au Parlement, restriction du regroupement familial — adoptée après un rejet en commission mixte paritaire puis un vote surprise avec les voix du RN ; environ un tiers des articles censurés par le Conseil constitutionnel comme « cavaliers législatifs ».",
+        "pro": "« Être fermes contre l'immigration irrégulière et généreux avec l'intégration » (gouvernement) : reprendre le contrôle des flux migratoires réclamé par une majorité de l'opinion.",
+        "deb": "Vote obtenu grâce aux voix du RN, fracture ouverte dans la majorité présidentielle (démission du ministre de la Santé) ; gauche et associations dénoncent un basculement idéologique ; le Conseil constitutionnel censure de nombreuses dispositions jugées sans lien avec le texte initial.",
+        "bil": "Épisode politique majeur : première loi de la Ve République votée avec l'appoint assumé du RN, présentée comme une victoire par l'extrême droite. Effets réels sur les flux migratoires peu documentés à ce stade (trop récent) ; le sujet reste central dans la campagne pour 2027, cas d'école du décalage entre bataille symbolique et évaluation de politique publique.",
+        "src": [
+          [
+            "Vie-publique — la loi immigration de 2024",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Conseil constitutionnel — décision n°2023-863 DC",
+            "https://www.conseil-constitutionnel.fr/"
           ]
         ]
       }
