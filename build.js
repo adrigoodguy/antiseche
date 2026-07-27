@@ -10,13 +10,20 @@ const DATA = path.join(ROOT, "data");
 const SRC = path.join(ROOT, "src");
 const DIST = path.join(ROOT, "dist");
 
-const ANNEES_INDIC = JSON.parse(fs.readFileSync(path.join(DATA, "indicateurs.json"), "utf8"));
+const INDICATEURS = JSON.parse(fs.readFileSync(path.join(DATA, "indicateurs.json"), "utf8"));
 const PERIODES = JSON.parse(fs.readFileSync(path.join(DATA, "periodes.json"), "utf8"));
 const CRITERES = JSON.parse(fs.readFileSync(path.join(DATA, "criteres.json"), "utf8"));
 const ECARTEES = JSON.parse(fs.readFileSync(path.join(DATA, "ecartees.json"), "utf8"));
 
-const ANNEES = ANNEES_INDIC.annees;
-const INDIC = ANNEES_INDIC.indicateurs;
+// indicateurs.json est indexé par année (une clé par année, un sous-objet par KPI)
+// pour rester facile à relire/vérifier ; on le remet ici sous la forme
+// {lab, unit, d:[...]} qu'attendent le rendu des sparklines et le curseur.
+const ANNEES = Object.keys(INDICATEURS.annees).map(Number).sort((a, b) => a - b);
+const INDIC = Object.entries(INDICATEURS.unites).map(([lab, unit]) => ({
+  lab,
+  unit,
+  d: ANNEES.map(a => INDICATEURS.annees[String(a)][lab]),
+}));
 
 const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;

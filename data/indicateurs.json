@@ -1,184 +1,166 @@
 {
-  "annees": [
-    1950,
-    1955,
-    1960,
-    1965,
-    1970,
-    1975,
-    1980,
-    1985,
-    1990,
-    1995,
-    2000,
-    2005,
-    2010,
-    2015,
-    2020,
-    2022,
-    2025
-  ],
-  "indicateurs": [
-    {
-      "lab": "Croissance PIB",
-      "unit": "%",
-      "d": [
-        8,
-        5.5,
-        7,
-        5,
-        6,
-        -1,
-        1.6,
-        1.6,
-        2.9,
-        2.1,
-        3.9,
-        1.7,
-        1.9,
-        1.1,
-        -7.5,
-        2.6,
-        1
-      ]
+  "unites": {
+    "Croissance PIB": "%",
+    "Chômage": "%",
+    "Inflation": "%",
+    "Dette publique": "% PIB",
+    "Fécondité": "enf./f.",
+    "Espérance de vie": "ans",
+    "Industrie": "% PIB"
+  },
+  "annees": {
+    "1950": {
+      "Croissance PIB": 8,
+      "Chômage": 2,
+      "Inflation": 10,
+      "Dette publique": 30,
+      "Fécondité": 2.9,
+      "Espérance de vie": 66,
+      "Industrie": 25
     },
-    {
-      "lab": "Chômage",
-      "unit": "%",
-      "d": [
-        2,
-        1.5,
-        1.3,
-        1.5,
-        2.5,
-        3.8,
-        6.2,
-        9.7,
-        8.9,
-        11,
-        9,
-        8.9,
-        9.3,
-        10.4,
-        8,
-        7.3,
-        7.3
-      ]
+    "1955": {
+      "Croissance PIB": 5.5,
+      "Chômage": 1.5,
+      "Inflation": 1,
+      "Dette publique": 28,
+      "Fécondité": 2.7,
+      "Espérance de vie": 68,
+      "Industrie": 24
     },
-    {
-      "lab": "Inflation",
-      "unit": "%",
-      "d": [
-        10,
-        1,
-        3.6,
-        2.5,
-        5.2,
-        11.8,
-        13.6,
-        5.8,
-        3.4,
-        1.8,
-        1.7,
-        1.8,
-        1.5,
-        0,
-        0.5,
-        5.2,
-        1.3
-      ]
+    "1960": {
+      "Croissance PIB": 7,
+      "Chômage": 1.3,
+      "Inflation": 3.6,
+      "Dette publique": 30,
+      "Fécondité": 2.7,
+      "Espérance de vie": 70,
+      "Industrie": 23
     },
-    {
-      "lab": "Dette publique",
-      "unit": "% PIB",
-      "d": [
-        30,
-        28,
-        30,
-        25,
-        20,
-        20,
-        21,
-        30,
-        35,
-        55,
-        58,
-        67,
-        85,
-        95,
-        115,
-        112,
-        113
-      ]
+    "1965": {
+      "Croissance PIB": 5,
+      "Chômage": 1.5,
+      "Inflation": 2.5,
+      "Dette publique": 25,
+      "Fécondité": 2.8,
+      "Espérance de vie": 71,
+      "Industrie": 23
     },
-    {
-      "lab": "Fécondité",
-      "unit": "enf./f.",
-      "d": [
-        2.9,
-        2.7,
-        2.7,
-        2.8,
-        2.5,
-        1.9,
-        1.95,
-        1.8,
-        1.78,
-        1.71,
-        1.87,
-        1.92,
-        2,
-        1.96,
-        1.83,
-        1.8,
-        1.6
-      ]
+    "1970": {
+      "Croissance PIB": 6,
+      "Chômage": 2.5,
+      "Inflation": 5.2,
+      "Dette publique": 20,
+      "Fécondité": 2.5,
+      "Espérance de vie": 72,
+      "Industrie": 22
     },
-    {
-      "lab": "Espérance de vie",
-      "unit": "ans",
-      "d": [
-        66,
-        68,
-        70,
-        71,
-        72,
-        73,
-        74,
-        75,
-        77,
-        78,
-        79,
-        80,
-        81.5,
-        82.4,
-        82.3,
-        82.5,
-        83
-      ]
+    "1975": {
+      "Croissance PIB": -1,
+      "Chômage": 3.8,
+      "Inflation": 11.8,
+      "Dette publique": 20,
+      "Fécondité": 1.9,
+      "Espérance de vie": 73,
+      "Industrie": 22
     },
-    {
-      "lab": "Industrie",
-      "unit": "% PIB",
-      "d": [
-        25,
-        24,
-        23,
-        23,
-        22,
-        22,
-        21,
-        20,
-        18,
-        17,
-        16,
-        14,
-        12.5,
-        11.5,
-        11,
-        11,
-        11
-      ]
+    "1980": {
+      "Croissance PIB": 1.6,
+      "Chômage": 6.2,
+      "Inflation": 13.6,
+      "Dette publique": 21,
+      "Fécondité": 1.95,
+      "Espérance de vie": 74,
+      "Industrie": 21
+    },
+    "1985": {
+      "Croissance PIB": 1.6,
+      "Chômage": 9.7,
+      "Inflation": 5.8,
+      "Dette publique": 30,
+      "Fécondité": 1.8,
+      "Espérance de vie": 75,
+      "Industrie": 20
+    },
+    "1990": {
+      "Croissance PIB": 2.9,
+      "Chômage": 8.9,
+      "Inflation": 3.4,
+      "Dette publique": 35,
+      "Fécondité": 1.78,
+      "Espérance de vie": 77,
+      "Industrie": 18
+    },
+    "1995": {
+      "Croissance PIB": 2.1,
+      "Chômage": 11,
+      "Inflation": 1.8,
+      "Dette publique": 55,
+      "Fécondité": 1.71,
+      "Espérance de vie": 78,
+      "Industrie": 17
+    },
+    "2000": {
+      "Croissance PIB": 3.9,
+      "Chômage": 9,
+      "Inflation": 1.7,
+      "Dette publique": 58,
+      "Fécondité": 1.87,
+      "Espérance de vie": 79,
+      "Industrie": 16
+    },
+    "2005": {
+      "Croissance PIB": 1.7,
+      "Chômage": 8.9,
+      "Inflation": 1.8,
+      "Dette publique": 67,
+      "Fécondité": 1.92,
+      "Espérance de vie": 80,
+      "Industrie": 14
+    },
+    "2010": {
+      "Croissance PIB": 1.9,
+      "Chômage": 9.3,
+      "Inflation": 1.5,
+      "Dette publique": 85,
+      "Fécondité": 2,
+      "Espérance de vie": 81.5,
+      "Industrie": 12.5
+    },
+    "2015": {
+      "Croissance PIB": 1.1,
+      "Chômage": 10.4,
+      "Inflation": 0,
+      "Dette publique": 95,
+      "Fécondité": 1.96,
+      "Espérance de vie": 82.4,
+      "Industrie": 11.5
+    },
+    "2020": {
+      "Croissance PIB": -7.5,
+      "Chômage": 8,
+      "Inflation": 0.5,
+      "Dette publique": 115,
+      "Fécondité": 1.83,
+      "Espérance de vie": 82.3,
+      "Industrie": 11
+    },
+    "2022": {
+      "Croissance PIB": 2.6,
+      "Chômage": 7.3,
+      "Inflation": 5.2,
+      "Dette publique": 112,
+      "Fécondité": 1.8,
+      "Espérance de vie": 82.5,
+      "Industrie": 11
+    },
+    "2025": {
+      "Croissance PIB": 1,
+      "Chômage": 7.3,
+      "Inflation": 1.3,
+      "Dette publique": 113,
+      "Fécondité": 1.6,
+      "Espérance de vie": 83,
+      "Industrie": 11
     }
-  ]
+  }
 }

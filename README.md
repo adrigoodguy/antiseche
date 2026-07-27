@@ -24,7 +24,8 @@ framework, aucune dépendance) :
 data/                  contenu éditorial, en JSON
   periodes.json          les périodes, leurs réformes imbriquées et leurs
                           repères européens
-  indicateurs.json        séries chiffrées du bandeau (croissance, chômage...)
+  indicateurs.json        séries chiffrées du bandeau (croissance, chômage...),
+                          indexées par année puis par KPI
   criteres.json           critères de sélection des réformes
   ecartees.json           réformes écartées, candidates à réintégration
 
