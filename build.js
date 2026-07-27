@@ -114,7 +114,7 @@ function page() {
 <body>
 
 <header class="hero">
-  <div class="eyebrow">Document de travail citoyen · version 1 · juillet 2026</div>
+  <div class="eyebrow">Document de travail · version 1 · juillet 2026</div>
   <h1>Socle commun<br><span class="annees">1944 → 2026</span></h1>
   <p class="standfirst">Quatre-vingts ans de réformes françaises, présentées de la même façon&nbsp;: ce qui était promis à l'époque, ce qui en était débattu, ce qu'on peut en dire factuellement avec le recul. Chaque période est replacée dans son contexte international et chiffré — parce qu'un gouvernement hérite d'une conjoncture, il ne la crée pas entièrement. Objectif&nbsp;: une clé de lecture partagée du passé, avant de juger les promesses de demain.</p>
   <p class="standfirst">Contributions et débats bienvenus&nbsp;: dans les commentaires de chaque réforme ci-dessous, ou directement sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">GitHub</a>.</p>
