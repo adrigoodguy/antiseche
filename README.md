@@ -28,6 +28,8 @@ data/                  contenu éditorial, en JSON
                           indexées par année puis par KPI
   criteres.json           critères de sélection des réformes
   ecartees.json           réformes écartées, candidates à réintégration
+  sources.json            fact-checking des indicateurs (fiabilité, sources
+                          INSEE/INED) affiché sur la page /sources
 
 src/
   styles.css              feuille de style (design du document)
@@ -36,8 +38,8 @@ src/
                           différé des commentaires Giscus
 
 build.js                script de build : lit /data, génère dist/index.html
-                        (le HTML des périodes/réformes/annexe est pré-rendu,
-                        pas construit au chargement de la page)
+                        et dist/sources.html (le HTML est pré-rendu, pas
+                        construit au chargement de la page)
 ```
 
 Le build ne dépend d'aucun outil externe (pas de Vite, pas de bundler) : c'est
@@ -50,9 +52,13 @@ volontairement simple pour un site sans composants.
 node build.js
 ```
 
-Génère `dist/index.html`, `dist/styles.css` et `dist/runtime.js`. Ouvrez
-`dist/index.html` directement dans un navigateur, ou servez `dist/` avec
-n'importe quel serveur statique.
+Génère `dist/index.html`, `dist/sources.html`, `dist/styles.css` et
+`dist/runtime.js`. Ouvrez `dist/index.html` directement dans un navigateur,
+ou servez `dist/` avec n'importe quel serveur statique.
+
+La page `/sources` détaille, indicateur par indicateur, le fact-checking des
+7 KPI du bandeau contre les séries INSEE/INED (valeurs année par année,
+niveau de fiabilité, sources primaires).
 
 ### Déploiement
 

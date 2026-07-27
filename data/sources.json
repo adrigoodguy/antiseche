@@ -1,0 +1,66 @@
+{
+  "intro": "Ce fact-checking a été réalisé par recherche web (INSEE, INED principalement) en juillet 2026, indicateur par indicateur. Le tableau ci-dessous reprend les valeurs actuellement affichées dans le bandeau du document principal ; les notes qui suivent expliquent leur niveau de fiabilité et leurs limites.",
+  "kpis": [
+    {
+      "lab": "Croissance PIB",
+      "fiabilite": "Bonne, avec une réserve méthodologique.",
+      "note": "Les chiffres 1950–2015 proviennent de rétropolations INSEE en base 2020 (recalcul moderne des comptes anciens, pas les chiffres tels que publiés à l'époque). 2020, 2022 et 2025 sont vérifiés sur des publications INSEE dédiées ; 2025 est un chiffre définitif (publié en mai 2026), pas une prévision.",
+      "sources": [
+        ["INSEE — Comptes nationaux", "https://www.insee.fr/fr/statistiques"],
+        ["INSEE Première — Les comptes de la Nation en 2022", "https://www.insee.fr/fr/statistiques/7623591"],
+        ["INSEE Première — Les comptes de la Nation en 2025", "https://www.insee.fr/fr/statistiques/8996855"]
+      ]
+    },
+    {
+      "lab": "Chômage",
+      "fiabilite": "Fiable à partir de 1975, non sourcé avant.",
+      "note": "L'INSEE ne publie une série de chômage standardisée « au sens du BIT » qu'à partir de 1975 (enquête Emploi harmonisée). Les valeurs 1950–1970 de ce document restent des ordres de grandeur qualitatifs (chômage dit « résiduel », plein emploi documenté mais non chiffré précisément à l'époque) et ne doivent pas être lues comme des taux officiels. À partir de 1975, la série a été recalée sur la publication INSEE de référence, cohérente sur toute la période.",
+      "sources": [
+        ["INSEE — L'essentiel sur... le chômage", "https://www.insee.fr/fr/statistiques/4805248"]
+      ]
+    },
+    {
+      "lab": "Inflation",
+      "fiabilite": "Très bonne, quasi intégralement vérifiée.",
+      "note": "Série presque parfaitement alignée sur une table de l'INSEE (Tableaux de l'économie française, indice des prix à la consommation 1950–2013), complétée par les communiqués annuels de l'INSEE pour les années récentes. 2025 est un chiffre définitif (publié en janvier 2026).",
+      "sources": [
+        ["INSEE — Tableaux de l'économie française", "https://www.insee.fr/fr/statistiques/1288616"],
+        ["INSEE Informations rapides — prix à la consommation", "https://www.insee.fr/fr/statistiques/8726461"]
+      ]
+    },
+    {
+      "lab": "Dette publique",
+      "fiabilite": "Fiable à partir de 1978-1980, non sourcé avant.",
+      "note": "La notion de « dette publique au sens de Maastricht » et la série statistique correspondante n'existent officiellement que depuis la fin des années 1970. Les valeurs 1950–1975 de ce document sont des ordres de grandeur non sourcés (les reconstructions indépendantes trouvées lors de la vérification divergent fortement entre elles, parfois du simple au double). À partir de 1980, la série est vérifiée sur les publications INSEE dédiées.",
+      "sources": [
+        ["INSEE — Tableaux de l'économie française, dette publique", "https://www.insee.fr/fr/statistiques/1288370"],
+        ["INSEE — Dette des administrations publiques au sens de Maastricht", "https://www.insee.fr/fr/statistiques/2830192"]
+      ]
+    },
+    {
+      "lab": "Fécondité",
+      "fiabilite": "Excellente.",
+      "note": "L'indicateur conjoncturel de fécondité est l'une des séries démographiques les mieux tenues par l'INSEE/INED, continue depuis 1901. Toutes les années de ce document correspondent aux valeurs officielles à ±0,05 enfant par femme près. 2025 reste une donnée provisoire, à confirmer par le bilan démographique de janvier 2027.",
+      "sources": [
+        ["INSEE — Naissances, natalité et fécondité, séries longues", "https://www.insee.fr/fr/statistiques/8999017"]
+      ]
+    },
+    {
+      "lab": "Espérance de vie",
+      "fiabilite": "Bonne, avec une précision méthodologique importante.",
+      "note": "L'INSEE ne publie jamais de chiffre « ensemble » (tous sexes confondus) : uniquement des séries séparées Femmes et Hommes. La valeur retenue dans ce document est donc une estimation pondérée (méthode démographique standard), pas un chiffre INSEE directement cité — la donnée sous-jacente par sexe, elle, est de haute fiabilité. La valeur 2015 a été recalée : c'est une année de surmortalité documentée (grippe, canicule), un creux réel et non un pic.",
+      "sources": [
+        ["INSEE — Décès, mortalité, espérance de vie, séries longues", "https://www.insee.fr/fr/statistiques/8999019"]
+      ]
+    },
+    {
+      "lab": "Industrie",
+      "fiabilite": "Bonne, avec une précision de définition.",
+      "note": "La série suit l'industrie manufacturière au sens de l'INSEE (hors énergie, extraction et construction), retropolée en base 2020 pour les années anciennes — un recalcul moderne, pas la publication telle qu'elle existait à l'époque. Les valeurs 1960, 1965 et 2010 ont été corrigées après vérification contre le fichier INSEE « valeur ajoutée par branche ».",
+      "sources": [
+        ["INSEE — Valeur ajoutée par branche d'activité", "https://www.insee.fr/fr/statistiques/2830197"],
+        ["INSEE Première n°1592 — L'industrie manufacturière de 1970 à 2014", "https://www.insee.fr/fr/statistiques/2121532"]
+      ]
+    }
+  ]
+}

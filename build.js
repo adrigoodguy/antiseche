@@ -14,6 +14,7 @@ const INDICATEURS = JSON.parse(fs.readFileSync(path.join(DATA, "indicateurs.json
 const PERIODES = JSON.parse(fs.readFileSync(path.join(DATA, "periodes.json"), "utf8"));
 const CRITERES = JSON.parse(fs.readFileSync(path.join(DATA, "criteres.json"), "utf8"));
 const ECARTEES = JSON.parse(fs.readFileSync(path.join(DATA, "ecartees.json"), "utf8"));
+const SOURCES = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf8"));
 
 // indicateurs.json est indexé par année (une clé par année, un sous-objet par KPI)
 // pour rester facile à relire/vérifier ; on le remet ici sous la forme
@@ -95,6 +96,7 @@ function annexe() {
 <li><b>v1 (ce document)</b> : liens « points d'entrée » — notices Vie-publique.fr, Wikipédia, institutions d'évaluation (France Stratégie, Cour des comptes, COR, DARES, DREES, CEVIPOF).</li>
 <li><b>v2 (objectif)</b> : chaque affirmation chiffrée liée à sa source primaire (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du discours d'époque).</li>
 <li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires.</li>
+<li>Les 7 indicateurs du bandeau (croissance, chômage, inflation, dette, fécondité, espérance de vie, industrie) ont été vérifiés année par année contre les séries INSEE/INED — détail, sources et niveau de fiabilité sur <a href="sources.html">la page Sources &amp; fiabilité</a>.</li>
 </ul>`;
 }
 
@@ -143,10 +145,63 @@ function page() {
 `;
 }
 
+/* --- Page « Sources & fiabilité des indicateurs » --- */
+function pageSources() {
+  const labs = INDIC.map(i => i.lab);
+  const thead = `<tr><th>Année</th>${labs.map(l => `<th>${esc(l)}<br>(${esc(INDICATEURS.unites[l])})</th>`).join("")}</tr>`;
+  const tbody = ANNEES.map(a => {
+    const cells = labs.map(l => `<td>${INDICATEURS.annees[String(a)][l]}</td>`).join("");
+    return `<tr><td class="annee">${a}</td>${cells}</tr>`;
+  }).join("");
+
+  const kpiNotes = SOURCES.kpis.map(k => `
+<h3>${esc(k.lab)}</h3>
+<p><b>Fiabilité :</b> ${k.fiabilite}</p>
+<p>${k.note}</p>
+<ul>${k.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>`).join("");
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources & fiabilité des indicateurs · Socle commun</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Socle commun · 1944 → 2026</div>
+  <h1>Sources <span class="annees">&amp; fiabilité</span></h1>
+  <p class="standfirst">${SOURCES.intro}</p>
+  <p class="standfirst"><a href="index.html">← Retour au document principal</a></p>
+</header>
+
+<main id="annexe">
+<h2>Indicateurs, année par année</h2>
+<div class="table-scroll"><table class="re-table kpi-table">
+<thead>${thead}</thead>
+<tbody>${tbody}</tbody>
+</table></div>
+
+<h2>Sources &amp; fiabilité, KPI par KPI</h2>
+${kpiNotes}
+</main>
+
+<footer>
+  Document ouvert aux commentaires et aux corrections — voir <a href="index.html#annexe-conteneur">l'annexe du document principal</a> pour la méthode générale du projet.
+</footer>
+
+</body>
+</html>
+`;
+}
+
 function build() {
   fs.rmSync(DIST, { recursive: true, force: true });
   fs.mkdirSync(DIST, { recursive: true });
   fs.writeFileSync(path.join(DIST, "index.html"), page());
+  fs.writeFileSync(path.join(DIST, "sources.html"), pageSources());
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
   console.log("Build OK → dist/");

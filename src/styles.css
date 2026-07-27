@@ -101,6 +101,9 @@
   .re-table th,.re-table td{border:1px solid var(--trait);padding:.5em .7em;text-align:left;vertical-align:top}
   .re-table th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--papier-2)}
   .re-table td.in{width:38%}
+  .table-scroll{overflow-x:auto}
+  .re-table td.annee{font-family:var(--mono);white-space:nowrap}
+  .kpi-table td:not(.annee){text-align:right;font-family:var(--mono)}
   .avert{border:1.5px solid var(--rouge);padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.9rem;max-width:60em;background:#fff}
   .avert b{color:var(--rouge)}
   footer{border-top:3px solid var(--encre);padding:1.6rem 5vw 3rem;font-size:.82rem;color:var(--gris);max-width:1080px;margin:0 auto}

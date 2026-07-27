@@ -28,13 +28,13 @@
       "Industrie": 24
     },
     "1960": {
-      "Croissance PIB": 7,
+      "Croissance PIB": 8,
       "Chômage": 1.3,
       "Inflation": 3.6,
       "Dette publique": 30,
       "Fécondité": 2.7,
       "Espérance de vie": 70,
-      "Industrie": 23
+      "Industrie": 26
     },
     "1965": {
       "Croissance PIB": 5,
@@ -43,7 +43,7 @@
       "Dette publique": 25,
       "Fécondité": 2.8,
       "Espérance de vie": 71,
-      "Industrie": 23
+      "Industrie": 24.8
     },
     "1970": {
       "Croissance PIB": 6,
@@ -56,7 +56,7 @@
     },
     "1975": {
       "Croissance PIB": -1,
-      "Chômage": 3.8,
+      "Chômage": 3.6,
       "Inflation": 11.8,
       "Dette publique": 20,
       "Fécondité": 1.9,
@@ -65,7 +65,7 @@
     },
     "1980": {
       "Croissance PIB": 1.6,
-      "Chômage": 6.2,
+      "Chômage": 5.6,
       "Inflation": 13.6,
       "Dette publique": 21,
       "Fécondité": 1.95,
@@ -74,7 +74,7 @@
     },
     "1985": {
       "Croissance PIB": 1.6,
-      "Chômage": 9.7,
+      "Chômage": 9.1,
       "Inflation": 5.8,
       "Dette publique": 30,
       "Fécondité": 1.8,
@@ -83,7 +83,7 @@
     },
     "1990": {
       "Croissance PIB": 2.9,
-      "Chômage": 8.9,
+      "Chômage": 8.0,
       "Inflation": 3.4,
       "Dette publique": 35,
       "Fécondité": 1.78,
@@ -92,7 +92,7 @@
     },
     "1995": {
       "Croissance PIB": 2.1,
-      "Chômage": 11,
+      "Chômage": 10.0,
       "Inflation": 1.8,
       "Dette publique": 55,
       "Fécondité": 1.71,
@@ -101,7 +101,7 @@
     },
     "2000": {
       "Croissance PIB": 3.9,
-      "Chômage": 9,
+      "Chômage": 8.5,
       "Inflation": 1.7,
       "Dette publique": 58,
       "Fécondité": 1.87,
@@ -121,10 +121,10 @@
       "Croissance PIB": 1.9,
       "Chômage": 9.3,
       "Inflation": 1.5,
-      "Dette publique": 85,
+      "Dette publique": 81.6,
       "Fécondité": 2,
       "Espérance de vie": 81.5,
-      "Industrie": 12.5
+      "Industrie": 11.4
     },
     "2015": {
       "Croissance PIB": 1.1,
@@ -132,12 +132,12 @@
       "Inflation": 0,
       "Dette publique": 95,
       "Fécondité": 1.96,
-      "Espérance de vie": 82.4,
+      "Espérance de vie": 82.0,
       "Industrie": 11.5
     },
     "2020": {
       "Croissance PIB": -7.5,
-      "Chômage": 8,
+      "Chômage": 8.1,
       "Inflation": 0.5,
       "Dette publique": 115,
       "Fécondité": 1.83,
@@ -145,7 +145,7 @@
       "Industrie": 11
     },
     "2022": {
-      "Croissance PIB": 2.6,
+      "Croissance PIB": 2.5,
       "Chômage": 7.3,
       "Inflation": 5.2,
       "Dette publique": 112,
@@ -154,10 +154,10 @@
       "Industrie": 11
     },
     "2025": {
-      "Croissance PIB": 1,
-      "Chômage": 7.3,
-      "Inflation": 1.3,
-      "Dette publique": 113,
+      "Croissance PIB": 0.8,
+      "Chômage": 7.7,
+      "Inflation": 0.9,
+      "Dette publique": 115.6,
       "Fécondité": 1.6,
       "Espérance de vie": 83,
       "Industrie": 11
