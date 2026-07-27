@@ -96,7 +96,7 @@ function annexe() {
 <li><b>v1 (ce document)</b> : liens « points d'entrée » — notices Vie-publique.fr, Wikipédia, institutions d'évaluation (France Stratégie, Cour des comptes, COR, DARES, DREES, CEVIPOF).</li>
 <li><b>v2 (objectif)</b> : chaque affirmation chiffrée liée à sa source primaire (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du discours d'époque).</li>
 <li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires.</li>
-<li>Les 7 indicateurs du bandeau (croissance, chômage, inflation, dette, fécondité, espérance de vie, industrie) ont été vérifiés année par année contre les séries INSEE/INED — détail, sources et niveau de fiabilité sur <a href="sources.html">la page Sources &amp; fiabilité</a>.</li>
+<li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="sources.html">antiseche.org/sources</a>.</li>
 </ul>`;
 }
 
