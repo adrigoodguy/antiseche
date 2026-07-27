@@ -1,0 +1,101 @@
+  :root{
+    --encre:#182338;          /* encre administrative */
+    --papier:#F1F2EE;         /* papier recyclé */
+    --papier-2:#E9EBE4;
+    --bleu:#2B4C9B;           /* bleu République */
+    --rouge:#C3372C;          /* rouge tampon */
+    --vert:#2E6E4E;           /* vert consensus */
+    --gris:#8A9088;
+    --trait:#C9CCC6;
+    --display:"Didot","Bodoni MT","Playfair Display",Georgia,"Times New Roman",serif;
+    --corps:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
+  body{background:var(--papier);color:var(--encre);font-family:var(--corps);line-height:1.55;font-size:16px}
+  a{color:var(--bleu)}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
+
+  /* ---------- Hero ---------- */
+  header.hero{padding:9vh 5vw 6vh;max-width:1080px;margin:0 auto}
+  .hero .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rouge)}
+  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.02;margin:.35em 0 .3em}
+  .hero h1 .annees{color:var(--bleu)}
+  .hero p.standfirst{max-width:46em;font-size:1.06rem;color:#39445A}
+  .hero .legende{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem;font-size:.82rem}
+  .badge{display:inline-block;padding:.14em .6em;border-radius:2px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em}
+  .badge.consensus{background:var(--vert);color:#fff}
+  .badge.debattu{background:var(--rouge);color:#fff}
+  .badge.echec{background:none;border:1.5px solid var(--encre);color:var(--encre)}
+
+  /* ---------- Bandeau indicateurs (signature, sticky) ---------- */
+  #bandeau{position:sticky;top:0;z-index:50;background:var(--encre);color:#E8EAF2;border-bottom:3px solid var(--rouge)}
+  #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:.4rem .6rem .5rem}
+  .spark{flex:0 0 auto;padding:.2rem .8rem;border-right:1px solid rgba(255,255,255,.14);min-width:150px}
+  .spark:last-child{border-right:none}
+  .spark .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#9FB0D6;white-space:nowrap}
+  .spark .val{font-family:var(--mono);font-size:.78rem;color:#fff}
+  .spark svg{display:block;margin-top:2px}
+  #annee-curseur{position:absolute;right:.8rem;top:.35rem;font-family:var(--display);font-size:1.7rem;color:#fff;opacity:.95;pointer-events:none;background:var(--encre);padding-left:.4rem}
+  @media(max-width:760px){#annee-curseur{font-size:1.15rem;top:.5rem}}
+
+  /* ---------- Sections période ---------- */
+  main{max-width:1080px;margin:0 auto;padding:0 5vw 4rem}
+  section.periode{position:relative;padding:5rem 0 3rem;border-bottom:1px solid var(--trait)}
+  .filigrane{position:absolute;top:1.2rem;right:-2vw;font-family:var(--display);font-size:clamp(5rem,17vw,12rem);color:var(--encre);opacity:.055;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+  .periode .quand{font-family:var(--mono);color:var(--rouge);font-size:.8rem;letter-spacing:.15em}
+  .periode h2{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.08;margin:.2em 0 .15em}
+  .periode .regime{color:var(--gris);font-size:.95rem;margin-bottom:1.2rem}
+
+  .contexte{background:var(--papier-2);border-left:4px solid var(--bleu);padding:1rem 1.2rem;margin:1.2rem 0 1.8rem}
+  .contexte h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin-bottom:.4rem}
+  .contexte p{font-size:.95rem;max-width:58em}
+  .chiffres{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+  .chip{font-family:var(--mono);font-size:.72rem;background:#fff;border:1px solid var(--trait);padding:.28em .6em;border-radius:2px;white-space:nowrap}
+  .chip b{color:var(--bleu);font-weight:600}
+
+  /* ---------- Cartes réforme ---------- */
+  .reforme{background:#fff;border:1px solid var(--trait);border-radius:3px;margin:.7rem 0;scroll-margin-top:120px}
+  .reforme summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;padding:.85rem 1rem}
+  .reforme summary::-webkit-details-marker{display:none}
+  .reforme summary:hover{background:#FAFAF7}
+  .reforme .annee{font-family:var(--mono);font-size:.78rem;color:var(--rouge);min-width:3.2em}
+  .reforme .titre{font-weight:600;font-size:1.02rem;flex:1 1 14em}
+  .reforme .resume{flex-basis:100%;color:#4A5568;font-size:.9rem;padding-left:calc(3.2em + .6rem)}
+  @media(max-width:600px){.reforme .resume{padding-left:0}}
+  .reforme .fleche{font-family:var(--mono);color:var(--gris);transition:transform .2s}
+  .reforme[open] .fleche{transform:rotate(90deg)}
+  .colonnes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--trait)}
+  @media(max-width:760px){.colonnes{grid-template-columns:1fr}}
+  .col{padding:.9rem 1rem;border-right:1px solid var(--papier-2)}
+  .col:last-child{border-right:none}
+  @media(max-width:760px){.col{border-right:none;border-bottom:1px solid var(--papier-2)}}
+  .col h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+  .col.promesse h4{color:var(--bleu)} .col.debat h4{color:var(--rouge)} .col.bilan h4{color:var(--vert)}
+  .col p{font-size:.9rem}
+  .pied{border-top:1px solid var(--papier-2);padding:.7rem 1rem;font-size:.82rem}
+  .pied .src a{margin-right:.9rem;font-family:var(--mono);font-size:.75rem}
+  .lien-ancre{float:right;font-family:var(--mono);font-size:.72rem;color:var(--gris);text-decoration:none}
+  .lien-ancre:hover{color:var(--bleu)}
+
+  /* ---------- Commentaires (Giscus) ---------- */
+  .commentaires{background:var(--papier-2);padding:.8rem 1rem;border-top:1px solid var(--trait)}
+  .commentaires h5{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-bottom:.5rem}
+  .commentaires .note{font-size:.75rem;color:var(--gris);margin-bottom:.5rem}
+  .giscus-zone{margin-top:.6rem}
+
+  /* ---------- Annexe ---------- */
+  #annexe{padding:4rem 0 2rem}
+  #annexe h2{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem)}
+  #annexe h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin:1.6rem 0 .5rem}
+  #annexe ol,#annexe ul{padding-left:1.3em;max-width:60em}
+  #annexe li{margin:.3em 0;font-size:.93rem}
+  .re-table{width:100%;border-collapse:collapse;margin-top:.6rem;font-size:.86rem}
+  .re-table th,.re-table td{border:1px solid var(--trait);padding:.5em .7em;text-align:left;vertical-align:top}
+  .re-table th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--papier-2)}
+  .re-table td.in{width:38%}
+  .avert{border:1.5px solid var(--rouge);padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.9rem;max-width:60em;background:#fff}
+  .avert b{color:var(--rouge)}
+  footer{border-top:3px solid var(--encre);padding:1.6rem 5vw 3rem;font-size:.82rem;color:var(--gris);max-width:1080px;margin:0 auto}

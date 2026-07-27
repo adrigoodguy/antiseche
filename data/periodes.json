@@ -1,0 +1,1400 @@
+[
+  {
+    "id": "gprf",
+    "years": "1944–1946",
+    "start": 1944,
+    "end": 1946,
+    "titre": "Gouvernement provisoire",
+    "regime": "GPRF — de Gaulle, puis tripartisme (PCF, SFIO, MRP)",
+    "ambiance": "Monde en ruines. Accords de Bretton Woods (1944), création de l'ONU, début de guerre froide. La France applique le programme du Conseil national de la Résistance dans un pays rationné, au PIB effondré — et en plein baby-boom.",
+    "chips": [
+      [
+        "PIB",
+        "≈ 60 % du niveau 1938"
+      ],
+      [
+        "Fécondité",
+        "≈ 3,0 (baby-boom)"
+      ],
+      [
+        "Espérance de vie",
+        "≈ 62 ans"
+      ],
+      [
+        "Contexte",
+        "reconstruction, rationnement"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "secu",
+        "an": "1945",
+        "t": "Création de la Sécurité sociale",
+        "b": "consensus",
+        "res": "Ordonnances des 4 et 19 octobre 1945 : un système unique de protection contre les « risques de l'existence ».",
+        "pro": "Libérer les travailleurs de « l'incertitude du lendemain » (programme du CNR), unifier les assurances sociales, couvrir maladie, vieillesse, famille.",
+        "deb": "Patronat et mutuelles craignent l'étatisation ; débat sur gestion paritaire vs contrôle d'État ; les régimes spéciaux refusent d'entrer dans le régime général.",
+        "bil": "Socle toujours en vigueur 80 ans après, consensus large comme acquis majeur. Le financement par cotisations est en tension depuis les années 1990 (CSG, déficits) ; l'unification n'a jamais été achevée.",
+        "src": [
+          [
+            "Vie-publique — 1945-2025, 80 ans de Sécu",
+            "https://www.vie-publique.fr/eclairage/24073-la-securite-sociale-depuis-1945"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/S%C3%A9curit%C3%A9_sociale_(France)"
+          ]
+        ]
+      },
+      {
+        "id": "nationalisations45",
+        "an": "1944-46",
+        "t": "Nationalisations (énergie, banques, Renault)",
+        "b": "debattu",
+        "res": "Charbonnages, EDF-GDF, grandes banques, Air France, Renault passent sous contrôle public.",
+        "pro": "« Retour à la nation des grands moyens de production » (CNR) : reconstruire vite, punir la collaboration (Renault), orienter l'investissement.",
+        "deb": "Sanction ou socialisme rampant ? Les libéraux dénoncent une économie administrée ; les communistes veulent aller plus loin.",
+        "bil": "Outil efficace de la reconstruction et de l'électrification selon la plupart des historiens économiques ; l'essentiel a été reprivatisé (1986-2005). EDF renationalisée de fait en 2022 — le débat n'est pas clos.",
+        "src": [
+          [
+            "Wikipédia — Nationalisations de 1945",
+            "https://fr.wikipedia.org/wiki/Nationalisation#France"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/fiches/269993-quest-ce-quune-nationalisation"
+          ]
+        ]
+      },
+      {
+        "id": "votefemmes",
+        "an": "1944",
+        "t": "Droit de vote des femmes",
+        "b": "consensus",
+        "res": "Ordonnance du 21 avril 1944 ; premier vote aux municipales d'avril 1945.",
+        "pro": "Réparer une anomalie démocratique française (la plupart des voisins l'avaient accordé dès 1918-1931) et reconnaître le rôle des femmes dans la Résistance.",
+        "deb": "Le Sénat radical l'avait bloqué pendant l'entre-deux-guerres, craignant un vote « clérical » des femmes.",
+        "bil": "Acquis évidemment consensuel. La parité réelle des élus a mis 60 ans de plus (lois parité 2000) — écart durable entre droit formel et pratique.",
+        "src": [
+          [
+            "Vie-publique — droit de vote des femmes",
+            "https://www.vie-publique.fr/eclairage/19604-le-droit-de-vote-des-femmes"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Droit_de_vote_des_femmes_en_France"
+          ]
+        ]
+      },
+      {
+        "id": "ce45",
+        "an": "1945",
+        "t": "Comités d'entreprise",
+        "b": "consensus",
+        "res": "Ordonnance de février 1945 : représentation des salariés dans les entreprises de plus de 50 salariés.",
+        "pro": "Associer les travailleurs à la marche de l'entreprise sans remettre en cause l'autorité patronale.",
+        "deb": "Patronat réticent ; CGT juge le pouvoir consultatif trop faible.",
+        "bil": "Institution durable, fusionnée en 2017 dans le CSE (ordonnances Macron). Le seuil de 50 salariés est devenu un objet d'étude économique (effets de seuil).",
+        "src": [
+          [
+            "Wikipédia — Comité d'entreprise",
+            "https://fr.wikipedia.org/wiki/Comit%C3%A9_d%27entreprise"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ivrep",
+    "years": "1946–1958",
+    "start": 1946,
+    "end": 1958,
+    "titre": "IVe République",
+    "regime": "Régime parlementaire — 24 gouvernements en 12 ans",
+    "ambiance": "Guerre froide chaude (Corée, Budapest, Suez), plan Marshall, décolonisation mondiale. Croissance forte dans tout l'Ouest. La France se modernise à grande vitesse mais s'enlise en Indochine puis en Algérie.",
+    "chips": [
+      [
+        "Croissance",
+        "≈ 4,5 %/an"
+      ],
+      [
+        "Chômage",
+        "quasi plein emploi"
+      ],
+      [
+        "Inflation",
+        "forte, > 10 % certaines années"
+      ],
+      [
+        "Fécondité",
+        "≈ 2,7"
+      ],
+      [
+        "Espérance de vie",
+        "+ 8 ans sur la période"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "planmonnet",
+        "an": "1946",
+        "t": "Planification (plan Monnet)",
+        "b": "consensus",
+        "res": "Commissariat général du Plan : priorités d'investissement (charbon, acier, électricité, transports).",
+        "pro": "« Modernisation ou décadence » (Monnet) : flécher le Marshall et l'épargne vers les goulets d'étranglement de la reconstruction.",
+        "deb": "Planification « à la française » indicative vs dirigisme ; les libéraux y voient une bureaucratie de plus.",
+        "bil": "Largement crédité par les historiens d'avoir accéléré la reconstruction. Le Plan décline dès les années 1970, supprimé en 2006 — réactivé sous forme de « France Stratégie » puis « France 2030 », signe que l'idée revient.",
+        "src": [
+          [
+            "Wikipédia — Plan Monnet",
+            "https://fr.wikipedia.org/wiki/Plan_Monnet"
+          ],
+          [
+            "Vie-publique — la planification",
+            "https://www.vie-publique.fr/eclairage/270067-la-planification-francaise"
+          ]
+        ]
+      },
+      {
+        "id": "rome",
+        "an": "1951-57",
+        "t": "CECA puis traité de Rome",
+        "b": "debattu",
+        "res": "Mise en commun charbon-acier (1951), puis marché commun à six (1957).",
+        "pro": "« Rendre la guerre matériellement impossible » entre France et Allemagne (Schuman) ; ouvrir des débouchés à l'industrie française.",
+        "deb": "Gaullistes et communistes dénoncent l'abandon de souveraineté ; le patronat craint la concurrence allemande.",
+        "bil": "Paix franco-allemande et intégration commerciale réalisées — consensus historique. Le degré d'intégration souhaitable, lui, reste le clivage politique majeur (2005, Brexit, débats actuels).",
+        "src": [
+          [
+            "Vie-publique — traité de Rome",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Wikipédia — Traité de Rome",
+            "https://fr.wikipedia.org/wiki/Trait%C3%A9_de_Rome_(1957)"
+          ]
+        ]
+      },
+      {
+        "id": "smig",
+        "an": "1950",
+        "t": "Création du SMIG",
+        "b": "consensus",
+        "res": "Salaire minimum interprofessionnel garanti, indexé sur les prix.",
+        "pro": "Garantir un minimum vital dans un contexte de forte inflation et sortir de la fixation autoritaire des salaires de guerre.",
+        "deb": "Niveau jugé trop bas par les syndicats ; le patronat craint l'inflation salariale.",
+        "bil": "Devenu SMIC en 1970 (indexé aussi sur la croissance). Institution consensuelle en France ; son niveau relatif (parmi les plus élevés de l'OCDE) nourrit un débat économique permanent sur l'emploi peu qualifié.",
+        "src": [
+          [
+            "Wikipédia — SMIG",
+            "https://fr.wikipedia.org/wiki/Salaire_minimum_interprofessionnel_garanti"
+          ],
+          [
+            "INSEE — séries SMIC",
+            "https://www.insee.fr/fr/statistiques/1375188"
+          ]
+        ]
+      },
+      {
+        "id": "conges56",
+        "an": "1956",
+        "t": "3e semaine de congés payés",
+        "b": "consensus",
+        "res": "Loi de mars 1956, gouvernement Guy Mollet, généralisant un acquis Renault (1955).",
+        "pro": "Étendre à tous ce que la négociation collective avait obtenu chez Renault ; partager les fruits de la croissance.",
+        "deb": "Coût pour les entreprises vs pouvoir d'achat du temps libre ; débat vite éteint par la prospérité.",
+        "bil": "Acquis jamais remis en cause (4e semaine 1969, 5e 1982). Illustre un mécanisme récurrent : l'accord d'entreprise pionnier généralisé par la loi.",
+        "src": [
+          [
+            "Wikipédia — Congés payés",
+            "https://fr.wikipedia.org/wiki/Cong%C3%A9s_pay%C3%A9s#En_France"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dg",
+    "years": "1958–1969",
+    "start": 1958,
+    "end": 1969,
+    "titre": "De Gaulle",
+    "regime": "Ve République — Debré, Pompidou, Couve de Murville",
+    "ambiance": "Apogée des Trente Glorieuses en Europe et au Japon. Mur de Berlin (1961), crise de Cuba (1962), décolonisation africaine. La France connaît une croissance et un plein emploi jamais retrouvés depuis.",
+    "chips": [
+      [
+        "Croissance",
+        "≈ 5,5 %/an"
+      ],
+      [
+        "Chômage",
+        "< 2 %"
+      ],
+      [
+        "Inflation",
+        "≈ 4 %"
+      ],
+      [
+        "Dette",
+        "< 30 % PIB"
+      ],
+      [
+        "Fécondité",
+        "≈ 2,7"
+      ],
+      [
+        "Espérance de vie",
+        "≈ 71 ans"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "constit58",
+        "an": "1958",
+        "t": "Constitution de la Ve République",
+        "b": "debattu",
+        "res": "Exécutif fort, parlement rationalisé (49.3, vote bloqué), approuvée par référendum à 79 %.",
+        "pro": "En finir avec l'instabilité de la IVe (24 gouvernements) et donner à l'État « une tête » capable de trancher — au départ, pour résoudre la crise algérienne.",
+        "deb": "Mitterrand dénonce « le coup d'État permanent » ; les partisans du régime parlementaire y voient un césarisme.",
+        "bil": "Institutions les plus durables depuis 1789 — stabilité obtenue. Mais le présidentialisme, l'usage du 49.3 et la faiblesse du Parlement sont au cœur des débats institutionnels de 2024-2027, surtout depuis la dissolution de 2024.",
+        "src": [
+          [
+            "Vie-publique — Constitution 1958",
+            "https://www.vie-publique.fr/dossier/19582008-cinquantenaire-de-la-constitution"
+          ],
+          [
+            "Légifrance — texte",
+            "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000571356"
+          ]
+        ]
+      },
+      {
+        "id": "suffrage62",
+        "an": "1962",
+        "t": "Élection du président au suffrage universel",
+        "b": "debattu",
+        "res": "Révision par référendum (art. 11), approuvée à 62 %, contre l'avis de presque tous les partis.",
+        "pro": "Donner au chef de l'État une légitimité populaire directe, au-dessus des partis, pour garantir la stabilité après de Gaulle.",
+        "deb": "Tous les partis sauf l'UNR dénoncent une procédure inconstitutionnelle et un pouvoir personnel ; censure du gouvernement Pompidou, dissolution.",
+        "bil": "Devenue LA clé de voûte du régime et l'élection structurante de la vie politique. Effet durable : bipolarisation, personnalisation — que le quinquennat (2000) accentuera encore.",
+        "src": [
+          [
+            "Vie-publique — référendum 1962",
+            "https://www.vie-publique.fr/fiches/19430-lelection-du-president-de-la-republique-au-suffrage-universel-direct"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/R%C3%A9f%C3%A9rendum_constitutionnel_fran%C3%A7ais_de_1962"
+          ]
+        ]
+      },
+      {
+        "id": "algerie",
+        "an": "1962",
+        "t": "Indépendance de l'Algérie",
+        "b": "consensus",
+        "res": "Accords d'Évian, approuvés par référendum à 91 % en métropole.",
+        "pro": "« La paix des braves » puis l'autodétermination : sortir d'une guerre de 8 ans qui a fait tomber la IVe République.",
+        "deb": "Déchirement national : OAS, putsch des généraux, attentats contre de Gaulle ; le sort des harkis et des pieds-noirs, tragique, reste une plaie mémorielle.",
+        "bil": "La décision de décolonisation est historiquement consensuelle ; ses conditions (harkis, rapatriés, mémoire des deux rives) restent un sujet vif 60 ans après — rapport Stora (2021).",
+        "src": [
+          [
+            "Vie-publique — accords d'Évian",
+            "https://www.vie-publique.fr/eclairage/18899-guerre-dalgerie-les-accords-devian"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Accords_d%27%C3%89vian"
+          ]
+        ]
+      },
+      {
+        "id": "nf",
+        "an": "1960",
+        "t": "Nouveau franc (plan Pinay-Rueff)",
+        "b": "consensus",
+        "res": "Dévaluation, rigueur budgétaire, franc « lourd » (100 anciens = 1 nouveau).",
+        "pro": "Restaurer la confiance dans la monnaie, préparer l'ouverture au marché commun, casser l'inflation chronique de la IVe.",
+        "deb": "Rigueur jugée antisociale à gauche ; les industriels protégés craignent l'ouverture.",
+        "bil": "Considéré comme une des stabilisations les plus réussies de l'histoire monétaire française : dix ans de croissance forte à inflation contenue suivent.",
+        "src": [
+          [
+            "Wikipédia — plan Pinay-Rueff",
+            "https://fr.wikipedia.org/wiki/Plan_Pinay-Rueff"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "participation",
+        "an": "1967",
+        "t": "Participation des salariés",
+        "b": "debattu",
+        "res": "Ordonnance instaurant l'intéressement obligatoire aux bénéfices (entreprises > 100 salariés).",
+        "pro": "La « troisième voie » gaullienne entre capitalisme et collectivisme : associer capital et travail.",
+        "deb": "Patronat hostile à l'obligation ; syndicats y voient un substitut aux hausses de salaires.",
+        "bil": "Dispositifs pérennisés et étendus (participation, intéressement, épargne salariale ≈ 10 millions de salariés couverts) mais restés un complément, jamais la transformation du rapport capital-travail annoncée.",
+        "src": [
+          [
+            "Vie-publique — participation",
+            "https://www.vie-publique.fr/fiches/24112-linteressement-et-la-participation"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Participation_salariale"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pompidou",
+    "years": "1969–1974",
+    "start": 1969,
+    "end": 1974,
+    "titre": "Pompidou",
+    "regime": "Chaban-Delmas (« Nouvelle société ») puis Messmer",
+    "ambiance": "Fin du système de Bretton Woods (1971), détente Est-Ouest, premier choc pétrolier (1973) qui referme les Trente Glorieuses. En France, l'après-68 pousse à moderniser le social sans rupture.",
+    "chips": [
+      [
+        "Croissance",
+        "≈ 5 %/an"
+      ],
+      [
+        "Chômage",
+        "≈ 2,5 %"
+      ],
+      [
+        "Inflation",
+        "s'emballe : > 7 %"
+      ],
+      [
+        "Fécondité",
+        "commence à chuter"
+      ],
+      [
+        "Industrie",
+        "≈ 22 % du PIB"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "smic70",
+        "an": "1970",
+        "t": "SMIG → SMIC",
+        "b": "consensus",
+        "res": "Le salaire minimum devient « de croissance » : indexé sur les prix ET sur la moitié du gain de pouvoir d'achat ouvrier.",
+        "pro": "Faire participer les bas salaires aux fruits de la croissance, réponse sociale à mai 68.",
+        "deb": "Risque inflationniste et de compression de l'échelle des salaires, disent les économistes libéraux.",
+        "bil": "Mécanisme toujours en vigueur, unique en Europe par son indexation. La « smicardisation » (proportion croissante de salariés au voisinage du SMIC) est un débat central des années 2020.",
+        "src": [
+          [
+            "Vie-publique — le SMIC",
+            "https://www.vie-publique.fr/fiches/24110-quest-ce-que-le-smic"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Salaire_minimum_interprofessionnel_de_croissance"
+          ]
+        ]
+      },
+      {
+        "id": "formation71",
+        "an": "1971",
+        "t": "Formation professionnelle (loi Delors)",
+        "b": "debattu",
+        "res": "Obligation de financement de la formation continue par les entreprises, congé de formation.",
+        "pro": "« Deuxième chance » permanente : promotion sociale et adaptation au changement technique.",
+        "deb": "Contrainte de plus pour les PME ; syndicats craignent une formation au service du seul employeur.",
+        "bil": "A créé un système massif (≈ 30 Mds €/an) mais dont l'efficacité et l'équité sont régulièrement critiquées (Cour des comptes) : profite plus aux déjà qualifiés. Refondu en 2018 (CPF).",
+        "src": [
+          [
+            "Wikipédia — loi de 1971",
+            "https://fr.wikipedia.org/wiki/Formation_professionnelle_en_France"
+          ],
+          [
+            "Cour des comptes",
+            "https://www.ccomptes.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "mensualisation",
+        "an": "1970",
+        "t": "Mensualisation des salaires",
+        "b": "consensus",
+        "res": "Accords généralisant le statut mensuel aux ouvriers (paie mensuelle, maladie, préavis).",
+        "pro": "Effacer la frontière ouvriers/employés, sécuriser les revenus populaires.",
+        "deb": "Coût pour l'industrie ; certains syndicats craignent la disparition d'acquis horaires.",
+        "bil": "Généralisée par la loi en 1978, complètement entrée dans les mœurs — exemple de réforme par la négociation collective étendue.",
+        "src": [
+          [
+            "Wikipédia — mensualisation",
+            "https://fr.wikipedia.org/wiki/Mensualisation"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "industrie70",
+        "an": "1970-74",
+        "t": "Grands programmes (nucléaire, TGV, Airbus)",
+        "b": "consensus",
+        "res": "Lancements d'Airbus (1970), du programme TGV, puis plan Messmer nucléaire (1974) après le choc pétrolier.",
+        "pro": "Indépendance énergétique (« tout électrique, tout nucléaire ») et champions industriels européens face aux Américains.",
+        "deb": "Contestation écologiste naissante sur le nucléaire ; coût des grands projets ; choix du « tout-voiture » urbain en parallèle.",
+        "bil": "Nucléaire ≈ 70 % de l'électricité (record mondial), TGV et Airbus réussites industrielles majeures — bilan globalement salué. Le « tout-voiture » et le retard d'entretien du parc nucléaire (années 2020) sont réévalués négativement.",
+        "src": [
+          [
+            "Wikipédia — plan Messmer",
+            "https://fr.wikipedia.org/wiki/Plan_Messmer"
+          ],
+          [
+            "Vie-publique — politique énergétique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "vge",
+    "years": "1974–1981",
+    "start": 1974,
+    "end": 1981,
+    "titre": "Giscard d'Estaing",
+    "regime": "Chirac puis Barre — « société libérale avancée »",
+    "ambiance": "Stagflation mondiale, deuxième choc pétrolier (1979), tournants Thatcher (1979) et Reagan (1980). La croissance française est divisée par deux, le chômage de masse s'installe — durablement.",
+    "chips": [
+      [
+        "Croissance",
+        "≈ 2,5 %/an"
+      ],
+      [
+        "Chômage",
+        "× 3 : 1,7 M en 1981"
+      ],
+      [
+        "Inflation",
+        "≈ 11 %"
+      ],
+      [
+        "Fécondité",
+        "passe sous 2,0"
+      ],
+      [
+        "Espérance de vie",
+        "≈ 74 ans"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "veil",
+        "an": "1975",
+        "t": "Loi Veil (IVG)",
+        "b": "consensus",
+        "res": "Dépénalisation de l'interruption volontaire de grossesse, votée grâce aux voix de la gauche.",
+        "pro": "« Mettre fin à une situation de désordre et d'injustice » (Veil) : 300 000 avortements clandestins par an, dangereux et inégalitaires.",
+        "deb": "Opposition virulente d'une partie de la majorité et des mouvements catholiques ; débats d'une rare violence à l'Assemblée.",
+        "bil": "Devenue consensuelle au point d'être constitutionnalisée en 2024 — trajectoire inverse des États-Unis. Cas d'école d'une réforme sociétale minoritaire dans son propre camp.",
+        "src": [
+          [
+            "Vie-publique — loi Veil",
+            "https://www.vie-publique.fr/eclairage/18860-ivg-la-loi-veil-du-17-janvier-1975"
+          ],
+          [
+            "INA — discours de Simone Veil",
+            "https://www.ina.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "maj18",
+        "an": "1974",
+        "t": "Majorité à 18 ans",
+        "b": "consensus",
+        "res": "Abaissement de 21 à 18 ans, une des premières lois du septennat.",
+        "pro": "Reconnaître la maturité d'une jeunesse nombreuse (baby-boom) et moderniser l'image du pays.",
+        "deb": "Craintes (vite démenties) d'un basculement électoral massif vers la gauche.",
+        "bil": "Aucune remise en cause ; a intégré 2,5 millions d'électeurs. Le débat s'est déplacé depuis vers le vote à 16 ans.",
+        "src": [
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Wikipédia — majorité civile",
+            "https://fr.wikipedia.org/wiki/Majorit%C3%A9_civile_en_France"
+          ]
+        ]
+      },
+      {
+        "id": "haby",
+        "an": "1975",
+        "t": "Collège unique (loi Haby)",
+        "b": "debattu",
+        "res": "Fusion des filières en un collège commun pour tous les élèves de la 6e à la 3e.",
+        "pro": "Démocratiser : le système de filières reproduisait les origines sociales dès 11 ans.",
+        "deb": "Nivellement par le bas pour les uns, égalité des chances pour les autres — le débat n'a jamais cessé.",
+        "bil": "Massification réussie (80 % d'une classe d'âge au bac visé puis atteint) mais démocratisation inachevée : la France reste parmi les pays OCDE où l'origine sociale pèse le plus sur les résultats (PISA).",
+        "src": [
+          [
+            "Wikipédia — loi Haby",
+            "https://fr.wikipedia.org/wiki/Loi_Haby"
+          ],
+          [
+            "OCDE — PISA France",
+            "https://www.oecd.org/pisa/"
+          ]
+        ]
+      },
+      {
+        "id": "barre",
+        "an": "1976-80",
+        "t": "Plans Barre",
+        "b": "debattu",
+        "res": "Blocage temporaire des prix, rigueur monétaire et budgétaire, vérité des prix industriels.",
+        "pro": "« Casser l'inflation » sans casser la croissance, rétablir les équilibres après le choc pétrolier.",
+        "deb": "Austérité socialement aveugle pour la gauche ; trop timide pour les monétaristes.",
+        "bil": "Échec relatif au regard des objectifs : l'inflation reste > 10 % et le chômage triple. Le contexte (2e choc pétrolier) explique beaucoup — cas d'école pour distinguer politique et conjoncture.",
+        "src": [
+          [
+            "Wikipédia — plan Barre",
+            "https://fr.wikipedia.org/wiki/Plan_Barre"
+          ],
+          [
+            "INSEE — séries longues",
+            "https://www.insee.fr/fr/statistiques"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "mitterrand",
+    "years": "1981–1995",
+    "start": 1981,
+    "end": 1995,
+    "titre": "Mitterrand",
+    "regime": "Mauroy, Fabius, cohabitation Chirac, Rocard, Cresson, Bérégovoy, cohabitation Balladur",
+    "ambiance": "Désinflation mondiale, chute du Mur (1989), fin de l'URSS, accélération de la mondialisation (OMC 1995), traité de Maastricht. La France casse l'inflation mais installe un chômage de masse à deux chiffres et voit sa dette décoller.",
+    "chips": [
+      [
+        "Inflation",
+        "13 % → 2 %"
+      ],
+      [
+        "Chômage",
+        "≈ 10-12 %"
+      ],
+      [
+        "Dette",
+        "22 % → 55 % PIB"
+      ],
+      [
+        "Fécondité",
+        "creux ≈ 1,7 (1993-94)"
+      ],
+      [
+        "Espérance de vie",
+        "≈ 78 ans"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "peinemort",
+        "an": "1981",
+        "t": "Abolition de la peine de mort",
+        "b": "consensus",
+        "res": "Loi Badinter, votée alors que 62 % des Français y étaient opposés.",
+        "pro": "« La justice qui tue n'est pas la justice » (Badinter) : choix moral assumé contre l'opinion.",
+        "deb": "Majorité de l'opinion hostile ; droite divisée (Chirac vote pour).",
+        "bil": "Jamais remise en cause par aucun gouvernement, constitutionnalisée en 2007. Exemple canonique de réforme contre-majoritaire devenue consensus.",
+        "src": [
+          [
+            "Vie-publique — abolition",
+            "https://www.vie-publique.fr/eclairage/18898-labolition-de-la-peine-de-mort-en-france"
+          ],
+          [
+            "INA — discours Badinter",
+            "https://www.ina.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "acquis81",
+        "an": "1981-82",
+        "t": "Retraite à 60 ans, 39 h, 5e semaine",
+        "b": "debattu",
+        "res": "Bloc social des débuts : ordonnances 1982 (retraite à 60 ans, 39 heures), 5e semaine de congés.",
+        "pro": "« Changer la vie », partager le travail pour résorber le chômage, récompenser « le peuple de gauche ».",
+        "deb": "Coût pour les entreprises en pleine crise ; les 39 h payées 40 divisent même la gauche.",
+        "bil": "La 5e semaine est un acquis stable ; la retraite à 60 ans a été détricotée dès 1993 puis 2010 et 2023 (64 ans) — la promesse la plus revenue en arrière de la période. Effet emploi du partage du travail non démontré.",
+        "src": [
+          [
+            "Vie-publique — histoire des retraites",
+            "https://www.vie-publique.fr/eclairage/19417-les-reformes-des-retraites-depuis-1993"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Retraite_en_France"
+          ]
+        ]
+      },
+      {
+        "id": "decentralisation",
+        "an": "1982-83",
+        "t": "Décentralisation (lois Defferre)",
+        "b": "consensus",
+        "res": "Transfert de compétences et d'exécutif aux régions, départements, communes ; fin de la tutelle préfectorale a priori.",
+        "pro": "« Rendre le pouvoir aux citoyens », désengorger un État jacobin jugé inefficace.",
+        "deb": "Risque de féodalités locales et d'inégalités territoriales ; la droite, d'abord réticente, s'y ralliera.",
+        "bil": "Acquis structurel jamais inversé (actes II en 2003, III en 2014-15). Bilan en demi-teinte sur la lisibilité (« millefeuille territorial ») et les finances locales — mais plus personne ne propose de recentraliser.",
+        "src": [
+          [
+            "Vie-publique — 40 ans de décentralisation",
+            "https://www.vie-publique.fr/eclairage/38472-les-lois-defferre-premieres-lois-de-decentralisation"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/D%C3%A9centralisation_en_France"
+          ]
+        ]
+      },
+      {
+        "id": "rigueur83",
+        "an": "1983",
+        "t": "Tournant de la rigueur",
+        "b": "debattu",
+        "res": "Après trois dévaluations, choix de rester dans le SME : blocage des salaires, hausses d'impôts, désindexation.",
+        "pro": "Sauver le franc et l'ancrage européen ; « la parenthèse » de l'austérité pour préserver l'essentiel.",
+        "deb": "Trahison du programme de 1981 pour l'aile gauche ; « autre politique » (sortie du SME) défendue par Chevènement et une partie du PS.",
+        "bil": "L'inflation est vaincue (13 % → 3 %), la contrainte extérieure assumée — mais la gauche de gouvernement y perd durablement son récit économique. Moment fondateur du débat souveraineté/Europe qui court jusqu'à aujourd'hui.",
+        "src": [
+          [
+            "Wikipédia — tournant de la rigueur",
+            "https://fr.wikipedia.org/wiki/Tournant_de_la_rigueur"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "privat86",
+        "an": "1982-88",
+        "t": "Nationalisations puis privatisations",
+        "b": "debattu",
+        "res": "1982 : nationalisation de 39 banques et 5 groupes industriels. 1986-88 (cohabitation) : première vague de privatisations.",
+        "pro": "1982 : orienter l'investissement et sauver des groupes en difficulté. 1986 : « rendre au marché » et créer un capitalisme populaire.",
+        "deb": "Affrontement idéologique frontal gauche/droite des années 1980, « ni-ni » mitterrandien en 1988.",
+        "bil": "Les allers-retours ont coûté cher au budget selon la Cour des comptes ; la quasi-totalité du secteur concurrentiel est aujourd'hui privée. Le débat renaît ponctuellement (autoroutes, EDF, ADP).",
+        "src": [
+          [
+            "Vie-publique — privatisations",
+            "https://www.vie-publique.fr/fiches/21856-les-privatisations"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Privatisation#France"
+          ]
+        ]
+      },
+      {
+        "id": "rmi",
+        "an": "1988",
+        "t": "RMI (revenu minimum d'insertion)",
+        "b": "consensus",
+        "res": "Revenu minimum assorti d'un contrat d'insertion, voté à la quasi-unanimité.",
+        "pro": "« Nul ne doit être laissé au bord du chemin » (Rocard) : filet de sécurité universel face à la « nouvelle pauvreté ».",
+        "deb": "Assistanat vs solidarité — débat récurrent dès l'origine ; le volet « insertion » jugé faible.",
+        "bil": "Devenu RSA (2009), ≈ 1,8 M de foyers. Le filet fonctionne (pauvreté extrême contenue en comparaison européenne) ; l'insertion vers l'emploi reste le maillon faible documenté par toutes les évaluations.",
+        "src": [
+          [
+            "Vie-publique — du RMI au RSA",
+            "https://www.vie-publique.fr/eclairage/19419-du-rmi-au-rsa"
+          ],
+          [
+            "DREES",
+            "https://drees.solidarites-sante.gouv.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "csg",
+        "an": "1991",
+        "t": "Création de la CSG",
+        "b": "debattu",
+        "res": "Contribution sociale généralisée : impôt proportionnel sur tous les revenus, affecté à la protection sociale.",
+        "pro": "Élargir le financement de la Sécu au-delà des seuls salaires (Rocard), alléger le coût du travail.",
+        "deb": "« Impôt de plus » pour la droite d'alors et une partie de la gauche ; votée au 49.3.",
+        "bil": "Devenue le premier impôt direct de France (> 130 Mds €/an), augmentée par presque tous les gouvernements suivants — y compris ceux qui l'avaient combattue. Bascule historique du financement social vers l'impôt.",
+        "src": [
+          [
+            "Vie-publique — la CSG",
+            "https://www.vie-publique.fr/fiches/21973-quest-ce-que-la-contribution-sociale-generalisee-csg"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Contribution_sociale_g%C3%A9n%C3%A9ralis%C3%A9e"
+          ]
+        ]
+      },
+      {
+        "id": "maastricht",
+        "an": "1992",
+        "t": "Traité de Maastricht",
+        "b": "debattu",
+        "res": "Union économique et monétaire, critères de convergence, citoyenneté européenne — ratifié par référendum à 51 %.",
+        "pro": "Arrimer l'Allemagne réunifiée à l'Europe, doter le marché unique d'une monnaie, discipline budgétaire partagée.",
+        "deb": "Campagne référendaire fondatrice : souveraineté monétaire, démocratie européenne, « Europe des marchés » — clivage qui traverse tous les partis.",
+        "bil": "L'euro existe et a tenu ses crises (2010-12) ; les critères (3 % / 60 %) sont durablement dépassés par la France. Le clivage du « oui » et du « non » de 1992 structure encore la vie politique.",
+        "src": [
+          [
+            "Vie-publique — Maastricht",
+            "https://www.vie-publique.fr/eclairage/271900-le-traite-de-maastricht"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Trait%C3%A9_de_Maastricht"
+          ]
+        ]
+      },
+      {
+        "id": "balladur93",
+        "an": "1993",
+        "t": "Réforme des retraites Balladur",
+        "b": "debattu",
+        "res": "Privé : 40 annuités, calcul sur les 25 meilleures années, indexation sur les prix.",
+        "pro": "Sauver les régimes face au vieillissement, sans toucher au public (choix politique assumé).",
+        "deb": "Passée sans blocage majeur (été 1993, secteur privé seul) — contraste étudié avec 1995.",
+        "bil": "Effets massifs mais silencieux : baisse relative des pensions du privé documentée par le COR. Ouvre 30 ans de réformes paramétriques successives (2003, 2010, 2014, 2023).",
+        "src": [
+          [
+            "COR — rapports",
+            "https://www.cor-retraites.fr/"
+          ],
+          [
+            "Vie-publique — réformes des retraites",
+            "https://www.vie-publique.fr/eclairage/19417-les-reformes-des-retraites-depuis-1993"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chirac",
+    "years": "1995–2007",
+    "start": 1995,
+    "end": 2007,
+    "titre": "Chirac",
+    "regime": "Juppé, cohabitation Jospin (1997-2002), Raffarin, Villepin",
+    "ambiance": "Internet, entrée de la Chine dans l'OMC (2001), 11 septembre, passage à l'euro. Croissance mondiale forte tirée par les émergents ; désindustrialisation française qui s'accélère.",
+    "chips": [
+      [
+        "Croissance",
+        "≈ 2 %/an"
+      ],
+      [
+        "Chômage",
+        "entre 8 et 12 %"
+      ],
+      [
+        "Inflation",
+        "≈ 1,7 %"
+      ],
+      [
+        "Dette",
+        "58 → 64 % PIB"
+      ],
+      [
+        "Fécondité",
+        "rebond ≈ 2,0"
+      ],
+      [
+        "Industrie",
+        "16 → 14 % PIB"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "juppe95",
+        "an": "1995",
+        "t": "Plan Juppé (Sécu, retraites)",
+        "b": "echec",
+        "res": "Réforme du financement de la Sécu et alignement des régimes spéciaux — retiré sur les retraites après trois semaines de grèves.",
+        "pro": "« Sauver la Sécu » : déficits records, alignement public/privé au nom de l'équité.",
+        "deb": "Méthode verticale contestée ; le pays paralysé ; soutien d'intellectuels des deux bords, opinion d'abord favorable aux grévistes.",
+        "bil": "Volet retraites abandonné (il faudra 2003, 2008 et 2023 pour y revenir) ; volet financement conservé (ONDAM, lois de financement de la Sécu — toujours en vigueur). Traumatisme fondateur de la « réformite prudente » française.",
+        "src": [
+          [
+            "Vie-publique — plan Juppé",
+            "https://www.vie-publique.fr/eclairage/273666-le-plan-juppe-de-1995"
+          ],
+          [
+            "Wikipédia — grèves de 1995",
+            "https://fr.wikipedia.org/wiki/Gr%C3%A8ves_de_1995_en_France"
+          ]
+        ]
+      },
+      {
+        "id": "35h",
+        "an": "1998-2000",
+        "t": "Les 35 heures (lois Aubry)",
+        "b": "debattu",
+        "res": "Durée légale abaissée à 35 h, compensée par allègements de charges et modération salariale négociée.",
+        "pro": "« Travailler moins pour travailler tous » : créer 700 000 emplois par le partage du travail.",
+        "deb": "Choc de coût et rigidité pour le patronat ; « la plus grande avancée sociale depuis 1936 » pour ses partisans.",
+        "bil": "Évaluations (DARES, IGAS) : ≈ 350 000 emplois créés 1998-2002, mais coût public élevé et effets de long terme toujours disputés ; durée effective française proche de la moyenne UE. Assouplies dix fois, jamais abrogées — révélateur.",
+        "src": [
+          [
+            "DARES — bilans 35 h",
+            "https://dares.travail-emploi.gouv.fr/"
+          ],
+          [
+            "Vie-publique — les 35 heures",
+            "https://www.vie-publique.fr/eclairage/18926-les-35-heures"
+          ]
+        ]
+      },
+      {
+        "id": "euro",
+        "an": "1999-2002",
+        "t": "Passage à l'euro",
+        "b": "debattu",
+        "res": "Monnaie unique scripturale en 1999, fiduciaire en 2002.",
+        "pro": "Stabilité, fin des dévaluations compétitives, puissance monétaire européenne face au dollar.",
+        "deb": "Perte de l'arme monétaire ; sentiment durable (non confirmé par l'indice INSEE global) d'une inflation cachée au basculement.",
+        "bil": "Monnaie stable et crédible, mais la divergence de compétitivité intra-zone (France/Allemagne) sans dévaluation possible a nourri le débat sur la désindustrialisation. Adhésion majoritaire des Français à l'euro aujourd'hui.",
+        "src": [
+          [
+            "Vie-publique — l'euro",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "INSEE — euro et prix",
+            "https://www.insee.fr/fr/statistiques/1372017"
+          ]
+        ]
+      },
+      {
+        "id": "quinquennat",
+        "an": "2000",
+        "t": "Quinquennat",
+        "b": "debattu",
+        "res": "Mandat présidentiel ramené de 7 à 5 ans (référendum, abstention record 70 %), calendrier aligné sur les législatives.",
+        "pro": "Moderniser, réduire le risque de cohabitation, rendre le président plus souvent comptable.",
+        "deb": "Peu débattu à l'époque — c'est rétrospectivement qu'il est contesté.",
+        "bil": "Effet non anticipé majeur : présidentialisation accrue, législatives réduites à une confirmation, affaiblissement du Parlement — diagnostic largement partagé par les constitutionnalistes. La dissolution de 2024 a cassé la mécanique.",
+        "src": [
+          [
+            "Vie-publique — le quinquennat",
+            "https://www.vie-publique.fr/fiches/19571-quelle-est-la-duree-du-mandat-du-president-de-la-republique"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Quinquennat_(France)"
+          ]
+        ]
+      },
+      {
+        "id": "fillon03",
+        "an": "2003",
+        "t": "Retraites Fillon",
+        "b": "debattu",
+        "res": "Alignement progressif public/privé (40 annuités), décote/surcote, rachat de trimestres.",
+        "pro": "Équité public-privé et sauvetage financier, huit ans après l'échec Juppé.",
+        "deb": "Grèves importantes mais réforme maintenue ; la CFDT signe, se coupe d'une partie de sa base.",
+        "bil": "Appliquée et jamais abrogée ; a normalisé l'idée d'allongement de la durée de cotisation. N'a pas suffi financièrement — d'où 2010, 2014, 2023.",
+        "src": [
+          [
+            "Vie-publique — loi Fillon 2003",
+            "https://www.vie-publique.fr/eclairage/19417-les-reformes-des-retraites-depuis-1993"
+          ],
+          [
+            "COR",
+            "https://www.cor-retraites.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "cmu",
+        "an": "1999",
+        "t": "CMU (couverture maladie universelle)",
+        "b": "consensus",
+        "res": "Couverture maladie de base et complémentaire gratuite sous condition de ressources.",
+        "pro": "Achever l'universalité de 1945 : 150 000 personnes sans aucune couverture, 6 M sans complémentaire.",
+        "deb": "Effets de seuil critiqués ; refus de soins de certains praticiens documenté.",
+        "bil": "Objectif d'accès atteint pour l'essentiel (devenue PUMa/C2S) ; consensuelle. Le renoncement aux soins pour raisons financières a nettement reculé (DREES).",
+        "src": [
+          [
+            "Vie-publique — la CMU",
+            "https://www.vie-publique.fr/eclairage/18845-couverture-maladie-universelle-la-loi-cmu"
+          ],
+          [
+            "DREES",
+            "https://drees.solidarites-sante.gouv.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "ref2005",
+        "an": "2005",
+        "t": "Référendum sur la Constitution européenne",
+        "b": "echec",
+        "res": "« Non » à 54,7 %, participation 69 % — le traité de Lisbonne (2008) en reprendra l'essentiel par voie parlementaire.",
+        "pro": "Doter l'UE élargie d'institutions lisibles et d'une charte des droits.",
+        "deb": "Campagne massive et argumentée des deux côtés ; le « non » mêle critique sociale de l'Europe et souverainisme.",
+        "bil": "La ratification parlementaire de Lisbonne malgré le vote est vécue par une partie de l'électorat comme un déni fondateur — la défiance mesurée envers les institutions s'accroît durablement après 2005 (CEVIPOF).",
+        "src": [
+          [
+            "Vie-publique — référendum 2005",
+            "https://www.vie-publique.fr/eclairage/273896-le-referendum-du-29-mai-2005"
+          ],
+          [
+            "CEVIPOF — baromètre de la confiance",
+            "https://www.sciencespo.fr/cevipof/fr/content/la-confiance-politique.html"
+          ]
+        ]
+      },
+      {
+        "id": "cpe",
+        "an": "2006",
+        "t": "CPE (contrat première embauche)",
+        "b": "echec",
+        "res": "Contrat jeunes avec période d'essai de 2 ans — voté au 49.3, promulgué, puis retiré sous la pression de la rue.",
+        "pro": "Lever la « peur d'embaucher » pour réduire un chômage des jeunes à 22 %.",
+        "deb": "Précarité institutionnalisée pour les opposants ; universités bloquées, manifestations massives.",
+        "bil": "Retrait complet — cas d'école d'une loi promulguée jamais appliquée. Le chômage des jeunes restera > 20 % jusqu'aux années 2020 (baisse via l'apprentissage). A durablement refroidi les réformes du contrat de travail « par le haut ».",
+        "src": [
+          [
+            "Vie-publique — le CPE",
+            "https://www.vie-publique.fr/eclairage/273953-le-contrat-premiere-embauche-cpe"
+          ],
+          [
+            "Wikipédia",
+            "https://fr.wikipedia.org/wiki/Contrat_premi%C3%A8re_embauche"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sarkozy",
+    "years": "2007–2012",
+    "start": 2007,
+    "end": 2012,
+    "titre": "Sarkozy",
+    "regime": "Fillon (2007-2012)",
+    "ambiance": "Crise financière mondiale (2008), pire récession depuis 1929, crise de la zone euro (Grèce, 2010). Les plans de sauvetage bancaire et de relance font exploser les dettes publiques partout.",
+    "chips": [
+      [
+        "Récession",
+        "-2,9 % (2009)"
+      ],
+      [
+        "Chômage",
+        "7,5 → 10 %"
+      ],
+      [
+        "Dette",
+        "64 → 90 % PIB"
+      ],
+      [
+        "Fécondité",
+        "stable ≈ 2,0"
+      ],
+      [
+        "Contexte",
+        "G20, sauvetages bancaires"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "lru",
+        "an": "2007",
+        "t": "Autonomie des universités (LRU)",
+        "b": "debattu",
+        "res": "Autonomie budgétaire et RH des universités, présidents renforcés, fondations.",
+        "pro": "Universités « majeures » capables de rivaliser dans les classements internationaux.",
+        "deb": "Crainte de la sélection et du désengagement de l'État ; longues grèves universitaires 2007-2009.",
+        "bil": "Autonomie effective mais sous-financement chronique documenté (Cour des comptes) ; regroupements et progression dans les classements (Saclay, PSL). Bilan contrasté selon les campus.",
+        "src": [
+          [
+            "Vie-publique — loi LRU",
+            "https://www.vie-publique.fr/eclairage/271059-autonomie-des-universites-la-loi-lru"
+          ],
+          [
+            "Cour des comptes",
+            "https://www.ccomptes.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "rsa",
+        "an": "2008",
+        "t": "RSA (revenu de solidarité active)",
+        "b": "debattu",
+        "res": "Fusion RMI/API avec complément de revenus d'activité pour que « le travail paie toujours ».",
+        "pro": "Supprimer les trappes à inactivité : chaque heure travaillée doit augmenter le revenu.",
+        "deb": "Subvention aux bas salaires pour les uns, activation juste pour les autres ; non-recours massif dès l'origine.",
+        "bil": "L'incitation fonctionne dans les évaluations, mais le non-recours (≈ 30 % du RSA « socle », plus pour l'activité) en limite la portée — problème jamais résolu, relancé avec la « solidarité à la source ».",
+        "src": [
+          [
+            "Vie-publique — le RSA",
+            "https://www.vie-publique.fr/eclairage/19419-du-rmi-au-rsa"
+          ],
+          [
+            "DREES — non-recours",
+            "https://drees.solidarites-sante.gouv.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "retraites2010",
+        "an": "2010",
+        "t": "Retraites : 60 → 62 ans",
+        "b": "debattu",
+        "res": "Relèvement de l'âge légal de 60 à 62 ans, taux plein à 67 ans.",
+        "pro": "Répondre au choc démographique et au creusement des déficits post-2008.",
+        "deb": "Mobilisations massives (jusqu'à 3 M de manifestants revendiqués) ; réforme maintenue.",
+        "bil": "Appliquée intégralement ; emploi des seniors amélioré mais recul partiel de la promesse de 1982 confirmé. Le débat pénibilité/carrières longues, mal traité alors, resurgira en 2023.",
+        "src": [
+          [
+            "Vie-publique — réforme 2010",
+            "https://www.vie-publique.fr/eclairage/19417-les-reformes-des-retraites-depuis-1993"
+          ],
+          [
+            "COR",
+            "https://www.cor-retraites.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "crise2008",
+        "an": "2008-09",
+        "t": "Gestion de la crise financière",
+        "b": "debattu",
+        "res": "Garantie bancaire (360 Mds), plan de relance (26 Mds), co-pilotage du G20, sauvetage sans nationalisation sèche.",
+        "pro": "« Sauver les banques pour sauver les épargnants », éviter la dépression, refonder le capitalisme (« moraliser »).",
+        "deb": "Aléa moral : sauver ceux qui ont fauté ? La régulation promise (paradis fiscaux, bonus) jugée inaboutie.",
+        "bil": "Récession française moins profonde que chez la plupart des voisins et aucune faillite bancaire majeure — plutôt salué en comparaison internationale. Contrepartie : +25 points de dette/PIB en 4 ans, la vraie facture de la période.",
+        "src": [
+          [
+            "Vie-publique — crise de 2008",
+            "https://www.vie-publique.fr/eclairage/270302-crise-financiere-de-2008"
+          ],
+          [
+            "INSEE — comptes nationaux",
+            "https://www.insee.fr/fr/statistiques"
+          ]
+        ]
+      },
+      {
+        "id": "bouclier",
+        "an": "2007-11",
+        "t": "Bouclier fiscal",
+        "b": "echec",
+        "res": "Plafonnement des impôts directs à 50 % des revenus — supprimé en 2011 par sa propre majorité.",
+        "pro": "« Ne pas travailler plus de la moitié de l'année pour l'État », retenir les contribuables mobiles.",
+        "deb": "Symbole de « président des riches » ; chèques de restitution médiatisés en pleine crise.",
+        "bil": "Coût modeste (≈ 700 M€/an) mais coût politique jugé rédhibitoire par la majorité elle-même — abandonné. Cas d'école du symbole fiscal qui tue la mesure.",
+        "src": [
+          [
+            "Wikipédia — bouclier fiscal",
+            "https://fr.wikipedia.org/wiki/Bouclier_fiscal"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "hollande",
+    "years": "2012–2017",
+    "start": 2012,
+    "end": 2017,
+    "titre": "Hollande",
+    "regime": "Ayrault, Valls, Cazeneuve",
+    "ambiance": "Sortie lente de crise en Europe (austérité), quantitative easing de la BCE, Brexit (2016), élection de Trump (2016). En France, les attentats de 2015-2016 marquent le quinquennat.",
+    "chips": [
+      [
+        "Croissance",
+        "≈ 1 %/an"
+      ],
+      [
+        "Chômage",
+        "pic ≈ 10,5 % (2015)"
+      ],
+      [
+        "Inflation",
+        "quasi nulle"
+      ],
+      [
+        "Dette",
+        "90 → 98 % PIB"
+      ],
+      [
+        "Espérance de vie",
+        "≈ 82 ans"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "mariage",
+        "an": "2013",
+        "t": "Mariage pour tous",
+        "b": "consensus",
+        "res": "Ouverture du mariage et de l'adoption aux couples de même sexe.",
+        "pro": "Égalité des droits, dans la continuité du PACS (1999).",
+        "deb": "Manifestations massives (« Manif pour tous ») ; débat parlementaire de 136 heures.",
+        "bil": "≈ 7 000 à 10 000 mariages/an, entré dans les mœurs : plus aucun parti de gouvernement ne propose l'abrogation, soutien majoritaire stable dans les sondages. Trajectoire « loi Veil » : contestation forte puis consensus rapide.",
+        "src": [
+          [
+            "Vie-publique — mariage pour tous",
+            "https://www.vie-publique.fr/eclairage/19452-le-mariage-pour-tous"
+          ],
+          [
+            "INSEE — statistiques mariages",
+            "https://www.insee.fr/fr/statistiques"
+          ]
+        ]
+      },
+      {
+        "id": "cice",
+        "an": "2013-14",
+        "t": "CICE et pacte de responsabilité",
+        "b": "debattu",
+        "res": "Crédit d'impôt de 6 % de la masse salariale (< 2,5 SMIC), ≈ 20 Mds €/an, transformé en baisse de charges pérenne en 2019.",
+        "pro": "Restaurer les marges et la compétitivité après le rapport Gallois ; « virage » assumé de l'offre.",
+        "deb": "« Cadeau sans contreparties » pour l'aile gauche ; ciblage critiqué (secteurs abrités inclus).",
+        "bil": "Évaluations France Stratégie : ≈ 100 000 à 160 000 emplois créés ou sauvegardés — effet réel mais modeste au regard du coût. Marges restaurées ; effet investissement/export peu visible. Exemple central de l'écart promesse/évaluation.",
+        "src": [
+          [
+            "France Stratégie — évaluation CICE",
+            "https://www.strategie.gouv.fr/publications/comite-de-suivi-evaluation-cice"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "elkhomri",
+        "an": "2016",
+        "t": "Loi travail (El Khomri)",
+        "b": "debattu",
+        "res": "Primauté de l'accord d'entreprise sur le temps de travail, barème indicatif prud'homal — adoptée au 49.3.",
+        "pro": "Flexibilité négociée pour lutter contre le chômage de masse et le dualisme CDI/CDD.",
+        "deb": "« Nuit debout », mobilisations, fracture ouverte de la majorité — le 49.3 comme aveu.",
+        "bil": "Appliquée puis amplifiée par les ordonnances de 2017 ; effets propres difficiles à isoler des réformes suivantes. Politiquement : matrice de l'éclatement du PS en 2017.",
+        "src": [
+          [
+            "Vie-publique — loi travail 2016",
+            "https://www.vie-publique.fr/eclairage/20226-la-loi-travail-du-8-aout-2016"
+          ],
+          [
+            "DARES",
+            "https://dares.travail-emploi.gouv.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "cop21",
+        "an": "2015",
+        "t": "Accord de Paris (COP21)",
+        "b": "debattu",
+        "res": "Accord climatique mondial : contenir le réchauffement « nettement sous 2 °C ».",
+        "pro": "Diplomatie française au service d'un cadre universel, contraignant par la transparence plutôt que la sanction.",
+        "deb": "Absence de sanctions ; trajectoires nationales insuffisantes dès la signature, disent les ONG.",
+        "bil": "Cadre devenu la référence mondiale (bilans quinquennaux, contentieux climatiques) mais trajectoire globale toujours au-delà de l'objectif ; la France elle-même a été condamnée pour inaction (Affaire du siècle, 2021). Succès diplomatique, résultat climatique en attente.",
+        "src": [
+          [
+            "Vie-publique — accord de Paris",
+            "https://www.vie-publique.fr/eclairage/274003-laccord-de-paris-sur-le-climat"
+          ],
+          [
+            "Haut conseil pour le climat",
+            "https://www.hautconseilclimat.fr/"
+          ]
+        ]
+      }
+    ]
+  },
+  {
+    "id": "macron",
+    "years": "2017–2026",
+    "start": 2017,
+    "end": 2026,
+    "titre": "Macron",
+    "regime": "Philippe, Castex, Borne, Attal, Barnier (censuré), Bayrou (censuré), Lecornu",
+    "ambiance": "Covid (2020) et récession mondiale, guerre en Ukraine (2022), choc inflationniste, rivalité USA-Chine, essor de l'IA. En France : Gilets jaunes, dissolution de 2024, Assemblée sans majorité — instabilité inédite sous la Ve.",
+    "chips": [
+      [
+        "Récession",
+        "-7,5 % (2020) puis rebond"
+      ],
+      [
+        "Chômage",
+        "≈ 7 %, plus bas depuis 2008"
+      ],
+      [
+        "Inflation",
+        "pic ≈ 6 % (2022-23)"
+      ],
+      [
+        "Dette",
+        "> 110 % PIB"
+      ],
+      [
+        "Fécondité",
+        "chute ≈ 1,6"
+      ],
+      [
+        "Industrie",
+        "≈ 11 % PIB"
+      ]
+    ],
+    "reformes": [
+      {
+        "id": "ordonnances17",
+        "an": "2017",
+        "t": "Ordonnances travail",
+        "b": "debattu",
+        "res": "Plafonnement des indemnités prud'homales, fusion des instances (CSE), accords d'entreprise élargis, ruptures conventionnelles collectives.",
+        "pro": "Lever les freins à l'embauche, donner la « visibilité » réclamée par les employeurs.",
+        "deb": "Mobilisation syndicale limitée ; craintes sur le dialogue social de proximité, confirmées en partie par les évaluations (comité France Stratégie).",
+        "bil": "Embauches en CDI en hausse et contentieux prud'homal en forte baisse ; part causale dans la baisse du chômage difficile à isoler (conjoncture, apprentissage). Qualité du dialogue social post-CSE jugée dégradée par les représentants du personnel.",
+        "src": [
+          [
+            "France Stratégie — évaluation des ordonnances",
+            "https://www.strategie.gouv.fr/publications/evaluation-ordonnances-travail"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "isf",
+        "an": "2018",
+        "t": "ISF → IFI et flat tax",
+        "b": "debattu",
+        "res": "Suppression de l'ISF (remplacé par un impôt sur la seule fortune immobilière), prélèvement forfaitaire de 30 % sur le capital.",
+        "pro": "Retenir et attirer le capital, financer l'économie productive plutôt que la rente.",
+        "deb": "« Président des riches », déclencheur symbolique des Gilets jaunes ; coût ≈ 4-5 Mds €/an.",
+        "bil": "Comité d'évaluation (France Stratégie) : retours d'exilés fiscaux mesurables mais modestes, pas d'effet massif démontré sur l'investissement productif ; hausse des dividendes versés, avérée. Débat de 2027 déjà annoncé (taxe Zucman, ISF vert...).",
+        "src": [
+          [
+            "France Stratégie — comité fiscalité du capital",
+            "https://www.strategie.gouv.fr/publications/comite-devaluation-reformes-de-la-fiscalite-du-capital"
+          ],
+          [
+            "Vie-publique",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "qqec",
+        "an": "2020-21",
+        "t": "« Quoi qu'il en coûte » (Covid)",
+        "b": "debattu",
+        "res": "Chômage partiel massif, fonds de solidarité, prêts garantis (PGE), plan de relance de 100 Mds.",
+        "pro": "Geler l'économie sans la détruire : « aucune entreprise ne sera livrée au risque de faillite ».",
+        "deb": "Dépense historique vs risque de « zombification » ; débat sur les contrôles et les effets d'aubaine.",
+        "bil": "Faillites et chômage contenus, rebond rapide en 2021 — efficacité de court terme largement reconnue (Cour des comptes, comparaisons OCDE). Contrepartie : ≈ +15 points de dette/PIB, au cœur des crises budgétaires 2024-2026.",
+        "src": [
+          [
+            "Cour des comptes — soutien d'urgence Covid",
+            "https://www.ccomptes.fr/"
+          ],
+          [
+            "Vie-publique — plan de relance",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "retraites23",
+        "an": "2023-25",
+        "t": "Retraites : 62 → 64 ans... puis suspension",
+        "b": "debattu",
+        "res": "Âge légal porté à 64 ans (adoption via 49.3, mobilisations record) — application suspendue jusqu'en 2027 par le gouvernement Lecornu (2025) pour obtenir la non-censure.",
+        "pro": "Équilibre financier du système sans hausse d'impôts ni baisse des pensions.",
+        "deb": "Rejet majoritaire constant dans l'opinion ; conflit sur la méthode (49.3) autant que sur le fond ; pénibilité et carrières de femmes au centre.",
+        "bil": "Réforme votée, appliquée deux ans, puis suspendue : situation inédite qui en fait l'enjeu central de 2027. Illustration extrême du cycle promesse → passage en force → retour en arrière documenté par cette frise depuis 1982.",
+        "src": [
+          [
+            "Vie-publique — réforme 2023",
+            "https://www.vie-publique.fr/dossier/287916-reforme-des-retraites-2023"
+          ],
+          [
+            "Déclaration de politique générale Lecornu (2025)",
+            "https://www.vie-publique.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "apprentissage",
+        "an": "2018",
+        "t": "Réforme de l'apprentissage",
+        "b": "debattu",
+        "res": "Libéralisation de l'offre (CFA), aides massives à l'embauche d'apprentis : de 300 000 à plus de 800 000 entrées/an.",
+        "pro": "« Révolution copernicienne » contre le chômage des jeunes, sur le modèle allemand.",
+        "deb": "Coût (≈ 15-20 Mds €/an) et effets d'aubaine documentés (Cour des comptes) : beaucoup d'apprentis du supérieur qui auraient étudié de toute façon.",
+        "bil": "Chômage des jeunes au plus bas depuis 40 ans — mais les évaluations attribuent une partie de la baisse au subventionnement lui-même. Indispensable pour lire honnêtement les chiffres d'emploi de la période.",
+        "src": [
+          [
+            "Cour des comptes — l'apprentissage",
+            "https://www.ccomptes.fr/"
+          ],
+          [
+            "DARES — chiffres apprentissage",
+            "https://dares.travail-emploi.gouv.fr/"
+          ]
+        ]
+      },
+      {
+        "id": "dissolution24",
+        "an": "2024",
+        "t": "Dissolution de l'Assemblée",
+        "b": "debattu",
+        "res": "Dissolution surprise après les européennes : Assemblée en trois blocs sans majorité, censures de Barnier (2024) puis Bayrou (2025), gouvernement Lecornu.",
+        "pro": "« Clarification » demandée aux Français face à la poussée du RN.",
+        "deb": "Pari institutionnel incompris jusque dans le camp présidentiel ; débat sur la lecture de la Constitution qui a suivi (nomination du PM, censures).",
+        "bil": "Aucune clarification obtenue : instabilité gouvernementale inédite sous la Ve (4 PM en 18 mois), budgets arrachés article par article, retraites suspendues. La question institutionnelle (proportionnelle, VIe République, rôle du président) est rouverte pour 2027.",
+        "src": [
+          [
+            "Vie-publique — dissolution 2024",
+            "https://www.vie-publique.fr/"
+          ],
+          [
+            "Wikipédia — dissolution de 2024",
+            "https://fr.wikipedia.org/wiki/Dissolution_de_l%27Assembl%C3%A9e_nationale_fran%C3%A7aise_de_2024"
+          ]
+        ]
+      }
+    ]
+  }
+]
