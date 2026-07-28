@@ -52,9 +52,12 @@ addEventListener("scroll", () => { if (!tick) { requestAnimationFrame(() => { ma
 addEventListener("resize", majCurseur); majCurseur();
 
 /* --- Commentaires (Giscus, un widget indépendant par réforme, chargé au premier dépli) --- */
+// Thème fixe "light" : le site n'a pas de mode sombre, "preferred_color_scheme"
+// pouvait rendre le widget en sombre sur un panneau clair (texte quasi invisible).
 function chargerGiscus(zone, terme) {
   if (zone.dataset.charge) return;
   zone.dataset.charge = "1";
+  const attente = zone.querySelector(".giscus-attente");
   const s = document.createElement("script");
   s.src = "https://giscus.app/client.js";
   s.async = true;
@@ -69,8 +72,15 @@ function chargerGiscus(zone, terme) {
   s.setAttribute("data-reactions-enabled", "1");
   s.setAttribute("data-emit-metadata", "0");
   s.setAttribute("data-input-position", "bottom");
-  s.setAttribute("data-theme", "preferred_color_scheme");
+  s.setAttribute("data-theme", "light");
   s.setAttribute("data-lang", "fr");
+  // Un blocage réseau (bloqueur de pub, proxy) laisse sinon le panneau
+  // bloqué en "chargement" pour toujours : on autorise un nouvel essai
+  // au prochain dépli plutôt que de rester silencieusement planté.
+  s.onerror = () => {
+    zone.dataset.charge = "";
+    if (attente) attente.textContent = "Échec du chargement des commentaires — repliez puis dépliez la carte pour réessayer.";
+  };
   zone.appendChild(s);
 }
 document.querySelectorAll(".commentaires").forEach(zone => {
@@ -78,6 +88,14 @@ document.querySelectorAll(".commentaires").forEach(zone => {
   const giscusZone = zone.querySelector(".giscus-zone");
   zone.closest("details").addEventListener("toggle", e => {
     if (e.target.open) chargerGiscus(giscusZone, terme);
+  });
+});
+// Le widget giscus prévient par postMessage une fois son iframe rendue :
+// on retire alors le texte "Chargement…" de la zone concernée.
+addEventListener("message", e => {
+  if (e.origin !== "https://giscus.app" || !e.data?.giscus) return;
+  document.querySelectorAll(".giscus-zone iframe").forEach(f => {
+    if (f.contentWindow === e.source) f.closest(".giscus-zone").querySelector(".giscus-attente")?.remove();
   });
 });
 

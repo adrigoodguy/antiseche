@@ -77,7 +77,7 @@ function carteReforme(r, pid) {
   <div class="commentaires" data-terme="${terme}">
     <h5>Commentaires &amp; corrections</h5>
     <div class="note">Espace public propulsé par Giscus (GitHub Discussions) — connectez-vous avec un compte GitHub pour publier. Sources bienvenues.</div>
-    <div class="giscus-zone"></div>
+    <div class="giscus-zone"><p class="giscus-attente">Chargement des commentaires…</p></div>
   </div></details>`;
 }
 
@@ -112,7 +112,16 @@ function annexe() {
 <li><b>v2 (objectif)</b> : chaque affirmation chiffrée liée à sa source primaire (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du discours d'époque).</li>
 <li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires.</li>
 <li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="sources.html">antiseche.org/sources</a>.</li>
-</ul>`;
+</ul>
+<h3>Discussion générale</h3>
+<p>Une remarque sur la sélection des réformes, la méthode, ou une autre grille de lecture à appliquer à l'ensemble du document plutôt qu'à une seule réforme ? C'est ici, pas dans les commentaires d'une carte en particulier.</p>
+<details class="reforme">
+  <summary><span class="fleche">›</span><span class="titre">Ouvrir la discussion générale</span></summary>
+  <div class="commentaires" data-terme="discussion-generale">
+    <div class="note">Espace public propulsé par Giscus (GitHub Discussions) — connectez-vous avec un compte GitHub pour publier.</div>
+    <div class="giscus-zone"><p class="giscus-attente">Chargement des commentaires…</p></div>
+  </div>
+</details>`;
 }
 
 /* --- Page complète --- */
