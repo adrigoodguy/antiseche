@@ -196,22 +196,26 @@
   "groupes": [
     {
       "nom": "Conjoncture économique",
-      "couleur": "#3987e5",
+      "couleur": "#5C82C4",
+      "fond": "#16213A",
       "indicateurs": ["Croissance PIB", "Chômage", "Inflation"]
     },
     {
       "nom": "Conséquence budgétaire",
-      "couleur": "#d95926",
+      "couleur": "#6690D2",
+      "fond": "#1A2745",
       "indicateurs": ["Dette publique"]
     },
     {
       "nom": "Capacité productive & investissement",
-      "couleur": "#9085e9",
+      "couleur": "#719EE0",
+      "fond": "#1E2E50",
       "indicateurs": ["Industrie", "DIRD (recherche)", "PISA (compréhension de l'écrit)"]
     },
     {
       "nom": "Contexte démographique",
-      "couleur": "#c98500",
+      "couleur": "#7CACEE",
+      "fond": "#22355C",
       "indicateurs": ["Fécondité", "Espérance de vie"]
     }
   ]

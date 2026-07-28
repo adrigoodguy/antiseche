@@ -49,7 +49,7 @@ if (nonClasses.length) {
 const INDIC = GROUPES.flatMap(g => g.indicateurs.map(lab => {
   const ind = INDIC_PAR_LAB.get(lab);
   if (!ind) throw new Error(`Groupe "${g.nom}" référence un indicateur inconnu : ${lab}`);
-  return { ...ind, groupe: g.nom, couleur: g.couleur };
+  return { ...ind, groupe: g.nom, couleur: g.couleur, fond: g.fond };
 }));
 
 const Y0 = 1945, Y1 = 2026;
@@ -79,10 +79,10 @@ function bandeauGroupes() {
   const groupes = [];
   INDIC.forEach((ind, i) => {
     const dernier = groupes[groupes.length - 1];
-    if (!dernier || dernier.nom !== ind.groupe) groupes.push({ nom: ind.groupe, couleur: ind.couleur, cartes: [] });
+    if (!dernier || dernier.nom !== ind.groupe) groupes.push({ nom: ind.groupe, couleur: ind.couleur, fond: ind.fond, cartes: [] });
     groupes[groupes.length - 1].cartes.push(sparkSVG(ind, i));
   });
-  return groupes.map(g => `<div class="groupe-ind" style="--gc:${g.couleur}">
+  return groupes.map(g => `<div class="groupe-ind" style="--gc:${g.couleur};--gfond:${g.fond}">
     <div class="groupe-cartes">${g.cartes.join("")}</div>
     <div class="groupe-nom">${esc(g.nom)}</div>
   </div>`).join("");
@@ -92,8 +92,10 @@ function bandeauGroupes() {
 // par famille, toutes cochées par défaut.
 function panneauFiltre() {
   const indexParLab = new Map(INDIC.map((ind, i) => [ind.lab, i]));
+  // Pas de couleur par groupe ici : les accents du bandeau sont calibrés pour
+  // son fond sombre et perdraient leur contraste sur le panneau clair.
   return GROUPES.map(g => `<div class="filtre-groupe">
-    <div class="filtre-groupe-nom" style="color:${g.couleur}">${esc(g.nom)}</div>
+    <div class="filtre-groupe-nom">${esc(g.nom)}</div>
     ${g.indicateurs.map(lab => `<label class="filtre-item"><input type="checkbox" checked data-vi="${indexParLab.get(lab)}"> ${esc(lab)}</label>`).join("")}
   </div>`).join("");
 }
@@ -229,9 +231,11 @@ function pageSources() {
 
   // Familles thématiques (issue #2) : même regroupement que le bandeau de la
   // page principale, pour que les deux vues restent cohérentes.
+  // Pas de couleur par groupe ici : les accents du bandeau sont calibrés pour
+  // son fond sombre et perdraient leur contraste sur cette page claire.
   const familles = `
 <h2>Familles d'indicateurs</h2>
-<ul class="familles">${GROUPES.map(g => `<li><span class="puce" style="--gc:${g.couleur}"></span><b style="color:${g.couleur}">${esc(g.nom)}</b> — ${g.indicateurs.map(esc).join(", ")}</li>`).join("")}</ul>`;
+<ul class="familles">${GROUPES.map(g => `<li><span class="puce"></span><b>${esc(g.nom)}</b> — ${g.indicateurs.map(esc).join(", ")}</li>`).join("")}</ul>`;
 
   const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
   const kpiNotes = GROUPES.map(g => {
@@ -243,7 +247,7 @@ function pageSources() {
 <p>${k.note}</p>
 <ul>${k.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>`;
     }).join("");
-    return `<h3 style="color:${g.couleur}">${esc(g.nom)}</h3>${items}`;
+    return `<h3>${esc(g.nom)}</h3>${items}`;
   }).join("");
 
   return `<!DOCTYPE html>

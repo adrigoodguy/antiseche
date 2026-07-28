@@ -35,12 +35,13 @@
   #bandeau{position:sticky;top:0;z-index:50;background:var(--encre);color:#E8EAF2;border-bottom:3px solid var(--rouge)}
   #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:.4rem .6rem 0}
   @media(min-width:1500px){#bandeau .inner{justify-content:center;padding-right:5rem}}
-  /* Familles d'indicateurs (issue #2) : bordure basse colorée par groupe +
-     étiquette en filigrane, plutôt qu'un fond coloré (pour rester sobre). */
-  .groupe-ind{flex:0 0 auto;display:flex;flex-direction:column;border-bottom:3px solid var(--gc, transparent);border-right:1px solid rgba(255,255,255,.14)}
+  /* Familles d'indicateurs (issue #2) : fond légèrement différent par groupe
+     (toujours dans les bleus, pour rester uniforme), bordure basse et
+     étiquette assorties, étiquette collée au bas du bandeau. */
+  .groupe-ind{flex:0 0 auto;display:flex;flex-direction:column;background:var(--gfond, transparent);border-bottom:3px solid var(--gc, transparent);border-right:1px solid rgba(255,255,255,.14)}
   .groupe-ind:last-child{border-right:none}
   .groupe-cartes{display:flex}
-  .groupe-nom{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gc, #9FB0D6);opacity:.6;padding:.2rem .8rem .3rem;white-space:nowrap}
+  .groupe-nom{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gc, #9FB0D6);padding:.2rem .8rem .3rem;white-space:nowrap;margin-top:auto}
   .spark{flex:0 0 auto;padding:.2rem .8rem;border-right:1px solid rgba(255,255,255,.14);min-width:150px}
   .groupe-cartes .spark:last-child{border-right:none}
   .spark .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#9FB0D6;white-space:nowrap}
@@ -121,7 +122,7 @@
   #annexe h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--encre);margin:1rem 0 .3rem}
   #annexe .familles{list-style:none;padding-left:0}
   .familles li{margin:.4em 0;font-size:.93rem}
-  .familles .puce{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--gc);margin-right:.4em}
+  .familles .puce{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--bleu);margin-right:.4em}
   #annexe ol,#annexe ul{padding-left:1.3em;max-width:60em}
   #annexe li{margin:.3em 0;font-size:.93rem}
   .re-table{width:100%;border-collapse:collapse;margin-top:.6rem;font-size:.86rem}

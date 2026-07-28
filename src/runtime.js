@@ -55,7 +55,8 @@ addEventListener("resize", majCurseur); majCurseur();
 const filtreToggle = document.getElementById("filtre-toggle");
 const filtrePanel = document.getElementById("filtre-panel");
 if (filtreToggle && filtrePanel) {
-  filtreToggle.addEventListener("click", () => {
+  filtreToggle.addEventListener("click", e => {
+    e.stopPropagation();
     const ouvrir = filtrePanel.hidden;
     filtrePanel.hidden = !ouvrir;
     filtreToggle.setAttribute("aria-expanded", String(ouvrir));
