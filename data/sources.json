@@ -79,6 +79,24 @@
       "sources": [
         ["EESR n°19 — L'effort de recherche et développement en France", "https://publication.enseignementsup-recherche.gouv.fr/eesr/FR/T923/l_effort_de_recherche_et_developpement_en_france/"]
       ]
+    },
+    {
+      "lab": "Pression fiscale",
+      "fiabilite": "Bonne à partir de 1965, non sourcé avant.",
+      "note": "Prélèvements obligatoires (impôts + cotisations sociales) des administrations publiques, au sens de la classification internationale de l'OCDE (secteur S13 des comptes nationaux) — une série longue, unique et cohérente sur toute la période 1965-2024, contrairement aux publications INSEE qui ne remontent pas aussi loin de façon continue. Point de vigilance : le taux « officiel » le plus souvent cité par l'INSEE/le gouvernement est systématiquement inférieur de 0,7 à 1 point à celui retenu ici sur les années récentes (ex. 45,0 % INSEE contre 45,9 % OCDE en 2022) — un écart de classification comptable connu entre les deux institutions, pas une erreur. Aucune valeur 2025, non encore publiée par l'OCDE au moment du fact-checking (juillet 2026).",
+      "sources": [
+        ["OCDE — Statistiques des recettes publiques, France (Revenue Statistics)", "https://stats.oecd.org/"],
+        ["INSEE — Taux de prélèvements obligatoires rapportés au PIB", "https://www.insee.fr/fr/statistiques/2381412"]
+      ]
+    },
+    {
+      "lab": "Climat (CO2/habitant)",
+      "fiabilite": "Bonne, mais à ne pas confondre avec l'empreinte carbone.",
+      "note": "Émissions territoriales de CO2 fossile (combustion + ciment, hors puits de carbone) rapportées à la population — méthodologie Global Carbon Project, série longue et continue 1950-2024, diffusée par Our World in Data. Point de vigilance important : ce n'est PAS « l'empreinte carbone » régulièrement citée par l'ADEME/le SDES, qui inclut les émissions importées (biens et services fabriqués à l'étranger puis consommés en France) et qui affiche un chiffre presque double (9,4 t CO2e/habitant en 2023 contre 4,1 t ici) — les deux mesures répondent à des questions différentes (« qu'émet-on chez nous » contre « que consomme-t-on au global »), et cette page retient la première parce que c'est celle demandée (« CO2 émises par habitant »). Aucune valeur 2025, pas encore publiée par le Global Carbon Project au moment du fact-checking (juillet 2026).",
+      "sources": [
+        ["Our World in Data — CO₂ emissions per capita (Global Carbon Project)", "https://ourworldindata.org/co2-emissions"],
+        ["SDES — L'empreinte carbone de la France", "https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1990-2023"]
+      ]
     }
   ]
 }
