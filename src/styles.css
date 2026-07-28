@@ -92,6 +92,11 @@
   .commentaires .note{font-size:.75rem;color:var(--gris);margin-bottom:.5rem}
   .giscus-zone{margin-top:.6rem}
   .giscus-attente{font-family:var(--mono);font-size:.75rem;color:var(--gris)}
+  /* Hauteur bornée + défilement interne : contourne un bug du composant giscus-widget
+     où plusieurs instances ouvertes en même temps peuvent hériter de la hauteur les
+     unes des autres (github.com/giscus/giscus/issues/1636). */
+  giscus-widget{display:block}
+  giscus-widget::part(iframe){min-height:420px;max-height:420px;overflow-y:auto}
 
   /* ---------- Annexe ---------- */
   #annexe{padding:4rem 0 2rem}

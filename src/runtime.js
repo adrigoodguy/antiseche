@@ -51,51 +51,68 @@ let tick = false;
 addEventListener("scroll", () => { if (!tick) { requestAnimationFrame(() => { majCurseur(); tick = false }); tick = true } }, { passive: true });
 addEventListener("resize", majCurseur); majCurseur();
 
-/* --- Commentaires (Giscus, un widget indépendant par réforme, chargé au premier dépli) --- */
-// Thème fixe "light" : le site n'a pas de mode sombre, "preferred_color_scheme"
-// pouvait rendre le widget en sombre sur un panneau clair (texte quasi invisible).
+/* --- Commentaires (giscus-widget, un widget indépendant par réforme, chargé au premier dépli) ---
+   Le script client.js "classique" de Giscus cherche le premier élément .giscus
+   dans TOUT le document (pas seulement le sien) : sur une page à plusieurs widgets,
+   seul le premier ouvert fonctionne, les suivants recyclent silencieusement son
+   conteneur et ne s'affichent jamais. Le web component giscus-widget isole chaque
+   instance dans son propre Shadow DOM et n'a pas ce défaut. Thème fixe "light" :
+   le site n'a pas de mode sombre, "preferred_color_scheme" pouvait rendre le
+   widget en sombre sur un panneau clair (texte quasi invisible). */
+let moduleGiscus = null;
+function assurerModuleGiscus() {
+  if (!moduleGiscus) {
+    moduleGiscus = new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.type = "module";
+      s.src = "https://esm.sh/giscus";
+      s.onload = resolve;
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  return moduleGiscus;
+}
 function chargerGiscus(zone, terme) {
   if (zone.dataset.charge) return;
   zone.dataset.charge = "1";
   const attente = zone.querySelector(".giscus-attente");
-  const s = document.createElement("script");
-  s.src = "https://giscus.app/client.js";
-  s.async = true;
-  s.crossOrigin = "anonymous";
-  s.setAttribute("data-repo", "adrigoodguy/antiseche");
-  s.setAttribute("data-repo-id", "R_kgDOTk9rOw");
-  s.setAttribute("data-category", "Commentaires");
-  s.setAttribute("data-category-id", "DIC_kwDOTk9rO84DCE01");
-  s.setAttribute("data-mapping", "specific");
-  s.setAttribute("data-term", terme);
-  s.setAttribute("data-strict", "1");
-  s.setAttribute("data-reactions-enabled", "1");
-  s.setAttribute("data-emit-metadata", "0");
-  s.setAttribute("data-input-position", "bottom");
-  s.setAttribute("data-theme", "light");
-  s.setAttribute("data-lang", "fr");
-  // Un blocage réseau (bloqueur de pub, proxy) laisse sinon le panneau
-  // bloqué en "chargement" pour toujours : on autorise un nouvel essai
-  // au prochain dépli plutôt que de rester silencieusement planté.
-  s.onerror = () => {
+  assurerModuleGiscus().then(() => {
+    const w = document.createElement("giscus-widget");
+    w.setAttribute("repo", "adrigoodguy/antiseche");
+    w.setAttribute("repoid", "R_kgDOTk9rOw");
+    w.setAttribute("category", "Commentaires");
+    w.setAttribute("categoryid", "DIC_kwDOTk9rO84DCE01");
+    w.setAttribute("mapping", "specific");
+    w.setAttribute("term", terme);
+    w.setAttribute("strict", "1");
+    w.setAttribute("reactionsenabled", "1");
+    w.setAttribute("emitmetadata", "0");
+    w.setAttribute("inputposition", "bottom");
+    w.setAttribute("theme", "light");
+    w.setAttribute("lang", "fr");
+    w.setAttribute("loading", "lazy");
+    if (attente) attente.replaceWith(w); else zone.appendChild(w);
+    // Bug connu du composant (github.com/giscus/giscus/issues/1636) : son
+    // message-listener n'ignore pas les messages venant du widget d'un AUTRE
+    // instance, donc plusieurs widgets ouverts en même temps peuvent se voir
+    // appliquer la hauteur les uns des autres. La zone a une hauteur/scroll
+    // fixes (styles.css) pour absorber ça ; on retire aussi l'attribut
+    // "scrolling" (fixé par le composant) qui empêcherait le défilement interne.
+    w.updateComplete?.then(() => {
+      w.shadowRoot?.querySelector("iframe")?.removeAttribute("scrolling");
+    });
+  }).catch(() => {
+    moduleGiscus = null;
     zone.dataset.charge = "";
     if (attente) attente.textContent = "Échec du chargement des commentaires — repliez puis dépliez la carte pour réessayer.";
-  };
-  zone.appendChild(s);
+  });
 }
 document.querySelectorAll(".commentaires").forEach(zone => {
   const terme = zone.dataset.terme;
   const giscusZone = zone.querySelector(".giscus-zone");
   zone.closest("details").addEventListener("toggle", e => {
     if (e.target.open) chargerGiscus(giscusZone, terme);
-  });
-});
-// Le widget giscus prévient par postMessage une fois son iframe rendue :
-// on retire alors le texte "Chargement…" de la zone concernée.
-addEventListener("message", e => {
-  if (e.origin !== "https://giscus.app" || !e.data?.giscus) return;
-  document.querySelectorAll(".giscus-zone iframe").forEach(f => {
-    if (f.contentWindow === e.source) f.closest(".giscus-zone").querySelector(".giscus-attente")?.remove();
   });
 });
 
