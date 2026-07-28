@@ -11,20 +11,29 @@ const vals = [...document.querySelectorAll(".val[data-vi]")];
 
 function valeurA(ind, annee) {
   const anneesInd = ind.annees || ANNEES;
-  // Indicateurs à couverture partielle (PISA depuis 2000, DIRD depuis 1981...) :
-  // pas de valeur avant leur premier point ni après leur dernier — pas
-  // d'extrapolation inventée. Les indicateurs à grille dense (1950-2025)
-  // gardent le comportement d'origine (clamp sur la première/dernière valeur).
   const partiel = !!ind.annees;
-  if (annee < anneesInd[0]) return partiel ? null : ind.d[0];
-  if (annee > anneesInd[anneesInd.length - 1]) return partiel ? null : ind.d[ind.d.length - 1];
-  for (let k = 0; k < anneesInd.length - 1; k++) {
-    if (annee >= anneesInd[k] && annee <= anneesInd[k + 1]) {
-      const t = (annee - anneesInd[k]) / (anneesInd[k + 1] - anneesInd[k]);
-      return ind.d[k] + t * (ind.d[k + 1] - ind.d[k]);
+  if (!partiel) {
+    // Grille dense (1950-2025) : comportement d'origine, interpolation entre
+    // points connus et clamp sur la première/dernière valeur.
+    if (annee < anneesInd[0]) return { val: ind.d[0], approx: false };
+    if (annee > anneesInd[anneesInd.length - 1]) return { val: ind.d[ind.d.length - 1], approx: false };
+    for (let k = 0; k < anneesInd.length - 1; k++) {
+      if (annee >= anneesInd[k] && annee <= anneesInd[k + 1]) {
+        const t = (annee - anneesInd[k]) / (anneesInd[k + 1] - anneesInd[k]);
+        return { val: ind.d[k] + t * (ind.d[k + 1] - ind.d[k]), approx: false };
+      }
     }
+    return { val: ind.d[ind.d.length - 1], approx: false };
   }
-  return ind.d[ind.d.length - 1];
+  // Indicateurs à couverture partielle (PISA depuis 2000, DIRD depuis 1981,
+  // mesurés par intermittence) : pas de valeur avant leur premier point (rien
+  // à afficher), et jamais de valeur interpolée qui n'a pas été mesurée —
+  // on reporte la dernière mesure réellement publiée, marquée "≈" dès qu'on
+  // n'est pas exactement sur une année mesurée (issue #5).
+  if (annee < anneesInd[0]) return { val: null, approx: false };
+  let k = 0;
+  while (k < anneesInd.length - 1 && anneesInd[k + 1] <= annee) k++;
+  return { val: ind.d[k], approx: anneesInd[k] !== annee };
 }
 
 function majCurseur() {
@@ -43,8 +52,8 @@ function majCurseur() {
   curseurs.forEach(c => { c.setAttribute("x1", x); c.setAttribute("x2", x) });
   anneeEl.textContent = Math.round(annee);
   vals.forEach((v, i) => {
-    const val = valeurA(INDIC[i], annee);
-    v.textContent = val === null ? "—" : (Math.abs(val) >= 10 ? val.toFixed(0) : val.toFixed(1)) + " " + INDIC[i].unit;
+    const { val, approx } = valeurA(INDIC[i], annee);
+    v.textContent = val === null ? "—" : (approx ? "≈ " : "") + (Math.abs(val) >= 10 ? val.toFixed(0) : val.toFixed(1)) + " " + INDIC[i].unit;
   });
 }
 let tick = false;
