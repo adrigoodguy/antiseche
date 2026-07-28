@@ -54,6 +54,9 @@ const INDIC = GROUPES.flatMap(g => g.indicateurs.map(lab => {
 
 const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;
+// Partagé entre index.html (curseur du bandeau) et sources.html (graphique
+// comparatif par famille, issue #4) : même modèle de données côté client.
+const DONNEES_INDIC_JSON = JSON.stringify({ annees: ANNEES, indicateurs: INDIC });
 
 function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -165,7 +168,6 @@ function annexe() {
 
 /* --- Page complète --- */
 function page() {
-  const donneesIndic = JSON.stringify({ annees: ANNEES, indicateurs: INDIC });
   return `<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -203,7 +205,7 @@ function page() {
   Sources principales&nbsp;: INSEE (séries longues), Vie-publique.fr, Légifrance, Cour des comptes, France Stratégie, Banque mondiale, archives INA. Les liens de la v1 sont des points d'entrée (notices Vie-publique / Wikipédia) destinés à être remplacés par les sources primaires en v2. Les chiffres du bandeau et des encadrés contexte sont des ordres de grandeur à re-vérifier ligne à ligne avant publication. Document ouvert aux commentaires et aux corrections — c'est le principe.
 </footer>
 
-<script>window.__DONNEES_INDIC__=${donneesIndic};</script>
+<script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};</script>
 <script src="runtime.js"></script>
 </body>
 </html>
@@ -236,6 +238,24 @@ function pageSources() {
   const familles = `
 <h2>Familles d'indicateurs</h2>
 <ul class="familles">${GROUPES.map(g => `<li><span class="puce"></span><b>${esc(g.nom)}</b> — ${g.indicateurs.map(esc).join(", ")}</li>`).join("")}</ul>`;
+
+  // Graphique comparatif par famille (issue #4) : entièrement rendu côté
+  // client (runtime.js) à partir de window.__DONNEES_INDIC__, pour partager
+  // un seul calcul d'échelle avec l'interactivité (survol, changement de
+  // famille) plutôt que dupliquer le tracé ici et son pilotage là-bas.
+  const graphique = `
+<h2>Comparer les indicateurs d'une famille</h2>
+<div class="graphique-carte">
+  <div class="graphique-controles">
+    <label for="graphique-select">Famille</label>
+    <select id="graphique-select">${GROUPES.map(g => `<option value="${esc(g.nom)}">${esc(g.nom)}</option>`).join("")}</select>
+  </div>
+  <div class="graphique-zone">
+    <svg id="graphique-svg" viewBox="0 0 880 380" role="img" aria-label="Comparaison temporelle des indicateurs de la famille sélectionnée"></svg>
+    <div id="graphique-tooltip" class="graphique-tooltip" hidden></div>
+  </div>
+  <div id="graphique-legende" class="graphique-legende"></div>
+</div>`;
 
   const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
   const kpiNotes = GROUPES.map(g => {
@@ -270,6 +290,8 @@ function pageSources() {
 <main id="annexe">
 ${familles}
 
+${graphique}
+
 <h2>Indicateurs à grille dense, année par année (1950-2025)</h2>
 <div class="table-scroll"><table class="re-table kpi-table">
 <thead>${thead}</thead>
@@ -287,6 +309,8 @@ ${kpiNotes}
   Document ouvert aux commentaires et aux corrections — voir <a href="index.html#annexe-conteneur">l'annexe du document principal</a> pour la méthode générale du projet.
 </footer>
 
+<script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};</script>
+<script src="runtime.js"></script>
 </body>
 </html>
 `;
