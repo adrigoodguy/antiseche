@@ -192,5 +192,27 @@
         "2022": 2.22
       }
     }
-  }
+  },
+  "groupes": [
+    {
+      "nom": "Conjoncture économique",
+      "couleur": "#3987e5",
+      "indicateurs": ["Croissance PIB", "Chômage", "Inflation"]
+    },
+    {
+      "nom": "Conséquence budgétaire",
+      "couleur": "#d95926",
+      "indicateurs": ["Dette publique"]
+    },
+    {
+      "nom": "Capacité productive & investissement",
+      "couleur": "#9085e9",
+      "indicateurs": ["Industrie", "DIRD (recherche)", "PISA (compréhension de l'écrit)"]
+    },
+    {
+      "nom": "Contexte démographique",
+      "couleur": "#c98500",
+      "indicateurs": ["Fécondité", "Espérance de vie"]
+    }
+  ]
 }

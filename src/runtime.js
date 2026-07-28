@@ -51,6 +51,35 @@ let tick = false;
 addEventListener("scroll", () => { if (!tick) { requestAnimationFrame(() => { majCurseur(); tick = false }); tick = true } }, { passive: true });
 addEventListener("resize", majCurseur); majCurseur();
 
+/* --- Filtre des indicateurs (décocher masque la carte, tous cochés par défaut) --- */
+const filtreToggle = document.getElementById("filtre-toggle");
+const filtrePanel = document.getElementById("filtre-panel");
+if (filtreToggle && filtrePanel) {
+  filtreToggle.addEventListener("click", () => {
+    const ouvrir = filtrePanel.hidden;
+    filtrePanel.hidden = !ouvrir;
+    filtreToggle.setAttribute("aria-expanded", String(ouvrir));
+  });
+  document.addEventListener("click", e => {
+    if (!filtrePanel.hidden && !filtreToggle.contains(e.target) && !filtrePanel.contains(e.target)) {
+      filtrePanel.hidden = true;
+      filtreToggle.setAttribute("aria-expanded", "false");
+    }
+  });
+  filtrePanel.addEventListener("change", e => {
+    if (!e.target.matches("input[type=checkbox]")) return;
+    const spark = document.querySelector(`.spark[data-vi="${e.target.dataset.vi}"]`);
+    if (!spark) return;
+    spark.style.display = e.target.checked ? "" : "none";
+    // Masque le segment de la famille entière si plus aucun de ses indicateurs n'est coché.
+    const groupe = spark.closest(".groupe-ind");
+    if (groupe) {
+      const visible = [...groupe.querySelectorAll(".spark")].some(s => s.style.display !== "none");
+      groupe.style.display = visible ? "" : "none";
+    }
+  });
+}
+
 /* --- Commentaires (giscus-widget, un widget indépendant par réforme, chargé au premier dépli) ---
    Le script client.js "classique" de Giscus cherche le premier élément .giscus
    dans TOUT le document (pas seulement le sien) : sur une page à plusieurs widgets,

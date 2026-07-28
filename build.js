@@ -20,25 +20,37 @@ const SOURCES = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf
 // pour rester facile à relire/vérifier ; on le remet ici sous la forme
 // {lab, unit, d:[...]} qu'attendent le rendu des sparklines et le curseur.
 const ANNEES = Object.keys(INDICATEURS.annees).map(Number).sort((a, b) => a - b);
-const INDIC = Object.entries(INDICATEURS.unites).map(([lab, unit]) => ({
-  lab,
-  unit,
-  d: ANNEES.map(a => INDICATEURS.annees[String(a)][lab]),
-}));
-
+const INDIC_PAR_LAB = new Map();
+for (const [lab, unit] of Object.entries(INDICATEURS.unites)) {
+  INDIC_PAR_LAB.set(lab, { lab, unit, d: ANNEES.map(a => INDICATEURS.annees[String(a)][lab]) });
+}
 // Indicateurs à couverture historique partielle (ex. PISA depuis 2000, DIRD
 // depuis 1981) : chacun garde son propre axe d'années plutôt que d'être forcé
 // sur la grille dense 1950-2025 partagée par les indicateurs ci-dessus —
 // aucune valeur inventée avant leur premier point réel.
 for (const [lab, spec] of Object.entries(INDICATEURS.indicateurs_specifiques || {})) {
   const anneesSpec = Object.keys(spec.valeurs).map(Number).sort((a, b) => a - b);
-  INDIC.push({
+  INDIC_PAR_LAB.set(lab, {
     lab,
     unit: spec.unit,
     annees: anneesSpec,
     d: anneesSpec.map(a => spec.valeurs[String(a)]),
   });
 }
+
+// L'ordre d'affichage suit les familles thématiques (issue #2), pas l'ordre
+// d'arrivée dans le JSON : on aplatit data.groupes dans l'ordre déclaré.
+const GROUPES = INDICATEURS.groupes || [];
+const classes = new Set(GROUPES.flatMap(g => g.indicateurs));
+const nonClasses = [...INDIC_PAR_LAB.keys()].filter(lab => !classes.has(lab));
+if (nonClasses.length) {
+  throw new Error(`Indicateur(s) sans groupe dans data/indicateurs.json : ${nonClasses.join(", ")}`);
+}
+const INDIC = GROUPES.flatMap(g => g.indicateurs.map(lab => {
+  const ind = INDIC_PAR_LAB.get(lab);
+  if (!ind) throw new Error(`Groupe "${g.nom}" référence un indicateur inconnu : ${lab}`);
+  return { ...ind, groupe: g.nom, couleur: g.couleur };
+}));
 
 const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;
@@ -53,12 +65,37 @@ function sparkSVG(ind, i) {
   const min = Math.min(...ind.d), max = Math.max(...ind.d), pad = (max - min) * 0.1 || 1;
   const x = a => ((a - Y0) / (Y1 - Y0)) * SW, y = v => SH - ((v - (min - pad)) / ((max + pad) - (min - pad))) * SH;
   const pts = ind.d.map((v, k) => `${x(anneesInd[k]).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
-  return `<div class="spark"><div class="lab">${ind.lab} <span class="unit">(${ind.unit})</span></div>
+  return `<div class="spark" data-vi="${i}"><div class="lab">${ind.lab} <span class="unit">(${ind.unit})</span></div>
   <svg width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}" aria-hidden="true">
     <line x1="0" y1="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" x2="${SW}" y2="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
     <polyline points="${pts}" fill="none" stroke="#9FB0D6" stroke-width="1.6" stroke-linejoin="round"/>
     <line class="curseur" data-i="${i}" x1="0" x2="0" y1="0" y2="${SH}" stroke="#C3372C" stroke-width="1.6"/>
   </svg><div class="val" data-vi="${i}">—</div></div>`;
+}
+
+// Regroupe les cartes déjà triées par famille (INDIC suit l'ordre de
+// data.groupes) en segments avec bordure et étiquette de thématique (issue #2).
+function bandeauGroupes() {
+  const groupes = [];
+  INDIC.forEach((ind, i) => {
+    const dernier = groupes[groupes.length - 1];
+    if (!dernier || dernier.nom !== ind.groupe) groupes.push({ nom: ind.groupe, couleur: ind.couleur, cartes: [] });
+    groupes[groupes.length - 1].cartes.push(sparkSVG(ind, i));
+  });
+  return groupes.map(g => `<div class="groupe-ind" style="--gc:${g.couleur}">
+    <div class="groupe-cartes">${g.cartes.join("")}</div>
+    <div class="groupe-nom">${esc(g.nom)}</div>
+  </div>`).join("");
+}
+
+// Panneau de filtre (issue #3) : une case à cocher par indicateur, regroupée
+// par famille, toutes cochées par défaut.
+function panneauFiltre() {
+  const indexParLab = new Map(INDIC.map((ind, i) => [ind.lab, i]));
+  return GROUPES.map(g => `<div class="filtre-groupe">
+    <div class="filtre-groupe-nom" style="color:${g.couleur}">${esc(g.nom)}</div>
+    ${g.indicateurs.map(lab => `<label class="filtre-item"><input type="checkbox" checked data-vi="${indexParLab.get(lab)}"> ${esc(lab)}</label>`).join("")}
+  </div>`).join("");
 }
 
 /* --- Carte réforme --- */
@@ -150,7 +187,9 @@ function page() {
 </header>
 
 <div id="bandeau" aria-label="Indicateurs France 1945–2026, le curseur suit votre lecture">
-  <div class="inner" id="bandeau-inner">${INDIC.map(sparkSVG).join("")}</div>
+  <button id="filtre-toggle" type="button" aria-expanded="false" aria-controls="filtre-panel">Filtrer ▾</button>
+  <div id="filtre-panel" hidden>${panneauFiltre()}</div>
+  <div class="inner" id="bandeau-inner">${bandeauGroupes()}</div>
   <div id="annee-curseur">1944</div>
 </div>
 
@@ -188,11 +227,24 @@ function pageSources() {
 <tbody><tr>${ind.d.map(v => `<td>${v}</td>`).join("")}</tr></tbody>
 </table></div>`).join("");
 
-  const kpiNotes = SOURCES.kpis.map(k => `
-<h3>${esc(k.lab)}</h3>
+  // Familles thématiques (issue #2) : même regroupement que le bandeau de la
+  // page principale, pour que les deux vues restent cohérentes.
+  const familles = `
+<h2>Familles d'indicateurs</h2>
+<ul class="familles">${GROUPES.map(g => `<li><span class="puce" style="--gc:${g.couleur}"></span><b style="color:${g.couleur}">${esc(g.nom)}</b> — ${g.indicateurs.map(esc).join(", ")}</li>`).join("")}</ul>`;
+
+  const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
+  const kpiNotes = GROUPES.map(g => {
+    const items = g.indicateurs.map(lab => {
+      const k = kpiParLab.get(lab);
+      if (!k) throw new Error(`Aucune note de sources pour l'indicateur "${lab}" (data/sources.json)`);
+      return `<h4>${esc(k.lab)}</h4>
 <p><b>Fiabilité :</b> ${k.fiabilite}</p>
 <p>${k.note}</p>
-<ul>${k.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>`).join("");
+<ul>${k.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>`;
+    }).join("");
+    return `<h3 style="color:${g.couleur}">${esc(g.nom)}</h3>${items}`;
+  }).join("");
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -212,6 +264,8 @@ function pageSources() {
 </header>
 
 <main id="annexe">
+${familles}
+
 <h2>Indicateurs à grille dense, année par année (1950-2025)</h2>
 <div class="table-scroll"><table class="re-table kpi-table">
 <thead>${thead}</thead>
