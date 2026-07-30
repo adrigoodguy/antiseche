@@ -9,7 +9,59 @@
         ["INSEE — Comptes nationaux", "https://www.insee.fr/fr/statistiques"],
         ["INSEE Première — Les comptes de la Nation en 2022", "https://www.insee.fr/fr/statistiques/7623591"],
         ["INSEE Première — Les comptes de la Nation en 2025", "https://www.insee.fr/fr/statistiques/8996855"]
-      ]
+      ],
+      "inflexions": [
+        {
+          "annee": "1974-1975",
+          "titre": "Choc pétrolier et fin des Trente Glorieuses",
+          "commentaire": "Après une croissance moyenne de 5,6 %/an entre 1960 et 1973, l'économie française plonge à -1 % en 1975. Cette rupture coïncide avec le premier choc pétrolier (quadruplement du prix du pétrole fin 1973) et la fin de la convertibilité dollar-or (1971), qui déstabilise les changes. Corrélation documentée entre ces chocs externes et le ralentissement ; la littérature elle-même décrit un enchaînement de causes plutôt qu'une cause unique — on se gardera d'attribuer la totalité du ralentissement au seul choc pétrolier.",
+          "sources": [
+            ["Ronan Mahieu (INSEE) — Avant et après les chocs pétroliers : l'économie française de 1949 à 2012, 2014", "https://www.insee.fr/fr/statistiques/1374366?sommaire=1374377"]
+          ]
+        },
+        {
+          "annee": "2001-2003",
+          "titre": "Éclatement de la bulle internet",
+          "commentaire": "La croissance décroche après 2000 (3,9 %), avec un creux à 0,9 % dès 2002 — année que notre grille quinquennale ne montre pas directement, elle ne prend que 2000 et 2005. L'éclatement de la bulle internet aux États-Unis se propage aux économies européennes via l'effondrement des investissements technologiques ; les chercheurs de l'OFCE relèvent aussi un déficit de compétitivité propre à la France sur la période. Corrélation documentée avec le choc technologique mondial ; la part exacte imputable à ce choc plutôt qu'à des facteurs domestiques reste débattue, donc prudence sur la causalité.",
+          "sources": [
+            ["Chauvin, Dupont, Heyer, Plane, Péléraux — France : fin de l'échappée, Revue de l'OFCE n°83, 2002", "https://www.cairn.info/revue-de-l-ofce-2002-4-page-175.htm"]
+          ]
+        },
+        {
+          "annee": "2008-2009",
+          "titre": "Crise financière mondiale",
+          "commentaire": "Notre grille (échantillonnée tous les 5 ans) ne montre pas ce creux directement : l'INSEE chiffre le recul du PIB à -2,6 % pour la seule année 2009 (chiffre de l'édition 2010, avant rebasage), après un ralentissement déjà sensible en 2008 (+0,4 % après +2,3 % en 2007). L'INSEE situe elle-même cette récession comme la plus sévère depuis l'après-guerre, plus forte que celle de 1975 (-1,0 %) ou de 1993 (-0,9 %). La chaîne causale (faillite de Lehman Brothers en septembre 2008 → crise du crédit interbancaire → effondrement de l'investissement et du commerce mondial) est bien établie dans la littérature macroéconomique — un des rares cas ici où un langage plus affirmatif est justifié, sans perdre de vue que l'ampleur de chaque canal de transmission reste débattue.",
+          "sources": [
+            ["INSEE — L'économie française en 2009 : une récession sans précédent depuis l'après-guerre, éd. 2010", "https://www.insee.fr/fr/statistiques/1372478?sommaire=1372485"]
+          ]
+        },
+        {
+          "annee": "2020",
+          "titre": "Crise Covid-19",
+          "commentaire": "Le point le plus spectaculaire de la série : -7,5 % en 2020 (chiffre rebasé ; -7,9 % dans la publication d'origine de mai 2021), le plus fort recul des comptes nationaux français depuis leur création en 1949. L'INSEE attribue directement cette chute à la crise sanitaire et aux mesures de restriction (confinements, couvre-feux, fermetures) prises en France et à l'étranger. Rare cas où la causalité peut être affirmée sans grande réserve : le choc est daté, ses canaux de transmission sont directement observables plutôt que reconstruits après coup.",
+          "sources": [
+            ["INSEE Première — Les comptes de la Nation en 2020, n°1860, mai 2021", "https://www.insee.fr/fr/statistiques/5387891"]
+          ]
+        },
+        {
+          "annee": "2022-2025",
+          "titre": "Ralentissement post-Covid, choc énergétique et inflation",
+          "commentaire": "Après le rebond de 2022 (+2,5 %), la croissance fléchit nettement : +1,5 % en 2024 puis +0,8 % en 2025. L'INSEE relie ce ralentissement à la persistance de l'inflation — portée par le choc énergétique consécutif à l'invasion de l'Ukraine — conjuguée au resserrement monétaire, qui pèse sur la consommation des ménages et l'investissement. Corrélation bien documentée par les publications conjoncturelles de l'INSEE ; comme pour les autres épisodes hors 2020 et 2008-2009, plusieurs facteurs s'enchevêtrent (énergie, taux d'intérêt, commerce extérieur), donc pas de cause unique isolée ici non plus.",
+          "sources": [
+            ["INSEE — Note de conjoncture, juin 2023 : L'inflation reflue, la croissance hésite", "https://www.insee.fr/fr/statistiques/7634656?sommaire=7634660"],
+            ["INSEE Première — Les comptes de la Nation en 2025, n°2105, mai 2026", "https://www.insee.fr/fr/statistiques/8996855"]
+          ]
+        }
+      ],
+      "autreRegard": {
+        "titre": "La critique physique du PIB",
+        "texte": "Cette page mesure la croissance en termes monétaires (PIB), la référence utilisée par l'INSEE et par toutes les sources ci-dessus. Cette mesure fait aussi l'objet d'un débat public plus large : l'ingénieur Jean-Marc Jancovici (cofondateur du Shift Project), figure engagée et contestée du débat sur l'énergie et le climat, avance que le PIB reflète de moins en moins bien l'activité physique réelle — notamment parce que la hausse des prix de certains actifs (l'immobilier en particulier) est comptée comme de la croissance sans être corrigée comme une inflation ordinaire. Il propose de lui préférer des indicateurs physiques directs, comme le tonnage de marchandises transporté ou les surfaces construites, tous deux en recul en Europe depuis le milieu des années 2000 selon lui — signe, dans cette lecture, d'une récession physique masquée par le PIB. Ce point de vue est débattu, y compris sur le lien de causalité qu'il établit entre énergie et croissance : il n'a pas le niveau de validation académique des sources INSEE/OFCE citées plus haut sur cette page.",
+        "sources": [
+          ["Jean-Marc Jancovici — interview Ouest-France, novembre 2024", "https://jancovici.com/publications-et-co/interviews/une-interview-dans-ouest-france-en-novembre-2024/"],
+          ["Marina Fabre Soundron — « La décroissance a commencé, de manière larvée », Novethic, 25 novembre 2021", "https://www.novethic.fr/actualite/economie/economie/isr-rse/jean-marc-jancovici-ingenieur-la-decroissance-a-commence-de-maniere-larvee-150341.html"],
+          ["Jean-Marc Jancovici — « Croissance, climat et limites physiques », transcription de conférence, État d'urgence, 28 juillet 2021", "https://etatdurgence.ch/blog/articles/jancovici-croissance-climat-et-limites-physiques/"]
+        ]
+      }
     },
     {
       "lab": "Chômage",

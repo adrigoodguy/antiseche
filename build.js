@@ -433,6 +433,46 @@ function graphiqueKpi(ind) {
 // sert un stub « à venir » plutôt que de la dupliquer prématurément.
 const SLUGS_AVEC_CONTENU = new Set(["pib"]);
 
+// Points d'inflexion (issue #10) : gabarit réutilisable — lit note.inflexions
+// si présent, ne rend rien sinon. Le jour où un autre KPI reçoit ce champ
+// dans data/sources.json, sa page /analyse/{slug} l'affiche sans aucun
+// changement de code ici.
+function bandeauEditorial(note) {
+  if (!note.inflexions || !note.inflexions.length) return "";
+  return `<div class="avert"><b>Lecture interprétative</b> — les points d'inflexion plus bas sur cette page sont une lecture interprétative de la série, avec des sources vérifiables. Une corrélation entre deux évènements n'est pas une preuve de causalité&nbsp;: sauf mention contraire justifiée par la littérature citée, ces commentaires décrivent des corrélations documentées, pas des relations de cause à effet établies.</div>`;
+}
+
+function sectionInflexions(note) {
+  if (!note.inflexions || !note.inflexions.length) return "";
+  const cartes = note.inflexions.map(inf => `
+<div class="inflexion">
+  <div class="inflexion-annee">${esc(inf.annee)}</div>
+  <h3>${esc(inf.titre)}</h3>
+  <p>${esc(inf.commentaire)}</p>
+  <ul>${inf.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>
+</div>`).join("");
+
+  return `
+<h2>Points d'inflexion</h2>
+${cartes}`;
+}
+
+// Autre regard (gabarit réutilisable, comme sectionInflexions) : un point de
+// vue minoritaire/contesté sur l'indicateur lui-même, distinct des points
+// d'inflexion sourcés ci-dessus — présenté à part, avec un style plus neutre
+// (gris, pas rouge) pour ne pas être confondu avec le reste du contenu
+// sourcé INSEE/OFCE de la page.
+function sectionAutreRegard(note) {
+  if (!note.autreRegard) return "";
+  const ar = note.autreRegard;
+  return `
+<div class="autre-regard">
+  <h2>Autre regard&nbsp;: ${esc(ar.titre)}</h2>
+  <p>${esc(ar.texte)}</p>
+  <ul>${ar.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>
+</div>`;
+}
+
 /* --- Pages « Analyse » individuelles : contenu réel pour PIB, page « à venir » pour les autres KPI (issue #9) --- */
 function pageAnalyseKpi(ind) {
   const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
@@ -440,11 +480,14 @@ function pageAnalyseKpi(ind) {
 
   const corps = SLUGS_AVEC_CONTENU.has(ind.slug) ? `
 <p class="standfirst">${esc(ind.resume)}</p>
+${bandeauEditorial(note)}
 ${graphiqueKpi(ind)}
+${sectionInflexions(note)}
 <h2>Fiabilité &amp; sources</h2>
 <p><b>Fiabilité :</b> ${note.fiabilite}</p>
 <p>${note.note}</p>
-<ul>${note.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>` : `
+<ul>${note.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>
+${sectionAutreRegard(note)}` : `
 <p class="standfirst">${esc(ind.resume)}</p>
 <div class="avert"><b>Page à venir</b> — le contenu détaillé de cet indicateur (série complète, fiabilité, sources) n'est pas encore rédigé ici. En attendant, le fact-checking de cet indicateur est déjà disponible sur <a href="/sources">/sources</a>. Retour à <a href="/analyse">l'index des indicateurs</a>.</div>`;
 

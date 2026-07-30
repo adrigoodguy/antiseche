@@ -162,4 +162,22 @@
   .kpi-table td:not(.annee){text-align:right;font-family:var(--mono)}
   .avert{border:1.5px solid var(--rouge);padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.9rem;max-width:60em;background:#fff}
   .avert b{color:var(--rouge)}
+
+  /* ---------- Points d'inflexion (issue #10) ---------- */
+  .inflexion{background:#fff;border:1px solid var(--trait);border-radius:3px;padding:1rem 1.2rem;margin:.9rem 0;max-width:60em}
+  .inflexion-annee{font-family:var(--mono);color:var(--rouge);font-size:.8rem;letter-spacing:.1em}
+  .inflexion h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:.15em 0 .5em}
+  .inflexion p{font-size:.93rem}
+  .inflexion ul{margin-top:.5em;padding-left:0;list-style:none}
+  .inflexion li a{font-family:var(--mono);font-size:.78rem}
+
+  /* ---------- Autre regard : point de vue minoritaire/contesté, style
+     neutre (gris, pas rouge) pour rester visuellement distinct du contenu
+     sourcé INSEE/OFCE du reste de la page. ---------- */
+  .autre-regard{background:var(--papier-2);border-left:4px solid var(--gris);padding:1rem 1.2rem;margin:1.4rem 0;max-width:60em}
+  .autre-regard h2{font-size:clamp(1.5rem,3.4vw,2.1rem)}
+  .autre-regard p{font-size:.93rem}
+  .autre-regard ul{margin-top:.5em;padding-left:0;list-style:none}
+  .autre-regard li a{font-family:var(--mono);font-size:.78rem}
+
   footer{border-top:3px solid var(--encre);padding:1.6rem 5vw 3rem;font-size:.82rem;color:var(--gris);max-width:1080px;margin:0 auto}
