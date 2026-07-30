@@ -127,7 +127,7 @@
   giscus-widget::part(iframe){min-height:420px;max-height:420px;overflow-y:auto}
 
   /* ---------- Annexe ---------- */
-  #annexe{padding:4rem 0 2rem}
+  #annexe{padding-top:4rem;padding-bottom:2rem}
   #annexe h2{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem)}
   #annexe h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin:1.6rem 0 .5rem}
   #annexe h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--encre);margin:1rem 0 .3rem}

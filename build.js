@@ -199,7 +199,6 @@ function pageFrise() {
 ${nav("frise")}
 
 <header class="hero">
-  <div class="eyebrow">Document de travail · version 1 · juillet 2026</div>
   <h1>Socle commun<br><span class="annees">1944 → 2026</span></h1>
   <p class="standfirst">Quatre-vingts ans de réformes françaises, présentées de la même façon&nbsp;: ce qui était promis à l'époque, ce qui en était débattu, ce qu'on peut en dire factuellement avec le recul. Chaque période est replacée dans son contexte international et chiffré — parce qu'un gouvernement hérite d'une conjoncture, il ne la crée pas entièrement. Objectif&nbsp;: une clé de lecture partagée du passé, avant de juger les promesses de demain.</p>
   <div class="legende">
@@ -247,6 +246,7 @@ function pageAccueil() {
 ${nav("accueil")}
 
 <header class="hero">
+  <div class="eyebrow">Document de travail · version 1 · juillet 2026</div>
   <h1>L'idée derrière<br><span class="annees">antisèche</span></h1>
   <p class="standfirst">Antisèche part d'un constat simple&nbsp;: se forger un avis informé sur 80 ans de réformes françaises peut sembler hors de portée. Trop d'histoire, trop de débats contradictoires, pas assez de temps pour démêler le vrai du faux seul.</p>
   <p class="standfirst">Avant les débats de la présidentielle 2027, j'essaie de construire le socle minimal que j'aurais aimé avoir&nbsp;: des faits, présentés sans étiquette partisane, pour permettre à ceux qui n'ont jamais vraiment rejoint le débat public de s'y retrouver.</p>
