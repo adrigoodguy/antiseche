@@ -110,6 +110,7 @@ if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
   const pts = [...graphiqueSvg.querySelectorAll("circle.pt")].map(c => ({
     el: c,
     cx: +c.getAttribute("cx"),
+    r: c.dataset.r || "3",
     annee: +c.dataset.annee,
     valeur: +c.dataset.valeur,
   }));
@@ -117,7 +118,7 @@ if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
 
   function survoler(pt) {
     if (actif === pt) return;
-    if (actif) actif.el.setAttribute("r", "3");
+    if (actif) actif.el.setAttribute("r", actif.r);
     actif = pt;
     pt.el.setAttribute("r", "6");
     graphiqueCrosshair.setAttribute("x1", pt.cx);
@@ -139,7 +140,7 @@ if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
     graphiqueTooltip.style.top = `${e.clientY - conteneur.top + 12}px`;
   });
   graphiqueSurvol.addEventListener("pointerleave", () => {
-    if (actif) actif.el.setAttribute("r", "3");
+    if (actif) actif.el.setAttribute("r", actif.r);
     actif = null;
     graphiqueCrosshair.setAttribute("visibility", "hidden");
     graphiqueTooltip.hidden = true;

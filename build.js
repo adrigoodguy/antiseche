@@ -408,7 +408,12 @@ function graphiqueKpi(ind) {
   const grille = anneesAxe.map(a => `<line x1="${gx(a).toFixed(1)}" x2="${gx(a).toFixed(1)}" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
     <text x="${gx(a).toFixed(1)}" y="${GMT + GPH + 18}" font-size="10" text-anchor="middle" fill="var(--gris)">${a}</text>`).join("");
   const ticksV = [dMin, (dMin + dMax) / 2, dMax].map(v => `<text x="${GML - 8}" y="${gy(v).toFixed(1)}" font-size="10" text-anchor="end" dominant-baseline="middle" fill="var(--gris)">${Math.abs(v) >= 10 ? v.toFixed(0) : v.toFixed(1)}</text>`).join("");
-  const points = anneesInd.map((a, k) => `<circle class="pt" data-annee="${a}" data-valeur="${ind.d[k]}" cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="3" fill="#2a78d6"/>`).join("");
+  // Rayon réduit pour les séries denses (PIB annuel, 76 points) : sinon les
+  // points se chevauchent visuellement sur les 760px du graphique. Le survol
+  // (runtime.js) lit ce rayon de repos depuis data-r plutôt que de le
+  // supposer fixe, pour revenir au bon état après un survol.
+  const rPt = anneesInd.length > 30 ? 1.5 : 3;
+  const points = anneesInd.map((a, k) => `<circle class="pt" data-annee="${a}" data-valeur="${ind.d[k]}" data-r="${rPt}" cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="${rPt}" fill="#2a78d6"/>`).join("");
 
   return `<div class="graphique-carte">
   <div class="graphique-zone">

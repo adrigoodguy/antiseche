@@ -3,9 +3,10 @@
   "kpis": [
     {
       "lab": "Croissance PIB",
-      "fiabilite": "Bonne, avec une réserve méthodologique.",
-      "note": "Les chiffres 1950–2015 proviennent de rétropolations INSEE en base 2020 (recalcul moderne des comptes anciens, pas les chiffres tels que publiés à l'époque). 2020, 2022 et 2025 sont vérifiés sur des publications INSEE dédiées ; 2025 est un chiffre définitif (publié en mai 2026), pas une prévision.",
+      "fiabilite": "Excellente : série annuelle complète (1950-2025), sans lacune ni interpolation, une seule source cohérente.",
+      "note": "Les 76 valeurs annuelles proviennent d'une unique série INSEE (comptes nationaux annuels, base 2020), qui remplace l'ancien assemblage de plusieurs publications (rétropolations 1950-2015 + communiqués distincts pour 2020/2022/2025, dont les chiffres ne s'accordaient pas exactement avec cette série — par exemple 2020 y figurait à -7,5 % contre -7,4 % ici, deux révisions différentes du même INSEE). Les deux dernières années suivent la nomenclature INSEE de définitude progressive des comptes : 2024 est semi-définitif, 2025 est provisoire (compte provisoire, à réviser lors des prochaines publications) — ni l'un ni l'autre n'est une prévision, mais ce ne sont pas non plus des chiffres définitifs.",
       "sources": [
+        ["INSEE — Évolution du produit intérieur brut et de ses composantes (série longue 1950-2025)", "https://www.insee.fr/fr/statistiques/2830613"],
         ["INSEE — Comptes nationaux", "https://www.insee.fr/fr/statistiques"],
         ["INSEE Première — Les comptes de la Nation en 2022", "https://www.insee.fr/fr/statistiques/7623591"],
         ["INSEE Première — Les comptes de la Nation en 2025", "https://www.insee.fr/fr/statistiques/8996855"]
