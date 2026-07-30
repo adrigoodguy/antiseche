@@ -65,14 +65,14 @@ function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-// Navigation commune (issue #9) : Accueil / Frise / Analyse en avant, Sources
-// dé-priorisée (lien discret en pied de page de chaque page, pas un onglet).
+// Navigation commune (issue #9) : Accueil / Frise / Analyse / Sources.
 function nav(actif) {
   const item = (href, label, id) => `<a href="${href}"${id === actif ? ' aria-current="page"' : ""}>${label}</a>`;
   return `<nav class="nav-principale">
     ${item("/", "Accueil", "accueil")}
     ${item("/frise", "Frise", "frise")}
     ${item("/analyse", "Analyse", "analyse")}
+    ${item("/sources", "Sources", "sources")}
   </nav>`;
 }
 
@@ -317,7 +317,7 @@ function pageSources() {
 </head>
 <body>
 
-${nav("")}
+${nav("sources")}
 
 <header class="hero hero-large">
   <h1>Sources <span class="annees">&amp; fiabilité</span></h1>
