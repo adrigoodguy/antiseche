@@ -34,6 +34,9 @@
   .hero p.standfirst{max-width:46em;font-size:1.06rem;color:#39445A}
   .hero p.standfirst + p.standfirst{margin-top:.7em}
   .hero .legende{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem;font-size:.82rem}
+  .cta-groupe{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
+  .cta{display:inline-block;padding:.7em 1.6em;border-radius:2px;background:var(--bleu);color:#fff;text-decoration:none;font-family:var(--mono);font-size:.85rem;letter-spacing:.03em}
+  .cta:hover{background:#22397a}
   .badge{display:inline-block;padding:.14em .6em;border-radius:2px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em}
   .badge.consensus{background:var(--vert);color:#fff}
   .badge.debattu{background:var(--rouge);color:#fff}

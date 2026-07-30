@@ -202,7 +202,6 @@ ${nav("frise")}
   <div class="eyebrow">Document de travail · version 1 · juillet 2026</div>
   <h1>Socle commun<br><span class="annees">1944 → 2026</span></h1>
   <p class="standfirst">Quatre-vingts ans de réformes françaises, présentées de la même façon&nbsp;: ce qui était promis à l'époque, ce qui en était débattu, ce qu'on peut en dire factuellement avec le recul. Chaque période est replacée dans son contexte international et chiffré — parce qu'un gouvernement hérite d'une conjoncture, il ne la crée pas entièrement. Objectif&nbsp;: une clé de lecture partagée du passé, avant de juger les promesses de demain.</p>
-  <p class="standfirst">Contributions et débats bienvenus&nbsp;: dans les commentaires de chaque réforme ci-dessous, ou directement sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">GitHub</a>.</p>
   <div class="legende">
     <span class="badge consensus">Consensus</span><span>bilan largement partagé par les évaluations</span>
     <span class="badge debattu">Débattu</span><span>effets encore discutés</span>
@@ -248,12 +247,15 @@ function pageAccueil() {
 ${nav("accueil")}
 
 <header class="hero">
-  <div class="eyebrow">Antisèche · 1944 → 2026</div>
   <h1>L'idée derrière<br><span class="annees">antisèche</span></h1>
   <p class="standfirst">Antisèche part d'un constat simple&nbsp;: se forger un avis informé sur 80 ans de réformes françaises peut sembler hors de portée. Trop d'histoire, trop de débats contradictoires, pas assez de temps pour démêler le vrai du faux seul.</p>
   <p class="standfirst">Avant les débats de la présidentielle 2027, j'essaie de construire le socle minimal que j'aurais aimé avoir&nbsp;: des faits, présentés sans étiquette partisane, pour permettre à ceux qui n'ont jamais vraiment rejoint le débat public de s'y retrouver.</p>
   <p class="standfirst">Ce qui me serait utile à moi, je pense qu'il peut l'être à d'autres — d'où l'idée de le construire ici, en public, et peut-être de réunir des contributeurs intéressés en cours de route.</p>
   <p class="standfirst">Le projet reste perfectible, et c'est assumé&nbsp;: le code et les données sont ouverts. On cherche des contributions — techniques, éditoriales, historiques, scientifiques — pour challenger les biais de la version actuelle et muscler la rigueur de l'analyse sans perdre l'approche synthétique. Contribuez sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">github.com/adrigoodguy/antiseche</a>.</p>
+  <div class="cta-groupe">
+    <a class="cta" href="/frise">Frise temporelle</a>
+    <a class="cta" href="/analyse">Analyse d'impact</a>
+  </div>
 </header>
 
 <footer>
@@ -370,9 +372,8 @@ function pageAnalyseIndex() {
 ${nav("analyse")}
 
 <header class="hero">
-  <div class="eyebrow">Socle commun · 1944 → 2026</div>
   <h1>Analyse <span class="annees">des indicateurs</span></h1>
-  <p class="standfirst">Chaque indicateur du bandeau a sa propre page&nbsp;: sa série complète, et le détail de son fact-checking (fiabilité, sources primaires).</p>
+  <p class="standfirst">La vision temporelle présentée dans la frise est une bonne porte d'entrée pour mettre les réformes en perspective, mais elle ne permet qu'une analyse limitée dans la mesure où l'impact des différentes réformes est à lire dans le temps, sur plusieurs années. Les pages thématiques présentées ci-dessous visent à permettre une analyse en profondeur de chaque indicateur et d'éclairer leurs points d'inflexion.</p>
 </header>
 
 <main id="annexe">
