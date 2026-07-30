@@ -319,8 +319,7 @@ function pageSources() {
 
 ${nav("")}
 
-<header class="hero">
-  <div class="eyebrow">Socle commun · 1944 → 2026</div>
+<header class="hero hero-large">
   <h1>Sources <span class="annees">&amp; fiabilité</span></h1>
   <p class="standfirst">${SOURCES.intro}</p>
   <p class="standfirst"><a href="/frise">← Retour à la frise</a></p>

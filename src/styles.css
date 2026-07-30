@@ -33,6 +33,9 @@
   .hero h1 .annees{color:var(--bleu)}
   .hero p.standfirst{max-width:46em;font-size:1.06rem;color:#39445A}
   .hero p.standfirst + p.standfirst{margin-top:.7em}
+  /* Pas de plafond de largeur lecture : le standfirst suit alors la même
+     largeur que les h2/.table-scroll du contenu qui suit (ex. /sources). */
+  .hero-large p.standfirst{max-width:none}
   .hero .legende{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem;font-size:.82rem}
   .cta-groupe{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
   .cta{display:inline-block;padding:.7em 1.6em;border-radius:2px;background:var(--bleu);color:#fff;text-decoration:none;font-family:var(--mono);font-size:.85rem;letter-spacing:.03em}
