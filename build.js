@@ -432,12 +432,6 @@ function graphiqueKpi(ind) {
 </div>`;
 }
 
-// Seul /analyse/pib a du contenu réel pour l'instant (issue #9) ; les autres
-// KPI ont déjà leur note de fiabilité dans data/sources.json (utilisée par
-// /sources), mais tant que leur page /analyse/{slug} n'est pas rédigée, on
-// sert un stub « à venir » plutôt que de la dupliquer prématurément.
-const SLUGS_AVEC_CONTENU = new Set(["pib"]);
-
 // Points d'inflexion (issue #10) : gabarit réutilisable — lit note.inflexions
 // si présent, ne rend rien sinon. Le jour où un autre KPI reçoit ce champ
 // dans data/sources.json, sa page /analyse/{slug} l'affiche sans aucun
@@ -478,12 +472,14 @@ function sectionAutreRegard(note) {
 </div>`;
 }
 
-/* --- Pages « Analyse » individuelles : contenu réel pour PIB, page « à venir » pour les autres KPI (issue #9) --- */
+/* --- Pages « Analyse » individuelles : contenu réel si une note de fiabilité
+   existe dans data/sources.json pour ce KPI, stub « à venir » sinon (issue #9,
+   étendu à tous les KPI à l'issue "template PIB partout"). --- */
 function pageAnalyseKpi(ind) {
   const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
   const note = kpiParLab.get(ind.lab);
 
-  const corps = SLUGS_AVEC_CONTENU.has(ind.slug) ? `
+  const corps = note ? `
 <p class="standfirst">${esc(ind.resume)}</p>
 ${bandeauEditorial(note)}
 ${graphiqueKpi(ind)}
@@ -521,7 +517,7 @@ ${corps}
   ${piedSources()}
 </footer>
 
-${SLUGS_AVEC_CONTENU.has(ind.slug) ? '<script src="/runtime.js"></script>' : ""}
+${note ? '<script src="/runtime.js"></script>' : ""}
 </body>
 </html>
 `;
