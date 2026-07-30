@@ -5,18 +5,33 @@
     --bleu:#2B4C9B;           /* bleu République */
     --rouge:#C3372C;          /* rouge tampon */
     --vert:#2E6E4E;           /* vert consensus */
-    --gris:#8A9088;
+    --gris:#5A5F59;           /* sage-gris, assombri pour AA (issue #11) : 5.8:1 sur papier, 6.5:1 sur blanc */
     --trait:#C9CCC6;
     --display:"Didot","Bodoni MT","Playfair Display",Georgia,"Times New Roman",serif;
     --corps:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+
+    /* Échelle d'espacement 4px (issue #11) : tout padding/margin/gap
+       rem du fichier se rattache à l'un de ces paliers. */
+    --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
+    --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:5rem;
+
+    /* Échelle typographique (issue #11) : remplace les tailles .68/.72/.78rem
+       et .85/.9/.93/.95rem dispersées par des paliers explicites. */
+    --tx-micro:.7rem; --tx-label:.78rem; --tx-sm:.875rem; --tx-base:1rem; --tx-lead:1.0625rem;
+
+    --transition:150ms ease;
+    --focus-ring:3px solid var(--bleu);
+    /* Ombre "dossier officiel" : légère, teintée d'encre plutôt que de noir
+       pur, pas la diffusion d'une carte SaaS flottante. */
+    --ombre-carte:0 1px 2px rgba(24,35,56,.06), 0 1px 1px rgba(24,35,56,.04);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
   body{background:var(--papier);color:var(--encre);font-family:var(--corps);line-height:1.55;font-size:16px}
   a{color:var(--bleu)}
-  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:var(--focus-ring);outline-offset:2px}
 
   /* ---------- Navigation principale (issue #9) ---------- */
   .nav-principale{display:flex;gap:1.4rem;align-items:center;padding:1rem 5vw;max-width:1080px;margin:0 auto;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
