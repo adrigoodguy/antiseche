@@ -1,5 +1,8 @@
 /* ================= RENDU DYNAMIQUE (curseur de lecture + commentaires Giscus) ================= */
-const { annees: ANNEES, indicateurs: INDIC } = window.__DONNEES_INDIC__;
+// window.__DONNEES_INDIC__ n'est posé que sur /frise (curseur, filtre) : les
+// pages /analyse/{slug} incluent ce script uniquement pour le survol de leur
+// propre graphique (bloc plus bas, qui lit ses données depuis le DOM).
+const { annees: ANNEES, indicateurs: INDIC } = window.__DONNEES_INDIC__ || {};
 const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;
 
@@ -91,6 +94,55 @@ if (filtreToggle && filtrePanel) {
       const visible = [...groupe.querySelectorAll(".spark")].some(s => s.style.display !== "none");
       groupe.style.display = visible ? "" : "none";
     }
+  });
+}
+
+/* --- Survol du graphique d'un indicateur (page /analyse/{slug}, issue #10) ---
+   Les points portent leurs données en attributs data-* (posés par
+   build.js), donc pas besoin du modèle window.__DONNEES_INDIC__ complet
+   pour un graphique à une seule série : on lit tout depuis le DOM. */
+const graphiqueSvg = document.getElementById("graphique-svg");
+const graphiqueSurvol = document.getElementById("graphique-survol");
+const graphiqueCrosshair = document.getElementById("graphique-crosshair");
+const graphiqueTooltip = document.getElementById("graphique-tooltip");
+if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
+  const unite = graphiqueSvg.dataset.unite;
+  const pts = [...graphiqueSvg.querySelectorAll("circle.pt")].map(c => ({
+    el: c,
+    cx: +c.getAttribute("cx"),
+    annee: +c.dataset.annee,
+    valeur: +c.dataset.valeur,
+  }));
+  let actif = null;
+
+  function survoler(pt) {
+    if (actif === pt) return;
+    if (actif) actif.el.setAttribute("r", "3");
+    actif = pt;
+    pt.el.setAttribute("r", "6");
+    graphiqueCrosshair.setAttribute("x1", pt.cx);
+    graphiqueCrosshair.setAttribute("x2", pt.cx);
+    graphiqueCrosshair.setAttribute("visibility", "visible");
+    graphiqueTooltip.hidden = false;
+    graphiqueTooltip.textContent = `${pt.annee} : ${pt.valeur} ${unite}`;
+  }
+
+  graphiqueSurvol.addEventListener("pointermove", e => {
+    const rect = graphiqueSvg.getBoundingClientRect();
+    const vb = graphiqueSvg.viewBox.baseVal;
+    const xSvg = ((e.clientX - rect.left) / rect.width) * vb.width;
+    let plusProche = pts[0];
+    for (const pt of pts) if (Math.abs(pt.cx - xSvg) < Math.abs(plusProche.cx - xSvg)) plusProche = pt;
+    survoler(plusProche);
+    const conteneur = graphiqueSvg.parentElement.getBoundingClientRect();
+    graphiqueTooltip.style.left = `${e.clientX - conteneur.left + 12}px`;
+    graphiqueTooltip.style.top = `${e.clientY - conteneur.top + 12}px`;
+  });
+  graphiqueSurvol.addEventListener("pointerleave", () => {
+    if (actif) actif.el.setAttribute("r", "3");
+    actif = null;
+    graphiqueCrosshair.setAttribute("visibility", "hidden");
+    graphiqueTooltip.hidden = true;
   });
 }
 

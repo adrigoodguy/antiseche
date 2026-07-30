@@ -142,7 +142,10 @@
 
   /* ---------- Graphique d'un indicateur (issue #9, SVG statique rendu au build) ---------- */
   .graphique-carte{background:#fff;border:1px solid var(--trait);border-radius:3px;padding:1rem 1.2rem 1.2rem;margin:1rem 0 2rem;max-width:60em}
-  .graphique-carte svg{display:block;width:100%;height:auto}
+  .graphique-zone{position:relative}
+  .graphique-zone svg{display:block;width:100%;height:auto}
+  #graphique-survol{cursor:crosshair}
+  .graphique-tooltip{position:absolute;pointer-events:none;background:var(--encre);color:#fff;font-size:.78rem;padding:.5em .7em;border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;white-space:nowrap}
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}

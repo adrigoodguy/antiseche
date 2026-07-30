@@ -388,11 +388,12 @@ ${nav("analyse")}
 `;
 }
 
-// Graphique en ligne pour un seul indicateur (issue #9 : remplace le
-// graphique comparatif par famille qui quitte /sources). Rendu côté serveur
-// en SVG statique, pas de JS client nécessaire : contrairement au comparatif
-// par famille, il n'y a ici qu'une seule série donc pas d'interactivité utile
-// à justifier la complexité du survol/tooltip de runtime.js.
+// Graphique en ligne pour un seul indicateur (issue #9, survol issue #10).
+// Rendu côté serveur en SVG statique (grille, axes, courbe, points) ; le
+// survol (point le plus proche surligné + infobulle année/valeur) est
+// ajouté côté client par runtime.js à partir des attributs data-* posés ici
+// sur chaque point — pas besoin de réinjecter tout window.__DONNEES_INDIC__
+// pour un graphique à une seule série.
 function graphiqueKpi(ind) {
   const GW = 760, GH = 320, GML = 56, GMR = 24, GMT = 20, GMB = 34;
   const GPW = GW - GML - GMR, GPH = GH - GMT - GMB;
@@ -407,17 +408,22 @@ function graphiqueKpi(ind) {
   const grille = anneesAxe.map(a => `<line x1="${gx(a).toFixed(1)}" x2="${gx(a).toFixed(1)}" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
     <text x="${gx(a).toFixed(1)}" y="${GMT + GPH + 18}" font-size="10" text-anchor="middle" fill="var(--gris)">${a}</text>`).join("");
   const ticksV = [dMin, (dMin + dMax) / 2, dMax].map(v => `<text x="${GML - 8}" y="${gy(v).toFixed(1)}" font-size="10" text-anchor="end" dominant-baseline="middle" fill="var(--gris)">${Math.abs(v) >= 10 ? v.toFixed(0) : v.toFixed(1)}</text>`).join("");
-  const points = anneesInd.map((a, k) => `<circle cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="3" fill="#2a78d6"><title>${a} : ${ind.d[k]} ${ind.unit}</title></circle>`).join("");
+  const points = anneesInd.map((a, k) => `<circle class="pt" data-annee="${a}" data-valeur="${ind.d[k]}" cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="3" fill="#2a78d6"/>`).join("");
 
   return `<div class="graphique-carte">
-  <svg viewBox="0 0 ${GW} ${GH}" role="img" aria-label="Série ${esc(ind.lab)}, ${anneesInd[0]}-${anneesInd[anneesInd.length - 1]}">
-    ${grille}
-    <line x1="${GML}" x2="${GML + GPW}" y1="${GMT + GPH}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
-    ${ticksV}
-    <text x="${GML - 8}" y="${GMT - 6}" font-size="9" text-anchor="end" fill="var(--gris)">${esc(ind.unit)}</text>
-    <polyline points="${pts}" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-    ${points}
-  </svg>
+  <div class="graphique-zone">
+    <svg id="graphique-svg" data-unite="${esc(ind.unit)}" viewBox="0 0 ${GW} ${GH}" role="img" aria-label="Série ${esc(ind.lab)}, ${anneesInd[0]}-${anneesInd[anneesInd.length - 1]}, survolable pour le détail année par année">
+      ${grille}
+      <line x1="${GML}" x2="${GML + GPW}" y1="${GMT + GPH}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
+      ${ticksV}
+      <text x="${GML - 8}" y="${GMT - 6}" font-size="9" text-anchor="end" fill="var(--gris)">${esc(ind.unit)}</text>
+      <polyline points="${pts}" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      ${points}
+      <line id="graphique-crosshair" x1="0" x2="0" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--rouge)" stroke-width="1" visibility="hidden"/>
+      <rect id="graphique-survol" x="${GML}" y="${GMT}" width="${GPW}" height="${GPH}" fill="transparent"/>
+    </svg>
+    <div id="graphique-tooltip" class="graphique-tooltip" hidden></div>
+  </div>
 </div>`;
 }
 
@@ -467,6 +473,7 @@ ${corps}
   ${piedSources()}
 </footer>
 
+${SLUGS_AVEC_CONTENU.has(ind.slug) ? '<script src="/runtime.js"></script>' : ""}
 </body>
 </html>
 `;
