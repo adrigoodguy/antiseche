@@ -18,6 +18,14 @@
   a{color:var(--bleu)}
   a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--bleu);outline-offset:2px}
 
+  /* ---------- Navigation principale (issue #9) ---------- */
+  .nav-principale{display:flex;gap:1.4rem;align-items:center;padding:1rem 5vw;max-width:1080px;margin:0 auto;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+  .nav-principale a{color:var(--gris);text-decoration:none}
+  .nav-principale a:hover{color:var(--bleu)}
+  .nav-principale a[aria-current="page"]{color:var(--rouge)}
+  .pied-sources{margin-top:.8rem}
+  .pied-sources a{font-family:var(--mono);font-size:.78rem}
+
   /* ---------- Hero ---------- */
   header.hero{padding:9vh 5vw 6vh;max-width:1080px;margin:0 auto}
   .hero .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rouge)}
@@ -126,19 +134,16 @@
   #annexe ol,#annexe ul{padding-left:1.3em;max-width:60em}
   #annexe li{margin:.3em 0;font-size:.93rem}
 
-  /* ---------- Graphique comparatif par famille (issue #4) ---------- */
+  /* ---------- Graphique d'un indicateur (issue #9, SVG statique rendu au build) ---------- */
   .graphique-carte{background:#fff;border:1px solid var(--trait);border-radius:3px;padding:1rem 1.2rem 1.2rem;margin:1rem 0 2rem;max-width:60em}
-  .graphique-controles{display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem;font-size:.9rem}
-  .graphique-controles label{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gris)}
-  #graphique-select{font:inherit;font-size:.88rem;padding:.3em .5em;border:1px solid var(--trait);border-radius:2px;background:#fff;color:var(--encre)}
-  .graphique-zone{position:relative}
-  #graphique-svg{display:block;width:100%;height:auto}
-  .graphique-tooltip{position:absolute;pointer-events:none;background:var(--encre);color:#fff;font-size:.78rem;padding:.5em .7em;border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;max-width:16em}
-  .tooltip-annee{font-family:var(--mono);font-weight:600;margin-bottom:.3em}
-  .tooltip-ligne{display:flex;align-items:center;white-space:nowrap}
-  .graphique-legende{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;margin-top:.8rem;font-size:.82rem;color:var(--gris)}
-  .legende-item{display:flex;align-items:center}
-  .legende-cle,.tooltip-cle{display:inline-block;width:14px;height:3px;margin-right:.4em;border-radius:1px;flex:0 0 auto}
+  .graphique-carte svg{display:block;width:100%;height:auto}
+
+  /* ---------- Index /analyse (issue #9) ---------- */
+  .analyse-liste{list-style:none;padding-left:0;max-width:60em}
+  .analyse-item{padding:.8rem 0;border-bottom:1px solid var(--trait)}
+  .analyse-item a{font-size:1rem}
+  .analyse-item .unit{color:var(--gris);font-size:.85rem;font-weight:400}
+  .analyse-item p{font-size:.9rem;color:#4A5568;margin-top:.2em}
   .re-table{width:100%;border-collapse:collapse;margin-top:.6rem;font-size:.86rem}
   .re-table th,.re-table td{border:1px solid var(--trait);padding:.5em .7em;text-align:left;vertical-align:top}
   .re-table th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--papier-2)}

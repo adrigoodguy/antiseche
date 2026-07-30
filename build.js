@@ -46,20 +46,38 @@ const nonClasses = [...INDIC_PAR_LAB.keys()].filter(lab => !classes.has(lab));
 if (nonClasses.length) {
   throw new Error(`Indicateur(s) sans groupe dans data/indicateurs.json : ${nonClasses.join(", ")}`);
 }
+const DESCRIPTIONS = INDICATEURS.descriptions || {};
 const INDIC = GROUPES.flatMap(g => g.indicateurs.map(lab => {
   const ind = INDIC_PAR_LAB.get(lab);
   if (!ind) throw new Error(`Groupe "${g.nom}" référence un indicateur inconnu : ${lab}`);
-  return { ...ind, groupe: g.nom, couleur: g.couleur, fond: g.fond };
+  const desc = DESCRIPTIONS[lab];
+  if (!desc) throw new Error(`Aucune description/slug pour l'indicateur "${lab}" (data/indicateurs.json, clé descriptions)`);
+  return { ...ind, groupe: g.nom, couleur: g.couleur, fond: g.fond, slug: desc.slug, resume: desc.resume };
 }));
 
 const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;
-// Partagé entre index.html (curseur du bandeau) et sources.html (graphique
-// comparatif par famille, issue #4) : même modèle de données côté client.
+// Partagé entre la frise (curseur du bandeau) et /sources (tableaux) :
+// même modèle de données côté client.
 const DONNEES_INDIC_JSON = JSON.stringify({ annees: ANNEES, indicateurs: INDIC });
 
 function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// Navigation commune (issue #9) : Accueil / Frise / Analyse en avant, Sources
+// dé-priorisée (lien discret en pied de page de chaque page, pas un onglet).
+function nav(actif) {
+  const item = (href, label, id) => `<a href="${href}"${id === actif ? ' aria-current="page"' : ""}>${label}</a>`;
+  return `<nav class="nav-principale">
+    ${item("/", "Accueil", "accueil")}
+    ${item("/frise", "Frise", "frise")}
+    ${item("/analyse", "Analyse", "analyse")}
+  </nav>`;
+}
+
+function piedSources(extra) {
+  return `${extra ? `${extra} ` : ""}<a href="/sources">Sources &amp; fiabilité des indicateurs →</a>`;
 }
 
 /* --- Bandeau sparklines --- */
@@ -153,7 +171,7 @@ function annexe() {
 <li><b>v1 (ce document)</b> : liens « points d'entrée » — notices Vie-publique.fr, Wikipédia, institutions d'évaluation (France Stratégie, Cour des comptes, COR, DARES, DREES, CEVIPOF).</li>
 <li><b>v2 (objectif)</b> : chaque affirmation chiffrée liée à sa source primaire (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du discours d'époque).</li>
 <li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires.</li>
-<li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="sources.html">antiseche.org/sources</a>.</li>
+<li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="/sources">antiseche.org/sources</a>.</li>
 </ul>
 <h3>Discussion générale</h3>
 <p>Une remarque sur la sélection des réformes, la méthode, ou une autre grille de lecture à appliquer à l'ensemble du document plutôt qu'à une seule réforme ? C'est ici, pas dans les commentaires d'une carte en particulier.</p>
@@ -166,17 +184,19 @@ function annexe() {
 </details>`;
 }
 
-/* --- Page complète --- */
-function page() {
+/* --- Page « Frise » (contenu de l'ex-page unique, déplacé tel quel sur /frise, issue #9) --- */
+function pageFrise() {
   return `<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Socle commun · 1944–2026 · Réformes, promesses et résultats</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+
+${nav("frise")}
 
 <header class="hero">
   <div class="eyebrow">Document de travail · version 1 · juillet 2026</div>
@@ -203,10 +223,43 @@ function page() {
 
 <footer>
   Sources principales&nbsp;: INSEE (séries longues), Vie-publique.fr, Légifrance, Cour des comptes, France Stratégie, Banque mondiale, archives INA. Les liens de la v1 sont des points d'entrée (notices Vie-publique / Wikipédia) destinés à être remplacés par les sources primaires en v2. Les chiffres du bandeau et des encadrés contexte sont des ordres de grandeur à re-vérifier ligne à ligne avant publication. Document ouvert aux commentaires et aux corrections — c'est le principe.
+  <p class="pied-sources">${piedSources()}</p>
 </footer>
 
 <script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};</script>
-<script src="runtime.js"></script>
+<script src="/runtime.js"></script>
+</body>
+</html>
+`;
+}
+
+/* --- Page d'accueil (mission du projet, issue #9) --- */
+function pageAccueil() {
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antisèche · L'idée derrière antisèche</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("accueil")}
+
+<header class="hero">
+  <div class="eyebrow">Antisèche · 1944 → 2026</div>
+  <h1>L'idée derrière<br><span class="annees">antisèche</span></h1>
+  <p class="standfirst">Antisèche part d'un constat simple&nbsp;: se forger un avis informé sur 80 ans de réformes françaises peut sembler hors de portée. Trop d'histoire, trop de débats contradictoires, pas assez de temps pour démêler le vrai du faux seul.</p>
+  <p class="standfirst">Avant les débats de la présidentielle 2027, j'essaie de construire le socle minimal que j'aurais aimé avoir&nbsp;: des faits, présentés sans étiquette partisane, pour permettre à ceux qui n'ont jamais vraiment rejoint le débat public de s'y retrouver.</p>
+  <p class="standfirst">Ce qui me serait utile à moi, je pense qu'il peut l'être à d'autres — d'où l'idée de le construire ici, en public, et peut-être de réunir des contributeurs intéressés en cours de route.</p>
+  <p class="standfirst">Le projet reste perfectible, et c'est assumé&nbsp;: le code et les données sont ouverts. On cherche des contributions — techniques, éditoriales, historiques, scientifiques — pour challenger les biais de la version actuelle et muscler la rigueur de l'analyse sans perdre l'approche synthétique. Contribuez sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">github.com/adrigoodguy/antiseche</a>.</p>
+</header>
+
+<footer>
+  ${piedSources()}
+</footer>
+
 </body>
 </html>
 `;
@@ -239,24 +292,6 @@ function pageSources() {
 <h2>Familles d'indicateurs</h2>
 <ul class="familles">${GROUPES.map(g => `<li><span class="puce"></span><b>${esc(g.nom)}</b> — ${g.indicateurs.map(esc).join(", ")}</li>`).join("")}</ul>`;
 
-  // Graphique comparatif par famille (issue #4) : entièrement rendu côté
-  // client (runtime.js) à partir de window.__DONNEES_INDIC__, pour partager
-  // un seul calcul d'échelle avec l'interactivité (survol, changement de
-  // famille) plutôt que dupliquer le tracé ici et son pilotage là-bas.
-  const graphique = `
-<h2>Comparer les indicateurs d'une famille</h2>
-<div class="graphique-carte">
-  <div class="graphique-controles">
-    <label for="graphique-select">Famille</label>
-    <select id="graphique-select">${GROUPES.map(g => `<option value="${esc(g.nom)}">${esc(g.nom)}</option>`).join("")}</select>
-  </div>
-  <div class="graphique-zone">
-    <svg id="graphique-svg" viewBox="0 0 880 380" role="img" aria-label="Comparaison temporelle des indicateurs de la famille sélectionnée"></svg>
-    <div id="graphique-tooltip" class="graphique-tooltip" hidden></div>
-  </div>
-  <div id="graphique-legende" class="graphique-legende"></div>
-</div>`;
-
   const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
   const kpiNotes = GROUPES.map(g => {
     const items = g.indicateurs.map(lab => {
@@ -276,21 +311,21 @@ function pageSources() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sources & fiabilité des indicateurs · Socle commun</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+
+${nav("")}
 
 <header class="hero">
   <div class="eyebrow">Socle commun · 1944 → 2026</div>
   <h1>Sources <span class="annees">&amp; fiabilité</span></h1>
   <p class="standfirst">${SOURCES.intro}</p>
-  <p class="standfirst"><a href="index.html">← Retour au document principal</a></p>
+  <p class="standfirst"><a href="/frise">← Retour à la frise</a></p>
 </header>
 
 <main id="annexe">
 ${familles}
-
-${graphique}
 
 <h2>Indicateurs à grille dense, année par année (1950-2025)</h2>
 <div class="table-scroll"><table class="re-table kpi-table">
@@ -306,21 +341,151 @@ ${kpiNotes}
 </main>
 
 <footer>
-  Document ouvert aux commentaires et aux corrections — voir <a href="index.html#annexe-conteneur">l'annexe du document principal</a> pour la méthode générale du projet.
+  Document ouvert aux commentaires et aux corrections — voir <a href="/frise#annexe-conteneur">l'annexe de la frise</a> pour la méthode générale du projet.
 </footer>
 
-<script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};</script>
-<script src="runtime.js"></script>
 </body>
 </html>
 `;
 }
 
+/* --- Page d'index « Analyse » : liste des KPI, un lien par /analyse/{slug} (issue #9) --- */
+function pageAnalyseIndex() {
+  const items = INDIC.map(ind => `
+<li class="analyse-item">
+  <a href="/analyse/${ind.slug}"><b>${esc(ind.lab)}</b> <span class="unit">(${esc(ind.unit)})</span></a>
+  <p>${esc(ind.resume)}</p>
+</li>`).join("");
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analyse des indicateurs · Socle commun</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("analyse")}
+
+<header class="hero">
+  <div class="eyebrow">Socle commun · 1944 → 2026</div>
+  <h1>Analyse <span class="annees">des indicateurs</span></h1>
+  <p class="standfirst">Chaque indicateur du bandeau a sa propre page&nbsp;: sa série complète, et le détail de son fact-checking (fiabilité, sources primaires).</p>
+</header>
+
+<main id="annexe">
+<ul class="analyse-liste">${items}</ul>
+</main>
+
+<footer>
+  ${piedSources()}
+</footer>
+
+</body>
+</html>
+`;
+}
+
+// Graphique en ligne pour un seul indicateur (issue #9 : remplace le
+// graphique comparatif par famille qui quitte /sources). Rendu côté serveur
+// en SVG statique, pas de JS client nécessaire : contrairement au comparatif
+// par famille, il n'y a ici qu'une seule série donc pas d'interactivité utile
+// à justifier la complexité du survol/tooltip de runtime.js.
+function graphiqueKpi(ind) {
+  const GW = 760, GH = 320, GML = 56, GMR = 24, GMT = 20, GMB = 34;
+  const GPW = GW - GML - GMR, GPH = GH - GMT - GMB;
+  const anneesInd = ind.annees || ANNEES;
+  const min = Math.min(...ind.d), max = Math.max(...ind.d), pad = (max - min) * 0.1 || 1;
+  const dMin = min - pad, dMax = max + pad;
+  const gx = a => GML + ((a - anneesInd[0]) / (anneesInd[anneesInd.length - 1] - anneesInd[0] || 1)) * GPW;
+  const gy = v => GMT + GPH - ((v - dMin) / (dMax - dMin)) * GPH;
+
+  const pts = anneesInd.map((a, k) => `${gx(a).toFixed(1)},${gy(ind.d[k]).toFixed(1)}`).join(" ");
+  const anneesAxe = anneesInd.filter((a, k) => k === 0 || k === anneesInd.length - 1 || k % Math.ceil(anneesInd.length / 6) === 0);
+  const grille = anneesAxe.map(a => `<line x1="${gx(a).toFixed(1)}" x2="${gx(a).toFixed(1)}" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
+    <text x="${gx(a).toFixed(1)}" y="${GMT + GPH + 18}" font-size="10" text-anchor="middle" fill="var(--gris)">${a}</text>`).join("");
+  const ticksV = [dMin, (dMin + dMax) / 2, dMax].map(v => `<text x="${GML - 8}" y="${gy(v).toFixed(1)}" font-size="10" text-anchor="end" dominant-baseline="middle" fill="var(--gris)">${Math.abs(v) >= 10 ? v.toFixed(0) : v.toFixed(1)}</text>`).join("");
+  const points = anneesInd.map((a, k) => `<circle cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="3" fill="#2a78d6"><title>${a} : ${ind.d[k]} ${ind.unit}</title></circle>`).join("");
+
+  return `<div class="graphique-carte">
+  <svg viewBox="0 0 ${GW} ${GH}" role="img" aria-label="Série ${esc(ind.lab)}, ${anneesInd[0]}-${anneesInd[anneesInd.length - 1]}">
+    ${grille}
+    <line x1="${GML}" x2="${GML + GPW}" y1="${GMT + GPH}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
+    ${ticksV}
+    <text x="${GML - 8}" y="${GMT - 6}" font-size="9" text-anchor="end" fill="var(--gris)">${esc(ind.unit)}</text>
+    <polyline points="${pts}" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    ${points}
+  </svg>
+</div>`;
+}
+
+// Seul /analyse/pib a du contenu réel pour l'instant (issue #9) ; les autres
+// KPI ont déjà leur note de fiabilité dans data/sources.json (utilisée par
+// /sources), mais tant que leur page /analyse/{slug} n'est pas rédigée, on
+// sert un stub « à venir » plutôt que de la dupliquer prématurément.
+const SLUGS_AVEC_CONTENU = new Set(["pib"]);
+
+/* --- Pages « Analyse » individuelles : contenu réel pour PIB, page « à venir » pour les autres KPI (issue #9) --- */
+function pageAnalyseKpi(ind) {
+  const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
+  const note = kpiParLab.get(ind.lab);
+
+  const corps = SLUGS_AVEC_CONTENU.has(ind.slug) ? `
+<p class="standfirst">${esc(ind.resume)}</p>
+${graphiqueKpi(ind)}
+<h2>Fiabilité &amp; sources</h2>
+<p><b>Fiabilité :</b> ${note.fiabilite}</p>
+<p>${note.note}</p>
+<ul>${note.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>` : `
+<p class="standfirst">${esc(ind.resume)}</p>
+<div class="avert"><b>Page à venir</b> — le contenu détaillé de cet indicateur (série complète, fiabilité, sources) n'est pas encore rédigé ici. En attendant, le fact-checking de cet indicateur est déjà disponible sur <a href="/sources">/sources</a>. Retour à <a href="/analyse">l'index des indicateurs</a>.</div>`;
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(ind.lab)} · Analyse · Socle commun</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("analyse")}
+
+<header class="hero">
+  <div class="eyebrow"><a href="/analyse">← Analyse</a></div>
+  <h1>${esc(ind.lab)} <span class="annees">(${esc(ind.unit)})</span></h1>
+</header>
+
+<main id="annexe">
+${corps}
+</main>
+
+<footer>
+  ${piedSources()}
+</footer>
+
+</body>
+</html>
+`;
+}
+
+function ecrire(fichier, html) {
+  const dest = path.join(DIST, fichier);
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
+  fs.writeFileSync(dest, html);
+}
+
 function build() {
   fs.rmSync(DIST, { recursive: true, force: true });
   fs.mkdirSync(DIST, { recursive: true });
-  fs.writeFileSync(path.join(DIST, "index.html"), page());
-  fs.writeFileSync(path.join(DIST, "sources.html"), pageSources());
+  ecrire("index.html", pageAccueil());
+  ecrire("frise/index.html", pageFrise());
+  ecrire("analyse/index.html", pageAnalyseIndex());
+  INDIC.forEach(ind => ecrire(`analyse/${ind.slug}/index.html`, pageAnalyseKpi(ind)));
+  ecrire("sources/index.html", pageSources());
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
   console.log("Build OK → dist/");

@@ -40,9 +40,16 @@ src/
                           scroll, ouverture d'une carte via l'URL, chargement
                           différé des commentaires Giscus
 
-build.js                script de build : lit /data, génère dist/index.html
-                        et dist/sources.html (le HTML est pré-rendu, pas
-                        construit au chargement de la page)
+build.js                script de build : lit /data, génère dist/ en pages
+                        distinctes à URLs propres (le HTML est pré-rendu,
+                        pas construit au chargement de la page) :
+                          /              accueil, l'ambition du projet
+                          /frise         la frise (bandeau + réformes),
+                                         ex-page unique
+                          /analyse       index des KPI, un lien par
+                                         /analyse/{slug}
+                          /sources       fact-checking des indicateurs,
+                                         accessible en pied de page
 ```
 
 Le build ne dépend d'aucun outil externe (pas de Vite, pas de bundler) : c'est
@@ -55,13 +62,17 @@ volontairement simple pour un site sans composants.
 node build.js
 ```
 
-Génère `dist/index.html`, `dist/sources.html`, `dist/styles.css` et
-`dist/runtime.js`. Ouvrez `dist/index.html` directement dans un navigateur,
-ou servez `dist/` avec n'importe quel serveur statique.
+Génère `dist/index.html`, `dist/frise/index.html`, `dist/analyse/index.html`
+et une page par KPI (`dist/analyse/{slug}/index.html`),
+`dist/sources/index.html`, ainsi que `dist/styles.css` et `dist/runtime.js`.
+Ouvrez `dist/index.html` directement dans un navigateur, ou servez `dist/`
+avec n'importe quel serveur statique (les liens internes sont en chemins
+absolus, donc `/frise`, `/analyse`, etc. ont besoin d'être servis depuis la
+racine).
 
 La page `/sources` détaille, indicateur par indicateur, le fact-checking des
-7 KPI du bandeau contre les séries INSEE/INED (valeurs année par année,
-niveau de fiabilité, sources primaires).
+KPI du bandeau contre les séries INSEE/INED (valeurs année par année, niveau
+de fiabilité, sources primaires).
 
 ### Déploiement
 

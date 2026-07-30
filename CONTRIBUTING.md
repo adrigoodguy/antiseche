@@ -23,7 +23,8 @@ Le contenu éditorial vit dans `/data` (fichiers JSON) :
 - `ecartees.json` — les réformes écartées et candidates à réintégration.
 
 Après modification, régénérez le site avec `node build.js` (voir le README)
-et vérifiez le rendu dans `dist/index.html` avant d'ouvrir votre pull request.
+et vérifiez le rendu dans `dist/frise/index.html` avant d'ouvrir votre pull
+request.
 
 ## Critères de sélection des réformes
 

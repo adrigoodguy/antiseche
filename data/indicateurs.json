@@ -8,6 +8,19 @@
     "Espérance de vie": "ans",
     "Industrie": "% PIB"
   },
+  "descriptions": {
+    "Croissance PIB": { "slug": "pib", "resume": "Variation annuelle du produit intérieur brut." },
+    "Chômage": { "slug": "chomage", "resume": "Part de la population active sans emploi, au sens du BIT." },
+    "Inflation": { "slug": "inflation", "resume": "Évolution annuelle des prix à la consommation." },
+    "Dette publique": { "slug": "dette-publique", "resume": "Dette des administrations publiques au sens de Maastricht." },
+    "Fécondité": { "slug": "fecondite", "resume": "Nombre moyen d'enfants par femme (indicateur conjoncturel de fécondité)." },
+    "Espérance de vie": { "slug": "esperance-de-vie", "resume": "Espérance de vie à la naissance." },
+    "Industrie": { "slug": "industrie", "resume": "Poids de l'industrie manufacturière dans l'économie." },
+    "PISA (compréhension de l'écrit)": { "slug": "pisa", "resume": "Score moyen des élèves français en compréhension de l'écrit, enquête PISA (OCDE)." },
+    "DIRD (recherche)": { "slug": "dird", "resume": "Dépense intérieure de recherche et développement." },
+    "Pression fiscale": { "slug": "pression-fiscale", "resume": "Impôts et cotisations sociales prélevés par les administrations publiques." },
+    "Climat (CO2/habitant)": { "slug": "climat", "resume": "Émissions de CO2 par habitant." }
+  },
   "annees": {
     "1950": {
       "Croissance PIB": 8,
