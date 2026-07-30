@@ -3,6 +3,7 @@
     --papier:#F1F2EE;         /* papier recyclé */
     --papier-2:#E9EBE4;
     --bleu:#2B4C9B;           /* bleu République */
+    --bleu-sombre:#22397A;    /* survol des liens et du CTA */
     --rouge:#C3372C;          /* rouge tampon */
     --vert:#2E6E4E;           /* vert consensus */
     --gris:#5A5F59;           /* sage-gris, assombri pour AA (issue #11) : 5.8:1 sur papier, 6.5:1 sur blanc */
@@ -16,8 +17,9 @@
     --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
     --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:5rem;
 
-    /* Échelle typographique (issue #11) : remplace les tailles .68/.72/.78rem
-       et .85/.9/.93/.95rem dispersées par des paliers explicites. */
+    /* Échelle typographique (issue #11) : remplace les tailles .68/.72/.75/.78/.82rem
+       (étiquettes, mentions) et .85/.86/.9/.93/.95rem (texte secondaire) dispersées
+       par des paliers explicites. */
     --tx-micro:.7rem; --tx-label:.78rem; --tx-sm:.875rem; --tx-base:1rem; --tx-lead:1.0625rem;
 
     --transition:150ms ease;
@@ -25,119 +27,124 @@
     /* Ombre "dossier officiel" : légère, teintée d'encre plutôt que de noir
        pur, pas la diffusion d'une carte SaaS flottante. */
     --ombre-carte:0 1px 2px rgba(24,35,56,.06), 0 1px 1px rgba(24,35,56,.04);
+    --radius-micro:2px;  /* badges, chips, CTA */
+    --radius-carte:4px;  /* cartes et panneaux bordés */
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
   body{background:var(--papier);color:var(--encre);font-family:var(--corps);line-height:1.55;font-size:16px}
-  a{color:var(--bleu)}
+  a{color:var(--bleu);transition:color var(--transition)}
+  a:hover{color:var(--bleu-sombre)}
   a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:var(--focus-ring);outline-offset:2px}
 
   /* ---------- Navigation principale (issue #9) ---------- */
-  .nav-principale{display:flex;gap:1.4rem;align-items:center;padding:1rem 5vw;max-width:1080px;margin:0 auto;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
-  .nav-principale a{color:var(--gris);text-decoration:none}
+  .nav-principale{display:flex;gap:var(--sp-5);align-items:center;padding:var(--sp-4) 5vw;max-width:1080px;margin:0 auto;font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.06em;text-transform:uppercase}
+  .nav-principale a{color:var(--gris);text-decoration:none;transition:color var(--transition)}
   .nav-principale a:hover{color:var(--bleu)}
   .nav-principale a[aria-current="page"]{color:var(--rouge)}
-  .pied-sources{margin-top:.8rem}
-  .pied-sources a{font-family:var(--mono);font-size:.78rem}
+  .pied-sources{margin-top:var(--sp-3)}
+  .pied-sources a{font-family:var(--mono);font-size:var(--tx-label)}
 
   /* ---------- Hero ---------- */
   header.hero{padding:9vh 5vw 6vh;max-width:1080px;margin:0 auto}
-  .hero .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rouge)}
+  .hero .eyebrow{font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.18em;text-transform:uppercase;color:var(--rouge)}
   .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.02;margin:.35em 0 .3em}
   .hero h1 .annees{color:var(--bleu)}
-  .hero p.standfirst{max-width:46em;font-size:1.06rem;color:#39445A}
+  .hero p.standfirst{max-width:46em;font-size:var(--tx-lead);color:#39445A}
   .hero p.standfirst + p.standfirst{margin-top:.7em}
   /* Pas de plafond de largeur lecture : le standfirst suit alors la même
      largeur que les h2/.table-scroll du contenu qui suit (ex. /sources). */
   .hero-large p.standfirst{max-width:none}
-  .hero .legende{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem;font-size:.82rem}
-  .cta-groupe{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;margin-top:1.8rem}
-  .cta{display:inline-block;padding:.7em 1.6em;border-radius:2px;background:var(--bleu);color:#fff;text-decoration:none;font-family:var(--mono);font-size:.85rem;letter-spacing:.03em}
-  .cta:hover{background:#22397a}
-  .badge{display:inline-block;padding:.14em .6em;border-radius:2px;font-family:var(--mono);font-size:.72rem;letter-spacing:.05em}
+  .hero .legende{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-5);font-size:var(--tx-label)}
+  .cta-groupe{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--sp-4);margin-top:var(--sp-6)}
+  .cta{display:inline-block;padding:.7em 1.6em;border-radius:var(--radius-micro);background:var(--bleu);color:#fff;text-decoration:none;font-family:var(--mono);font-size:var(--tx-sm);letter-spacing:.03em;transition:background-color var(--transition)}
+  .cta:hover{background:var(--bleu-sombre);color:#fff}
+  .badge{display:inline-block;padding:.14em .6em;border-radius:var(--radius-micro);font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.05em}
   .badge.consensus{background:var(--vert);color:#fff}
   .badge.debattu{background:var(--rouge);color:#fff}
   .badge.echec{background:none;border:1.5px solid var(--encre);color:var(--encre)}
 
   /* ---------- Bandeau indicateurs (signature, sticky) ---------- */
   #bandeau{position:sticky;top:0;z-index:50;background:var(--encre);color:#E8EAF2;border-bottom:3px solid var(--rouge)}
-  #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:.4rem .6rem 0}
-  @media(min-width:1500px){#bandeau .inner{justify-content:center;padding-right:5rem}}
+  #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:var(--sp-2) var(--sp-2) 0}
+  @media(min-width:1500px){#bandeau .inner{justify-content:center;padding-right:var(--sp-9)}}
   /* Familles d'indicateurs (issue #2) : fond légèrement différent par groupe
      (toujours dans les bleus, pour rester uniforme), bordure basse et
-     étiquette assorties, étiquette collée au bas du bandeau. */
+     étiquette assorties, étiquette collée au bas du bandeau. Tailles .58/.62rem
+     volontairement hors de l'échelle --tx-* : bandeau sticky très dense, pas de
+     marge pour remonter au palier .7rem sans repasser l'agencement. */
   .groupe-ind{flex:0 0 auto;display:flex;flex-direction:column;background:var(--gfond, transparent);border-bottom:3px solid var(--gc, transparent);border-right:1px solid rgba(255,255,255,.14)}
   .groupe-ind:last-child{border-right:none}
   .groupe-cartes{display:flex}
-  .groupe-nom{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gc, #9FB0D6);padding:.2rem .8rem .3rem;white-space:nowrap;margin-top:auto}
-  .spark{flex:0 0 auto;padding:.2rem .8rem;border-right:1px solid rgba(255,255,255,.14);min-width:150px}
+  .groupe-nom{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gc, #9FB0D6);padding:var(--sp-1) var(--sp-3) var(--sp-1);white-space:nowrap;margin-top:auto}
+  .spark{flex:0 0 auto;padding:var(--sp-1) var(--sp-3);border-right:1px solid rgba(255,255,255,.14);min-width:150px}
   .groupe-cartes .spark:last-child{border-right:none}
   .spark .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#9FB0D6;white-space:nowrap}
-  .spark .val{font-family:var(--mono);font-size:.78rem;color:#fff}
+  .spark .val{font-family:var(--mono);font-size:var(--tx-label);color:#fff}
   .spark svg{display:block;margin-top:2px}
-  #annee-curseur{position:absolute;right:.8rem;top:.35rem;font-family:var(--display);font-size:1.7rem;color:#fff;opacity:.95;pointer-events:none;background:var(--encre);padding-left:.4rem}
+  #annee-curseur{position:absolute;right:.8rem;top:.35rem;font-family:var(--display);font-size:1.7rem;color:#fff;opacity:.95;pointer-events:none;background:var(--encre);padding-left:var(--sp-2)}
   @media(max-width:760px){#annee-curseur{font-size:1.15rem;top:.5rem}}
 
   /* ---------- Filtre des indicateurs (issue #3) ---------- */
-  #filtre-toggle{position:absolute;left:.6rem;top:.35rem;background:var(--encre);color:#E8EAF2;border:1px solid rgba(255,255,255,.3);border-radius:2px;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;padding:.15em .5em;cursor:pointer}
+  #filtre-toggle{position:absolute;left:.6rem;top:.35rem;background:var(--encre);color:#E8EAF2;border:1px solid rgba(255,255,255,.3);border-radius:var(--radius-micro);font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.05em;padding:.15em .5em;cursor:pointer;transition:background-color var(--transition)}
   #filtre-toggle:hover{background:#22304d}
   @media(max-width:760px){#filtre-toggle{font-size:.6rem;padding:.1em .4em}}
-  #filtre-panel{position:absolute;top:100%;left:.6rem;margin-top:.3rem;background:#fff;color:var(--encre);border:1px solid var(--trait);border-radius:3px;box-shadow:0 6px 18px rgba(0,0,0,.25);padding:.7rem;z-index:60;max-height:70vh;max-width:90vw;overflow-y:auto;display:flex;flex-wrap:wrap;gap:1rem 1.6rem}
+  #filtre-panel{position:absolute;top:100%;left:.6rem;margin-top:var(--sp-1);background:#fff;color:var(--encre);border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:0 6px 18px rgba(0,0,0,.25);padding:var(--sp-3);z-index:60;max-height:70vh;max-width:90vw;overflow-y:auto;display:flex;flex-wrap:wrap;gap:var(--sp-4) var(--sp-5)}
   #filtre-panel[hidden]{display:none}
-  .filtre-groupe-nom{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
-  .filtre-item{display:block;font-size:.85rem;padding:.15em 0;white-space:nowrap;cursor:pointer}
+  .filtre-groupe-nom{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--sp-1)}
+  .filtre-item{display:block;font-size:var(--tx-sm);padding:.15em 0;white-space:nowrap;cursor:pointer}
   .filtre-item input{margin-right:.4em}
 
   /* ---------- Sections période ---------- */
-  main{max-width:1080px;margin:0 auto;padding:0 5vw 4rem}
-  section.periode{position:relative;padding:5rem 0 3rem;border-bottom:1px solid var(--trait)}
+  main{max-width:1080px;margin:0 auto;padding:0 5vw var(--sp-8)}
+  section.periode{position:relative;padding:var(--sp-9) 0 var(--sp-7);border-bottom:1px solid var(--trait)}
   .filigrane{position:absolute;top:1.2rem;right:-2vw;font-family:var(--display);font-size:clamp(5rem,17vw,12rem);color:var(--encre);opacity:.055;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
   .periode .quand{font-family:var(--mono);color:var(--rouge);font-size:.8rem;letter-spacing:.15em}
   .periode h2{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.08;margin:.2em 0 .15em}
-  .periode .regime{color:var(--gris);font-size:.95rem;margin-bottom:1.2rem}
+  .periode .regime{color:var(--gris);font-size:var(--tx-sm);margin-bottom:var(--sp-4)}
 
-  .contexte{background:var(--papier-2);border-left:4px solid var(--bleu);padding:1rem 1.2rem;margin:1.2rem 0 1.8rem}
-  .contexte h3{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin-bottom:.4rem}
-  .contexte p{font-size:.95rem;max-width:58em}
-  .chiffres{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
-  .chip{font-family:var(--mono);font-size:.72rem;background:#fff;border:1px solid var(--trait);padding:.28em .6em;border-radius:2px;white-space:nowrap}
+  .contexte{background:var(--papier-2);border-left:4px solid var(--bleu);padding:var(--sp-4);margin:var(--sp-4) 0 var(--sp-6)}
+  .contexte h3{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin-bottom:var(--sp-2)}
+  .contexte p{font-size:var(--tx-sm);max-width:58em}
+  .chiffres{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-3)}
+  .chip{font-family:var(--mono);font-size:var(--tx-micro);background:#fff;border:1px solid var(--trait);padding:.28em .6em;border-radius:var(--radius-micro);white-space:nowrap}
   .chip b{color:var(--bleu);font-weight:600}
-  .contexte .europe{margin-top:.8rem}
-  .contexte .europe h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gris);margin-bottom:.3rem}
+  .contexte .europe{margin-top:var(--sp-3)}
+  .contexte .europe h4{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--sp-1)}
   .contexte .europe ul{padding-left:1.2em}
-  .contexte .europe li{font-size:.85rem;color:#4A5568;margin:.15em 0}
+  .contexte .europe li{font-size:var(--tx-sm);color:#4A5568;margin:.15em 0}
 
   /* ---------- Cartes réforme ---------- */
-  .reforme{background:#fff;border:1px solid var(--trait);border-radius:3px;margin:.7rem 0;scroll-margin-top:120px}
-  .reforme summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:.6rem;padding:.85rem 1rem}
+  .reforme{background:#fff;border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:var(--ombre-carte);margin:var(--sp-3) 0;scroll-margin-top:120px}
+  .reforme summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--sp-2);padding:var(--sp-3) var(--sp-4);transition:background-color var(--transition), box-shadow var(--transition)}
   .reforme summary::-webkit-details-marker{display:none}
-  .reforme summary:hover{background:#FAFAF7}
-  .reforme .annee{font-family:var(--mono);font-size:.78rem;color:var(--rouge);min-width:3.2em}
-  .reforme .titre{font-weight:600;font-size:1.02rem;flex:1 1 14em}
-  .reforme .resume{flex-basis:100%;color:#4A5568;font-size:.9rem;padding-left:calc(3.2em + .6rem)}
+  .reforme summary:hover{background:#FAFAF7;box-shadow:inset 3px 0 0 var(--rouge)}
+  .reforme .annee{font-family:var(--mono);font-size:var(--tx-label);color:var(--rouge);min-width:3.2em}
+  .reforme .titre{font-weight:600;font-size:var(--tx-base);flex:1 1 14em}
+  .reforme .resume{flex-basis:100%;color:#4A5568;font-size:var(--tx-sm);padding-left:calc(3.2em + var(--sp-2))}
   @media(max-width:600px){.reforme .resume{padding-left:0}}
   .reforme .fleche{font-family:var(--mono);color:var(--gris);transition:transform .2s}
   .reforme[open] .fleche{transform:rotate(90deg)}
   .colonnes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--trait)}
   @media(max-width:760px){.colonnes{grid-template-columns:1fr}}
-  .col{padding:.9rem 1rem;border-right:1px solid var(--papier-2)}
+  .col{padding:var(--sp-4);border-right:1px solid var(--papier-2)}
   .col:last-child{border-right:none}
   @media(max-width:760px){.col{border-right:none;border-bottom:1px solid var(--papier-2)}}
-  .col h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+  .col h4{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--sp-2)}
   .col.promesse h4{color:var(--bleu)} .col.debat h4{color:var(--rouge)} .col.bilan h4{color:var(--vert)}
-  .col p{font-size:.9rem}
-  .pied{border-top:1px solid var(--papier-2);padding:.7rem 1rem;font-size:.82rem}
-  .pied .src a{margin-right:.9rem;font-family:var(--mono);font-size:.75rem}
-  .lien-ancre{float:right;font-family:var(--mono);font-size:.72rem;color:var(--gris);text-decoration:none}
+  .col p{font-size:var(--tx-sm)}
+  .pied{border-top:1px solid var(--papier-2);padding:var(--sp-3) var(--sp-4);font-size:var(--tx-label)}
+  .pied .src a{margin-right:var(--sp-4);font-family:var(--mono);font-size:var(--tx-label)}
+  .lien-ancre{float:right;font-family:var(--mono);font-size:var(--tx-micro);color:var(--gris);text-decoration:none;transition:color var(--transition)}
   .lien-ancre:hover{color:var(--bleu)}
 
   /* ---------- Commentaires (Giscus) ---------- */
-  .commentaires{background:var(--papier-2);padding:.8rem 1rem;border-top:1px solid var(--trait)}
-  .commentaires h5{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-bottom:.5rem}
-  .commentaires .note{font-size:.75rem;color:var(--gris);margin-bottom:.5rem}
-  .giscus-zone{margin-top:.6rem}
-  .giscus-attente{font-family:var(--mono);font-size:.75rem;color:var(--gris)}
+  .commentaires{background:var(--papier-2);padding:var(--sp-3) var(--sp-4);border-top:1px solid var(--trait)}
+  .commentaires h5{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-bottom:var(--sp-2)}
+  .commentaires .note{font-size:var(--tx-label);color:var(--gris);margin-bottom:var(--sp-2)}
+  .giscus-zone{margin-top:var(--sp-2)}
+  .giscus-attente{font-family:var(--mono);font-size:var(--tx-label);color:var(--gris)}
   /* Hauteur bornée + défilement interne : contourne un bug du composant giscus-widget
      où plusieurs instances ouvertes en même temps peuvent hériter de la hauteur les
      unes des autres (github.com/giscus/giscus/issues/1636). */
@@ -145,54 +152,55 @@
   giscus-widget::part(iframe){min-height:420px;max-height:420px;overflow-y:auto}
 
   /* ---------- Annexe ---------- */
-  #annexe{padding-top:4rem;padding-bottom:2rem}
+  #annexe{padding-top:var(--sp-8);padding-bottom:var(--sp-6)}
   #annexe h2{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem)}
-  #annexe h3{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin:1.6rem 0 .5rem}
-  #annexe h4{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--encre);margin:1rem 0 .3rem}
+  #annexe h3{font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin:var(--sp-5) 0 var(--sp-2)}
+  #annexe h4{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--encre);margin:var(--sp-4) 0 var(--sp-1)}
   #annexe .familles{list-style:none;padding-left:0}
-  .familles li{margin:.4em 0;font-size:.93rem}
+  .familles li{margin:.4em 0;font-size:var(--tx-sm)}
   .familles .puce{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--bleu);margin-right:.4em}
   #annexe ol,#annexe ul{padding-left:1.3em;max-width:60em}
-  #annexe li{margin:.3em 0;font-size:.93rem}
+  #annexe li{margin:.3em 0;font-size:var(--tx-sm)}
 
   /* ---------- Graphique d'un indicateur (issue #9, SVG statique rendu au build) ---------- */
-  .graphique-carte{background:#fff;border:1px solid var(--trait);border-radius:3px;padding:1rem 1.2rem 1.2rem;margin:1rem 0 2rem;max-width:60em}
+  .graphique-carte{background:#fff;border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:var(--ombre-carte);padding:var(--sp-4);margin:var(--sp-4) 0 var(--sp-6);max-width:60em}
   .graphique-zone{position:relative}
   .graphique-zone svg{display:block;width:100%;height:auto}
   #graphique-survol{cursor:crosshair}
-  .graphique-tooltip{position:absolute;pointer-events:none;background:var(--encre);color:#fff;font-size:.78rem;padding:.5em .7em;border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;white-space:nowrap}
+  .graphique-tooltip{position:absolute;pointer-events:none;background:var(--encre);color:#fff;font-size:var(--tx-label);padding:.5em .7em;border-radius:var(--radius-carte);box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;white-space:nowrap}
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}
-  .analyse-item{padding:.8rem 0;border-bottom:1px solid var(--trait)}
-  .analyse-item a{font-size:1rem}
-  .analyse-item .unit{color:var(--gris);font-size:.85rem;font-weight:400}
-  .analyse-item p{font-size:.9rem;color:#4A5568;margin-top:.2em}
-  .re-table{width:100%;border-collapse:collapse;margin-top:.6rem;font-size:.86rem}
+  .analyse-item{padding:var(--sp-3);border-bottom:1px solid var(--trait);transition:background-color var(--transition), box-shadow var(--transition)}
+  .analyse-item:hover{background:#FAFAF7;box-shadow:inset 3px 0 0 var(--rouge)}
+  .analyse-item a{font-size:var(--tx-base)}
+  .analyse-item .unit{color:var(--gris);font-size:var(--tx-sm);font-weight:400}
+  .analyse-item p{font-size:var(--tx-sm);color:#4A5568;margin-top:.2em}
+  .re-table{width:100%;border-collapse:collapse;margin-top:var(--sp-2);font-size:var(--tx-sm)}
   .re-table th,.re-table td{border:1px solid var(--trait);padding:.5em .7em;text-align:left;vertical-align:top}
-  .re-table th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--papier-2)}
+  .re-table th{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;background:var(--papier-2)}
   .re-table td.in{width:38%}
   .table-scroll{overflow-x:auto}
   .re-table td.annee{font-family:var(--mono);white-space:nowrap}
   .kpi-table td:not(.annee){text-align:right;font-family:var(--mono)}
-  .avert{border:1.5px solid var(--rouge);padding:.9rem 1.1rem;margin:1.4rem 0;font-size:.9rem;max-width:60em;background:#fff}
+  .avert{border:1.5px solid var(--rouge);border-radius:var(--radius-carte);padding:var(--sp-4);margin:var(--sp-5) 0;font-size:var(--tx-sm);max-width:60em;background:#fff}
   .avert b{color:var(--rouge)}
 
   /* ---------- Points d'inflexion (issue #10) ---------- */
-  .inflexion{background:#fff;border:1px solid var(--trait);border-radius:3px;padding:1rem 1.2rem;margin:.9rem 0;max-width:60em}
+  .inflexion{background:#fff;border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:var(--ombre-carte);padding:var(--sp-4);margin:var(--sp-4) 0;max-width:60em}
   .inflexion-annee{font-family:var(--mono);color:var(--rouge);font-size:.8rem;letter-spacing:.1em}
   .inflexion h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:.15em 0 .5em}
-  .inflexion p{font-size:.93rem}
+  .inflexion p{font-size:var(--tx-sm)}
   .inflexion ul{margin-top:.5em;padding-left:0;list-style:none}
-  .inflexion li a{font-family:var(--mono);font-size:.78rem}
+  .inflexion li a{font-family:var(--mono);font-size:var(--tx-label)}
 
   /* ---------- Autre regard : point de vue minoritaire/contesté, style
      neutre (gris, pas rouge) pour rester visuellement distinct du contenu
      sourcé INSEE/OFCE du reste de la page. ---------- */
-  .autre-regard{background:var(--papier-2);border-left:4px solid var(--gris);padding:1rem 1.2rem;margin:1.4rem 0;max-width:60em}
+  .autre-regard{background:var(--papier-2);border-left:4px solid var(--gris);border-radius:var(--radius-carte);padding:var(--sp-4);margin:var(--sp-5) 0;max-width:60em}
   .autre-regard h2{font-size:clamp(1.5rem,3.4vw,2.1rem)}
-  .autre-regard p{font-size:.93rem}
+  .autre-regard p{font-size:var(--tx-sm)}
   .autre-regard ul{margin-top:.5em;padding-left:0;list-style:none}
-  .autre-regard li a{font-family:var(--mono);font-size:.78rem}
+  .autre-regard li a{font-family:var(--mono);font-size:var(--tx-label)}
 
-  footer{border-top:3px solid var(--encre);padding:1.6rem 5vw 3rem;font-size:.82rem;color:var(--gris);max-width:1080px;margin:0 auto}
+  footer{border-top:3px solid var(--encre);padding:var(--sp-5) 5vw var(--sp-7);font-size:var(--tx-label);color:var(--gris);max-width:1080px;margin:0 auto}
