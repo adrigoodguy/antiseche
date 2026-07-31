@@ -122,10 +122,40 @@
       "fiabilite": "Bonne, mais couverture historique courte (2000-2022).",
       "note": "L'OCDE ne publie pas de score unique « moyenne des 3 domaines » : lecture, mathématiques et sciences restent des échelles séparées. La compréhension de l'écrit (lecture) est retenue ici car c'est le domaine majeur fondateur de PISA en 2000, et celui que la DEPP elle-même utilise comme référence de comparaison temporelle même les années où un autre domaine est « majeur ». Aucune donnée avant 2000 (premier cycle) ; le cycle 2025 existe mais ses résultats ne sont publiés qu'en septembre 2026, donc absent ici pour l'instant.",
       "sources": [
-        ["DEPP — Note d'Information n°08.08 (PISA 2000-2006)", "https://www.education.gouv.fr/"],
-        ["DEPP — Note d'Information n°38 (PISA 2009-2015)", "https://www.education.gouv.fr/"],
-        ["DEPP — Note d'Information n°23.49 (PISA 2018-2022)", "https://www.education.gouv.fr/"]
-      ]
+        ["DEPP — L'évolution des acquis des élèves de 15 ans en culture mathématique et en compréhension de l'écrit : premiers résultats de PISA 2006", "https://archives-statistiques-depp.education.gouv.fr/Default/doc/SYRACUSE/12666/l-evolution-des-acquis-des-eleves-de-15-ans-en-culture-mathematique-et-en-comprehension-de-l-ecrit-p"],
+        ["DEPP — PISA 2018 : stabilité des résultats en compréhension de l'écrit", "https://www.education.gouv.fr/depp/pisa-2018-stabilite-des-resultats-en-comprehension-de-l-ecrit-10976"],
+        ["DEPP — PISA 2022 : culture scientifique, compréhension de l'écrit et vie de l'élève", "https://www.education.gouv.fr/depp/pisa-2022-culture-scientifique-comprehension-de-l-ecrit-et-vie-de-l-eleve-380208"]
+      ],
+      "inflexions": [
+        {
+          "annee": "2000-2006",
+          "titre": "Premier décrochage et querelle des méthodes de lecture",
+          "commentaire": "Partie de 505 points en 2000, la France recule à 496 en 2003 puis 488 en 2006 (-17 points en six ans) — la plus longue érosion continue de la série avant celle de 2018-2022. Cette période coïncide avec la relance très médiatisée de la « querelle des méthodes de lecture » : invoquant la hausse de l'illettrisme, le ministre Gilles de Robien impose par circulaire (3 janvier 2006) le retour à une méthode syllabique en CP, contre l'avis de la majorité des chercheurs et formateurs qui contestent ce diagnostic. Aucune étude n'établit de lien causal entre cette controverse pédagogique (ou la circulaire, de toute façon trop tardive pour avoir influencé les élèves testés en 2006) et l'évolution du score PISA sur la période : la coïncidence temporelle est documentée, la causalité ne l'est pas — prudence d'autant plus nécessaire que le sujet reste politiquement clivant.",
+          "sources": [
+            ["Circulaire n°2006-003 du 3 janvier 2006, « Apprendre à lire »", "http://dcalin.fr/textoff/lecture_2006.html"],
+            ["Inspection générale — Mise en œuvre de la politique éducative de l'apprentissage de la lecture, rapport n°2006-083, novembre 2006", "https://www.education.gouv.fr/sites/default/files/document/Mise%20en%20%C5%93uvre%20de%20la%20politique%20%C3%A9ducative%20de%20l%E2%80%99apprentissage%20de%20la%20lecture%20au%20cycle%20des%20apprentissages%20fondamentaux%20-289857.pdf"],
+            ["Le Temps — Méthode syllabique ou globale ? Épilogue politique d'une controverse pédagogique", "https://www.letemps.ch/opinions/methode-syllabique-globale-epilogue-politique-dune-controverse-pedagogique"]
+          ]
+        },
+        {
+          "annee": "2018-2022",
+          "titre": "Chute historique : pandémie, pénurie d'enseignants et tendance antérieure",
+          "commentaire": "Le score recule de 493 à 474 points entre 2018 et 2022 (-19 points), la plus forte baisse de toute la série et l'un des reculs les plus marqués parmi les pays de l'OCDE. La DEPP et l'OCDE attribuent une part de cette chute à la pandémie de Covid-19 et aux fermetures d'écoles du printemps 2020, un choc documenté dans la plupart des pays testés cette année-là. Mais deux nuances empêchent d'en faire l'explication unique : les élèves français ont déclaré des fermetures d'école globalement plus courtes que la moyenne OCDE (36 % à plus de 3 mois contre 51 % en moyenne), et le recul en lecture était déjà amorcé avant 2020. L'OCDE et Le Café pédagogique pointent un facteur français spécifique et documenté : la part d'élèves signalant un manque d'enseignants passe de 17 % en 2018 à 67 % en 2022, la plus forte progression de tous les pays de l'OCDE. Plusieurs causes s'enchevêtrent donc (pandémie, pénurie d'enseignants, tendance de fond antérieure) sans qu'aucune, isolée, ne suffise à expliquer l'ampleur du recul.",
+          "sources": [
+            ["DEPP — PISA 2022 : culture scientifique, compréhension de l'écrit et vie de l'élève", "https://www.education.gouv.fr/depp/pisa-2022-culture-scientifique-comprehension-de-l-ecrit-et-vie-de-l-eleve-380208"],
+            ["Le Café pédagogique — PISA 2022 : la chute, 5 décembre 2023", "https://www.cafepedagogique.net/2023/12/05/pisa-2022-la-chute/"],
+            ["Slate.fr — Enquête PISA 2022 : comment expliquer la baisse de niveau des élèves français ?", "https://www.slate.fr/story/257518/enquete-pisa-2022-baisse-niveau-eleves-france-resultats-tests-ocde-enseignement-education-nationale"]
+          ]
+        }
+      ],
+      "autreRegard": {
+        "titre": "Une moyenne qui masque des inégalités sociales parmi les plus fortes de l'OCDE",
+        "texte": "Lire cette page comme une seule courbe peut donner l'impression trompeuse que la France se maintient dans une honnête moyenne (autour de 490-505 points sur la majeure partie de la période). Ce chiffre agrège des trajectoires très différentes selon l'origine sociale des élèves : selon l'OCDE, la France affiche depuis le début des années 2000 l'un des liens les plus forts de tous les pays membres entre le milieu socio-économique des élèves et leurs résultats PISA, un constat documenté édition après édition (PISA 2018, PISA 2022 notamment) et largement repris par la presse spécialisée française. En 2022 par exemple, 18,9 % des élèves favorisés font partie des meilleurs résultats en mathématiques contre seulement 1,2 % des élèves défavorisés, quand la moyenne OCDE est de 20,0 % contre 2,6 % — un écart nettement supérieur à celui des autres pays comparables. Cette lecture par les inégalités n'est pas une opinion minoritaire : c'est un chiffre publié par l'OCDE elle-même dans ses rapports officiels, qui invite à ne jamais commenter un mouvement du score moyen sans se demander s'il profite ou nuit également à tous les élèves.",
+        "sources": [
+          ["Le Café pédagogique — PISA 2022 : la France, encore et toujours, championne des inégalités, 5 décembre 2023", "https://www.cafepedagogique.net/2023/12/05/pisa-2022-la-france-encore-et-toujours-championne-des-inegalites-2/"],
+          ["OCDE — Résultats du PISA 2022, Volume V : Stratégies et attitudes des élèves", "https://www.oecd.org/content/dam/oecd/fr/publications/reports/2024/11/pisa-2022-results-volume-v_c2e5f9fb/29f9ad1c-fr.pdf"]
+        ]
+      }
     },
     {
       "lab": "DIRD (recherche)",
