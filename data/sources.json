@@ -76,12 +76,66 @@
     },
     {
       "lab": "Inflation",
-      "fiabilite": "Très bonne, quasi intégralement vérifiée.",
-      "note": "Série presque parfaitement alignée sur une table de l'INSEE (Tableaux de l'économie française, indice des prix à la consommation 1950–2013), complétée par les communiqués annuels de l'INSEE pour les années récentes. 2025 est un chiffre définitif (publié en janvier 2026).",
+      "fiabilite": "Excellente : série annuelle complète (1950-2025), sans lacune ni interpolation, deux sources INSEE qui se recoupent presque parfaitement.",
+      "note": "Les 76 valeurs annuelles combinent deux tables officielles de l'INSEE : la table « Variation annuelle de l'indice des prix à la consommation de 1950 à 2013 » des Tableaux de l'économie française pour 1950-2013, et la table « Évolution annuelle moyenne de l'indice des prix à la consommation » de la page « L'essentiel sur… l'inflation » pour 2014-2025. Ces deux tables se recouvrent sur 2000-2013 et concordent presque partout, à deux petites révisions près (2001 : 1,7 % dans la table historique contre 1,6 % dans la table récente ; 2006 : 1,6 % contre 1,7 %), écarts de 0,1 point dus à des rebasages successifs de l'indice — sans incidence sur la lecture des tendances. Les quatre dernières années sont confirmées mot pour mot par le communiqué INSEE Informations rapides n°8 du 15 janvier 2026 : « L'inflation en moyenne annuelle s'établit ainsi à +0,9 %, après +2,0 % en 2024 et deux années marquées par une forte inflation (+4,9 % en 2023 et +5,2 % en 2022) ». Il s'agit dans tous les cas de la variation annuelle moyenne de l'indice des prix à la consommation, ensemble des ménages, France (hors Mayotte sur la période récente) — la mesure que l'INSEE met en avant chaque année dans ses communiqués de janvier.",
       "sources": [
-        ["INSEE — Tableaux de l'économie française", "https://www.insee.fr/fr/statistiques/1288616"],
-        ["INSEE Informations rapides — prix à la consommation", "https://www.insee.fr/fr/statistiques/8726461"]
-      ]
+        ["INSEE — Prix à la consommation, Tableaux de l'économie française (série 1950-2013)", "https://www.insee.fr/fr/statistiques/1288616?sommaire=1288637"],
+        ["INSEE — L'essentiel sur… l'inflation", "https://www.insee.fr/fr/statistiques/4268033"],
+        ["INSEE Informations rapides n°8 — En 2025, nouveau ralentissement des prix à la consommation en moyenne annuelle, 15 janvier 2026", "https://www.insee.fr/fr/statistiques/8726461"]
+      ],
+      "inflexions": [
+        {
+          "annee": "1973-1974",
+          "titre": "Premier choc pétrolier",
+          "commentaire": "L'inflation passe de 6,2 % (1972) à 7,3 % (1973) puis bondit à 13,7 % en 1974, son plus haut niveau hors 1951-1952 et 1958. Cette accélération suit de près le quadruplement du prix du pétrole décidé par l'OPEP fin 1973, dans une économie française alors très dépendante des importations pétrolières. Le mécanisme de transmission (hausse du coût de l'énergie importée répercutée sur les prix à la consommation) est documenté, mais la littérature elle-même insiste sur l'enchevêtrement d'autres facteurs contemporains (fin du système de changes fixes de Bretton Woods en 1971, dynamique salariale de l'après-1968) : on se gardera d'attribuer la totalité du pic au seul choc pétrolier.",
+          "sources": [
+            ["Ronan Mahieu (INSEE) — Avant et après les chocs pétroliers : l'économie française de 1949 à 2012, 2014", "https://www.insee.fr/fr/statistiques/1374366?sommaire=1374377"],
+            ["Béatrice Touchelay — Un siècle d'indice des prix de détail français (1913-2013), Politiques et management public, vol. 31/4, 2014", "https://journals.openedition.org/pmp/7291"]
+          ]
+        },
+        {
+          "annee": "1979-1981",
+          "titre": "Second choc pétrolier",
+          "commentaire": "Après un creux relatif à 9,1 % en 1978, l'inflation remonte à 10,8 % (1979) puis se maintient au-dessus de 13 % en 1980 (13,6 %) et 1981 (13,4 %) — le plateau le plus élevé de toute la série. Cette nouvelle poussée coïncide avec le doublement du prix du pétrole consécutif à la révolution iranienne de 1979 et à la guerre Iran-Irak à partir de 1980. Comme pour le premier choc, la corrélation chronologique est bien établie dans la littérature macroéconomique française, mais la part exacte imputable au pétrole par rapport à l'indexation des salaires sur les prix (alors encore en vigueur) reste débattue ; on évitera donc une lecture mono-causale.",
+          "sources": [
+            ["Ronan Mahieu (INSEE) — Avant et après les chocs pétroliers : l'économie française de 1949 à 2012, 2014", "https://www.insee.fr/fr/statistiques/1374366?sommaire=1374377"]
+          ]
+        },
+        {
+          "annee": "1983-1988",
+          "titre": "Désinflation compétitive et contre-choc pétrolier",
+          "commentaire": "L'inflation recule de façon quasi continue, de 9,6 % en 1983 à 2,7 % en 1986, puis se stabilise autour de 3 % jusqu'en 1988. Une partie de ce recul est attribuée par les économistes Michel Cabannes et Marc-Alexandre Sénégas à un choix de politique économique délibéré, la « désinflation compétitive » : maintien du franc dans le système monétaire européen à partir de mars 1983 (le « franc fort »), désindexation progressive des salaires sur les prix, et rigueur budgétaire. Mais l'année où la baisse est la plus spectaculaire, 1985-1986 (5,8 % à 2,7 %), coïncide aussi avec le contre-choc pétrolier de 1986 (effondrement mondial des prix du pétrole après l'échec de la politique de quotas de l'OPEP), un facteur externe indépendant de la politique française. Les deux causes se cumulent probablement sans que leurs parts respectives soient clairement isolées dans la littérature ; on se gardera donc d'attribuer tout le mérite à la seule politique de désinflation compétitive.",
+          "sources": [
+            ["Michel Cabannes, Marc-Alexandre Sénégas — La politique française de désinflation compétitive : les faits et gestes en perspective, in L'économie française dans la compétition internationale au XXe siècle, IGPDE, 2002", "https://books.openedition.org/igpde/4702"]
+          ]
+        },
+        {
+          "annee": "2009 / 2015-2016",
+          "titre": "Deux épisodes de quasi-déflation liés aux prix du pétrole",
+          "commentaire": "L'inflation tombe à 0,1 % en 2009, puis à 0,0 % en 2015 et 0,2 % en 2016 — les trois points les plus bas de la série avec 1999 et 1953-1954. L'INSEE attribue explicitement ces deux épisodes, dans son bilan de l'inflation depuis le passage à l'euro, au repli des prix internationaux des matières premières, en particulier du pétrole (effondrement des cours après la crise financière de 2008-2009, puis nouvel effondrement en 2014-2016 sous l'effet du pétrole de schiste américain et des choix de production de l'OPEP) : un facteur que l'INSEE qualifie elle-même de « prépondérant », sans exclure d'autres causes (faiblesse de la demande intérieure après 2009 notamment).",
+          "sources": [
+            ["INSEE Focus n°87 — Une inflation modérée depuis le passage à l'euro, 24 mai 2017", "https://www.insee.fr/fr/statistiques/2854085"]
+          ]
+        },
+        {
+          "annee": "2021-2025",
+          "titre": "Choc inflationniste post-Covid et énergétique, puis reflux",
+          "commentaire": "L'inflation grimpe de 1,6 % (2021) à 5,2 % (2022) et se maintient à 4,9 % (2023), avant de refluer nettement à 2,0 % (2024) puis 0,9 % (2025) — le cycle le plus violent depuis les années 1980. L'INSEE relie cette poussée aux tensions sur les prix de l'énergie et des matières premières consécutives à la reprise post-Covid puis à l'invasion de l'Ukraine par la Russie en février 2022, avant un reflux progressif porté par la baisse des prix de l'énergie et le resserrement monétaire de la BCE. La chronologie et l'ampleur des chocs énergétiques sont bien documentées ; la part exacte de chaque facteur (énergie, alimentation, effets de second tour sur les salaires) dans le pic de 2022-2023 reste, comme pour les épisodes précédents, débattue plutôt que définitivement tranchée.",
+          "sources": [
+            ["INSEE — Note de conjoncture, juin 2023 : L'inflation reflue, la croissance hésite", "https://www.insee.fr/fr/statistiques/7634656?sommaire=7634660"],
+            ["INSEE Informations rapides n°8 — En 2025, nouveau ralentissement des prix à la consommation en moyenne annuelle, 15 janvier 2026", "https://www.insee.fr/fr/statistiques/8726461"]
+          ]
+        }
+      ],
+      "autreRegard": {
+        "titre": "Un chiffre unique qui masque un écart documenté entre inflation mesurée et inflation vécue",
+        "texte": "Cette page retient la mesure officielle de l'INSEE, l'indice des prix à la consommation moyen annuel — la référence utilisée par toutes les sources ci-dessus. Mais l'INSEE elle-même, conjointement avec la Banque de France, a documenté un écart persistant entre cette inflation « mesurée » et l'inflation « perçue » par les ménages : une étude conjointe (Accardo, Célérier, Herpin, Irac, 2012) montre qu'entre 2004 et 2010, l'inflation perçue par les ménages interrogés dans l'enquête de conjoncture dépasse en moyenne de six points l'inflation mesurée par l'indice officiel — les ménages surpondèrent dans leur perception les achats fréquents (pain, carburant) et réagissent plus fortement aux hausses qu'aux baisses de prix, un biais que les auteurs parviennent à modéliser mais pas à faire disparaître entièrement. Un chiffre agrégé unique masque aussi des écarts réels, et non pas seulement perçus, entre catégories de ménages : selon une étude INSEE de 2022 portant sur l'inflation par poste de consommation, l'inflation réelle allait, à un instant donné, de 4,0 % pour les moins de 30 ans à 5,9 % pour les ménages ruraux, ces derniers étant plus exposés aux dépenses d'énergie et de carburant. Sur un plan plus méthodologique, l'économiste Florence Jany-Catrice (université de Lille) rappelle que l'indice des prix à la consommation n'est pas une donnée neutre mais une construction : elle retrace comment son évolution méthodologique — notamment l'adoption, à la suite du rapport Boskin (1996) aux États-Unis, d'indices « à utilité constante » plutôt qu'à qualité constante — a eu tendance à réduire mécaniquement l'inflation mesurée, et comment le traitement du logement a fait l'objet, dès les années 1970, de contestations méthodologiques (l'indice alternatif de la CGT, pondérant davantage le logement, ressortait alors 4 à 6 points au-dessus de l'indice INSEE). Cette lecture critique ne remet pas en cause la fiabilité technique de la série retenue sur cette page, mais invite à ne pas traiter un taux d'inflation moyen comme un fait brut valable également pour tous les ménages.",
+        "sources": [
+          ["Jérôme Accardo, Claire Célérier, Nicolas Herpin, Delphine Irac — L'inflation telle qu'elle est perçue par les ménages, INSEE Analyses n°5, 12 juillet 2012", "https://www.insee.fr/fr/statistiques/1521318"],
+          ["INSEE — Selon leurs dépenses d'énergie et d'alimentation, certaines catégories de ménages sont exposées à une inflation apparente pouvant différer de plus d'un point par rapport à la moyenne, 24 juin 2022", "https://www.insee.fr/fr/statistiques/6464607"],
+          ["Florence Jany-Catrice — Derrière les chiffres de l'inflation, La Vie des idées, 11 mai 2021", "https://laviedesidees.fr/Derriere-les-chiffres-de-l-inflation.html"]
+        ]
+      }
     },
     {
       "lab": "Dette publique",
