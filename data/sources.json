@@ -266,11 +266,11 @@
     },
     {
       "lab": "Pression fiscale",
-      "fiabilite": "Bonne à partir de 1965, non sourcé avant.",
-      "note": "Prélèvements obligatoires (impôts + cotisations sociales) des administrations publiques, au sens de la classification internationale de l'OCDE (secteur S13 des comptes nationaux) — une série longue, unique et cohérente sur toute la période 1965-2024, contrairement aux publications INSEE qui ne remontent pas aussi loin de façon continue. Point de vigilance : le taux « officiel » le plus souvent cité par l'INSEE/le gouvernement est systématiquement inférieur de 0,7 à 1 point à celui retenu ici sur les années récentes (ex. 45,0 % INSEE contre 45,9 % OCDE en 2022) — un écart de classification comptable connu entre les deux institutions, pas une erreur. Aucune valeur 2025, non encore publiée par l'OCDE au moment du fact-checking (juillet 2026).",
+      "fiabilite": "Excellente : série annuelle complète (1959-2025), sans lacune, source unique.",
+      "note": "Prélèvements obligatoires (impôts + cotisations sociales) des administrations publiques rapportés au PIB. Ce document bascule sa source de référence de l'OCDE vers l'INSEE (comptes nationaux base 2020) : la table INSEE couvre en fait directement les 67 années 1959-2025, pas seulement les points utilisés dans une version antérieure de ce document. Point de vigilance : le taux INSEE retenu ici est systématiquement inférieur de 0,7 à 1 point à celui publié par l'OCDE sur les années récentes (ex. 45,0 % INSEE contre 45,9 % OCDE en 2022) — un écart de classification comptable connu entre les deux institutions, pas une erreur ; si vous recoupez avec des chiffres OCDE ailleurs, c'est l'origine de l'écart.",
       "sources": [
-        ["OCDE — Statistiques des recettes publiques, France (Revenue Statistics)", "https://stats.oecd.org/"],
-        ["INSEE — Taux de prélèvements obligatoires rapportés au PIB", "https://www.insee.fr/fr/statistiques/2381412"]
+        ["INSEE — Taux de prélèvements obligatoires rapportés au PIB (comptes nationaux base 2020)", "https://www.insee.fr/fr/statistiques/2381412"],
+        ["OCDE — Statistiques des recettes publiques, France (Revenue Statistics)", "https://stats.oecd.org/"]
       ]
     },
     {
