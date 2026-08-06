@@ -165,11 +165,11 @@
     },
     {
       "lab": "Industrie",
-      "fiabilite": "Bonne, avec une précision de définition.",
-      "note": "La série suit l'industrie manufacturière au sens de l'INSEE (hors énergie, extraction et construction), retropolée en base 2020 pour les années anciennes — un recalcul moderne, pas la publication telle qu'elle existait à l'époque. Les valeurs 1960, 1965 et 2010 ont été corrigées après vérification contre le fichier INSEE « valeur ajoutée par branche ».",
+      "fiabilite": "Excellente : série annuelle complète (1949-2025), recalculée avec une définition stricte de l'industrie manufacturière.",
+      "note": "La série est recalculée à partir de zéro plutôt que reprise telle quelle : la « valeur ajoutée par branche » de l'INSEE distingue une ligne parente « Industrie manufacturière, industries extractives et autres » — qui inclut l'énergie, l'extraction, l'eau et la gestion des déchets — de 5 sous-lignes qui, elles seules, constituent l'industrie manufacturière au sens strict (fabrication de denrées alimentaires/boissons/tabac ; cokéfaction et raffinage ; fabrication de produits informatiques/électroniques/optiques et d'équipements électriques, machines et équipements n.c.a. ; fabrication de matériels de transport ; autres industries manufacturières). Ce document somme ces 5 sous-lignes (hors énergie/extraction) et divise par le PIB en niveau (approche produit, prix courants, même vintage base 2020) — pas par la valeur ajoutée totale, un dénominateur plus petit qui aurait gonflé le ratio. Les valeurs qui en résultent sont cohérentes avec le récit bien documenté de désindustrialisation (23 % du PIB en 1949, environ 10 % depuis 2010) mais diffèrent de quelques points de la version précédente de ce document pour les années anciennes (1960, 1965) : cette version-ci recalcule les 77 années sur la définition stricte plutôt que de corriger ponctuellement quelques valeurs isolées.",
       "sources": [
-        ["INSEE — Valeur ajoutée par branche d'activité", "https://www.insee.fr/fr/statistiques/2830197"],
-        ["INSEE Première n°1592 — L'industrie manufacturière de 1970 à 2014", "https://www.insee.fr/fr/statistiques/2121532"]
+        ["INSEE — Valeur ajoutée par branche d'activité (comptes nationaux annuels, base 2020)", "https://www.insee.fr/fr/statistiques/2830197"],
+        ["INSEE — Comptes nationaux annuels base 2020, PIB, approche produit, prix courant (série chronologique)", "https://www.insee.fr/fr/statistiques/serie/011779992"]
       ]
     },
     {
