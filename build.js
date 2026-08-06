@@ -472,6 +472,37 @@ function sectionAutreRegard(note) {
 </div>`;
 }
 
+// Encadré explicatif (gabarit réutilisable, issue #14) : un « mode d'emploi »
+// de l'indicateur (qui est mesuré, ce qui ne l'est pas, précision statistique)
+// affiché juste sous le graphique, avant les points d'inflexion — utile pour
+// tout KPI dont la lecture n'est pas évidente sans contexte méthodologique.
+function sectionExplication(note) {
+  if (!note.explication) return "";
+  const ex = note.explication;
+  return `
+<div class="encadre-explicatif">
+  <h2>${esc(ex.titre)}</h2>
+  <dl>${ex.points.map(p => `<dt>${esc(p.label)}</dt><dd>${esc(p.texte)}</dd>`).join("")}</dl>
+  <ul>${ex.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>
+</div>`;
+}
+
+// Séries historiques (gabarit réutilisable, issue #14) : tableau des mesures
+// partielles disponibles avant la série moderne du KPI, avec leurs limites —
+// utile pour tout indicateur dont la courbe affichée ne remonte pas très loin.
+function sectionSeriesHistoriques(note) {
+  if (!note.seriesHistoriques) return "";
+  const sh = note.seriesHistoriques;
+  const thead = `<tr>${sh.colonnes.map(c => `<th>${esc(c)}</th>`).join("")}</tr>`;
+  const tbody = sh.lignes.map(l => `<tr>${l.map(c => `<td>${esc(c)}</td>`).join("")}</tr>`).join("");
+  return `
+<h2>${esc(sh.titre)}</h2>
+<p>${esc(sh.intro)}</p>
+<div class="table-scroll"><table class="re-table"><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>
+<p>${esc(sh.conclusion)}</p>
+<ul>${sh.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>`;
+}
+
 /* --- Pages « Analyse » individuelles : contenu réel si une note de fiabilité
    existe dans data/sources.json pour ce KPI, stub « à venir » sinon (issue #9,
    étendu à tous les KPI à l'issue "template PIB partout"). --- */
@@ -483,11 +514,13 @@ function pageAnalyseKpi(ind) {
 <p class="standfirst">${esc(ind.resume)}</p>
 ${bandeauEditorial(note)}
 ${graphiqueKpi(ind)}
+${sectionExplication(note)}
 ${sectionInflexions(note)}
 <h2>Fiabilité &amp; sources</h2>
 <p><b>Fiabilité :</b> ${note.fiabilite}</p>
 <p>${note.note}</p>
 <ul>${note.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>
+${sectionSeriesHistoriques(note)}
 ${sectionAutreRegard(note)}` : `
 <p class="standfirst">${esc(ind.resume)}</p>
 <div class="avert"><b>Page à venir</b> — le contenu détaillé de cet indicateur (série complète, fiabilité, sources) n'est pas encore rédigé ici. En attendant, le fact-checking de cet indicateur est déjà disponible sur <a href="/sources">/sources</a>. Retour à <a href="/analyse">l'index des indicateurs</a>.</div>`;

@@ -203,4 +203,16 @@
   .autre-regard ul{margin-top:.5em;padding-left:0;list-style:none}
   .autre-regard li a{font-family:var(--mono);font-size:var(--tx-label)}
 
+  /* ---------- Encadré explicatif (issue #14) : « mode d'emploi » de
+     l'indicateur sous le graphique — liseré bleu (couleur République),
+     distinct du rouge .avert (alerte) et du gris .autre-regard (point de
+     vue) puisqu'il s'agit ici d'un contenu factuel de référence. ---------- */
+  .encadre-explicatif{background:#fff;border-left:4px solid var(--bleu);border-radius:var(--radius-carte);padding:var(--sp-4);margin:var(--sp-5) 0;max-width:60em}
+  .encadre-explicatif h2{font-size:clamp(1.5rem,3.4vw,2.1rem)}
+  .encadre-explicatif dt{font-weight:600;margin-top:var(--sp-3)}
+  .encadre-explicatif dt:first-child{margin-top:0}
+  .encadre-explicatif dd{font-size:var(--tx-sm);margin:.2em 0 0}
+  .encadre-explicatif ul{margin-top:var(--sp-3);padding-left:0;list-style:none}
+  .encadre-explicatif li a{font-family:var(--mono);font-size:var(--tx-label)}
+
   footer{border-top:3px solid var(--encre);padding:var(--sp-5) 5vw var(--sp-7);font-size:var(--tx-label);color:var(--gris);max-width:1080px;margin:0 auto}
