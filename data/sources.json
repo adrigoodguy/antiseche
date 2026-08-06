@@ -141,11 +141,10 @@
     },
     {
       "lab": "Dette publique",
-      "fiabilite": "Fiable à partir de 1978-1980, non sourcé avant.",
-      "note": "La notion de « dette publique au sens de Maastricht » et la série statistique correspondante n'existent officiellement que depuis la fin des années 1970. Les valeurs 1950–1975 de ce document sont des ordres de grandeur non sourcés (les reconstructions indépendantes trouvées lors de la vérification divergent fortement entre elles, parfois du simple au double). À partir de 1980, la série est vérifiée sur les publications INSEE dédiées.",
+      "fiabilite": "Excellente à partir de 1978 (annuel, sans lacune) ; rien avant, plutôt qu'un ordre de grandeur non sourcé.",
+      "note": "La notion de « dette publique au sens de Maastricht » et la série statistique correspondante n'existent officiellement que depuis la fin des années 1970 : aucune valeur n'est retenue avant 1978, plutôt que les reconstructions non sourcées d'une version antérieure de ce document, dont les estimations indépendantes divergeaient fortement (parfois du simple au double). Les 48 valeurs annuelles 1978-2025 viennent d'une unique série INSEE (ligne « Ensemble », comptes nationaux base 2020), en % du PIB.",
       "sources": [
-        ["INSEE — Tableaux de l'économie française, dette publique", "https://www.insee.fr/fr/statistiques/1288370"],
-        ["INSEE — Dette des administrations publiques au sens de Maastricht", "https://www.insee.fr/fr/statistiques/2830192"]
+        ["INSEE — Dette des administrations publiques au sens de Maastricht par sous-secteur", "https://www.insee.fr/fr/statistiques/2830192"]
       ]
     },
     {
