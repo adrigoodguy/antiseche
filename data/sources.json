@@ -149,10 +149,10 @@
     },
     {
       "lab": "Fécondité",
-      "fiabilite": "Excellente.",
-      "note": "L'indicateur conjoncturel de fécondité est l'une des séries démographiques les mieux tenues par l'INSEE/INED, continue depuis 1901. Toutes les années de ce document correspondent aux valeurs officielles à ±0,05 enfant par femme près. 2025 reste une donnée provisoire, à confirmer par le bilan démographique de janvier 2027.",
+      "fiabilite": "Excellente : série annuelle complète (1901-2025), sans lacune, une seule source cohérente.",
+      "note": "Les 125 valeurs annuelles viennent d'une unique table INSEE (NAIS3, indicateur conjoncturel de fécondité) : champ « France métropolitaine » pour 1901-1993, champ « France » (métropole + DROM hors Mayotte jusqu'en 2013, puis France entière) pour 1994-2025 — la jonction entre les deux champs ne crée pas de saut visible (1,66 en 1993, 1,68 en 1994). L'INSEE elle-même interpole linéairement les années 1914-1919 et 1939-1945 (aucune collecte n'était possible pendant les deux guerres) : cette interpolation est reprise telle quelle, pas une extrapolation ajoutée par ce document. 2025 reste une donnée provisoire, à confirmer par le bilan démographique de janvier 2027.",
       "sources": [
-        ["INSEE — Naissances, natalité et fécondité, séries longues", "https://www.insee.fr/fr/statistiques/8999017"]
+        ["INSEE — NAIS3, indicateur conjoncturel de fécondité (ICF) et âge moyen à l'accouchement", "https://www.insee.fr/fr/statistiques/8999017"]
       ]
     },
     {
