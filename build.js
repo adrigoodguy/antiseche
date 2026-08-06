@@ -544,18 +544,23 @@ function pageAnalyseKpi(ind) {
   const kpiParLab = new Map(SOURCES.kpis.map(k => [k.lab, k]));
   const note = kpiParLab.get(ind.lab);
 
+  // Fiabilité & sources est délibérément la dernière section de la page (issue
+  // signalée sur /analyse/pisa) : c'est une note de méthode/référence, pas le
+  // contenu éditorial principal — elle clôt la page après tout le reste
+  // (encadré, inflexions, séries historiques, autre regard), quel que soit le
+  // sous-ensemble de sections optionnelles présent pour ce KPI.
   const corps = note ? `
 <p class="standfirst">${esc(ind.resume)}</p>
 ${bandeauEditorial(note)}
 ${graphiqueKpi(ind)}
 ${sectionExplication(note)}
 ${sectionInflexions(note)}
+${sectionSeriesHistoriques(note)}
+${sectionAutreRegard(note)}
 <h2>Fiabilité &amp; sources</h2>
 <p><b>Fiabilité :</b> ${note.fiabilite}</p>
 <p>${note.note}</p>
-<ul>${note.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>
-${sectionSeriesHistoriques(note)}
-${sectionAutreRegard(note)}` : `
+<ul>${note.sources.map(s => `<li><a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a></li>`).join("")}</ul>` : `
 <p class="standfirst">${esc(ind.resume)}</p>
 <div class="avert"><b>Page à venir</b> — le contenu détaillé de cet indicateur (série complète, fiabilité, sources) n'est pas encore rédigé ici. En attendant, le fact-checking de cet indicateur est déjà disponible sur <a href="/sources">/sources</a>. Retour à <a href="/analyse">l'index des indicateurs</a>.</div>`;
 
