@@ -68,9 +68,11 @@
     },
     {
       "lab": "Chômage",
-      "fiabilite": "Fiable à partir de 1975, non sourcé avant.",
-      "note": "L'INSEE ne publie une série de chômage standardisée « au sens du BIT » qu'à partir de 1975 (enquête Emploi harmonisée). Les valeurs 1950–1970 de ce document restent des ordres de grandeur qualitatifs (chômage dit « résiduel », plein emploi documenté mais non chiffré précisément à l'époque) et ne doivent pas être lues comme des taux officiels. À partir de 1975, la série a été recalée sur la publication INSEE de référence, cohérente sur toute la période.",
+      "fiabilite": "Excellente à partir de 1975 (annuel, sans lacune) ; rien avant, plutôt qu'un ordre de grandeur non sourcé.",
+      "note": "L'INSEE ne publie une série de chômage standardisée « au sens du BIT » qu'à partir de 1975 (enquête Emploi harmonisée) : aucune valeur qualitative n'est retenue avant cette date, plutôt que les ordres de grandeur non chiffrés utilisés dans une version antérieure de ce document. Les 51 valeurs annuelles 1975-2025 combinent deux sources de même définition (BIT, Ensemble, France métropolitaine) mais de vintages différents : la table « séries longues » T302 pour 1975-1981, l'API des séries chronologiques INSEE (idbank 001787711) pour 1982-2025. Un léger écart de niveau existe au raccord (6,7 % en 1981 contre 6,9 % en 1982) : c'est la différence entre deux vintages de la même série, pas une rupture réelle du marché du travail.",
       "sources": [
+        ["INSEE — Chômage et taux de chômage au sens du BIT, séries longues (table T302)", "https://www.insee.fr/fr/statistiques/6462851"],
+        ["INSEE — Taux de chômage au sens du BIT, France métropolitaine (série chronologique)", "https://www.insee.fr/fr/statistiques/serie/001787711"],
         ["INSEE — L'essentiel sur... le chômage", "https://www.insee.fr/fr/statistiques/4805248"]
       ]
     },

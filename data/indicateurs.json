@@ -1,6 +1,5 @@
 {
   "unites": {
-    "Chômage": "%",
     "Dette publique": "% PIB",
     "Fécondité": "enf./f.",
     "Espérance de vie": "ans",
@@ -54,119 +53,102 @@
   },
   "annees": {
     "1950": {
-      "Chômage": 2,
       "Dette publique": 30,
       "Fécondité": 2.9,
       "Espérance de vie": 66,
       "Industrie": 25
     },
     "1955": {
-      "Chômage": 1.5,
       "Dette publique": 28,
       "Fécondité": 2.7,
       "Espérance de vie": 68,
       "Industrie": 24
     },
     "1960": {
-      "Chômage": 1.3,
       "Dette publique": 30,
       "Fécondité": 2.7,
       "Espérance de vie": 70,
       "Industrie": 26
     },
     "1965": {
-      "Chômage": 1.5,
       "Dette publique": 25,
       "Fécondité": 2.8,
       "Espérance de vie": 71,
       "Industrie": 24.8
     },
     "1970": {
-      "Chômage": 2.5,
       "Dette publique": 20,
       "Fécondité": 2.5,
       "Espérance de vie": 72,
       "Industrie": 22
     },
     "1975": {
-      "Chômage": 3.6,
       "Dette publique": 20,
       "Fécondité": 1.9,
       "Espérance de vie": 73,
       "Industrie": 22
     },
     "1980": {
-      "Chômage": 5.6,
       "Dette publique": 21,
       "Fécondité": 1.95,
       "Espérance de vie": 74,
       "Industrie": 21
     },
     "1985": {
-      "Chômage": 9.1,
       "Dette publique": 30,
       "Fécondité": 1.8,
       "Espérance de vie": 75,
       "Industrie": 20
     },
     "1990": {
-      "Chômage": 8.0,
       "Dette publique": 35,
       "Fécondité": 1.78,
       "Espérance de vie": 77,
       "Industrie": 18
     },
     "1995": {
-      "Chômage": 10.0,
       "Dette publique": 55,
       "Fécondité": 1.71,
       "Espérance de vie": 78,
       "Industrie": 17
     },
     "2000": {
-      "Chômage": 8.5,
       "Dette publique": 58,
       "Fécondité": 1.87,
       "Espérance de vie": 79,
       "Industrie": 16
     },
     "2005": {
-      "Chômage": 8.9,
       "Dette publique": 67,
       "Fécondité": 1.92,
       "Espérance de vie": 80,
       "Industrie": 14
     },
     "2010": {
-      "Chômage": 9.3,
       "Dette publique": 81.6,
       "Fécondité": 2,
       "Espérance de vie": 81.5,
       "Industrie": 11.4
     },
     "2015": {
-      "Chômage": 10.4,
       "Dette publique": 95,
       "Fécondité": 1.96,
       "Espérance de vie": 82.0,
       "Industrie": 11.5
     },
     "2020": {
-      "Chômage": 8.1,
       "Dette publique": 115,
       "Fécondité": 1.83,
       "Espérance de vie": 82.3,
       "Industrie": 11
     },
     "2022": {
-      "Chômage": 7.3,
       "Dette publique": 112,
       "Fécondité": 1.8,
       "Espérance de vie": 82.5,
       "Industrie": 11
     },
     "2025": {
-      "Chômage": 7.7,
       "Dette publique": 115.6,
       "Fécondité": 1.6,
       "Espérance de vie": 83,
@@ -343,6 +325,62 @@
         "2020": 4.27,
         "2022": 4.46,
         "2024": 3.97
+      }
+    },
+    "Chômage": {
+      "unit": "%",
+      "valeurs": {
+        "1975": 3.6,
+        "1976": 4.1,
+        "1977": 4.6,
+        "1978": 4.8,
+        "1979": 5.3,
+        "1980": 5.7,
+        "1981": 6.7,
+        "1982": 6.9,
+        "1983": 7.2,
+        "1984": 8.4,
+        "1985": 8.8,
+        "1986": 8.8,
+        "1987": 8.9,
+        "1988": 8.5,
+        "1989": 7.9,
+        "1990": 7.7,
+        "1991": 7.9,
+        "1992": 8.7,
+        "1993": 9.7,
+        "1994": 10.2,
+        "1995": 9.6,
+        "1996": 10.1,
+        "1997": 10.3,
+        "1998": 9.8,
+        "1999": 9.5,
+        "2000": 8.1,
+        "2001": 7.4,
+        "2002": 7.5,
+        "2003": 8.1,
+        "2004": 8.5,
+        "2005": 8.5,
+        "2006": 8.5,
+        "2007": 7.7,
+        "2008": 7.1,
+        "2009": 8.8,
+        "2010": 8.9,
+        "2011": 8.8,
+        "2012": 9.4,
+        "2013": 9.9,
+        "2014": 9.9,
+        "2015": 10.0,
+        "2016": 9.8,
+        "2017": 9.1,
+        "2018": 8.7,
+        "2019": 8.2,
+        "2020": 7.8,
+        "2021": 7.7,
+        "2022": 7.1,
+        "2023": 7.1,
+        "2024": 7.2,
+        "2025": 7.5
       }
     }
   },
