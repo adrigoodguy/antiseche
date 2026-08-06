@@ -257,9 +257,10 @@
     },
     {
       "lab": "DIRD (recherche)",
-      "fiabilite": "Bonne à partir de 1981, non sourcé avant.",
-      "note": "La dépense intérieure de recherche et développement (DIRD) n'a une série française continue et fiable qu'à partir de 1981 (INSEE lui-même ne publie qu'une fenêtre 1990-2023, la comparaison internationale Banque mondiale ne commence qu'en 1996). La série est régulièrement révisée par rupture méthodologique (dernière en date : 2023, élargissement du périmètre associatif) — la version retenue ici est la plus récente et interne-cohérente sur toute la période. Aucune valeur 2025 : 2024 est la dernière année publiée par l'EESR, encore qualifiée d'estimation.",
+      "fiabilite": "Excellente à partir de 1981, non sourcé avant.",
+      "note": "La dépense intérieure de recherche et développement (DIRD) n'a une série française continue et fiable qu'à partir de 1981 (INSEE lui-même ne publie qu'une fenêtre 1990-2023, la comparaison internationale Banque mondiale ne commence qu'en 1996). Les 44 valeurs annuelles 1981-2024 viennent d'une table MESRI-SIES qui couvre déjà tout cet intervalle (contre les 10 dernières années seulement dans une version antérieure de ce document) et intègre nativement la dernière rupture méthodologique connue (passage aux prix 2020). Recoupée avec une table adjacente de la même publication sur la fenêtre commune 2015-2024 (2,23 % en 2015 dans les deux). Aucune valeur 2025 : 2024 est la dernière année publiée, encore qualifiée d'estimation.",
       "sources": [
+        ["EESR n°19 — Évolution de la DIRD et du PIB en volume entre 1981 et 2024 (table 43.03)", "https://publication.enseignementsup-recherche.gouv.fr/eesr/FR/EESR19_R_43/CSV/ILL_03/"],
         ["EESR n°19 — L'effort de recherche et développement en France", "https://publication.enseignementsup-recherche.gouv.fr/eesr/FR/T923/l_effort_de_recherche_et_developpement_en_france/"]
       ]
     },
