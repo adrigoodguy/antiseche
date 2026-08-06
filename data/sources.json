@@ -23,7 +23,7 @@
         {
           "annee": "2001-2003",
           "titre": "Éclatement de la bulle internet",
-          "commentaire": "La croissance décroche après 2000 (3,9 %), avec un creux à 0,9 % dès 2002 — année que notre grille quinquennale ne montre pas directement, elle ne prend que 2000 et 2005. L'éclatement de la bulle internet aux États-Unis se propage aux économies européennes via l'effondrement des investissements technologiques ; les chercheurs de l'OFCE relèvent aussi un déficit de compétitivité propre à la France sur la période. Corrélation documentée avec le choc technologique mondial ; la part exacte imputable à ce choc plutôt qu'à des facteurs domestiques reste débattue, donc prudence sur la causalité.",
+          "commentaire": "La croissance décroche après 2000 (3,9 %), avec un creux à 0,9 % en 2002, bien visible sur la courbe annuelle. L'éclatement de la bulle internet aux États-Unis se propage aux économies européennes via l'effondrement des investissements technologiques ; les chercheurs de l'OFCE relèvent aussi un déficit de compétitivité propre à la France sur la période. Corrélation documentée avec le choc technologique mondial ; la part exacte imputable à ce choc plutôt qu'à des facteurs domestiques reste débattue, donc prudence sur la causalité.",
           "sources": [
             ["Chauvin, Dupont, Heyer, Plane, Péléraux — France : fin de l'échappée, Revue de l'OFCE n°83, 2002", "https://www.cairn.info/revue-de-l-ofce-2002-4-page-175.htm"]
           ]
@@ -31,7 +31,7 @@
         {
           "annee": "2008-2009",
           "titre": "Crise financière mondiale",
-          "commentaire": "Notre grille (échantillonnée tous les 5 ans) ne montre pas ce creux directement : l'INSEE chiffre le recul du PIB à -2,6 % pour la seule année 2009 (chiffre de l'édition 2010, avant rebasage), après un ralentissement déjà sensible en 2008 (+0,4 % après +2,3 % en 2007). L'INSEE situe elle-même cette récession comme la plus sévère depuis l'après-guerre, plus forte que celle de 1975 (-1,0 %) ou de 1993 (-0,9 %). La chaîne causale (faillite de Lehman Brothers en septembre 2008 → crise du crédit interbancaire → effondrement de l'investissement et du commerce mondial) est bien établie dans la littérature macroéconomique — un des rares cas ici où un langage plus affirmatif est justifié, sans perdre de vue que l'ampleur de chaque canal de transmission reste débattue.",
+          "commentaire": "L'INSEE chiffre le recul du PIB à -2,6 % pour la seule année 2009 (chiffre de l'édition 2010, avant rebasage), après un ralentissement déjà sensible en 2008 (+0,4 % après +2,3 % en 2007) — un creux bien visible sur la courbe annuelle. L'INSEE situe elle-même cette récession comme la plus sévère depuis l'après-guerre, plus forte que celle de 1975 (-1,0 %) ou de 1993 (-0,9 %). La chaîne causale (faillite de Lehman Brothers en septembre 2008 → crise du crédit interbancaire → effondrement de l'investissement et du commerce mondial) est bien établie dans la littérature macroéconomique — un des rares cas ici où un langage plus affirmatif est justifié, sans perdre de vue que l'ampleur de chaque canal de transmission reste débattue.",
           "sources": [
             ["INSEE — L'économie française en 2009 : une récession sans précédent depuis l'après-guerre, éd. 2010", "https://www.insee.fr/fr/statistiques/1372478?sommaire=1372485"]
           ]
@@ -158,7 +158,7 @@
     {
       "lab": "Espérance de vie",
       "fiabilite": "Excellente : deux séries INSEE annuelles complètes (1946-2025) par sexe ; la moyenne affichée est un calcul, pas un chiffre INSEE.",
-      "note": "L'INSEE ne publie aucune série « ensemble » (tous sexes confondus) : uniquement deux séries officielles distinctes, Hommes et Femmes. Ce document affiche donc trois courbes sur cette page : les deux séries INSEE telles quelles (Hommes, Femmes), et une moyenne arithmétique simple (Hommes + Femmes) / 2 — un calcul à une opération, pas une estimation démographique pondérée par les naissances ou la population, pour que la méthode reste vérifiable par n'importe qui en deux additions. C'est cette moyenne, seule, qui alimente le bandeau et le curseur de la frise (une seule courbe y est possible) ; les séries par sexe ne sont visibles que sur cette page.",
+      "note": "L'INSEE ne publie aucune série « ensemble » (tous sexes confondus) : uniquement deux séries officielles distinctes, Hommes et Femmes. La page d'analyse dédiée (/analyse/esperance-de-vie) affiche donc trois courbes : les deux séries INSEE telles quelles (Hommes, Femmes), et une moyenne arithmétique simple (Hommes + Femmes) / 2 — un calcul à une opération, pas une estimation démographique pondérée par les naissances ou la population, pour que la méthode reste vérifiable par n'importe qui en deux additions. C'est cette moyenne, seule, qui alimente le bandeau, le curseur de la frise et le tableau de /sources (une seule série possible à chaque fois) ; les séries par sexe ne sont visibles que sur la page d'analyse dédiée.",
       "sources": [
         ["INSEE — Espérance de vie à la naissance, Hommes, France métropolitaine (série chronologique)", "https://www.insee.fr/fr/statistiques/serie/001686946"],
         ["INSEE — Espérance de vie à la naissance, Femmes, France métropolitaine (série chronologique)", "https://www.insee.fr/fr/statistiques/serie/001686951"]
