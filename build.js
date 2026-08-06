@@ -35,6 +35,9 @@ for (const [lab, spec] of Object.entries(INDICATEURS.indicateurs_specifiques || 
     unit: spec.unit,
     annees: anneesSpec,
     d: anneesSpec.map(a => spec.valeurs[String(a)]),
+    // Séries secondaires optionnelles (issue #13, Espérance de vie) : portées
+    // telles quelles jusqu'à graphiqueKpi, qui sait les tracer en statique.
+    series: spec.series,
   });
 }
 
@@ -59,7 +62,10 @@ const Y0 = 1945, Y1 = 2026;
 const SW = 118, SH = 34;
 // Partagé entre la frise (curseur du bandeau) et /sources (tableaux) :
 // même modèle de données côté client.
-const DONNEES_INDIC_JSON = JSON.stringify({ annees: ANNEES, indicateurs: INDIC });
+// .series (Hommes/Femmes pour Espérance de vie) n'est consommé que côté
+// serveur par graphiqueKpi : runtime.js ne lit que d/annees, pas la peine
+// de l'embarquer dans le JSON envoyé au client sur /frise et /sources.
+const DONNEES_INDIC_JSON = JSON.stringify({ annees: ANNEES, indicateurs: INDIC.map(({ series, ...ind }) => ind) });
 
 function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -278,6 +284,16 @@ function pageSources() {
     const cells = labs.map(l => `<td>${INDICATEURS.annees[String(a)][l]}</td>`).join("");
     return `<tr><td class="annee">${a}</td>${cells}</tr>`;
   }).join("");
+  // Grille quinquennale partagée retirée (issue #13) : les 11 indicateurs ont
+  // désormais chacun leur propre axe annuel. La section ne s'affiche que si
+  // un futur indicateur y revient un jour — vide sinon, plutôt qu'un tableau
+  // fantôme sans colonnes.
+  const sectionDenses = denses.length ? `
+<h2>Indicateurs à grille dense, année par année (1950-2025)</h2>
+<div class="table-scroll"><table class="re-table kpi-table">
+<thead>${thead}</thead>
+<tbody>${tbody}</tbody>
+</table></div>` : "";
 
   const tablesPartiels = partiels.map(ind => `
 <h3>${esc(ind.lab)} (${esc(ind.unit)})</h3>
@@ -327,14 +343,9 @@ ${nav("sources")}
 
 <main id="annexe">
 ${familles}
+${sectionDenses}
 
-<h2>Indicateurs à grille dense, année par année (1950-2025)</h2>
-<div class="table-scroll"><table class="re-table kpi-table">
-<thead>${thead}</thead>
-<tbody>${tbody}</tbody>
-</table></div>
-
-<h2>Indicateurs à couverture partielle</h2>
+<h2>Indicateurs, année par année</h2>
 ${tablesPartiels}
 
 <h2>Sources &amp; fiabilité, KPI par KPI</h2>
@@ -394,11 +405,24 @@ ${nav("analyse")}
 // ajouté côté client par runtime.js à partir des attributs data-* posés ici
 // sur chaque point — pas besoin de réinjecter tout window.__DONNEES_INDIC__
 // pour un graphique à une seule série.
+// Séries secondaires optionnelles (issue #13, Espérance de vie) : jusqu'à 2
+// séries statiques (non survolables, pas de points) tracées en arrière-plan
+// de la série principale interactive — ex. Hommes/Femmes autour de la
+// moyenne. `ind.series` = { "Hommes": {annee: valeur}, "Femmes": {...} },
+// alignées sur le même `ind.annees` que la série principale. Couleurs prises
+// dans la palette existante (gris/vert) pour n'en introduire aucune nouvelle.
+const COULEURS_SERIES_SECONDAIRES = { 1: "var(--gris)", 2: "var(--vert)" };
+
 function graphiqueKpi(ind) {
   const GW = 760, GH = 320, GML = 56, GMR = 24, GMT = 20, GMB = 34;
   const GPW = GW - GML - GMR, GPH = GH - GMT - GMB;
   const anneesInd = ind.annees || ANNEES;
-  const min = Math.min(...ind.d), max = Math.max(...ind.d), pad = (max - min) * 0.1 || 1;
+  const seriesSecondaires = Object.entries(ind.series || {});
+  // Le cadrage vertical doit englober la moyenne ET les séries secondaires,
+  // sinon Hommes/Femmes débordent du graphique dès qu'elles s'écartent de
+  // la moyenne (ce qui est tout leur intérêt).
+  const toutesValeurs = ind.d.concat(seriesSecondaires.flatMap(([, vals]) => anneesInd.map(a => vals[String(a)])));
+  const min = Math.min(...toutesValeurs), max = Math.max(...toutesValeurs), pad = (max - min) * 0.1 || 1;
   const dMin = min - pad, dMax = max + pad;
   const gx = a => GML + ((a - anneesInd[0]) / (anneesInd[anneesInd.length - 1] - anneesInd[0] || 1)) * GPW;
   const gy = v => GMT + GPH - ((v - dMin) / (dMax - dMin)) * GPH;
@@ -414,6 +438,14 @@ function graphiqueKpi(ind) {
   // supposer fixe, pour revenir au bon état après un survol.
   const rPt = anneesInd.length > 30 ? 1.5 : 3;
   const points = anneesInd.map((a, k) => `<circle class="pt" data-annee="${a}" data-valeur="${ind.d[k]}" data-r="${rPt}" cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="${rPt}" fill="#2a78d6"/>`).join("");
+  const lignesSecondaires = seriesSecondaires.map(([, vals], i) => {
+    const p = anneesInd.map(a => `${gx(a).toFixed(1)},${gy(vals[String(a)]).toFixed(1)}`).join(" ");
+    return `<polyline points="${p}" fill="none" stroke="${COULEURS_SERIES_SECONDAIRES[i + 1]}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>`;
+  }).join("");
+  const legende = seriesSecondaires.length ? `<div class="graphique-legende">
+    <span class="legende-item"><span class="legende-puce" style="background:#2a78d6"></span>${esc(ind.lab)} (moyenne)</span>
+    ${seriesSecondaires.map(([nom], i) => `<span class="legende-item"><span class="legende-puce" style="background:${COULEURS_SERIES_SECONDAIRES[i + 1]}"></span>${esc(nom)}</span>`).join("")}
+  </div>` : "";
 
   return `<div class="graphique-carte">
   <div class="graphique-zone">
@@ -422,6 +454,7 @@ function graphiqueKpi(ind) {
       <line x1="${GML}" x2="${GML + GPW}" y1="${GMT + GPH}" y2="${GMT + GPH}" stroke="var(--trait)" stroke-width="1"/>
       ${ticksV}
       <text x="${GML - 8}" y="${GMT - 6}" font-size="9" text-anchor="end" fill="var(--gris)">${esc(ind.unit)}</text>
+      ${lignesSecondaires}
       <polyline points="${pts}" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
       ${points}
       <line id="graphique-crosshair" x1="0" x2="0" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--rouge)" stroke-width="1" visibility="hidden"/>
@@ -429,6 +462,7 @@ function graphiqueKpi(ind) {
     </svg>
     <div id="graphique-tooltip" class="graphique-tooltip" hidden></div>
   </div>
+  ${legende}
 </div>`;
 }
 

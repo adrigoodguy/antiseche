@@ -157,10 +157,11 @@
     },
     {
       "lab": "Espérance de vie",
-      "fiabilite": "Bonne, avec une précision méthodologique importante.",
-      "note": "L'INSEE ne publie jamais de chiffre « ensemble » (tous sexes confondus) : uniquement des séries séparées Femmes et Hommes. La valeur retenue dans ce document est donc une estimation pondérée (méthode démographique standard), pas un chiffre INSEE directement cité — la donnée sous-jacente par sexe, elle, est de haute fiabilité. La valeur 2015 a été recalée : c'est une année de surmortalité documentée (grippe, canicule), un creux réel et non un pic.",
+      "fiabilite": "Excellente : deux séries INSEE annuelles complètes (1946-2025) par sexe ; la moyenne affichée est un calcul, pas un chiffre INSEE.",
+      "note": "L'INSEE ne publie aucune série « ensemble » (tous sexes confondus) : uniquement deux séries officielles distinctes, Hommes et Femmes. Ce document affiche donc trois courbes sur cette page : les deux séries INSEE telles quelles (Hommes, Femmes), et une moyenne arithmétique simple (Hommes + Femmes) / 2 — un calcul à une opération, pas une estimation démographique pondérée par les naissances ou la population, pour que la méthode reste vérifiable par n'importe qui en deux additions. C'est cette moyenne, seule, qui alimente le bandeau et le curseur de la frise (une seule courbe y est possible) ; les séries par sexe ne sont visibles que sur cette page.",
       "sources": [
-        ["INSEE — Décès, mortalité, espérance de vie, séries longues", "https://www.insee.fr/fr/statistiques/8999019"]
+        ["INSEE — Espérance de vie à la naissance, Hommes, France métropolitaine (série chronologique)", "https://www.insee.fr/fr/statistiques/serie/001686946"],
+        ["INSEE — Espérance de vie à la naissance, Femmes, France métropolitaine (série chronologique)", "https://www.insee.fr/fr/statistiques/serie/001686951"]
       ]
     },
     {

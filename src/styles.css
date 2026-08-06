@@ -168,6 +168,11 @@
   .graphique-zone svg{display:block;width:100%;height:auto}
   #graphique-survol{cursor:crosshair}
   .graphique-tooltip{position:absolute;pointer-events:none;background:var(--encre);color:#fff;font-size:var(--tx-label);padding:.5em .7em;border-radius:var(--radius-carte);box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;white-space:nowrap}
+  /* Légende des séries secondaires statiques (issue #13, ex. Espérance de
+     vie Hommes/Femmes autour de la moyenne interactive). */
+  .graphique-legende{display:flex;flex-wrap:wrap;gap:var(--sp-4);margin-top:var(--sp-3);font-size:var(--tx-label);color:var(--gris)}
+  .legende-item{display:inline-flex;align-items:center;gap:.4em}
+  .legende-puce{width:.7em;height:.7em;border-radius:50%;display:inline-block}
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}
