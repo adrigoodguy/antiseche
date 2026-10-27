@@ -7,7 +7,7 @@ avec le recul. Chaque période est replacée dans son contexte international et
 chiffré, parce qu'un gouvernement hérite d'une conjoncture, il ne la crée pas
 entièrement.
 
-Site : https://antiseche.org _(à venir)_
+Site : https://antiseche.org
 
 <!-- Capture d'écran : vue d'ensemble de la page (hero + bandeau d'indicateurs) -->
 <!-- ![Vue d'ensemble](docs/screenshot-hero.png) -->
@@ -76,11 +76,19 @@ de fiabilité, sources primaires).
 
 ### Déploiement
 
-Le déploiement sur GitHub Pages est automatisé par
-`.github/workflows/deploy.yml` : chaque push sur `main` regénère le site et le
-publie via `actions/upload-pages-artifact` + `actions/deploy-pages` (pas de
-branche `gh-pages`). Le domaine personnalisé `antiseche.org` est configuré
-dans les Settings du dépôt (Pages), indépendamment du code.
+Le site est hébergé sur un VPS OVH, servi par Caddy (HTTPS Let's Encrypt
+automatique, `www.antiseche.org` redirigé vers `antiseche.org`). Le domaine et
+sa zone DNS sont également chez OVH.
+
+Le déploiement se fait par récupération côté serveur : un timer systemd
+(`antiseche-deploy.timer`) vérifie toutes les 5 minutes si `main` a avancé sur
+GitHub ; si oui, le script `/usr/local/bin/antiseche-deploy` met à jour le clone
+`/srv/antiseche/repo`, lance `node build.js` et synchronise `dist/` vers
+`/var/www/antiseche`. Un commit poussé (ou une PR fusionnée) est donc en ligne
+en 5 minutes au plus, sans secret ni clé du serveur stockés côté GitHub.
+
+- Forcer un redéploiement : `sudo -u antiseche /usr/local/bin/antiseche-deploy --force`
+- Consulter les déploiements : `journalctl -u antiseche-deploy`
 
 ## Commentaires et corrections
 
