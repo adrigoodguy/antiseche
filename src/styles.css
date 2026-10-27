@@ -206,6 +206,8 @@
   .programme-item a b{text-decoration:underline}
   .references li{margin-bottom:var(--sp-2);font-size:var(--tx-sm)}
   .references a{word-break:break-all}
+  .avert.relecture{border-color:var(--bleu)}
+  .avert.relecture b{color:var(--bleu)}
   .note-themes{font-size:var(--tx-sm);color:var(--gris);margin-top:var(--sp-3);max-width:58em}
 
   /* ---------- Index /analyse (issue #9) ---------- */

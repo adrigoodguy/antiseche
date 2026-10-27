@@ -496,7 +496,7 @@ function pageProgrammesIndex() {
 <li class="analyse-item programme-item">
   <a href="/programmes/${c.id}"><b>${esc(c.nom)}</b> <span class="unit">— ${esc(c.parti)}</span></a>
   <span class="score">${pct(c.score)}${exAequo(c) ? ' <span class="ex-aequo">ex æquo</span>' : ""}</span>
-  <p>${c.scenario ? `Scénario ${esc(c.scenario)} · ` : ""}${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}</p>
+  <p>${c.scenario ? `Scénario ${esc(c.scenario)} · ` : ""}${c.relecture ? "En relecture · " : ""}${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}</p>
 </li>`;
   const autres = AUTRE_SCENARIO.length ? `
 <h3>Testées dans un autre scénario du même sondage</h3>
@@ -584,6 +584,7 @@ ${nav("programmes")}
 
 <main id="annexe">
 <h2>Éléments clés du programme</h2>
+${c.relecture ? `<div class="avert relecture"><b>Fiche en cours de relecture</b> — premier relevé, pas encore validé : les engagements et leurs sources peuvent encore être corrigés.</div>` : ""}
 ${c.note ? `<div class="avert"><b>Sources</b> — ${esc(c.note)}</div>` : ""}
 ${tableau}
 <h3>Règles de lecture</h3>
