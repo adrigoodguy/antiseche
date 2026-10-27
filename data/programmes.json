@@ -7,7 +7,7 @@
     "echantillon": "1 500 inscrits sur les listes électorales (1 057 exprimés certains d'aller voter)",
     "hypothese": "Hypothèse « Gabriel Attal et Édouard Philippe »",
     "notice": "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10338-pres-iv-ipsos-bva-le-parisien-24-octobre.pdf",
-    "regle": "Dernier sondage publié dont un scénario teste l'ensemble des principales candidatures déclarées. Les écarts de moins de 2 à 3 points sont dans la marge d'erreur."
+    "regle": "Dernier sondage publié ; le classement suit le scénario qui teste le plus de candidatures déclarées. Une candidature déclarée absente de ce scénario figure à part, avec son score dans un autre scénario du même sondage. Les écarts de moins de 2 à 3 points sont dans la marge d'erreur."
   },
   "themes": [
     {"nom": "Pouvoir d'achat & salaires", "cap": "1 Macroéconomie (prix) · 5 Travail (salaires)"},
@@ -71,6 +71,9 @@
     {"id": "nicolas-dupont-aignan", "nom": "Nicolas Dupont-Aignan", "parti": "Debout la France", "score": 1.5,
      "site": "https://www.debout-la-france.fr/", "wiki": "https://fr.wikipedia.org/wiki/Nicolas_Dupont-Aignan", "programme": null, "mesures": []},
     {"id": "nathalie-arthaud", "nom": "Nathalie Arthaud", "parti": "Lutte ouvrière", "score": 0.5,
-     "site": "https://www.lutte-ouvriere.org/", "wiki": "https://fr.wikipedia.org/wiki/Nathalie_Arthaud", "programme": null, "mesures": []}
+     "site": "https://www.lutte-ouvriere.org/", "wiki": "https://fr.wikipedia.org/wiki/Nathalie_Arthaud", "programme": null, "mesures": []},
+    {"id": "david-lisnard", "nom": "David Lisnard", "parti": "Nouvelle Énergie", "score": 6.5,
+     "scenario": "« Édouard Philippe et David Lisnard », sans Gabriel Attal",
+     "site": "https://www.unenouvelleenergie.fr/", "wiki": "https://fr.wikipedia.org/wiki/David_Lisnard", "programme": null, "mesures": []}
   ]
 }

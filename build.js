@@ -444,7 +444,9 @@ const THEMES = PROGRAMMES.themes.map(t => t.nom);
   }
 }
 const pct = v => `${String(v).replace(".", ",")}&nbsp;%`;
-const exAequo = c => CANDIDATS.filter(x => x.score === c.score).length > 1;
+// Candidatures déclarées absentes du scénario de référence : listées à part, avec le score d'un autre scénario.
+const CLASSEES = CANDIDATS.filter(c => !c.scenario), AUTRE_SCENARIO = CANDIDATS.filter(c => c.scenario);
+const exAequo = c => !c.scenario && CLASSEES.filter(x => x.score === c.score).length > 1;
 
 const REGLES_PROGRAMMES = `<ul>
 <li>Seuls figurent les <b>engagements vérifiables</b> : une action précise ou un résultat mesurable, dont on pourra dire après coup s'il a été tenu. Les déclarations d'intention générales (« redonner confiance », « une école plus juste ») ne sont pas retenues.</li>
@@ -490,12 +492,15 @@ function encadreSondage() {
 }
 
 function pageProgrammesIndex() {
-  const items = CANDIDATS.map(c => `
+  const item = c => `
 <li class="analyse-item programme-item">
   <a href="/programmes/${c.id}"><b>${esc(c.nom)}</b> <span class="unit">— ${esc(c.parti)}</span></a>
   <span class="score">${pct(c.score)}${exAequo(c) ? ' <span class="ex-aequo">ex æquo</span>' : ""}</span>
-  <p>${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}</p>
-</li>`).join("");
+  <p>${c.scenario ? `Scénario ${esc(c.scenario)} · ` : ""}${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}</p>
+</li>`;
+  const autres = AUTRE_SCENARIO.length ? `
+<h3>Testées dans un autre scénario du même sondage</h3>
+<ul class="analyse-liste">${AUTRE_SCENARIO.map(item).join("")}</ul>` : "";
 
   return `<!DOCTYPE html>
 <html lang="fr">
@@ -516,7 +521,8 @@ ${nav("programmes")}
 
 <main id="annexe">
 ${encadreSondage()}
-<ul class="analyse-liste">${items}</ul>
+<ul class="analyse-liste">${CLASSEES.map(item).join("")}</ul>
+${autres}
 <h3>Règles de lecture</h3>
 ${REGLES_PROGRAMMES}
 ${sectionMethode()}
@@ -572,7 +578,7 @@ ${nav("programmes")}
     <a class="cta" href="${c.site}" target="_blank" rel="noopener">Site du parti ↗</a>
     <a class="cta" href="${encodeURI(c.wiki)}" target="_blank" rel="noopener">Page Wikipédia ↗</a>
   </div>
-  <p class="standfirst">Intentions de vote : <b>${pct(c.score)}</b>${exAequo(c) ? " (ex æquo)" : ""} — ${esc(s.institut)} pour ${esc(s.commanditaire)}, ${esc(s.terrain)}.${c.programme ? ` Programme de référence : <a href="${c.programme.url}" target="_blank" rel="noopener">${esc(c.programme.titre)} ↗</a> (${esc(c.programme.date)}).` : ""}</p>
+  <p class="standfirst">Intentions de vote : <b>${pct(c.score)}</b>${exAequo(c) ? " (ex æquo)" : ""}${c.scenario ? ` dans le scénario ${esc(c.scenario)}` : ""} — ${esc(s.institut)} pour ${esc(s.commanditaire)}, ${esc(s.terrain)}.${c.programme ? ` Programme de référence : <a href="${c.programme.url}" target="_blank" rel="noopener">${esc(c.programme.titre)} ↗</a> (${esc(c.programme.date)}).` : ""}</p>
   <p class="standfirst"><a href="/programmes">← Toutes les candidatures</a></p>
 </header>
 
