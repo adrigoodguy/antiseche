@@ -578,6 +578,7 @@ ${nav("programmes")}
 
 <main id="annexe">
 <h2>Éléments clés du programme</h2>
+${c.note ? `<div class="avert"><b>Sources</b> — ${esc(c.note)}</div>` : ""}
 ${tableau}
 <h3>Règles de lecture</h3>
 ${REGLES_PROGRAMMES}

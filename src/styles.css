@@ -196,8 +196,10 @@
   .programme-item p{grid-column:1 / -1}
   .programme-item .score{font-family:var(--mono);font-size:var(--tx-sm);font-variant-numeric:tabular-nums;white-space:nowrap}
   .ex-aequo{font-size:var(--tx-micro);color:var(--gris);letter-spacing:.05em}
-  .programme-table th[scope=row]{font-family:var(--corps);font-size:var(--tx-sm);letter-spacing:0;text-transform:none;background:var(--papier-2);white-space:nowrap}
-  .programme-table td:nth-child(3),.programme-table td:nth-child(4){white-space:nowrap}
+  .programme-table th[scope=row]{font-family:var(--corps);font-size:var(--tx-sm);letter-spacing:0;text-transform:none;background:var(--papier-2)}
+  .programme-table{table-layout:fixed;min-width:44rem}
+  .programme-table thead th:nth-child(1){width:13%} .programme-table thead th:nth-child(2){width:37%}
+  .programme-table thead th:nth-child(3){width:16%} .programme-table thead th:nth-child(4){width:17%} .programme-table thead th:nth-child(5){width:17%}
   .programme-table .date{color:var(--gris);font-size:var(--tx-label)}
   .cta-groupe.liens-candidat{justify-content:flex-start;margin-top:var(--sp-4);margin-bottom:var(--sp-3)}
   .programme-item a{text-decoration:none}
