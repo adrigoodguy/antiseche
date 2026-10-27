@@ -214,3 +214,55 @@ document.querySelectorAll(".commentaires").forEach(zone => {
 
 /* --- Ouvrir la carte ciblée par l'URL --- */
 if (location.hash) { const el = document.querySelector(location.hash); if (el && el.tagName === "DETAILS") { el.open = true; el.scrollIntoView() } }
+
+/* --- Glossaire (issue #15) : bulle de définition sur les termes soulignés --- */
+// Sans JS, le lien mène à /glossaire#terme ; avec, on reste sur la frise.
+const GLOSSAIRE = window.__GLOSSAIRE__ || {};
+let bulle = null, bulleSource = null;
+function fermerBulle(rendreFocus) {
+  if (!bulle) return;
+  bulle.remove(); bulle = null;
+  if (rendreFocus) bulleSource?.focus();
+  bulleSource?.setAttribute("aria-expanded", "false");
+  bulleSource = null;
+}
+function ouvrirBulle(lien) {
+  const g = GLOSSAIRE[lien.dataset.glo];
+  if (!g) return false;
+  fermerBulle(false);
+  bulle = document.createElement("div");
+  bulle.className = "glo-bulle";
+  bulle.id = "glo-bulle";
+  bulle.setAttribute("role", "dialog");
+  bulle.setAttribute("aria-label", g.terme);
+  const titre = document.createElement("b"); titre.textContent = g.terme;
+  const def = document.createElement("p"); def.textContent = g.def;
+  const liens = document.createElement("p"); liens.className = "glo-liens";
+  g.src.forEach(([label, url]) => {
+    const a = document.createElement("a"); a.href = url; a.target = "_blank"; a.rel = "noopener"; a.textContent = label + " ↗";
+    liens.append(a, " ");
+  });
+  const tout = document.createElement("a"); tout.href = "/glossaire#" + lien.dataset.glo; tout.textContent = "Tout le glossaire →";
+  liens.append(tout);
+  bulle.append(titre, def, liens);
+  document.body.append(bulle);
+  // sous le terme, recadrée dans la largeur de l'écran
+  const r = lien.getBoundingClientRect(), w = bulle.offsetWidth;
+  bulle.style.left = Math.max(8, Math.min(window.innerWidth - w - 8, r.left)) + window.scrollX + "px";
+  bulle.style.top = r.bottom + window.scrollY + 6 + "px";
+  bulleSource = lien;
+  lien.setAttribute("aria-expanded", "true");
+  lien.setAttribute("aria-controls", "glo-bulle");
+  return true;
+}
+document.addEventListener("click", e => {
+  const lien = e.target.closest("a.glo[data-glo]");
+  if (lien) {
+    if (bulleSource === lien) { e.preventDefault(); fermerBulle(false); return; }
+    if (ouvrirBulle(lien)) e.preventDefault();
+    return;
+  }
+  if (bulle && !bulle.contains(e.target)) fermerBulle(false);
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") fermerBulle(true); });
+window.addEventListener("resize", () => fermerBulle(false));

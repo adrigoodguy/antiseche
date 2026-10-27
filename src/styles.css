@@ -174,6 +174,20 @@
   .legende-item{display:inline-flex;align-items:center;gap:.4em}
   .legende-puce{width:.7em;height:.7em;border-radius:50%;display:inline-block}
 
+  /* ---------- Glossaire (issue #15) ---------- */
+  .glo{color:inherit;text-decoration:underline dotted;text-decoration-color:var(--bleu);text-decoration-thickness:1.5px;text-underline-offset:.2em;cursor:help}
+  .glo:hover{color:var(--bleu)}
+  .hero .legende-note{margin-top:var(--sp-2);font-size:var(--tx-label);color:var(--gris);max-width:58em}
+  .glo-bulle{position:absolute;z-index:70;max-width:min(26rem,calc(100vw - 16px));background:#fff;border:1px solid var(--trait);border-left:4px solid var(--bleu);box-shadow:0 6px 20px rgba(24,35,56,.14);padding:var(--sp-3) var(--sp-4);font-size:var(--tx-sm);line-height:1.5}
+  .glo-bulle b{display:block;font-family:var(--display);font-size:var(--tx-lead);margin-bottom:var(--sp-1)}
+  .glo-bulle .glo-liens{margin-top:var(--sp-2);font-size:var(--tx-label);display:flex;flex-wrap:wrap;gap:var(--sp-1) var(--sp-3)}
+  .glossaire{max-width:46em}
+  .glo-entree{padding:var(--sp-4) 0;border-bottom:1px solid var(--trait);scroll-margin-top:var(--sp-6)}
+  .glo-entree:target{background:var(--papier-2);box-shadow:-12px 0 0 var(--papier-2),12px 0 0 var(--papier-2)}
+  .glo-entree dt{font-family:var(--display);font-size:1.25rem;margin-bottom:var(--sp-1)}
+  .glo-entree dd{margin:0}
+  .glo-entree .src{margin-top:var(--sp-2);font-size:var(--tx-label)}
+
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}
   .analyse-item{padding:var(--sp-3);border-bottom:1px solid var(--trait);transition:background-color var(--transition), box-shadow var(--transition)}

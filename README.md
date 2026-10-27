@@ -33,6 +33,9 @@ data/                  contenu éditorial, en JSON
   ecartees.json           réformes écartées, candidates à réintégration
   sources.json            fact-checking des indicateurs (fiabilité, sources
                           INSEE/INED) affiché sur la page /sources
+  glossaire.json          définitions courtes des termes techniques, page
+                          /glossaire ; dans les textes, un terme se balise
+                          [[texte affiché|id]] (bulle de définition sur la frise)
 
 src/
   styles.css              feuille de style (design du document)
@@ -50,6 +53,8 @@ build.js                script de build : lit /data, génère dist/ en pages
                                          /analyse/{slug}
                           /sources       fact-checking des indicateurs,
                                          accessible en pied de page
+                          /glossaire     termes techniques, accessible en
+                                         pied de page et depuis les textes
 ```
 
 Le build ne dépend d'aucun outil externe (pas de Vite, pas de bundler) : c'est

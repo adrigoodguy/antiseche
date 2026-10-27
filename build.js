@@ -15,6 +15,8 @@ const PERIODES = JSON.parse(fs.readFileSync(path.join(DATA, "periodes.json"), "u
 const CRITERES = JSON.parse(fs.readFileSync(path.join(DATA, "criteres.json"), "utf8"));
 const ECARTEES = JSON.parse(fs.readFileSync(path.join(DATA, "ecartees.json"), "utf8"));
 const SOURCES = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf8"));
+const GLOSSAIRE = JSON.parse(fs.readFileSync(path.join(DATA, "glossaire.json"), "utf8"));
+const GLOSSAIRE_PAR_ID = new Map(GLOSSAIRE.map(g => [g.id, g]));
 
 // indicateurs.json est indexé par année (une clé par année, un sous-objet par KPI)
 // pour rester facile à relire/vérifier ; on le remet ici sous la forme
@@ -71,6 +73,17 @@ function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+// Termes techniques (issue #15) : balisés à la main dans les textes sous la
+// forme [[texte affiché|id]], plutôt que repérés automatiquement (pas de faux
+// positifs). Le lien mène à /glossaire ; sur la frise, runtime.js l'ouvre en
+// bulle de définition sans quitter la page.
+function glose(html) {
+  return html.replace(/\[\[([^|\]]+)\|([a-z0-9-]+)\]\]/g, (_, texte, id) => {
+    if (!GLOSSAIRE_PAR_ID.has(id)) throw new Error(`Terme de glossaire inconnu : [[${texte}|${id}]] (data/glossaire.json)`);
+    return `<a class="glo" href="/glossaire#${id}" data-glo="${id}">${texte}</a>`;
+  });
+}
+
 // Navigation commune (issue #9) : Accueil / Frise / Analyse / Sources.
 function nav(actif) {
   const item = (href, label, id) => `<a href="${href}"${id === actif ? ' aria-current="page"' : ""}>${label}</a>`;
@@ -83,7 +96,7 @@ function nav(actif) {
 }
 
 function piedSources(extra) {
-  return `${extra ? `${extra} ` : ""}<a href="/sources">Sources &amp; fiabilité des indicateurs →</a>`;
+  return `${extra ? `${extra} ` : ""}<a href="/sources">Sources &amp; fiabilité des indicateurs →</a> · <a href="/glossaire">Glossaire →</a>`;
 }
 
 /* --- Bandeau sparklines --- */
@@ -135,9 +148,9 @@ function carteReforme(r, pid) {
   return `<details class="reforme" id="${terme}">
   <summary><span class="fleche">›</span><span class="annee">${r.an}</span><span class="titre">${esc(r.t)}</span>${badges[r.b]}<span class="resume">${esc(r.res)}</span></summary>
   <div class="colonnes">
-    <div class="col promesse"><h4>Promesse / objectif d'époque</h4><p>${r.pro}</p></div>
-    <div class="col debat"><h4>Débat contemporain</h4><p>${r.deb}</p></div>
-    <div class="col bilan"><h4>Bilan factuel, avec le recul</h4><p>${r.bil}</p></div>
+    <div class="col promesse"><h4>Promesse / objectif d'époque</h4><p>${glose(r.pro)}</p></div>
+    <div class="col debat"><h4>Débat contemporain</h4><p>${glose(r.deb)}</p></div>
+    <div class="col bilan"><h4>Bilan factuel, avec le recul</h4><p>${glose(r.bil)}</p></div>
   </div>
   <div class="pied"><a class="lien-ancre" href="#${terme}" title="Lien direct vers cette réforme">#lien</a><span class="src">${srcs}</span></div>
   <div class="commentaires" data-terme="${terme}">
@@ -155,9 +168,9 @@ function sectionPeriode(p) {
   <div class="quand">${p.years}</div>
   <h2>${esc(p.titre)}</h2>
   <div class="regime">${esc(p.regime)}</div>
-  <div class="contexte"><h3>Le monde à ce moment-là</h3><p>${p.ambiance}</p>
+  <div class="contexte"><h3>Le monde à ce moment-là</h3><p>${glose(p.ambiance)}</p>
   <div class="chiffres">${p.chips.map(c => `<span class="chip">${c[0]} : <b>${c[1]}</b></span>`).join("")}</div>
-  <div class="europe"><h4>Repères européens</h4><ul>${p.europe.map(e => `<li>${e}</li>`).join("")}</ul></div></div>
+  <div class="europe"><h4>Repères européens</h4><ul>${p.europe.map(e => `<li>${glose(e)}</li>`).join("")}</ul></div></div>
   ${p.reformes.map(r => carteReforme(r, p.id)).join("")}
 </section>`;
 }
@@ -176,7 +189,8 @@ function annexe() {
 <ul>
 <li><b>v1 (ce document)</b> : liens « points d'entrée » — notices Vie-publique.fr, Wikipédia, institutions d'évaluation (France Stratégie, Cour des comptes, COR, DARES, DREES, CEVIPOF).</li>
 <li><b>v2 (objectif)</b> : chaque affirmation chiffrée liée à sa source primaire (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du discours d'époque).</li>
-<li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires.</li>
+<li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires. Elles décrivent l'état des évaluations et du débat, pas l'opinion du site : « Consensus » signifie que les évaluations convergent ou, pour une réforme de société, que plus aucun grand parti ne la remet en cause — pas qu'elle a toujours été majoritaire dans l'opinion.</li>
+<li><b>Glossaire</b> : définitions courtes des termes techniques (stagflation, Bretton Woods, politique de l'offre…), avec une source pour approfondir — <a href="/glossaire">antiseche.org/glossaire</a>.</li>
 <li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="/sources">antiseche.org/sources</a>.</li>
 </ul>
 <h3>Discussion générale</h3>
@@ -208,10 +222,11 @@ ${nav("frise")}
   <h1>Socle commun<br><span class="annees">1944 → 2026</span></h1>
   <p class="standfirst">Quatre-vingts ans de réformes françaises, présentées de la même façon&nbsp;: ce qui était promis à l'époque, ce qui en était débattu, ce qu'on peut en dire factuellement avec le recul. Chaque période est replacée dans son contexte international et chiffré — parce qu'un gouvernement hérite d'une conjoncture, il ne la crée pas entièrement. Objectif&nbsp;: une clé de lecture partagée du passé, avant de juger les promesses de demain.</p>
   <div class="legende">
-    <span class="badge consensus">Consensus</span><span>bilan largement partagé par les évaluations</span>
+    <span class="badge consensus">Consensus</span><span>bilan largement partagé : les évaluations convergent, ou plus aucun grand parti ne remet la réforme en cause</span>
     <span class="badge debattu">Débattu</span><span>effets encore discutés</span>
     <span class="badge echec">Retrait / échec</span><span>réforme abandonnée ou censurée</span>
   </div>
+  <p class="legende-note">Ces mentions décrivent l'état des évaluations et du débat, pas la position du site. Les termes <a class="glo" href="/glossaire">soulignés en pointillé</a> renvoient à une définition courte.</p>
 </header>
 
 <div id="bandeau" aria-label="Indicateurs France 1945–2026, le curseur suit votre lecture">
@@ -230,7 +245,7 @@ ${nav("frise")}
   <p class="pied-sources">${piedSources()}</p>
 </footer>
 
-<script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};</script>
+<script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};window.__GLOSSAIRE__=${JSON.stringify(Object.fromEntries(GLOSSAIRE.map(g => [g.id, g]))).replace(/</g, "\\u003c")};</script>
 <script src="/runtime.js"></script>
 </body>
 </html>
@@ -354,6 +369,48 @@ ${kpiNotes}
 
 <footer>
   Document ouvert aux commentaires et aux corrections — voir <a href="/frise#annexe-conteneur">l'annexe de la frise</a> pour la méthode générale du projet.
+</footer>
+
+</body>
+</html>
+`;
+}
+
+/* --- Page « Glossaire » (issue #15) : les termes techniques des textes, une ancre par terme --- */
+function pageGlossaire() {
+  const termes = [...GLOSSAIRE].sort((a, b) => a.terme.localeCompare(b.terme, "fr"));
+  const entrees = termes.map(g => `
+<div class="glo-entree" id="${g.id}">
+  <dt>${esc(g.terme)}</dt>
+  <dd><p>${esc(g.def)}</p>
+  <p class="src">${g.src.map(s => `<a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a>`).join(" ")}</p></dd>
+</div>`).join("");
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossaire · Socle commun</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("glossaire")}
+
+<header class="hero hero-large">
+  <h1>Glossaire</h1>
+  <p class="standfirst">Les termes techniques employés dans la frise, en quelques lignes chacun, avec une source pour approfondir. Des définitions volontairement courtes : un point d'entrée, pas un cours d'économie.</p>
+  <p class="standfirst"><a href="/frise">← Retour à la frise</a></p>
+</header>
+
+<main id="annexe">
+<dl class="glossaire">${entrees}</dl>
+</main>
+
+<footer>
+  Un terme manque ou une définition vous semble inexacte ? Proposez une correction sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">GitHub</a> (fichier <code>data/glossaire.json</code>).
+  <p class="pied-sources">${piedSources()}</p>
 </footer>
 
 </body>
@@ -596,6 +653,10 @@ ${note ? '<script src="/runtime.js"></script>' : ""}
 }
 
 function ecrire(fichier, html) {
+  // Une balise de glossaire mal formée ([[texte]] sans id, id en majuscules...) ne doit pas finir en ligne.
+  // (Les guillemets sont exclus : le JSON embarqué contient des [["…", "…"]] légitimes.)
+  const reste = html.match(/\[\[[^\]"<>]*\]\]/);
+  if (reste) throw new Error(`Balise de glossaire non convertie dans ${fichier} : ${reste[0]}`);
   const dest = path.join(DIST, fichier);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.writeFileSync(dest, html);
@@ -609,6 +670,7 @@ function build() {
   ecrire("analyse/index.html", pageAnalyseIndex());
   INDIC.forEach(ind => ecrire(`analyse/${ind.slug}/index.html`, pageAnalyseKpi(ind)));
   ecrire("sources/index.html", pageSources());
+  ecrire("glossaire/index.html", pageGlossaire());
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
   console.log("Build OK → dist/");

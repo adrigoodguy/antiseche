@@ -6,7 +6,7 @@
     "end": 1946,
     "titre": "Gouvernement provisoire",
     "regime": "GPRF — de Gaulle, puis tripartisme (PCF, SFIO, MRP)",
-    "ambiance": "Monde en ruines. Accords de Bretton Woods (1944), création de l'ONU, début de guerre froide. La France applique le programme du Conseil national de la Résistance dans un pays rationné, au PIB effondré — et en plein baby-boom.",
+    "ambiance": "Monde en ruines. [[Accords de Bretton Woods|bretton-woods]] (1944), création de l'ONU, début de guerre froide. La France applique le programme du Conseil national de la Résistance dans un pays rationné, au PIB effondré — et en plein baby-boom.",
     "chips": [
       [
         "PIB",
@@ -98,7 +98,7 @@
     "end": 1958,
     "titre": "IVe République",
     "regime": "Régime parlementaire — 24 gouvernements en 12 ans",
-    "ambiance": "Guerre froide chaude (Corée, Budapest, Suez), plan Marshall, décolonisation mondiale. Croissance forte dans tout l'Ouest. La France se modernise à grande vitesse mais s'enlise en Indochine puis en Algérie.",
+    "ambiance": "Guerre froide chaude (Corée, Budapest, Suez), [[plan Marshall|plan-marshall]], décolonisation mondiale. Croissance forte dans tout l'Ouest. La France se modernise à grande vitesse mais s'enlise en Indochine puis en Algérie.",
     "chips": [
       [
         "Croissance",
@@ -215,7 +215,7 @@
     "end": 1969,
     "titre": "De Gaulle",
     "regime": "Ve République — Debré, Pompidou, Couve de Murville",
-    "ambiance": "Apogée des Trente Glorieuses en Europe et au Japon. Mur de Berlin (1961), crise de Cuba (1962), décolonisation africaine. La France connaît une croissance et un plein emploi jamais retrouvés depuis.",
+    "ambiance": "Apogée des [[Trente Glorieuses|trente-glorieuses]] en Europe et au Japon. Mur de Berlin (1961), crise de Cuba (1962), décolonisation africaine. La France connaît une croissance et un plein emploi jamais retrouvés depuis.",
     "chips": [
       [
         "Croissance",
@@ -336,7 +336,7 @@
     "end": 1974,
     "titre": "Pompidou",
     "regime": "Chaban-Delmas (« Nouvelle société ») puis Messmer",
-    "ambiance": "Fin du système de Bretton Woods (1971), détente Est-Ouest, premier choc pétrolier (1973) qui referme les Trente Glorieuses. En France, l'après-68 pousse à moderniser le social sans rupture.",
+    "ambiance": "Fin du [[système de Bretton Woods|bretton-woods]] (1971), détente Est-Ouest, [[premier choc pétrolier|chocs-petroliers]] (1973) qui referme les Trente Glorieuses. En France, l'après-68 pousse à moderniser le social sans rupture.",
     "chips": [
       [
         "Croissance",
@@ -360,7 +360,7 @@
       ]
     ],
     "europe": [
-      "1972 — « Serpent monétaire européen » : premier mécanisme de change commun après la fin de Bretton Woods.",
+      "1972 — « [[Serpent monétaire européen|serpent-monetaire]] » : premier mécanisme de change commun après la fin de Bretton Woods.",
       "1973 — Premier élargissement de la CEE (Royaume-Uni, Irlande, Danemark) : Communauté à neuf."
     ],
     "reformes": [
@@ -433,7 +433,7 @@
     "end": 1981,
     "titre": "Giscard d'Estaing",
     "regime": "Chirac puis Barre — « société libérale avancée »",
-    "ambiance": "Stagflation mondiale, deuxième choc pétrolier (1979), tournants Thatcher (1979) et Reagan (1980). La croissance française est divisée par deux, le chômage de masse s'installe — durablement.",
+    "ambiance": "[[Stagflation|stagflation]] mondiale, [[deuxième choc pétrolier|chocs-petroliers]] (1979), [[tournants Thatcher (1979) et Reagan (1980)|tournant-liberal]]. La croissance française est divisée par deux, le chômage de masse s'installe — durablement.",
     "chips": [
       [
         "Croissance",
@@ -528,7 +528,7 @@
         "b": "debattu",
         "res": "Blocage temporaire des prix, rigueur monétaire et budgétaire, vérité des prix industriels.",
         "pro": "« Casser l'inflation » sans casser la croissance, rétablir les équilibres après le choc pétrolier.",
-        "deb": "Austérité socialement aveugle pour la gauche ; trop timide pour les monétaristes.",
+        "deb": "[[Austérité|austerite]] socialement aveugle pour la gauche ; trop timide pour les [[monétaristes|monetarisme]].",
         "bil": "Échec relatif au regard des objectifs : l'inflation reste > 10 % et le chômage triple. Le contexte (2e choc pétrolier) explique beaucoup — cas d'école pour distinguer politique et conjoncture.",
         "src": [
           [
@@ -550,7 +550,7 @@
     "end": 1995,
     "titre": "Mitterrand",
     "regime": "Mauroy, Fabius, cohabitation Chirac, Rocard, Cresson, Bérégovoy, cohabitation Balladur",
-    "ambiance": "Désinflation mondiale, chute du Mur (1989), fin de l'URSS, accélération de la mondialisation (OMC 1995), traité de Maastricht. La France casse l'inflation mais installe un chômage de masse à deux chiffres et voit sa dette décoller.",
+    "ambiance": "[[Désinflation|desinflation]] mondiale, chute du Mur (1989), fin de l'URSS, accélération de la mondialisation ([[OMC|omc]] 1995), traité de Maastricht. La France casse l'inflation mais installe un chômage de masse à deux chiffres et voit sa dette décoller.",
     "chips": [
       [
         "Inflation",
@@ -767,7 +767,7 @@
     "end": 2007,
     "titre": "Chirac",
     "regime": "Juppé, cohabitation Jospin (1997-2002), Raffarin, Villepin",
-    "ambiance": "Internet, entrée de la Chine dans l'OMC (2001), 11 septembre, passage à l'euro. Croissance mondiale forte tirée par les émergents ; désindustrialisation française qui s'accélère.",
+    "ambiance": "Internet, entrée de la Chine dans l'OMC (2001), 11 septembre, passage à l'euro. Croissance mondiale forte tirée par les émergents ; [[désindustrialisation|desindustrialisation]] française qui s'accélère.",
     "chips": [
       [
         "Croissance",
@@ -846,9 +846,9 @@
         "t": "Passage à l'euro",
         "b": "debattu",
         "res": "Monnaie unique scripturale en 1999, fiduciaire en 2002.",
-        "pro": "Stabilité, fin des dévaluations compétitives, puissance monétaire européenne face au dollar.",
+        "pro": "Stabilité, fin des [[dévaluations compétitives|devaluation]], puissance monétaire européenne face au dollar.",
         "deb": "Perte de l'arme monétaire ; sentiment durable (non confirmé par l'indice INSEE global) d'une inflation cachée au basculement.",
-        "bil": "Monnaie stable et crédible, mais la divergence de compétitivité intra-zone (France/Allemagne) sans dévaluation possible a nourri le débat sur la désindustrialisation. Adhésion majoritaire des Français à l'euro aujourd'hui.",
+        "bil": "Monnaie stable et crédible, mais la divergence de compétitivité intra-zone (France/Allemagne) sans dévaluation possible a nourri le débat sur la [[désindustrialisation|desindustrialisation]]. Adhésion majoritaire des Français à l'euro aujourd'hui.",
         "src": [
           [
             "Vie-publique — l'euro",
@@ -1014,7 +1014,7 @@
     ],
     "europe": [
       "2007 — Traité de Lisbonne signé (en vigueur 2009), reprend l'essentiel du projet constitutionnel rejeté par référendum en 2005.",
-      "2010-12 — Crise des dettes souveraines de la zone euro : plans de sauvetage (Grèce...), création du Mécanisme européen de stabilité."
+      "2010-12 — [[Crise des dettes souveraines|dettes-souveraines]] de la zone euro : plans de sauvetage (Grèce...), création du Mécanisme européen de stabilité."
     ],
     "reformes": [
       {
@@ -1146,7 +1146,7 @@
     "end": 2017,
     "titre": "Hollande",
     "regime": "Ayrault, Valls, Cazeneuve",
-    "ambiance": "Sortie lente de crise en Europe (austérité), quantitative easing de la BCE, Brexit (2016), élection de Trump (2016). En France, les attentats de 2015-2016 marquent le quinquennat.",
+    "ambiance": "Sortie lente de crise en Europe ([[austérité|austerite]]), [[quantitative easing|quantitative-easing]] de la BCE, Brexit (2016), élection de Trump (2016). En France, les attentats de 2015-2016 marquent le quinquennat.",
     "chips": [
       [
         "Croissance",
@@ -1201,7 +1201,7 @@
         "t": "CICE et pacte de responsabilité",
         "b": "debattu",
         "res": "Crédit d'impôt de 6 % de la masse salariale (< 2,5 SMIC), ≈ 20 Mds €/an, transformé en baisse de charges pérenne en 2019.",
-        "pro": "Restaurer les marges et la compétitivité après le rapport Gallois ; « virage » assumé de l'offre.",
+        "pro": "Restaurer les marges et la compétitivité après le rapport Gallois ; « virage » assumé de [[l'offre|politique-offre]].",
         "deb": "« Cadeau sans contreparties » pour l'aile gauche ; ciblage critiqué (secteurs abrités inclus).",
         "bil": "Évaluations France Stratégie : ≈ 100 000 à 160 000 emplois créés ou sauvegardés — effet réel mais modeste au regard du coût. Marges restaurées ; effet investissement/export peu visible. Exemple central de l'écart promesse/évaluation.",
         "src": [

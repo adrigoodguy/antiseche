@@ -1,0 +1,204 @@
+[
+  {
+    "id": "bretton-woods",
+    "terme": "Accords de Bretton Woods",
+    "def": "Système monétaire international mis en place en 1944 : les monnaies ont un taux de change fixe par rapport au dollar, lui-même convertible en or. Les accords créent aussi le FMI et la future Banque mondiale. Les États-Unis suspendent la convertibilité du dollar en or en 1971, ce qui met fin au système (changes flottants à partir de 1973).",
+    "src": [
+      [
+        "Wikipédia — Accords de Bretton Woods",
+        "https://fr.wikipedia.org/wiki/Accords_de_Bretton_Woods"
+      ]
+    ]
+  },
+  {
+    "id": "plan-marshall",
+    "terme": "Plan Marshall",
+    "def": "Programme d'aide américain à la reconstruction de l'Europe de l'Ouest (1948-1952), d'environ 13 milliards de dollars de l'époque en dons et en prêts. La France en est l'un des principaux bénéficiaires.",
+    "src": [
+      [
+        "Wikipédia — Plan Marshall",
+        "https://fr.wikipedia.org/wiki/Plan_Marshall"
+      ]
+    ]
+  },
+  {
+    "id": "trente-glorieuses",
+    "terme": "Trente Glorieuses",
+    "def": "Période d'environ 1945 à 1975 marquée par une croissance forte (autour de 5 % par an en France), le quasi plein emploi et une hausse rapide du niveau de vie. L'expression vient de l'économiste Jean Fourastié (1979).",
+    "src": [
+      [
+        "Wikipédia — Trente Glorieuses",
+        "https://fr.wikipedia.org/wiki/Trente_Glorieuses"
+      ]
+    ]
+  },
+  {
+    "id": "chocs-petroliers",
+    "terme": "Chocs pétroliers",
+    "def": "Hausses brutales du prix du pétrole. Le premier (1973), décidé par les pays exportateurs de l'OPEP pendant la guerre du Kippour, quadruple le prix du baril ; le second (1979), lié à la révolution iranienne, le fait plus que doubler. Ils marquent la fin de l'énergie bon marché pour les pays importateurs comme la France.",
+    "src": [
+      [
+        "Wikipédia — Choc pétrolier",
+        "https://fr.wikipedia.org/wiki/Choc_p%C3%A9trolier"
+      ]
+    ]
+  },
+  {
+    "id": "serpent-monetaire",
+    "terme": "Serpent monétaire européen",
+    "def": "Accord européen de 1972 qui limite les écarts de change entre monnaies européennes après la fin du système de Bretton Woods. Fragile (le franc en sort deux fois), il est remplacé en 1979 par le Système monétaire européen (SME), ancêtre de l'euro.",
+    "src": [
+      [
+        "Wikipédia — Serpent monétaire européen",
+        "https://fr.wikipedia.org/wiki/Serpent_mon%C3%A9taire_europ%C3%A9en"
+      ]
+    ]
+  },
+  {
+    "id": "stagflation",
+    "terme": "Stagflation",
+    "def": "Situation où une économie cumule stagnation (croissance faible, chômage en hausse) et inflation élevée. Elle caractérise les années 1970 et met en échec les recettes de l'après-guerre : relancer l'activité risque d'alimenter l'inflation, la freiner aggrave le chômage.",
+    "src": [
+      [
+        "Wikipédia — Stagflation",
+        "https://fr.wikipedia.org/wiki/Stagflation"
+      ]
+    ]
+  },
+  {
+    "id": "tournant-liberal",
+    "terme": "Tournants Thatcher et Reagan",
+    "def": "Changement de cap économique au Royaume-Uni (Margaret Thatcher, 1979) puis aux États-Unis (Ronald Reagan, 1980) : priorité à la lutte contre l'inflation, baisses d'impôts, déréglementation, privatisations (surtout au Royaume-Uni), recul du rôle de l'État et du poids des syndicats. Ils inspirent une partie des politiques menées ensuite dans de nombreux pays.",
+    "src": [
+      [
+        "Wikipédia — Thatchérisme",
+        "https://fr.wikipedia.org/wiki/Thatch%C3%A9risme"
+      ],
+      [
+        "Wikipédia — Reaganomics",
+        "https://fr.wikipedia.org/wiki/Reaganomics"
+      ]
+    ]
+  },
+  {
+    "id": "monetarisme",
+    "terme": "Monétarisme",
+    "def": "Courant économique associé à Milton Friedman : l'inflation s'explique avant tout par une croissance trop rapide de la masse monétaire, que la banque centrale doit donc contrôler strictement. Il inspire les politiques anti-inflation de la fin des années 1970 et des années 1980.",
+    "src": [
+      [
+        "Wikipédia — Monétarisme",
+        "https://fr.wikipedia.org/wiki/Mon%C3%A9tarisme"
+      ]
+    ]
+  },
+  {
+    "id": "desinflation",
+    "terme": "Désinflation",
+    "def": "Ralentissement de l'inflation : les prix continuent d'augmenter, mais moins vite (à ne pas confondre avec la déflation, où ils baissent). Dans les années 1980, la plupart des pays développés ramènent leur inflation de plus de 10 % à 2-3 %, souvent au prix d'une période de chômage plus élevé.",
+    "src": [
+      [
+        "Wikipédia — Désinflation",
+        "https://fr.wikipedia.org/wiki/D%C3%A9sinflation"
+      ]
+    ]
+  },
+  {
+    "id": "devaluation",
+    "terme": "Dévaluation (compétitive)",
+    "def": "Baisse volontaire de la valeur de sa monnaie, qui rend les exportations moins chères et les importations plus coûteuses. La France y a eu recours plusieurs fois (1958, 1969, puis trois fois entre 1981 et 1983). C'est impossible à l'intérieur de la zone euro.",
+    "src": [
+      [
+        "Wikipédia — Dévaluation",
+        "https://fr.wikipedia.org/wiki/D%C3%A9valuation"
+      ]
+    ]
+  },
+  {
+    "id": "omc",
+    "terme": "OMC",
+    "def": "Organisation mondiale du commerce, créée en 1995 pour succéder au GATT (1947) : elle fixe les règles du commerce international et arbitre les différends entre États. L'entrée de la Chine en 2001 accélère l'intégration de son économie au commerce mondial.",
+    "src": [
+      [
+        "Wikipédia — Organisation mondiale du commerce",
+        "https://fr.wikipedia.org/wiki/Organisation_mondiale_du_commerce"
+      ]
+    ]
+  },
+  {
+    "id": "desindustrialisation",
+    "terme": "Désindustrialisation",
+    "def": "Recul de la place de l'industrie dans l'économie, en part du PIB comme en emplois. Elle touche tous les pays riches, mais elle est plus marquée en France qu'en Allemagne ou en Italie. Plusieurs causes se combinent : gains de productivité, externalisation de tâches vers les services, concurrence des pays à bas coûts.",
+    "src": [
+      [
+        "Wikipédia — Désindustrialisation",
+        "https://fr.wikipedia.org/wiki/D%C3%A9sindustrialisation"
+      ]
+    ]
+  },
+  {
+    "id": "austerite",
+    "terme": "Austérité (ou rigueur)",
+    "def": "Politique de réduction rapide du déficit public, par des baisses de dépenses et/ou des hausses d'impôts. En France, on parle plutôt de « rigueur » (plan Barre en 1976, tournant de 1983). Son effet sur la croissance à court terme fait débat entre économistes.",
+    "src": [
+      [
+        "Wikipédia — Politique de rigueur",
+        "https://fr.wikipedia.org/wiki/Politique_de_rigueur"
+      ]
+    ]
+  },
+  {
+    "id": "dettes-souveraines",
+    "terme": "Crise des dettes souveraines",
+    "def": "Crise de la zone euro (2010-2012) : plusieurs États (Grèce, Irlande, Portugal, puis Espagne et Italie sous forte pression) ne peuvent plus emprunter à des taux supportables. Les pays européens et le FMI accordent des plans d'aide en échange de mesures d'austérité ; en 2012, la BCE promet de faire « tout ce qu'il faut » pour sauver l'euro, ce qui calme les marchés.",
+    "src": [
+      [
+        "Wikipédia — Crise de la dette dans la zone euro",
+        "https://fr.wikipedia.org/wiki/Crise_de_la_dette_dans_la_zone_euro"
+      ]
+    ]
+  },
+  {
+    "id": "quantitative-easing",
+    "terme": "Quantitative easing (assouplissement quantitatif)",
+    "def": "Politique d'une banque centrale qui achète massivement des titres, surtout des dettes publiques, pour faire baisser les taux d'intérêt à long terme et soutenir le crédit quand ses taux directeurs sont déjà proches de zéro. La BCE l'utilise à grande échelle à partir de 2015.",
+    "src": [
+      [
+        "Wikipédia — Assouplissement quantitatif",
+        "https://fr.wikipedia.org/wiki/Assouplissement_quantitatif"
+      ]
+    ]
+  },
+  {
+    "id": "politique-offre",
+    "terme": "Politique de l'offre",
+    "def": "Politique qui cherche à stimuler la croissance par la capacité de production des entreprises : baisse des impôts et des cotisations qui pèsent sur elles, allègement des réglementations, flexibilité du marché du travail. Elle s'oppose classiquement à la politique de la demande.",
+    "src": [
+      [
+        "Wikipédia — Économie de l'offre",
+        "https://fr.wikipedia.org/wiki/%C3%89conomie_de_l%27offre"
+      ]
+    ]
+  },
+  {
+    "id": "politique-demande",
+    "terme": "Politique de la demande (relance)",
+    "def": "Politique qui cherche à stimuler la croissance en soutenant la consommation et l'investissement : dépenses publiques, hausse des revenus, baisse des taux d'intérêt. Inspirée de Keynes, elle domine les politiques économiques de l'après-guerre. Exemple français : la relance de 1981.",
+    "src": [
+      [
+        "Wikipédia — Politique de la demande",
+        "https://fr.wikipedia.org/wiki/Politique_de_la_demande"
+      ]
+    ]
+  },
+  {
+    "id": "redistribution",
+    "terme": "Redistribution",
+    "def": "Ensemble des mécanismes par lesquels l'État prélève une partie des revenus (impôts, cotisations) pour en reverser une autre (prestations sociales, services publics), ce qui réduit les écarts de niveau de vie. En France, les inégalités de revenus sont nettement plus faibles après redistribution qu'avant.",
+    "src": [
+      [
+        "Wikipédia — Redistribution des revenus",
+        "https://fr.wikipedia.org/wiki/Redistribution_des_revenus"
+      ]
+    ]
+  }
+]

@@ -21,6 +21,9 @@ Le contenu éditorial vit dans `/data` (fichiers JSON) :
 - `indicateurs.json` — les séries chiffrées du bandeau (croissance, chômage...).
 - `criteres.json` — les critères de sélection des réformes (voir ci-dessous).
 - `ecartees.json` — les réformes écartées et candidates à réintégration.
+- `glossaire.json` — les définitions des termes techniques. Pour relier un mot
+  d'un texte (`ambiance`, `europe`, `pro`, `deb`, `bil`) à sa définition,
+  écrivez `[[texte affiché|id-du-terme]]` ; le build échoue si l'id n'existe pas.
 
 Après modification, régénérez le site avec `node build.js` (voir le README)
 et vérifiez le rendu dans `dist/frise/index.html` avant d'ouvrir votre pull
