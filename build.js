@@ -426,6 +426,8 @@ ${nav("glossaire")}
 const REFORMES_PAR_ANCRE = new Map(PERIODES.flatMap(p => p.reformes.map(r => [`${p.id}-${r.id}`, r])));
 // Tri stable : à score égal, l'ordre de data/programmes.json (celui du tableau de l'institut) est conservé.
 const CANDIDATS = [...PROGRAMMES.candidats].sort((a, b) => b.score - a.score);
+// Grille commune, calée sur les grands thèmes du Comparative Agendas Project (champ cap).
+const THEMES = PROGRAMMES.themes.map(t => t.nom);
 {
   const ids = new Set();
   for (const c of CANDIDATS) {
@@ -433,7 +435,7 @@ const CANDIDATS = [...PROGRAMMES.candidats].sort((a, b) => b.score - a.score);
     ids.add(c.id);
     for (const m of c.mesures) {
       const ou = `data/programmes.json, ${c.id}`;
-      if (!PROGRAMMES.themes.includes(m.theme)) throw new Error(`Thème hors grille commune (${ou}) : ${m.theme}`);
+      if (!THEMES.includes(m.theme)) throw new Error(`Thème hors grille commune (${ou}) : ${m.theme}`);
       if (!m.source || !m.date) throw new Error(`Mesure sans source ou sans date (${ou}) : ${m.proposition}`);
       for (const ancre of m.precedents || []) {
         if (!REFORMES_PAR_ANCRE.has(ancre)) throw new Error(`Précédent inconnu dans la frise (${ou}) : ${ancre}`);
@@ -445,12 +447,42 @@ const pct = v => `${String(v).replace(".", ",")}&nbsp;%`;
 const exAequo = c => CANDIDATS.filter(x => x.score === c.score).length > 1;
 
 const REGLES_PROGRAMMES = `<ul>
-<li>Chaque proposition est reformulée de façon <b>factuelle et sans adjectif</b> : ce qui serait fait, pas ce qu'il faudrait en penser.</li>
-<li>Le <b>chiffrage</b> est celui annoncé par la candidature elle-même ; « non chiffré » s'il n'y en a pas.</li>
-<li>Chaque ligne cite une <b>source datée</b> : programme officiel, discours ou entretien.</li>
+<li>Seuls figurent les <b>engagements vérifiables</b> : une action précise ou un résultat mesurable, dont on pourra dire après coup s'il a été tenu. Les déclarations d'intention générales (« redonner confiance », « une école plus juste ») ne sont pas retenues.</li>
+<li>Chaque engagement est reformulé de façon <b>factuelle et sans adjectif</b> : ce qui serait fait, pas ce qu'il faudrait en penser.</li>
+<li>Le <b>chiffrage</b> est celui annoncé par la candidature elle-même, « non chiffré » sinon. Antisèche ne chiffre pas les programmes ; un chiffrage indépendant peut être ajouté, en nommant son auteur.</li>
+<li>Chaque ligne cite une <b>source datée</b> : le programme officiel en priorité, à défaut un discours ou un entretien, signalé comme tel.</li>
 <li>La colonne <b>Précédent</b> renvoie à une réforme comparable de la frise, quand il y en a une : pour voir ce que l'histoire en dit, sans jugement sur la proposition.</li>
-<li>La même grille de thèmes s'applique à toutes les candidatures, dans le même ordre.</li>
+<li>La même grille de thèmes s'applique à toutes les candidatures, dans le même ordre (<a href="/programmes#methode">méthode</a>).</li>
 </ul>`;
+
+// Section méthode de /programmes (issue #16) : d'où viennent le critère et la grille.
+const ref = (texte, url) => `<li>${texte} <a href="${url}" target="_blank" rel="noopener">${url.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗</a></li>`;
+function sectionMethode() {
+  return `<h2 id="methode">Méthode</h2>
+<p>Il n'existe pas de méthode unique pour comparer des programmes, mais la science politique a établi quelques standards. Antisèche en retient deux, et en écarte d'autres délibérément.</p>
+<h3>Ce que l'on retient</h3>
+<p><b>1. Le critère de l'engagement vérifiable.</b> Les travaux comparatifs sur le respect des promesses électorales définissent une promesse comme un engagement à mener une action ou à atteindre un résultat dont la réalisation peut être vérifiée. C'est le critère d'entrée dans les tableaux : il écarte la rhétorique sans que le site ait à juger du sérieux d'une proposition. Ces travaux ont aussi été menés sur la France.</p>
+<p><b>2. Une grille de thèmes standard.</b> Les thèmes sont regroupés à partir des 21 grands thèmes du <i>Comparative Agendas Project</i> (CAP), une nomenclature internationale utilisée pour classer programmes, lois et budgets, avec une équipe française.</p>
+<div class="table-scroll"><table class="re-table">
+<thead><tr><th>Thème Antisèche</th><th>Grands thèmes du CAP</th></tr></thead>
+<tbody>${PROGRAMMES.themes.map(t => `<tr><td>${esc(t.nom)}</td><td>${esc(t.cap)}</td></tr>`).join("")}</tbody>
+</table></div>
+<h3>Ce que l'on écarte</h3>
+<p><b>Le placement sur une échelle gauche-droite.</b> Le <i>Manifesto Project</i> (codage de chaque phrase des programmes) et le <i>Chapel Hill Expert Survey</i> (positions estimées par des experts) sont des références, mais ils produisent des positions, contestables par nature. Antisèche présente des faits, sans étiquette.</p>
+<p><b>Un chiffrage maison.</b> Aux Pays-Bas, un organisme public (le CPB) chiffre les programmes des partis ; au Royaume-Uni, l'Institute for Fiscal Studies les analyse. La France n'a pas d'équivalent officiel, et les chiffrages existants sont souvent perçus comme orientés : le site affiche le chiffrage de la candidature, et nomme l'auteur de tout chiffrage indépendant cité.</p>
+<h3>Références</h3>
+<ul class="references">
+${ref("Thomson, R., Royed, T., Naurin, E. et al. (2017). « The Fulfillment of Parties' Election Pledges: A Comparative Study on the Impact of Power Sharing ». <i>American Journal of Political Science</i>, 61(3), 527-542.", "https://doi.org/10.1111/ajps.12313")}
+${ref("Brouard, S., Grossman, E., Guinaudeau, I., Persico, S. et Froio, C. (2018). « Do Party Manifestos Matter in Policy-Making? Capacities, Incentives and Outcomes of Electoral Programmes in France ». <i>Political Studies</i>, 66(4), 903-921.", "https://doi.org/10.1177/0032321717745433")}
+${ref("Baumgartner, F. R., Breunig, C. et Grossman, E. (dir.) (2019). <i>Comparative Policy Agendas: Theory, Tools, Data</i>. Oxford University Press.", "https://doi.org/10.1093/oso/9780198835332.001.0001")}
+${ref("Grossman, E. (2019). « The French Agendas Project ». Dans <i>Comparative Policy Agendas</i>, op. cit.", "https://doi.org/10.1093/oso/9780198835332.003.0009")}
+${ref("Comparative Agendas Project, <i>Master Codebook</i> (grands thèmes).", "https://www.comparativeagendas.net/pages/master-codebook")}
+${ref("Manifesto Project (WZB, Berlin).", "https://manifesto-project.wzb.eu/")}
+${ref("Chapel Hill Expert Survey.", "https://www.chesdata.eu/")}
+${ref("CPB (Pays-Bas), <i>Keuzes in Kaart 2027-2030</i>, chiffrage des programmes électoraux.", "https://www.cpb.nl/presentatie/presentatie-keuzes-kaart-2027-2030")}
+${ref("Institute for Fiscal Studies (Royaume-Uni).", "https://ifs.org.uk/")}
+</ul>`;
+}
 
 function encadreSondage() {
   const s = PROGRAMMES.sondage;
@@ -487,6 +519,7 @@ ${encadreSondage()}
 <ul class="analyse-liste">${items}</ul>
 <h3>Règles de lecture</h3>
 ${REGLES_PROGRAMMES}
+${sectionMethode()}
 </main>
 
 <footer>
@@ -501,7 +534,7 @@ ${REGLES_PROGRAMMES}
 function pageProgramme(c) {
   const s = PROGRAMMES.sondage;
   const lienSource = src => `<a href="${src[1]}" target="_blank" rel="noopener">${esc(src[0])} ↗</a>`;
-  const lignes = PROGRAMMES.themes.flatMap(theme => {
+  const lignes = THEMES.flatMap(theme => {
     const ms = c.mesures.filter(m => m.theme === theme);
     return ms.map((m, k) => `<tr>
       ${k === 0 ? `<th scope="row" rowspan="${ms.length}">${esc(theme)}</th>` : ""}
@@ -516,8 +549,8 @@ function pageProgramme(c) {
 <thead><tr><th>Thème</th><th>Proposition</th><th>Chiffrage annoncé</th><th>Source</th><th>Précédent dans la frise</th></tr></thead>
 <tbody>${lignes}</tbody>
 </table></div>
-${PROGRAMMES.themes.some(t => !c.mesures.some(m => m.theme === t)) ? `<p class="note-themes">Thèmes sans proposition relevée à ce jour : ${PROGRAMMES.themes.filter(t => !c.mesures.some(m => m.theme === t)).map(esc).join(", ")}.</p>` : ""}`
-    : `<p class="note-themes">Les éléments clés de ce programme n'ont pas encore été relevés. Ils seront présentés selon la grille commune à toutes les candidatures : ${PROGRAMMES.themes.map(esc).join(", ")}.</p>`;
+${THEMES.some(t => !c.mesures.some(m => m.theme === t)) ? `<p class="note-themes">Thèmes sans engagement relevé à ce jour : ${THEMES.filter(t => !c.mesures.some(m => m.theme === t)).map(esc).join(", ")}.</p>` : ""}`
+    : `<p class="note-themes">Les éléments clés de ce programme n'ont pas encore été relevés. Ils seront présentés selon la grille commune à toutes les candidatures : ${THEMES.map(esc).join(", ")}.</p>`;
 
   return `<!DOCTYPE html>
 <html lang="fr">

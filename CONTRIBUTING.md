@@ -26,7 +26,8 @@ Le contenu éditorial vit dans `/data` (fichiers JSON) :
   "source": ["Programme officiel, p. 14", "https://..."], "date": "octobre 2026",
   "precedents": ["macron-retraites23"]}`. Le thème doit appartenir à la grille
   commune ; `precedents` cite l'ancre d'une réforme de la frise (`periode-reforme`).
-  Règles : formulation factuelle et sans adjectif, chiffrage tel qu'annoncé par la
+  Règles (détaillées sur antiseche.org/programmes#methode) : uniquement des
+  engagements vérifiables (action précise ou résultat mesurable), formulation factuelle et sans adjectif, chiffrage tel qu'annoncé par la
   candidature (« non chiffré » sinon), une source datée par ligne. L'ordre des
   candidatures suit le sondage indiqué dans `sondage` : à mettre à jour quand un
   sondage plus récent teste l'ensemble des candidatures déclarées.

@@ -202,6 +202,8 @@
   .cta-groupe.liens-candidat{justify-content:flex-start;margin-top:var(--sp-4);margin-bottom:var(--sp-3)}
   .programme-item a{text-decoration:none}
   .programme-item a b{text-decoration:underline}
+  .references li{margin-bottom:var(--sp-2);font-size:var(--tx-sm)}
+  .references a{word-break:break-all}
   .note-themes{font-size:var(--tx-sm);color:var(--gris);margin-top:var(--sp-3);max-width:58em}
 
   /* ---------- Index /analyse (issue #9) ---------- */
