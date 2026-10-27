@@ -17,6 +17,7 @@ const ECARTEES = JSON.parse(fs.readFileSync(path.join(DATA, "ecartees.json"), "u
 const SOURCES = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf8"));
 const GLOSSAIRE = JSON.parse(fs.readFileSync(path.join(DATA, "glossaire.json"), "utf8"));
 const GLOSSAIRE_PAR_ID = new Map(GLOSSAIRE.map(g => [g.id, g]));
+const PROGRAMMES = JSON.parse(fs.readFileSync(path.join(DATA, "programmes.json"), "utf8"));
 
 // indicateurs.json est indexé par année (une clé par année, un sous-objet par KPI)
 // pour rester facile à relire/vérifier ; on le remet ici sous la forme
@@ -91,6 +92,7 @@ function nav(actif) {
     ${item("/", "Accueil", "accueil")}
     ${item("/frise", "Frise", "frise")}
     ${item("/analyse", "Analyse", "analyse")}
+    ${item("/programmes", "Programmes 2027", "programmes")}
     ${item("/sources", "Sources", "sources")}
   </nav>`;
 }
@@ -276,6 +278,7 @@ ${nav("accueil")}
   <div class="cta-groupe">
     <a class="cta" href="/frise">Frise temporelle</a>
     <a class="cta" href="/analyse">Analyse d'impact</a>
+    <a class="cta" href="/programmes">Programmes 2027</a>
   </div>
 </header>
 
@@ -410,6 +413,145 @@ ${nav("glossaire")}
 
 <footer>
   Un terme manque ou une définition vous semble inexacte ? Proposez une correction sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">GitHub</a> (fichier <code>data/glossaire.json</code>).
+  <p class="pied-sources">${piedSources()}</p>
+</footer>
+
+</body>
+</html>
+`;
+}
+
+/* --- Programmes 2027 (issue #16) : index par intention de vote + une page par candidature --- */
+// Les réformes de la frise, par ancre (#periode-reforme), pour la colonne « Précédent ».
+const REFORMES_PAR_ANCRE = new Map(PERIODES.flatMap(p => p.reformes.map(r => [`${p.id}-${r.id}`, r])));
+// Tri stable : à score égal, l'ordre de data/programmes.json (celui du tableau de l'institut) est conservé.
+const CANDIDATS = [...PROGRAMMES.candidats].sort((a, b) => b.score - a.score);
+{
+  const ids = new Set();
+  for (const c of CANDIDATS) {
+    if (ids.has(c.id)) throw new Error(`Candidature en double dans data/programmes.json : ${c.id}`);
+    ids.add(c.id);
+    for (const m of c.mesures) {
+      const ou = `data/programmes.json, ${c.id}`;
+      if (!PROGRAMMES.themes.includes(m.theme)) throw new Error(`Thème hors grille commune (${ou}) : ${m.theme}`);
+      if (!m.source || !m.date) throw new Error(`Mesure sans source ou sans date (${ou}) : ${m.proposition}`);
+      for (const ancre of m.precedents || []) {
+        if (!REFORMES_PAR_ANCRE.has(ancre)) throw new Error(`Précédent inconnu dans la frise (${ou}) : ${ancre}`);
+      }
+    }
+  }
+}
+const pct = v => `${String(v).replace(".", ",")}&nbsp;%`;
+const exAequo = c => CANDIDATS.filter(x => x.score === c.score).length > 1;
+
+const REGLES_PROGRAMMES = `<ul>
+<li>Chaque proposition est reformulée de façon <b>factuelle et sans adjectif</b> : ce qui serait fait, pas ce qu'il faudrait en penser.</li>
+<li>Le <b>chiffrage</b> est celui annoncé par la candidature elle-même ; « non chiffré » s'il n'y en a pas.</li>
+<li>Chaque ligne cite une <b>source datée</b> : programme officiel, discours ou entretien.</li>
+<li>La colonne <b>Précédent</b> renvoie à une réforme comparable de la frise, quand il y en a une : pour voir ce que l'histoire en dit, sans jugement sur la proposition.</li>
+<li>La même grille de thèmes s'applique à toutes les candidatures, dans le même ordre.</li>
+</ul>`;
+
+function encadreSondage() {
+  const s = PROGRAMMES.sondage;
+  return `<div class="avert"><b>Ordre d'affichage</b> — intentions de vote au premier tour, sondage ${esc(s.institut)} pour ${esc(s.commanditaire)} (terrain ${esc(s.terrain)}, publié le ${esc(s.publication)}, ${esc(s.echantillon)}), ${esc(s.hypothese)}. ${esc(s.regle)} <a href="${s.notice}" target="_blank" rel="noopener">Notice déposée à la Commission des sondages ↗</a></div>`;
+}
+
+function pageProgrammesIndex() {
+  const items = CANDIDATS.map(c => `
+<li class="analyse-item programme-item">
+  <a href="/programmes/${c.id}"><b>${esc(c.nom)}</b> <span class="unit">— ${esc(c.parti)}</span></a>
+  <span class="score">${pct(c.score)}${exAequo(c) ? ' <span class="ex-aequo">ex æquo</span>' : ""}</span>
+  <p>${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}</p>
+</li>`).join("");
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmes 2027 · Socle commun</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("programmes")}
+
+<header class="hero">
+  <h1>Programmes <span class="annees">2027</span></h1>
+  <p class="standfirst">Les principales candidatures à l'élection présidentielle, présentées selon une même grille : les éléments clés de chaque programme, leur chiffrage annoncé, leur source, et, quand il en existe un, le précédent comparable dans les quatre-vingts ans de réformes de la frise.</p>
+</header>
+
+<main id="annexe">
+${encadreSondage()}
+<ul class="analyse-liste">${items}</ul>
+<h3>Règles de lecture</h3>
+${REGLES_PROGRAMMES}
+</main>
+
+<footer>
+  ${piedSources()}
+</footer>
+
+</body>
+</html>
+`;
+}
+
+function pageProgramme(c) {
+  const s = PROGRAMMES.sondage;
+  const lienSource = src => `<a href="${src[1]}" target="_blank" rel="noopener">${esc(src[0])} ↗</a>`;
+  const lignes = PROGRAMMES.themes.flatMap(theme => {
+    const ms = c.mesures.filter(m => m.theme === theme);
+    return ms.map((m, k) => `<tr>
+      ${k === 0 ? `<th scope="row" rowspan="${ms.length}">${esc(theme)}</th>` : ""}
+      <td>${glose(esc(m.proposition))}</td>
+      <td>${esc(m.chiffrage || "non chiffré")}</td>
+      <td>${lienSource(m.source)}<br><span class="date">${esc(m.date)}</span></td>
+      <td>${(m.precedents || []).map(a => { const r = REFORMES_PAR_ANCRE.get(a); return `<a href="/frise#${a}">${esc(r.t)} (${esc(r.an)}) →</a>`; }).join("<br>") || "—"}</td>
+    </tr>`);
+  }).join("");
+  const tableau = c.mesures.length ? `
+<div class="table-scroll"><table class="re-table programme-table">
+<thead><tr><th>Thème</th><th>Proposition</th><th>Chiffrage annoncé</th><th>Source</th><th>Précédent dans la frise</th></tr></thead>
+<tbody>${lignes}</tbody>
+</table></div>
+${PROGRAMMES.themes.some(t => !c.mesures.some(m => m.theme === t)) ? `<p class="note-themes">Thèmes sans proposition relevée à ce jour : ${PROGRAMMES.themes.filter(t => !c.mesures.some(m => m.theme === t)).map(esc).join(", ")}.</p>` : ""}`
+    : `<p class="note-themes">Les éléments clés de ce programme n'ont pas encore été relevés. Ils seront présentés selon la grille commune à toutes les candidatures : ${PROGRAMMES.themes.map(esc).join(", ")}.</p>`;
+
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${esc(c.nom)} · Programmes 2027 · Socle commun</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("programmes")}
+
+<header class="hero hero-large">
+  <div class="eyebrow">Programmes 2027</div>
+  <h1>${esc(c.nom)}</h1>
+  <p class="standfirst">${esc(c.parti)}</p>
+  <div class="cta-groupe liens-candidat">
+    <a class="cta" href="${c.site}" target="_blank" rel="noopener">Site du parti ↗</a>
+    <a class="cta" href="${encodeURI(c.wiki)}" target="_blank" rel="noopener">Page Wikipédia ↗</a>
+  </div>
+  <p class="standfirst">Intentions de vote : <b>${pct(c.score)}</b>${exAequo(c) ? " (ex æquo)" : ""} — ${esc(s.institut)} pour ${esc(s.commanditaire)}, ${esc(s.terrain)}.${c.programme ? ` Programme de référence : <a href="${c.programme.url}" target="_blank" rel="noopener">${esc(c.programme.titre)} ↗</a> (${esc(c.programme.date)}).` : ""}</p>
+  <p class="standfirst"><a href="/programmes">← Toutes les candidatures</a></p>
+</header>
+
+<main id="annexe">
+<h2>Éléments clés du programme</h2>
+${tableau}
+<h3>Règles de lecture</h3>
+${REGLES_PROGRAMMES}
+</main>
+
+<footer>
+  Une proposition manque, est mal résumée ou mal sourcée ? Proposez une correction sur <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">GitHub</a> (fichier <code>data/programmes.json</code>).
   <p class="pied-sources">${piedSources()}</p>
 </footer>
 
@@ -671,6 +813,8 @@ function build() {
   INDIC.forEach(ind => ecrire(`analyse/${ind.slug}/index.html`, pageAnalyseKpi(ind)));
   ecrire("sources/index.html", pageSources());
   ecrire("glossaire/index.html", pageGlossaire());
+  ecrire("programmes/index.html", pageProgrammesIndex());
+  CANDIDATS.forEach(c => ecrire(`programmes/${c.id}/index.html`, pageProgramme(c)));
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
   console.log("Build OK → dist/");

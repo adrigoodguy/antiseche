@@ -40,7 +40,10 @@
 
   /* ---------- Navigation principale (issue #9) ---------- */
   .nav-principale{display:flex;gap:var(--sp-5);align-items:center;padding:var(--sp-4) 5vw;max-width:1080px;margin:0 auto;font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.06em;text-transform:uppercase}
-  .nav-principale a{color:var(--gris);text-decoration:none;transition:color var(--transition)}
+  .nav-principale a{color:var(--gris);text-decoration:none;transition:color var(--transition);white-space:nowrap}
+  /* 5 entrées depuis « Programmes 2027 » (issue #16) : passage à la ligne plutôt que débordement sur mobile */
+  .nav-principale{flex-wrap:wrap;row-gap:var(--sp-2)}
+  @media (max-width:480px){.nav-principale{column-gap:var(--sp-4)}}
   .nav-principale a:hover{color:var(--bleu)}
   .nav-principale a[aria-current="page"]{color:var(--rouge)}
   .pied-sources{margin-top:var(--sp-3)}
@@ -187,6 +190,19 @@
   .glo-entree dt{font-family:var(--display);font-size:1.25rem;margin-bottom:var(--sp-1)}
   .glo-entree dd{margin:0}
   .glo-entree .src{margin-top:var(--sp-2);font-size:var(--tx-label)}
+
+  /* ---------- Programmes 2027 (issue #16) ---------- */
+  .programme-item{display:grid;grid-template-columns:1fr auto;column-gap:var(--sp-4);align-items:baseline}
+  .programme-item p{grid-column:1 / -1}
+  .programme-item .score{font-family:var(--mono);font-size:var(--tx-sm);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ex-aequo{font-size:var(--tx-micro);color:var(--gris);letter-spacing:.05em}
+  .programme-table th[scope=row]{font-family:var(--corps);font-size:var(--tx-sm);letter-spacing:0;text-transform:none;background:var(--papier-2);white-space:nowrap}
+  .programme-table td:nth-child(3),.programme-table td:nth-child(4){white-space:nowrap}
+  .programme-table .date{color:var(--gris);font-size:var(--tx-label)}
+  .cta-groupe.liens-candidat{justify-content:flex-start;margin-top:var(--sp-4);margin-bottom:var(--sp-3)}
+  .programme-item a{text-decoration:none}
+  .programme-item a b{text-decoration:underline}
+  .note-themes{font-size:var(--tx-sm);color:var(--gris);margin-top:var(--sp-3);max-width:58em}
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}

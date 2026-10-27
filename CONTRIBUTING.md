@@ -21,6 +21,15 @@ Le contenu éditorial vit dans `/data` (fichiers JSON) :
 - `indicateurs.json` — les séries chiffrées du bandeau (croissance, chômage...).
 - `criteres.json` — les critères de sélection des réformes (voir ci-dessous).
 - `ecartees.json` — les réformes écartées et candidates à réintégration.
+- `programmes.json` — les Programmes 2027. Une mesure s'écrit
+  `{"theme": "Retraites", "proposition": "...", "chiffrage": "12 Md€/an",
+  "source": ["Programme officiel, p. 14", "https://..."], "date": "octobre 2026",
+  "precedents": ["macron-retraites23"]}`. Le thème doit appartenir à la grille
+  commune ; `precedents` cite l'ancre d'une réforme de la frise (`periode-reforme`).
+  Règles : formulation factuelle et sans adjectif, chiffrage tel qu'annoncé par la
+  candidature (« non chiffré » sinon), une source datée par ligne. L'ordre des
+  candidatures suit le sondage indiqué dans `sondage` : à mettre à jour quand un
+  sondage plus récent teste l'ensemble des candidatures déclarées.
 - `glossaire.json` — les définitions des termes techniques. Pour relier un mot
   d'un texte (`ambiance`, `europe`, `pro`, `deb`, `bil`) à sa définition,
   écrivez `[[texte affiché|id-du-terme]]` ; le build échoue si l'id n'existe pas.

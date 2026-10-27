@@ -33,6 +33,11 @@ data/                  contenu éditorial, en JSON
   ecartees.json           réformes écartées, candidates à réintégration
   sources.json            fact-checking des indicateurs (fiabilité, sources
                           INSEE/INED) affiché sur la page /sources
+  programmes.json         Programmes 2027 : sondage de référence (ordre
+                          d'affichage), grille de thèmes commune, et par
+                          candidature : parti, score, liens, mesures clés
+                          (thème, proposition, chiffrage, source datée,
+                          précédents = ancres de la frise « periode-reforme »)
   glossaire.json          définitions courtes des termes techniques, page
                           /glossaire ; dans les textes, un terme se balise
                           [[texte affiché|id]] (bulle de définition sur la frise)
@@ -53,6 +58,8 @@ build.js                script de build : lit /data, génère dist/ en pages
                                          /analyse/{slug}
                           /sources       fact-checking des indicateurs,
                                          accessible en pied de page
+                          /programmes    Programmes 2027, une page par
+                                         candidature (/programmes/{id})
                           /glossaire     termes techniques, accessible en
                                          pied de page et depuis les textes
 ```

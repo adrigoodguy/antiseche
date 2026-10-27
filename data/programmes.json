@@ -1,0 +1,51 @@
+{
+  "sondage": {
+    "institut": "Ipsos bva – CESI",
+    "commanditaire": "Le Parisien",
+    "terrain": "21-22 octobre 2026",
+    "publication": "24 octobre 2026",
+    "echantillon": "1 500 inscrits sur les listes électorales (1 057 exprimés certains d'aller voter)",
+    "hypothese": "Hypothèse « Gabriel Attal et Édouard Philippe »",
+    "notice": "https://www.commission-des-sondages.fr/notices/files/notices/2026/octobre/10338-pres-iv-ipsos-bva-le-parisien-24-octobre.pdf",
+    "regle": "Dernier sondage publié dont un scénario teste l'ensemble des principales candidatures déclarées. Les écarts de moins de 2 à 3 points sont dans la marge d'erreur."
+  },
+  "themes": [
+    "Pouvoir d'achat & salaires",
+    "Fiscalité",
+    "Retraites",
+    "Travail & emploi",
+    "Dette & finances publiques",
+    "Santé",
+    "Éducation",
+    "Logement",
+    "Énergie & climat",
+    "Immigration",
+    "Sécurité & justice",
+    "Europe & international",
+    "Institutions"
+  ],
+  "candidats": [
+    {"id": "marine-le-pen", "nom": "Marine Le Pen", "parti": "Rassemblement national", "score": 33.5,
+     "site": "https://rassemblementnational.fr/", "wiki": "https://fr.wikipedia.org/wiki/Marine_Le_Pen", "programme": null, "mesures": []},
+    {"id": "jean-luc-melenchon", "nom": "Jean-Luc Mélenchon", "parti": "La France insoumise", "score": 17,
+     "site": "https://lafranceinsoumise.fr/", "wiki": "https://fr.wikipedia.org/wiki/Jean-Luc_Mélenchon", "programme": null, "mesures": []},
+    {"id": "raphael-glucksmann", "nom": "Raphaël Glucksmann", "parti": "Place publique", "score": 13,
+     "site": "https://place-publique.eu/", "wiki": "https://fr.wikipedia.org/wiki/Raphaël_Glucksmann", "programme": null, "mesures": []},
+    {"id": "edouard-philippe", "nom": "Édouard Philippe", "parti": "Horizons", "score": 13,
+     "site": "https://horizonsleparti.fr/", "wiki": "https://fr.wikipedia.org/wiki/Édouard_Philippe", "programme": null, "mesures": []},
+    {"id": "bruno-retailleau", "nom": "Bruno Retailleau", "parti": "Les Républicains", "score": 7.5,
+     "site": "https://republicains.fr/", "wiki": "https://fr.wikipedia.org/wiki/Bruno_Retailleau", "programme": null, "mesures": []},
+    {"id": "eric-zemmour", "nom": "Éric Zemmour", "parti": "Reconquête", "score": 4.5,
+     "site": "https://www.parti-reconquete.fr/", "wiki": "https://fr.wikipedia.org/wiki/Éric_Zemmour", "programme": null, "mesures": []},
+    {"id": "gabriel-attal", "nom": "Gabriel Attal", "parti": "Renaissance", "score": 4,
+     "site": "https://parti-renaissance.fr/", "wiki": "https://fr.wikipedia.org/wiki/Gabriel_Attal", "programme": null, "mesures": []},
+    {"id": "marine-tondelier", "nom": "Marine Tondelier", "parti": "Les Écologistes", "score": 3.5,
+     "site": "https://lesecologistes.fr/", "wiki": "https://fr.wikipedia.org/wiki/Marine_Tondelier", "programme": null, "mesures": []},
+    {"id": "fabien-roussel", "nom": "Fabien Roussel", "parti": "Parti communiste français", "score": 2,
+     "site": "https://www.pcf.fr/", "wiki": "https://fr.wikipedia.org/wiki/Fabien_Roussel", "programme": null, "mesures": []},
+    {"id": "nicolas-dupont-aignan", "nom": "Nicolas Dupont-Aignan", "parti": "Debout la France", "score": 1.5,
+     "site": "https://www.debout-la-france.fr/", "wiki": "https://fr.wikipedia.org/wiki/Nicolas_Dupont-Aignan", "programme": null, "mesures": []},
+    {"id": "nathalie-arthaud", "nom": "Nathalie Arthaud", "parti": "Lutte ouvrière", "score": 0.5,
+     "site": "https://www.lutte-ouvriere.org/", "wiki": "https://fr.wikipedia.org/wiki/Nathalie_Arthaud", "programme": null, "mesures": []}
+  ]
+}
