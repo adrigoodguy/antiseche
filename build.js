@@ -110,9 +110,9 @@ function sparkSVG(ind, i) {
   const pts = ind.d.map((v, k) => `${x(anneesInd[k]).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
   return `<div class="spark" data-vi="${i}"><div class="lab">${ind.lab} <span class="unit">(${ind.unit})</span></div>
   <svg width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}" aria-hidden="true">
-    <line x1="0" y1="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" x2="${SW}" y2="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
-    <polyline points="${pts}" fill="none" stroke="#9FB0D6" stroke-width="1.6" stroke-linejoin="round"/>
-    <line class="curseur" data-i="${i}" x1="0" x2="0" y1="0" y2="${SH}" stroke="#C3372C" stroke-width="1.6"/>
+    <line x1="0" y1="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" x2="${SW}" y2="${y(0) > 0 && y(0) < SH ? y(0).toFixed(1) : SH}" stroke="#232836" stroke-width="1"/>
+    <polyline points="${pts}" fill="none" stroke="#8B93A7" stroke-width="1.6" stroke-linejoin="round"/>
+    <line class="curseur" data-i="${i}" x1="0" x2="0" y1="0" y2="${SH}" stroke="#F2F4F8" stroke-width="1.6"/>
   </svg><div class="val" data-vi="${i}">—</div></div>`;
 }
 
@@ -135,8 +135,6 @@ function bandeauGroupes() {
 // par famille, toutes cochées par défaut.
 function panneauFiltre() {
   const indexParLab = new Map(INDIC.map((ind, i) => [ind.lab, i]));
-  // Pas de couleur par groupe ici : les accents du bandeau sont calibrés pour
-  // son fond sombre et perdraient leur contraste sur le panneau clair.
   return GROUPES.map(g => `<div class="filtre-groupe">
     <div class="filtre-groupe-nom">${esc(g.nom)}</div>
     ${g.indicateurs.map(lab => `<label class="filtre-item"><input type="checkbox" checked data-vi="${indexParLab.get(lab)}"> ${esc(lab)}</label>`).join("")}
@@ -323,8 +321,6 @@ function pageSources() {
 
   // Familles thématiques (issue #2) : même regroupement que le bandeau de la
   // page principale, pour que les deux vues restent cohérentes.
-  // Pas de couleur par groupe ici : les accents du bandeau sont calibrés pour
-  // son fond sombre et perdraient leur contraste sur cette page claire.
   const familles = `
 <h2>Familles d'indicateurs</h2>
 <ul class="familles">${GROUPES.map(g => `<li><span class="puce"></span><b>${esc(g.nom)}</b> — ${g.indicateurs.map(esc).join(", ")}</li>`).join("")}</ul>`;
@@ -651,8 +647,8 @@ ${nav("analyse")}
 // de la série principale interactive — ex. Hommes/Femmes autour de la
 // moyenne. `ind.series` = { "Hommes": {annee: valeur}, "Femmes": {...} },
 // alignées sur le même `ind.annees` que la série principale. Couleurs prises
-// dans la palette existante (gris/vert) pour n'en introduire aucune nouvelle.
-const COULEURS_SERIES_SECONDAIRES = { 1: "var(--gris)", 2: "var(--vert)" };
+// dans la palette existante (violet/menthe) pour n'en introduire aucune nouvelle.
+const COULEURS_SERIES_SECONDAIRES = { 1: "var(--violet-clair)", 2: "var(--menthe)" };
 
 function graphiqueKpi(ind) {
   const GW = 760, GH = 320, GML = 56, GMR = 24, GMT = 20, GMB = 34;
@@ -678,13 +674,13 @@ function graphiqueKpi(ind) {
   // (runtime.js) lit ce rayon de repos depuis data-r plutôt que de le
   // supposer fixe, pour revenir au bon état après un survol.
   const rPt = anneesInd.length > 30 ? 1.5 : 3;
-  const points = anneesInd.map((a, k) => `<circle class="pt" data-annee="${a}" data-valeur="${ind.d[k]}" data-r="${rPt}" cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="${rPt}" fill="#2a78d6"/>`).join("");
+  const points = anneesInd.map((a, k) => `<circle class="pt" data-annee="${a}" data-valeur="${ind.d[k]}" data-r="${rPt}" cx="${gx(a).toFixed(1)}" cy="${gy(ind.d[k]).toFixed(1)}" r="${rPt}" fill="#C6FF3D"/>`).join("");
   const lignesSecondaires = seriesSecondaires.map(([, vals], i) => {
     const p = anneesInd.map(a => `${gx(a).toFixed(1)},${gy(vals[String(a)]).toFixed(1)}`).join(" ");
     return `<polyline points="${p}" fill="none" stroke="${COULEURS_SERIES_SECONDAIRES[i + 1]}" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" opacity=".8"/>`;
   }).join("");
   const legende = seriesSecondaires.length ? `<div class="graphique-legende">
-    <span class="legende-item"><span class="legende-puce" style="background:#2a78d6"></span>${esc(ind.lab)} (moyenne)</span>
+    <span class="legende-item"><span class="legende-puce" style="background:#C6FF3D"></span>${esc(ind.lab)} (moyenne)</span>
     ${seriesSecondaires.map(([nom], i) => `<span class="legende-item"><span class="legende-puce" style="background:${COULEURS_SERIES_SECONDAIRES[i + 1]}"></span>${esc(nom)}</span>`).join("")}
   </div>` : "";
 
@@ -696,9 +692,9 @@ function graphiqueKpi(ind) {
       ${ticksV}
       <text x="${GML - 8}" y="${GMT - 6}" font-size="9" text-anchor="end" fill="var(--gris)">${esc(ind.unit)}</text>
       ${lignesSecondaires}
-      <polyline points="${pts}" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <polyline class="ligne" points="${pts}" fill="none" stroke="#C6FF3D" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
       ${points}
-      <line id="graphique-crosshair" x1="0" x2="0" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--rouge)" stroke-width="1" visibility="hidden"/>
+      <line id="graphique-crosshair" x1="0" x2="0" y1="${GMT}" y2="${GMT + GPH}" stroke="var(--texte)" stroke-opacity=".5" stroke-dasharray="3 4" stroke-width="1" visibility="hidden"/>
       <rect id="graphique-survol" x="${GML}" y="${GMT}" width="${GPW}" height="${GPH}" fill="transparent"/>
     </svg>
     <div id="graphique-tooltip" class="graphique-tooltip" hidden></div>
@@ -837,6 +833,12 @@ ${note ? '<script src="/runtime.js"></script>' : ""}
 }
 
 // Icônes et manifest, injectés dans le <head> de chaque page (favoris, écran d'accueil mobile).
+// Polices du design system (issue #18), sauf sur les pages d'essai qui chargent les leurs.
+const POLICES = `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;600&display=swap">
+<meta name="theme-color" content="#0B0D12">
+`;
 const ICONES = `<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
@@ -848,7 +850,7 @@ function ecrire(fichier, html) {
   const reste = html.match(/\[\[[^\]"<>]*\]\]/);
   if (reste) throw new Error(`Balise de glossaire non convertie dans ${fichier} : ${reste[0]}`);
   if (!html.includes("</head>")) throw new Error(`Pas de </head> dans ${fichier}`);
-  html = html.replace("</head>", `${ICONES}\n</head>`);
+  html = html.replace("</head>", `${fichier.startsWith("sample") ? "" : POLICES}${ICONES}\n</head>`);
   const dest = path.join(DIST, fichier);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.writeFileSync(dest, html);

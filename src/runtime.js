@@ -152,9 +152,9 @@ if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
    dans TOUT le document (pas seulement le sien) : sur une page à plusieurs widgets,
    seul le premier ouvert fonctionne, les suivants recyclent silencieusement son
    conteneur et ne s'affichent jamais. Le web component giscus-widget isole chaque
-   instance dans son propre Shadow DOM et n'a pas ce défaut. Thème fixe "light" :
-   le site n'a pas de mode sombre, "preferred_color_scheme" pouvait rendre le
-   widget en sombre sur un panneau clair (texte quasi invisible). */
+   instance dans son propre Shadow DOM et n'a pas ce défaut. Thème fixe "transparent_dark" :
+   le site est sombre uniquement (issue #18), le widget prend le fond de la zone.
+   "preferred_color_scheme" le rendrait en clair chez qui a un système clair. */
 let moduleGiscus = null;
 function assurerModuleGiscus() {
   if (!moduleGiscus) {
@@ -185,7 +185,7 @@ function chargerGiscus(zone, terme) {
     w.setAttribute("reactionsenabled", "1");
     w.setAttribute("emitmetadata", "0");
     w.setAttribute("inputposition", "bottom");
-    w.setAttribute("theme", "light");
+    w.setAttribute("theme", "transparent_dark");
     w.setAttribute("lang", "fr");
     w.setAttribute("loading", "lazy");
     if (attente) attente.replaceWith(w); else zone.appendChild(w);

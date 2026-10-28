@@ -958,8 +958,8 @@
   "groupes": [
     {
       "nom": "Conjoncture économique",
-      "couleur": "#5C82C4",
-      "fond": "#16213A",
+      "couleur": "#C6FF3D",
+      "fond": "#14180E",
       "indicateurs": [
         "Croissance PIB",
         "Chômage",
@@ -968,8 +968,8 @@
     },
     {
       "nom": "Finances publiques",
-      "couleur": "#6690D2",
-      "fond": "#1A2745",
+      "couleur": "#5CFF8A",
+      "fond": "#0E1812",
       "indicateurs": [
         "Dette publique",
         "Pression fiscale"
@@ -977,8 +977,8 @@
     },
     {
       "nom": "Capacité productive & investissement",
-      "couleur": "#719EE0",
-      "fond": "#1E2E50",
+      "couleur": "#47F0FF",
+      "fond": "#0C161A",
       "indicateurs": [
         "Industrie",
         "DIRD (recherche)",
@@ -987,8 +987,8 @@
     },
     {
       "nom": "Contexte démographique",
-      "couleur": "#7CACEE",
-      "fond": "#22355C",
+      "couleur": "#5C9BFF",
+      "fond": "#0E131D",
       "indicateurs": [
         "Fécondité",
         "Espérance de vie"
@@ -996,8 +996,8 @@
     },
     {
       "nom": "Empreinte environnementale",
-      "couleur": "#86BAF7",
-      "fond": "#263E68",
+      "couleur": "#9A85FF",
+      "fond": "#13111F",
       "indicateurs": [
         "Climat (CO2/habitant)"
       ]

@@ -1,153 +1,164 @@
+  /* Design system (issue #18) : direction « Synthèse » de /sample6, fond nuit,
+     titres Bricolage Grotesque, texte Inter, accents fluo citron/violet.
+     Mode sombre uniquement : pas de variante claire pour l'instant. */
   :root{
-    --encre:#182338;          /* encre administrative */
-    --papier:#F1F2EE;         /* papier recyclé */
-    --papier-2:#E9EBE4;
-    --bleu:#2B4C9B;           /* bleu République */
-    --bleu-sombre:#22397A;    /* survol des liens et du CTA */
-    --rouge:#C3372C;          /* rouge tampon */
-    --vert:#2E6E4E;           /* vert consensus */
-    --gris:#5A5F59;           /* sage-gris, assombri pour AA (issue #11) : 5.8:1 sur papier, 6.5:1 sur blanc */
-    --trait:#C9CCC6;
-    --display:"Didot","Bodoni MT","Playfair Display",Georgia,"Times New Roman",serif;
-    --corps:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-    --mono:ui-monospace,"SF Mono","Cascadia Mono",Menlo,Consolas,monospace;
+    color-scheme:dark;
+    --nuit:#0B0D12;           /* fond de page */
+    --surface:#11141C;        /* cartes, panneaux */
+    --surface-2:#171B25;      /* survol, encadrés, en-têtes de tableau */
+    --texte:#F2F4F8;
+    --texte-2:#C3C8D4;        /* texte secondaire (résumés, listes) */
+    --gris:#8B93A7;           /* mentions, axes : 6.4:1 sur --nuit */
+    --trait:#232836;
+    --accent:#C6FF3D;         /* citron fluo : liens, curseur, données */
+    --violet:#7A5CFF;         /* liserés, CTA */
+    --violet-clair:#A996FF;   /* violet lisible en texte : 7.1:1 sur --nuit */
+    --rose:#FF5FA2;           /* débattu, alertes */
+    --menthe:#5CFFC8;         /* consensus, bilan */
+    --display:"Bricolage Grotesque",system-ui,sans-serif;
+    --corps:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    /* Étiquettes et valeurs : Inter en chiffres tabulaires, plus de police mono. */
+    --mono:var(--corps);
 
     /* Échelle d'espacement 4px (issue #11) : tout padding/margin/gap
        rem du fichier se rattache à l'un de ces paliers. */
     --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.5rem;
     --sp-6:2rem; --sp-7:3rem; --sp-8:4rem; --sp-9:5rem;
 
-    /* Échelle typographique (issue #11) : remplace les tailles .68/.72/.75/.78/.82rem
-       (étiquettes, mentions) et .85/.86/.9/.93/.95rem (texte secondaire) dispersées
-       par des paliers explicites. */
-    --tx-micro:.7rem; --tx-label:.78rem; --tx-sm:.875rem; --tx-base:1rem; --tx-lead:1.0625rem;
+    /* Échelle typographique (issue #11), remontée d'un cran pour le public visé
+       par le design system (issue #18). */
+    --tx-micro:.75rem; --tx-label:.8125rem; --tx-sm:.9375rem; --tx-base:1.0625rem; --tx-lead:1.25rem;
 
     --transition:150ms ease;
-    --focus-ring:3px solid var(--bleu);
-    /* Ombre "dossier officiel" : légère, teintée d'encre plutôt que de noir
-       pur, pas la diffusion d'une carte SaaS flottante. */
-    --ombre-carte:0 1px 2px rgba(24,35,56,.06), 0 1px 1px rgba(24,35,56,.04);
-    --radius-micro:2px;  /* badges, chips, CTA */
-    --radius-carte:4px;  /* cartes et panneaux bordés */
+    --focus-ring:3px solid var(--accent);
+    --radius-micro:999px; /* badges, chips, CTA : pilules */
+    --radius-carte:20px;  /* cartes et panneaux bordés */
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none!important;animation:none!important}}
-  body{background:var(--papier);color:var(--encre);font-family:var(--corps);line-height:1.55;font-size:16px}
-  a{color:var(--bleu);transition:color var(--transition)}
-  a:hover{color:var(--bleu-sombre)}
-  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:var(--focus-ring);outline-offset:2px}
+  body{background:var(--nuit);color:var(--texte);font-family:var(--corps);line-height:1.6;font-size:var(--tx-base);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-underline-offset:.18em;transition:color var(--transition)}
+  a:hover{color:#E2FF9E}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:var(--focus-ring);outline-offset:3px}
+  h2,h3{text-wrap:balance}
 
   /* ---------- Navigation principale (issue #9) ---------- */
-  .nav-principale{display:flex;gap:var(--sp-5);align-items:center;padding:var(--sp-4) 5vw;max-width:1080px;margin:0 auto;font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.06em;text-transform:uppercase}
+  .nav-principale{display:flex;gap:var(--sp-5);align-items:center;padding:var(--sp-4) 5vw;max-width:1120px;margin:0 auto;font-family:var(--display);font-weight:800;font-size:var(--tx-label);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--trait)}
   .nav-principale a{color:var(--gris);text-decoration:none;transition:color var(--transition);white-space:nowrap}
   /* 5 entrées depuis « Programmes 2027 » (issue #16) : passage à la ligne plutôt que débordement sur mobile */
   .nav-principale{flex-wrap:wrap;row-gap:var(--sp-2)}
   @media (max-width:480px){.nav-principale{column-gap:var(--sp-4)}}
-  .nav-principale a:hover{color:var(--bleu)}
-  .nav-principale a[aria-current="page"]{color:var(--rouge)}
+  .nav-principale a:hover{color:var(--texte)}
+  .nav-principale a[aria-current="page"]{color:var(--nuit);background:var(--accent);padding:.2em .8em;border-radius:999px}
   .pied-sources{margin-top:var(--sp-3)}
-  .pied-sources a{font-family:var(--mono);font-size:var(--tx-label)}
+  .pied-sources a{font-weight:600;font-size:var(--tx-label)}
 
   /* ---------- Hero ---------- */
-  header.hero{padding:9vh 5vw 6vh;max-width:1080px;margin:0 auto}
-  .hero .eyebrow{font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.18em;text-transform:uppercase;color:var(--rouge)}
-  .hero h1{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,7vw,5.2rem);line-height:1.02;margin:.35em 0 .3em}
-  .hero h1 .annees{color:var(--bleu)}
-  .hero p.standfirst{max-width:46em;font-size:var(--tx-lead);color:#39445A}
+  header.hero{padding:10vh 5vw 6vh;max-width:1120px;margin:0 auto}
+  .hero .eyebrow{display:inline-block;font-family:var(--display);font-weight:800;font-size:var(--tx-label);letter-spacing:.12em;text-transform:uppercase;color:var(--nuit);background:var(--accent);padding:.25em .9em;border-radius:999px}
+  .hero .eyebrow a{color:inherit;text-decoration:none}
+  .hero .eyebrow a:hover{text-decoration:underline}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,6.5vw,5.25rem);line-height:.98;letter-spacing:-.025em;margin:.35em 0 .35em;text-wrap:balance}
+  .hero h1 .annees{color:var(--accent)}
+  .hero p.standfirst{max-width:42em;font-size:var(--tx-lead);color:var(--gris);line-height:1.5}
   .hero p.standfirst + p.standfirst{margin-top:.7em}
   /* Pas de plafond de largeur lecture : le standfirst suit alors la même
      largeur que les h2/.table-scroll du contenu qui suit (ex. /sources). */
   .hero-large p.standfirst{max-width:none}
   .hero .legende{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-5);font-size:var(--tx-label)}
   .cta-groupe{display:flex;justify-content:center;flex-wrap:wrap;gap:var(--sp-4);margin-top:var(--sp-6)}
-  .cta{display:inline-block;padding:.7em 1.6em;border-radius:var(--radius-micro);background:var(--bleu);color:#fff;text-decoration:none;font-family:var(--mono);font-size:var(--tx-sm);letter-spacing:.03em;transition:background-color var(--transition)}
-  .cta:hover{background:var(--bleu-sombre);color:#fff}
-  .badge{display:inline-block;padding:.14em .6em;border-radius:var(--radius-micro);font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.05em}
-  .badge.consensus{background:var(--vert);color:#fff}
-  .badge.debattu{background:var(--rouge);color:#fff}
-  .badge.echec{background:none;border:1.5px solid var(--encre);color:var(--encre)}
+  .cta{display:inline-block;padding:.75em 1.7em;border-radius:var(--radius-micro);background:var(--accent);color:var(--nuit);text-decoration:none;font-family:var(--display);font-weight:800;font-size:var(--tx-sm);letter-spacing:.02em;transition:background-color var(--transition),transform var(--transition)}
+  .cta:hover{background:#D8FF7A;color:var(--nuit);transform:translateY(-1px)}
+  .cta + .cta{background:none;color:var(--texte);box-shadow:inset 0 0 0 1.5px var(--trait)}
+  .cta + .cta:hover{box-shadow:inset 0 0 0 1.5px var(--violet);color:var(--texte)}
+  .badge{display:inline-block;padding:.18em .75em;border-radius:var(--radius-micro);font-weight:600;font-size:var(--tx-micro);letter-spacing:.04em}
+  .badge.consensus{background:var(--menthe);color:var(--nuit)}
+  .badge.debattu{background:var(--rose);color:var(--nuit)}
+  .badge.echec{background:none;box-shadow:inset 0 0 0 1.5px var(--gris);color:var(--texte)}
 
   /* ---------- Bandeau indicateurs (signature, sticky) ---------- */
-  #bandeau{position:sticky;top:0;z-index:50;background:var(--encre);color:#E8EAF2;border-bottom:3px solid var(--rouge)}
-  #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:var(--sp-2) var(--sp-2) 0}
+  #bandeau{position:sticky;top:0;z-index:50;background:rgba(11,13,18,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:var(--texte);border-bottom:1px solid var(--trait)}
+  #bandeau .inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:var(--trait) transparent;padding:var(--sp-2) var(--sp-2) 0}
   @media(min-width:1500px){#bandeau .inner{justify-content:center;padding-right:var(--sp-9)}}
-  /* Familles d'indicateurs (issue #2) : fond légèrement différent par groupe
-     (toujours dans les bleus, pour rester uniforme), bordure basse et
-     étiquette assorties, étiquette collée au bas du bandeau. Tailles .58/.62rem
-     volontairement hors de l'échelle --tx-* : bandeau sticky très dense, pas de
-     marge pour remonter au palier .7rem sans repasser l'agencement. */
-  .groupe-ind{flex:0 0 auto;display:flex;flex-direction:column;background:var(--gfond, transparent);border-bottom:3px solid var(--gc, transparent);border-right:1px solid rgba(255,255,255,.14)}
+  /* Familles d'indicateurs (issue #2) : une teinte du dégradé citron → violet
+     de /sample6 par groupe (data/indicateurs.json, clés couleur/fond), reprise
+     par le liseré, l'étiquette et la courbe. Tailles .6/.65rem volontairement
+     hors de l'échelle --tx-* : bandeau sticky très dense. */
+  .groupe-ind{flex:0 0 auto;display:flex;flex-direction:column;background:var(--gfond, transparent);border-bottom:3px solid var(--gc, transparent);border-right:1px solid var(--trait)}
   .groupe-ind:last-child{border-right:none}
   .groupe-cartes{display:flex}
-  .groupe-nom{font-family:var(--mono);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gc, #9FB0D6);padding:var(--sp-1) var(--sp-3) var(--sp-1);white-space:nowrap;margin-top:auto}
-  .spark{flex:0 0 auto;padding:var(--sp-1) var(--sp-3);border-right:1px solid rgba(255,255,255,.14);min-width:150px}
+  .groupe-nom{font-family:var(--display);font-weight:800;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gc, var(--gris));padding:var(--sp-1) var(--sp-3) var(--sp-1);white-space:nowrap;margin-top:auto}
+  .spark{flex:0 0 auto;padding:var(--sp-1) var(--sp-3);border-right:1px solid var(--trait);min-width:150px}
   .groupe-cartes .spark:last-child{border-right:none}
-  .spark .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:#9FB0D6;white-space:nowrap}
-  .spark .val{font-family:var(--mono);font-size:var(--tx-label);color:#fff}
-  .spark svg{display:block;margin-top:2px}
-  #annee-curseur{position:absolute;right:.8rem;top:.35rem;font-family:var(--display);font-size:1.7rem;color:#fff;opacity:.95;pointer-events:none;background:var(--encre);padding-left:var(--sp-2)}
-  @media(max-width:760px){#annee-curseur{font-size:1.15rem;top:.5rem}}
+  .spark .lab{font-size:.65rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);white-space:nowrap}
+  .spark .val{font-family:var(--display);font-weight:800;font-size:var(--tx-sm);color:var(--texte)}
+  .spark svg{display:block;margin-top:2px;overflow:visible}
+  .spark polyline{stroke:var(--gc, var(--gris));filter:drop-shadow(0 0 3px color-mix(in srgb, var(--gc, transparent) 50%, transparent))}
+  .spark .curseur{stroke:var(--texte)}
+  #annee-curseur{position:absolute;right:.8rem;top:.3rem;font-family:var(--display);font-weight:800;font-size:1.8rem;letter-spacing:-.02em;color:var(--accent);pointer-events:none;background:var(--nuit);padding-left:var(--sp-2)}
+  @media(max-width:760px){#annee-curseur{font-size:1.2rem;top:.5rem}}
 
   /* ---------- Filtre des indicateurs (issue #3) ---------- */
-  #filtre-toggle{position:absolute;left:.6rem;top:.35rem;background:var(--encre);color:#E8EAF2;border:1px solid rgba(255,255,255,.3);border-radius:var(--radius-micro);font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.05em;padding:.15em .5em;cursor:pointer;transition:background-color var(--transition)}
-  #filtre-toggle:hover{background:#22304d}
-  @media(max-width:760px){#filtre-toggle{font-size:.6rem;padding:.1em .4em}}
-  #filtre-panel{position:absolute;top:100%;left:.6rem;margin-top:var(--sp-1);background:#fff;color:var(--encre);border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:0 6px 18px rgba(0,0,0,.25);padding:var(--sp-3);z-index:60;max-height:70vh;max-width:90vw;overflow-y:auto;display:flex;flex-wrap:wrap;gap:var(--sp-4) var(--sp-5)}
+  #filtre-toggle{position:absolute;left:.6rem;top:.35rem;background:var(--surface);color:var(--texte);border:1px solid var(--trait);border-radius:var(--radius-micro);font-family:var(--corps);font-weight:600;font-size:var(--tx-micro);letter-spacing:.04em;padding:.15em .7em;cursor:pointer;transition:border-color var(--transition)}
+  #filtre-toggle:hover{border-color:var(--accent)}
+  @media(max-width:760px){#filtre-toggle{font-size:.6rem;padding:.1em .5em}}
+  #filtre-panel{position:absolute;top:100%;left:.6rem;margin-top:var(--sp-1);background:var(--surface);color:var(--texte);border:1px solid var(--trait);border-radius:16px;box-shadow:0 12px 32px rgba(0,0,0,.5);padding:var(--sp-4);z-index:60;max-height:70vh;max-width:90vw;overflow-y:auto;display:flex;flex-wrap:wrap;gap:var(--sp-4) var(--sp-5)}
   #filtre-panel[hidden]{display:none}
-  .filtre-groupe-nom{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;margin-bottom:var(--sp-1)}
+  .filtre-groupe-nom{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--sp-1)}
   .filtre-item{display:block;font-size:var(--tx-sm);padding:.15em 0;white-space:nowrap;cursor:pointer}
-  .filtre-item input{margin-right:.4em}
+  .filtre-item input{margin-right:.4em;accent-color:var(--accent)}
 
   /* ---------- Sections période ---------- */
-  main{max-width:1080px;margin:0 auto;padding:0 5vw var(--sp-8)}
+  main{max-width:1120px;margin:0 auto;padding:0 5vw var(--sp-8)}
   section.periode{position:relative;padding:var(--sp-9) 0 var(--sp-7);border-bottom:1px solid var(--trait)}
-  .filigrane{position:absolute;top:1.2rem;right:-2vw;font-family:var(--display);font-size:clamp(5rem,17vw,12rem);color:var(--encre);opacity:.055;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
-  .periode .quand{font-family:var(--mono);color:var(--rouge);font-size:.8rem;letter-spacing:.15em}
-  .periode h2{font-family:var(--display);font-weight:400;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.08;margin:.2em 0 .15em}
+  .filigrane{position:absolute;top:1.2rem;right:-2vw;font-family:var(--display);font-weight:800;font-size:clamp(5rem,17vw,12rem);letter-spacing:-.04em;color:var(--texte);opacity:.045;line-height:1;pointer-events:none;user-select:none;white-space:nowrap}
+  .periode .quand{font-family:var(--display);font-weight:800;color:var(--accent);font-size:var(--tx-label);letter-spacing:.14em}
+  .periode h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.5vw,3.25rem);line-height:1.02;letter-spacing:-.02em;margin:.2em 0 .2em}
   .periode .regime{color:var(--gris);font-size:var(--tx-sm);margin-bottom:var(--sp-4)}
 
-  .contexte{background:var(--papier-2);border-left:4px solid var(--bleu);padding:var(--sp-4);margin:var(--sp-4) 0 var(--sp-6)}
-  .contexte h3{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--bleu);margin-bottom:var(--sp-2)}
-  .contexte p{font-size:var(--tx-sm);max-width:58em}
+  .contexte{background:var(--surface);border:1px solid var(--trait);border-left:4px solid var(--violet);border-radius:var(--radius-carte);padding:var(--sp-5);margin:var(--sp-4) 0 var(--sp-6)}
+  .contexte h3{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.14em;text-transform:uppercase;color:var(--violet-clair);margin-bottom:var(--sp-2)}
+  .contexte p{font-size:var(--tx-sm);max-width:58em;color:var(--texte-2)}
   .chiffres{display:flex;flex-wrap:wrap;gap:var(--sp-2);margin-top:var(--sp-3)}
-  .chip{font-family:var(--mono);font-size:var(--tx-micro);background:#fff;border:1px solid var(--trait);padding:.28em .6em;border-radius:var(--radius-micro);white-space:nowrap}
-  .chip b{color:var(--bleu);font-weight:600}
-  .contexte .europe{margin-top:var(--sp-3)}
-  .contexte .europe h4{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--sp-1)}
+  .chip{font-size:var(--tx-micro);background:var(--surface-2);border:1px solid var(--trait);padding:.3em .8em;border-radius:var(--radius-micro);white-space:nowrap;color:var(--texte-2)}
+  .chip b{color:var(--accent);font-weight:600}
+  .contexte .europe{margin-top:var(--sp-4)}
+  .contexte .europe h4{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--gris);margin-bottom:var(--sp-1)}
   .contexte .europe ul{padding-left:1.2em}
-  .contexte .europe li{font-size:var(--tx-sm);color:#4A5568;margin:.15em 0}
+  .contexte .europe li{font-size:var(--tx-sm);color:var(--texte-2);margin:.15em 0}
 
   /* ---------- Cartes réforme ---------- */
-  .reforme{background:#fff;border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:var(--ombre-carte);margin:var(--sp-3) 0;scroll-margin-top:120px}
-  .reforme summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--sp-2);padding:var(--sp-3) var(--sp-4);transition:background-color var(--transition), box-shadow var(--transition)}
+  .reforme{background:var(--surface);border:1px solid var(--trait);border-radius:var(--radius-carte);margin:var(--sp-3) 0;scroll-margin-top:120px;overflow:hidden;transition:border-color var(--transition)}
+  .reforme[open]{border-color:#343B4E}
+  .reforme summary{list-style:none;cursor:pointer;display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--sp-2) var(--sp-3);padding:var(--sp-4) var(--sp-5);transition:background-color var(--transition), box-shadow var(--transition)}
   .reforme summary::-webkit-details-marker{display:none}
-  .reforme summary:hover{background:#FAFAF7;box-shadow:inset 3px 0 0 var(--rouge)}
-  .reforme .annee{font-family:var(--mono);font-size:var(--tx-label);color:var(--rouge);min-width:3.2em}
+  .reforme summary:hover{background:var(--surface-2);box-shadow:inset 4px 0 0 var(--accent)}
+  .reforme .annee{font-family:var(--display);font-weight:800;font-size:var(--tx-base);color:var(--accent);min-width:3.2em}
   .reforme .titre{font-weight:600;font-size:var(--tx-base);flex:1 1 14em}
-  .reforme .resume{flex-basis:100%;color:#4A5568;font-size:var(--tx-sm);padding-left:calc(3.2em + var(--sp-2))}
+  .reforme .resume{flex-basis:100%;color:var(--texte-2);font-size:var(--tx-sm);padding-left:calc(3.2em + var(--sp-3))}
   @media(max-width:600px){.reforme .resume{padding-left:0}}
-  .reforme .fleche{font-family:var(--mono);color:var(--gris);transition:transform .2s}
-  .reforme[open] .fleche{transform:rotate(90deg)}
+  .reforme .fleche{color:var(--gris);transition:transform .2s}
+  .reforme[open] .fleche{transform:rotate(90deg);color:var(--accent)}
   .colonnes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:1px solid var(--trait)}
   @media(max-width:760px){.colonnes{grid-template-columns:1fr}}
-  .col{padding:var(--sp-4);border-right:1px solid var(--papier-2)}
+  .col{padding:var(--sp-5);border-right:1px solid var(--trait)}
   .col:last-child{border-right:none}
-  @media(max-width:760px){.col{border-right:none;border-bottom:1px solid var(--papier-2)}}
-  .col h4{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--sp-2)}
-  .col.promesse h4{color:var(--bleu)} .col.debat h4{color:var(--rouge)} .col.bilan h4{color:var(--vert)}
-  .col p{font-size:var(--tx-sm)}
-  .pied{border-top:1px solid var(--papier-2);padding:var(--sp-3) var(--sp-4);font-size:var(--tx-label)}
-  .pied .src a{margin-right:var(--sp-4);font-family:var(--mono);font-size:var(--tx-label)}
-  .lien-ancre{float:right;font-family:var(--mono);font-size:var(--tx-micro);color:var(--gris);text-decoration:none;transition:color var(--transition)}
-  .lien-ancre:hover{color:var(--bleu)}
+  @media(max-width:760px){.col{border-right:none;border-bottom:1px solid var(--trait)}}
+  .col h4{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--sp-2)}
+  .col.promesse h4{color:var(--violet-clair)} .col.debat h4{color:var(--rose)} .col.bilan h4{color:var(--menthe)}
+  .col p{font-size:var(--tx-sm);color:var(--texte-2);hyphens:auto}
+  .pied{border-top:1px solid var(--trait);padding:var(--sp-3) var(--sp-5);font-size:var(--tx-label)}
+  .pied .src a{margin-right:var(--sp-4);font-size:var(--tx-label)}
+  .lien-ancre{float:right;font-size:var(--tx-micro);color:var(--gris);text-decoration:none;transition:color var(--transition)}
+  .lien-ancre:hover{color:var(--accent)}
 
   /* ---------- Commentaires (Giscus) ---------- */
-  .commentaires{background:var(--papier-2);padding:var(--sp-3) var(--sp-4);border-top:1px solid var(--trait)}
-  .commentaires h5{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--encre);margin-bottom:var(--sp-2)}
+  .commentaires{background:var(--nuit);padding:var(--sp-4) var(--sp-5);border-top:1px solid var(--trait)}
+  .commentaires h5{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--texte);margin-bottom:var(--sp-2)}
   .commentaires .note{font-size:var(--tx-label);color:var(--gris);margin-bottom:var(--sp-2)}
   .giscus-zone{margin-top:var(--sp-2)}
-  .giscus-attente{font-family:var(--mono);font-size:var(--tx-label);color:var(--gris)}
+  .giscus-attente{font-size:var(--tx-label);color:var(--gris)}
   /* Hauteur bornée + défilement interne : contourne un bug du composant giscus-widget
      où plusieurs instances ouvertes en même temps peuvent hériter de la hauteur les
      unes des autres (github.com/giscus/giscus/issues/1636). */
@@ -156,104 +167,108 @@
 
   /* ---------- Annexe ---------- */
   #annexe{padding-top:var(--sp-8);padding-bottom:var(--sp-6)}
-  #annexe h2{font-family:var(--display);font-weight:400;font-size:clamp(1.8rem,4vw,2.6rem)}
-  #annexe h3{font-family:var(--mono);font-size:var(--tx-label);letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);margin:var(--sp-5) 0 var(--sp-2)}
-  #annexe h4{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--encre);margin:var(--sp-4) 0 var(--sp-1)}
+  #annexe h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,2.75rem);letter-spacing:-.02em;line-height:1.05;margin:var(--sp-7) 0 var(--sp-3)}
+  #annexe h2:first-child{margin-top:0}
+  #annexe h3{font-family:var(--display);font-weight:800;font-size:var(--tx-label);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:var(--sp-6) 0 var(--sp-2)}
+  #annexe h4{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;color:var(--texte);margin:var(--sp-4) 0 var(--sp-1)}
   #annexe .familles{list-style:none;padding-left:0}
   .familles li{margin:.4em 0;font-size:var(--tx-sm)}
-  .familles .puce{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--bleu);margin-right:.4em}
+  .familles .puce{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:var(--accent);margin-right:.5em}
   #annexe ol,#annexe ul{padding-left:1.3em;max-width:60em}
-  #annexe li{margin:.3em 0;font-size:var(--tx-sm)}
+  #annexe li{margin:.3em 0;font-size:var(--tx-sm);color:var(--texte-2)}
 
   /* ---------- Graphique d'un indicateur (issue #9, SVG statique rendu au build) ---------- */
-  .graphique-carte{background:#fff;border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:var(--ombre-carte);padding:var(--sp-4);margin:var(--sp-4) 0 var(--sp-6);max-width:60em}
+  .graphique-carte{background:var(--surface);border:1px solid var(--trait);border-radius:28px;padding:var(--sp-6) clamp(var(--sp-4),3vw,2.5rem);margin:var(--sp-4) 0 var(--sp-6);max-width:60em}
   .graphique-zone{position:relative}
-  .graphique-zone svg{display:block;width:100%;height:auto}
+  .graphique-zone svg{display:block;width:100%;height:auto;overflow:visible}
+  .graphique-zone svg text{font-family:var(--corps)}
+  .graphique-zone .ligne{filter:drop-shadow(0 0 6px rgba(198,255,61,.45))}
   #graphique-survol{cursor:crosshair}
-  .graphique-tooltip{position:absolute;pointer-events:none;background:var(--encre);color:#fff;font-size:var(--tx-label);padding:.5em .7em;border-radius:var(--radius-carte);box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:5;white-space:nowrap}
+  .graphique-tooltip{position:absolute;pointer-events:none;background:var(--texte);color:var(--nuit);font-weight:600;font-size:var(--tx-label);padding:.45em .75em;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.4);z-index:5;white-space:nowrap}
   /* Légende des séries secondaires statiques (issue #13, ex. Espérance de
      vie Hommes/Femmes autour de la moyenne interactive). */
-  .graphique-legende{display:flex;flex-wrap:wrap;gap:var(--sp-4);margin-top:var(--sp-3);font-size:var(--tx-label);color:var(--gris)}
+  .graphique-legende{display:flex;flex-wrap:wrap;gap:var(--sp-4);margin-top:var(--sp-4);font-size:var(--tx-label);color:var(--gris)}
   .legende-item{display:inline-flex;align-items:center;gap:.4em}
   .legende-puce{width:.7em;height:.7em;border-radius:50%;display:inline-block}
 
   /* ---------- Glossaire (issue #15) ---------- */
-  .glo{color:inherit;text-decoration:underline dotted;text-decoration-color:var(--bleu);text-decoration-thickness:1.5px;text-underline-offset:.2em;cursor:help}
-  .glo:hover{color:var(--bleu)}
+  .glo{color:inherit;text-decoration:underline dotted;text-decoration-color:var(--accent);text-decoration-thickness:1.5px;text-underline-offset:.2em;cursor:help}
+  .glo:hover{color:var(--accent)}
   .hero .legende-note{margin-top:var(--sp-2);font-size:var(--tx-label);color:var(--gris);max-width:58em}
-  .glo-bulle{position:absolute;z-index:70;max-width:min(26rem,calc(100vw - 16px));background:#fff;border:1px solid var(--trait);border-left:4px solid var(--bleu);box-shadow:0 6px 20px rgba(24,35,56,.14);padding:var(--sp-3) var(--sp-4);font-size:var(--tx-sm);line-height:1.5}
-  .glo-bulle b{display:block;font-family:var(--display);font-size:var(--tx-lead);margin-bottom:var(--sp-1)}
+  .glo-bulle{position:absolute;z-index:70;max-width:min(26rem,calc(100vw - 16px));background:var(--surface-2);color:var(--texte);border:1px solid var(--trait);border-left:4px solid var(--accent);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.5);padding:var(--sp-3) var(--sp-4);font-size:var(--tx-sm);line-height:1.5}
+  .glo-bulle b{display:block;font-family:var(--display);font-weight:800;font-size:var(--tx-lead);margin-bottom:var(--sp-1)}
   .glo-bulle .glo-liens{margin-top:var(--sp-2);font-size:var(--tx-label);display:flex;flex-wrap:wrap;gap:var(--sp-1) var(--sp-3)}
   .glossaire{max-width:46em}
   .glo-entree{padding:var(--sp-4) 0;border-bottom:1px solid var(--trait);scroll-margin-top:var(--sp-6)}
-  .glo-entree:target{background:var(--papier-2);box-shadow:-12px 0 0 var(--papier-2),12px 0 0 var(--papier-2)}
-  .glo-entree dt{font-family:var(--display);font-size:1.25rem;margin-bottom:var(--sp-1)}
-  .glo-entree dd{margin:0}
+  .glo-entree:target{background:var(--surface-2);box-shadow:-16px 0 0 var(--surface-2),16px 0 0 var(--surface-2);border-radius:4px}
+  .glo-entree dt{font-family:var(--display);font-weight:800;font-size:1.35rem;margin-bottom:var(--sp-1)}
+  .glo-entree dd{margin:0;color:var(--texte-2)}
   .glo-entree .src{margin-top:var(--sp-2);font-size:var(--tx-label)}
 
   /* ---------- Programmes 2027 (issue #16) ---------- */
   .programme-item{display:grid;grid-template-columns:1fr auto;column-gap:var(--sp-4);align-items:baseline}
   .programme-item p{grid-column:1 / -1}
-  .programme-item .score{font-family:var(--mono);font-size:var(--tx-sm);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .programme-item .score{font-family:var(--display);font-weight:800;font-size:var(--tx-sm);white-space:nowrap;color:var(--accent)}
   .ex-aequo{font-size:var(--tx-micro);color:var(--gris);letter-spacing:.05em}
-  .programme-table th[scope=row]{font-family:var(--corps);font-size:var(--tx-sm);letter-spacing:0;text-transform:none;background:var(--papier-2)}
+  .programme-table th[scope=row]{font-family:var(--corps);font-weight:600;font-size:var(--tx-sm);letter-spacing:0;text-transform:none;background:var(--surface-2);color:var(--texte)}
   .programme-table{table-layout:fixed;min-width:44rem}
   .programme-table thead th:nth-child(1){width:13%} .programme-table thead th:nth-child(2){width:37%}
   .programme-table thead th:nth-child(3){width:16%} .programme-table thead th:nth-child(4){width:17%} .programme-table thead th:nth-child(5){width:17%}
   .programme-table .date{color:var(--gris);font-size:var(--tx-label)}
   .cta-groupe.liens-candidat{justify-content:flex-start;margin-top:var(--sp-4);margin-bottom:var(--sp-3)}
   .programme-item a{text-decoration:none}
-  .programme-item a b{text-decoration:underline}
+  .programme-item a b{text-decoration:underline;text-underline-offset:.18em}
   .references li{margin-bottom:var(--sp-2);font-size:var(--tx-sm)}
   .references a{word-break:break-all}
-  .avert.relecture{border-color:var(--bleu)}
-  .avert.relecture b{color:var(--bleu)}
+  .avert.relecture{border-color:var(--violet)}
+  .avert.relecture b{color:var(--violet-clair)}
   .note-themes{font-size:var(--tx-sm);color:var(--gris);margin-top:var(--sp-3);max-width:58em}
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}
-  .analyse-item{padding:var(--sp-3);border-bottom:1px solid var(--trait);transition:background-color var(--transition), box-shadow var(--transition)}
-  .analyse-item:hover{background:#FAFAF7;box-shadow:inset 3px 0 0 var(--rouge)}
-  .analyse-item a{font-size:var(--tx-base)}
-  .analyse-item .unit{color:var(--gris);font-size:var(--tx-sm);font-weight:400}
-  .analyse-item p{font-size:var(--tx-sm);color:#4A5568;margin-top:.2em}
+  .analyse-item{padding:var(--sp-4);border-bottom:1px solid var(--trait);border-radius:4px;transition:background-color var(--transition), box-shadow var(--transition)}
+  .analyse-item:hover{background:var(--surface);box-shadow:inset 4px 0 0 var(--accent)}
+  .analyse-item a{font-family:var(--display);font-weight:800;font-size:var(--tx-lead)}
+  .analyse-item .unit{color:var(--gris);font-family:var(--corps);font-size:var(--tx-sm);font-weight:400}
+  .analyse-item p{font-size:var(--tx-sm);color:var(--texte-2);margin-top:.2em}
   .re-table{width:100%;border-collapse:collapse;margin-top:var(--sp-2);font-size:var(--tx-sm)}
-  .re-table th,.re-table td{border:1px solid var(--trait);padding:.5em .7em;text-align:left;vertical-align:top}
-  .re-table th{font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;background:var(--papier-2)}
+  .re-table th,.re-table td{border:1px solid var(--trait);padding:.6em .8em;text-align:left;vertical-align:top}
+  .re-table td{color:var(--texte-2)}
+  .re-table th{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.1em;text-transform:uppercase;background:var(--surface-2);color:var(--texte)}
   .re-table td.in{width:38%}
-  .table-scroll{overflow-x:auto}
-  .re-table td.annee{font-family:var(--mono);white-space:nowrap}
-  .kpi-table td:not(.annee){text-align:right;font-family:var(--mono)}
-  .avert{border:1.5px solid var(--rouge);border-radius:var(--radius-carte);padding:var(--sp-4);margin:var(--sp-5) 0;font-size:var(--tx-sm);max-width:60em;background:#fff}
-  .avert b{color:var(--rouge)}
+  .table-scroll{overflow-x:auto;scrollbar-color:var(--trait) transparent}
+  .re-table td.annee{white-space:nowrap}
+  .kpi-table td:not(.annee){text-align:right}
+  .avert{background:var(--surface);border:1px solid var(--rose);border-radius:var(--radius-carte);padding:var(--sp-5);margin:var(--sp-5) 0;font-size:var(--tx-sm);max-width:60em}
+  .avert b{color:var(--rose)}
 
   /* ---------- Points d'inflexion (issue #10) ---------- */
-  .inflexion{background:#fff;border:1px solid var(--trait);border-radius:var(--radius-carte);box-shadow:var(--ombre-carte);padding:var(--sp-4);margin:var(--sp-4) 0;max-width:60em}
-  .inflexion-annee{font-family:var(--mono);color:var(--rouge);font-size:.8rem;letter-spacing:.1em}
-  .inflexion h3{font-family:var(--display);font-weight:400;font-size:1.3rem;margin:.15em 0 .5em}
-  .inflexion p{font-size:var(--tx-sm)}
+  .inflexion{background:var(--surface);border:1px solid var(--trait);border-radius:var(--radius-carte);padding:var(--sp-5);margin:var(--sp-4) 0;max-width:60em}
+  .inflexion-annee{font-family:var(--display);font-weight:800;color:var(--accent);font-size:var(--tx-label);letter-spacing:.1em}
+  .inflexion h3{font-family:var(--display);font-weight:800;font-size:1.4rem;line-height:1.15;margin:.2em 0 .5em}
+  .inflexion p{font-size:var(--tx-sm);color:var(--texte-2)}
   .inflexion ul{margin-top:.5em;padding-left:0;list-style:none}
-  .inflexion li a{font-family:var(--mono);font-size:var(--tx-label)}
+  .inflexion li a{font-weight:600;font-size:var(--tx-label)}
 
   /* ---------- Autre regard : point de vue minoritaire/contesté, style
-     neutre (gris, pas rouge) pour rester visuellement distinct du contenu
+     neutre (gris, pas rose) pour rester visuellement distinct du contenu
      sourcé INSEE/OFCE du reste de la page. ---------- */
-  .autre-regard{background:var(--papier-2);border-left:4px solid var(--gris);border-radius:var(--radius-carte);padding:var(--sp-4);margin:var(--sp-5) 0;max-width:60em}
-  .autre-regard h2{font-size:clamp(1.5rem,3.4vw,2.1rem)}
-  .autre-regard p{font-size:var(--tx-sm)}
+  .autre-regard{background:var(--surface);border:1px solid var(--trait);border-left:4px solid var(--gris);border-radius:var(--radius-carte);padding:var(--sp-5);margin:var(--sp-5) 0;max-width:60em}
+  .autre-regard h2{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-top:0}
+  .autre-regard p{font-size:var(--tx-sm);color:var(--texte-2)}
   .autre-regard ul{margin-top:.5em;padding-left:0;list-style:none}
-  .autre-regard li a{font-family:var(--mono);font-size:var(--tx-label)}
+  .autre-regard li a{font-weight:600;font-size:var(--tx-label)}
 
   /* ---------- Encadré explicatif (issue #14) : « mode d'emploi » de
-     l'indicateur sous le graphique — liseré bleu (couleur République),
-     distinct du rouge .avert (alerte) et du gris .autre-regard (point de
-     vue) puisqu'il s'agit ici d'un contenu factuel de référence. ---------- */
-  .encadre-explicatif{background:#fff;border-left:4px solid var(--bleu);border-radius:var(--radius-carte);padding:var(--sp-4);margin:var(--sp-5) 0;max-width:60em}
-  .encadre-explicatif h2{font-size:clamp(1.5rem,3.4vw,2.1rem)}
+     l'indicateur sous le graphique — liseré violet, distinct du rose .avert
+     (alerte) et du gris .autre-regard (point de vue) puisqu'il s'agit ici
+     d'un contenu factuel de référence. ---------- */
+  .encadre-explicatif{background:var(--surface);border:1px solid var(--trait);border-left:4px solid var(--violet);border-radius:var(--radius-carte);padding:var(--sp-5);margin:var(--sp-5) 0;max-width:60em}
+  .encadre-explicatif h2{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-top:0}
   .encadre-explicatif dt{font-weight:600;margin-top:var(--sp-3)}
   .encadre-explicatif dt:first-child{margin-top:0}
-  .encadre-explicatif dd{font-size:var(--tx-sm);margin:.2em 0 0}
+  .encadre-explicatif dd{font-size:var(--tx-sm);margin:.2em 0 0;color:var(--texte-2)}
   .encadre-explicatif ul{margin-top:var(--sp-3);padding-left:0;list-style:none}
-  .encadre-explicatif li a{font-family:var(--mono);font-size:var(--tx-label)}
+  .encadre-explicatif li a{font-weight:600;font-size:var(--tx-label)}
 
-  footer{border-top:3px solid var(--encre);padding:var(--sp-5) 5vw var(--sp-7);font-size:var(--tx-label);color:var(--gris);max-width:1080px;margin:0 auto}
+  footer{border-top:1px solid var(--trait);padding:var(--sp-6) 5vw var(--sp-7);font-size:var(--tx-label);color:var(--gris);max-width:1120px;margin:0 auto}
