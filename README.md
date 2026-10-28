@@ -47,6 +47,11 @@ src/
   runtime.js              JS de la page générée : curseur de lecture au
                           scroll, ouverture d'une carte via l'URL, chargement
                           différé des commentaires Giscus
+  site.webmanifest        manifest (nom, couleurs, icônes) pour les favoris
+                          et l'ajout à l'écran d'accueil
+  icons/                  favicon (SVG + ICO), apple-touch-icon, icônes
+                          192/512 et maskable ; les <link> sont injectés
+                          dans chaque page par build.js
 
 build.js                script de build : lit /data, génère dist/ en pages
                         distinctes à URLs propres (le HTML est pré-rendu,

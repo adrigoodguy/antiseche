@@ -836,11 +836,19 @@ ${note ? '<script src="/runtime.js"></script>' : ""}
 `;
 }
 
+// Icônes et manifest, injectés dans le <head> de chaque page (favoris, écran d'accueil mobile).
+const ICONES = `<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">`;
+
 function ecrire(fichier, html) {
   // Une balise de glossaire mal formée ([[texte]] sans id, id en majuscules...) ne doit pas finir en ligne.
   // (Les guillemets sont exclus : le JSON embarqué contient des [["…", "…"]] légitimes.)
   const reste = html.match(/\[\[[^\]"<>]*\]\]/);
   if (reste) throw new Error(`Balise de glossaire non convertie dans ${fichier} : ${reste[0]}`);
+  if (!html.includes("</head>")) throw new Error(`Pas de </head> dans ${fichier}`);
+  html = html.replace("</head>", `${ICONES}\n</head>`);
   const dest = path.join(DIST, fichier);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.writeFileSync(dest, html);
@@ -861,6 +869,10 @@ function build() {
   pagesSamples(INDIC_PAR_LAB).forEach(p => ecrire(p.fichier, p.html));
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
+  fs.copyFileSync(path.join(SRC, "site.webmanifest"), path.join(DIST, "site.webmanifest"));
+  fs.cpSync(path.join(SRC, "icons"), path.join(DIST, "icons"), { recursive: true });
+  // Certains navigateurs et outils demandent /favicon.ico d'office, sans lire les <link>.
+  fs.copyFileSync(path.join(SRC, "icons", "favicon.ico"), path.join(DIST, "favicon.ico"));
   console.log("Build OK → dist/");
 }
 
