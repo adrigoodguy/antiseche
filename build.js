@@ -4,6 +4,7 @@
  */
 const fs = require("fs");
 const path = require("path");
+const { pagesSamples } = require("./samples");
 
 const ROOT = __dirname;
 const DATA = path.join(ROOT, "data");
@@ -856,6 +857,8 @@ function build() {
   ecrire("glossaire/index.html", pageGlossaire());
   ecrire("programmes/index.html", pageProgrammesIndex());
   CANDIDATS.forEach(c => ecrire(`programmes/${c.id}/index.html`, pageProgramme(c)));
+  // Essais du futur design system (issue #18), non liés depuis le site.
+  pagesSamples(INDIC_PAR_LAB).forEach(p => ecrire(p.fichier, p.html));
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
   console.log("Build OK → dist/");
