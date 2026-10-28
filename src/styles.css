@@ -148,10 +148,36 @@
   .col h4{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;margin-bottom:var(--sp-2)}
   .col.promesse h4{color:var(--violet-clair)} .col.debat h4{color:var(--rose)} .col.bilan h4{color:var(--menthe)}
   .col p{font-size:var(--tx-sm);color:var(--texte-2);hyphens:auto}
-  .pied{border-top:1px solid var(--trait);padding:var(--sp-3) var(--sp-5);font-size:var(--tx-label)}
+  .pied{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:var(--sp-3) var(--sp-4);border-top:1px solid var(--trait);padding:var(--sp-3) var(--sp-5);font-size:var(--tx-label)}
   .pied .src a{margin-right:var(--sp-4);font-size:var(--tx-label)}
-  .lien-ancre{float:right;font-size:var(--tx-micro);color:var(--gris);text-decoration:none;transition:color var(--transition)}
+  .pied-actions{display:inline-flex;align-items:center;gap:var(--sp-4);margin-left:auto}
+  .lien-ancre{font-size:var(--tx-micro);color:var(--gris);text-decoration:none;transition:color var(--transition)}
   .lien-ancre:hover{color:var(--accent)}
+
+  /* ---------- Proposer une correction (formulaire, serveur/propositions.js) ---------- */
+  .proposer{font:600 var(--tx-label)/1 var(--corps);color:var(--texte);background:none;border:1px solid var(--trait);border-radius:999px;padding:.5em 1em;cursor:pointer;transition:border-color var(--transition),color var(--transition)}
+  .proposer::before{content:"✎ ";color:var(--accent)}
+  .proposer:hover{border-color:var(--accent);color:var(--accent)}
+  #proposition{margin:auto;width:min(36rem,calc(100vw - 32px));max-height:calc(100dvh - 32px);background:var(--surface);color:var(--texte);border:1px solid var(--trait);border-radius:var(--radius-carte);padding:0;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+  #proposition::backdrop{background:rgba(5,6,9,.75);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+  .proposition-form{display:flex;flex-direction:column;gap:var(--sp-4);padding:var(--sp-6) var(--sp-5) var(--sp-5)}
+  .proposition-kicker{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  #proposition h2{font-family:var(--display);font-weight:800;font-size:1.4rem;line-height:1.15;margin-top:calc(-1 * var(--sp-3))}
+  .proposition-form label{display:flex;flex-direction:column;gap:var(--sp-1);font-size:var(--tx-sm);font-weight:600}
+  .proposition-form label small{font-size:inherit;font-weight:400;color:var(--gris)}
+  .proposition-form textarea,.proposition-form input{font:400 var(--tx-base)/1.5 var(--corps);color:var(--texte);background:var(--nuit);border:1px solid var(--trait);border-radius:12px;padding:.6em .8em;width:100%}
+  .proposition-form textarea{resize:vertical}
+  .proposition-form textarea:focus-visible,.proposition-form input:focus-visible{outline:var(--focus-ring);outline-offset:1px}
+  .proposition-form .piege{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+  .proposition-note{font-size:var(--tx-label);color:var(--gris)}
+  .proposition-statut:empty{display:none}
+  .proposition-statut{font-size:var(--tx-sm);font-weight:600}
+  .proposition-statut.erreur{color:var(--rose)}
+  .proposition-statut.ok{color:var(--menthe)}
+  .proposition-actions{display:flex;justify-content:flex-end;gap:var(--sp-3)}
+  .proposition-annuler{font:600 var(--tx-sm)/1 var(--corps);color:var(--gris);background:none;border:none;cursor:pointer;padding:.75em 1em}
+  .proposition-actions .cta{border:none;cursor:pointer}
+  .proposition-actions .cta:disabled{opacity:.5;cursor:wait}
 
   /* ---------- Annexe ---------- */
   #annexe{padding-top:var(--sp-8);padding-bottom:var(--sp-6)}

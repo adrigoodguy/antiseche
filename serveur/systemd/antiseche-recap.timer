@@ -1,0 +1,9 @@
+[Unit]
+Description=Antisèche : récapitulatif des propositions chaque lundi à 8 h (Paris)
+
+[Timer]
+OnCalendar=Mon *-*-* 08:00:00 Europe/Paris
+Persistent=true
+
+[Install]
+WantedBy=timers.target

@@ -147,6 +147,58 @@ if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
   });
 }
 
+/* --- Proposer une correction : fenêtre unique, ouverte par les boutons .proposer,
+   envoi en JSON vers /api/proposition (serveur/propositions.js). « ouvert »
+   date l'ouverture du formulaire : le serveur ignore les envois trop rapides. --- */
+const dialogue = document.getElementById("proposition");
+if (dialogue) {
+  const form = dialogue.querySelector("form");
+  const statut = dialogue.querySelector(".proposition-statut");
+  const envoyer = form.querySelector('button[type="submit"]');
+  let cible = null, ouvert = 0;
+  const fermer = () => dialogue.close();
+
+  document.addEventListener("click", e => {
+    const b = e.target.closest(".proposer");
+    if (!b) return;
+    cible = b.dataset.cible;
+    ouvert = Date.now();
+    dialogue.querySelector("#proposition-titre").textContent = b.dataset.titre;
+    statut.textContent = ""; statut.className = "proposition-statut";
+    form.hidden = false; envoyer.disabled = false; envoyer.hidden = false;
+    dialogue.showModal();
+    form.elements.message.focus();
+  });
+  dialogue.querySelector(".proposition-annuler").addEventListener("click", fermer);
+  // Clic sur le fond (hors de la fenêtre) : fermeture.
+  dialogue.addEventListener("click", e => { if (e.target === dialogue) fermer() });
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    envoyer.disabled = true;
+    statut.textContent = "Envoi…"; statut.className = "proposition-statut";
+    const f = form.elements;
+    try {
+      const r = await fetch("/api/proposition", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cible, ouvert, message: f.message.value, source: f.source.value, email: f.email.value, site_web: f.site_web.value }),
+      });
+      const rep = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(rep.erreur || "Envoi impossible pour le moment, réessayez plus tard.");
+      statut.textContent = "Merci, c'est envoyé. Les propositions sont relues chaque semaine.";
+      statut.className = "proposition-statut ok";
+      form.reset();
+      envoyer.hidden = true;
+      setTimeout(fermer, 2500);
+    } catch (err) {
+      statut.textContent = err.message === "Failed to fetch" ? "Connexion impossible, réessayez plus tard." : err.message;
+      statut.className = "proposition-statut erreur";
+      envoyer.disabled = false;
+    }
+  });
+}
+
 /* --- Ouvrir la carte ciblée par l'URL --- */
 if (location.hash) { const el = document.querySelector(location.hash); if (el && el.tagName === "DETAILS") { el.open = true; el.scrollIntoView() } }
 

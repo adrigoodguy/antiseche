@@ -1,0 +1,10 @@
+# Redémarre le service de propositions après chaque déploiement : il lit le
+# code et data/periodes.json (réformes acceptées) au démarrage.
+[Unit]
+Description=Antisèche : surveille les déploiements pour redémarrer le service de propositions
+
+[Path]
+PathChanged=/srv/antiseche/deployed-commit
+
+[Install]
+WantedBy=multi-user.target

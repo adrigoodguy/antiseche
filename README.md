@@ -53,6 +53,10 @@ src/
                           192/512 et maskable ; les <link> sont injectés
                           dans chaque page par build.js
 
+serveur/                formulaire de correction : réception
+                        (propositions.js), récapitulatif hebdomadaire en
+                        issue GitHub (recap.js), unités systemd
+
 build.js                script de build : lit /data, génère dist/ en pages
                         distinctes à URLs propres (le HTML est pré-rendu,
                         pas construit au chargement de la page) :
@@ -107,10 +111,31 @@ en 5 minutes au plus, sans secret ni clé du serveur stockés côté GitHub.
 - Forcer un redéploiement : `sudo -u antiseche /usr/local/bin/antiseche-deploy --force`
 - Consulter les déploiements : `journalctl -u antiseche-deploy`
 
-## Corrections
+## Propositions de correction
 
-Les corrections passent par les [issues GitHub](https://github.com/adrigoodguy/antiseche/issues), liées depuis
-l'annexe de la frise et le pied de page.
+Chaque carte réforme a un bouton « Proposer une correction » (et l'annexe de
+la frise, un bouton de remarque générale) : formulaire sans compte, envoyé à
+`serveur/propositions.js`, petit service Node sans dépendance derrière Caddy
+(`/api/*` → `127.0.0.1:8092`).
+
+- **Rien n'est publié directement** : les envois sont ajoutés à
+  `/srv/antiseche/propositions/propositions.jsonl`, privé au serveur.
+- **Anti-spam invisible** : champ piège, délai minimum de 3 s entre l'ouverture
+  du formulaire et l'envoi, 5 envois par heure et par IP (en mémoire, l'IP
+  n'est jamais écrite), 2 000 caractères et 3 liens au plus, réforme valide.
+- **Récapitulatif hebdomadaire** : chaque lundi à 8 h (Paris),
+  `serveur/recap.js` crée une seule issue GitHub listant les envois de la
+  semaine par réforme, avec une case à cocher chacun. Pas d'envoi, pas
+  d'issue. Les e-mails restent sur le serveur et les envois de plus de 12 mois
+  sont purgés.
+- Jeton GitHub (à grain fin, Issues en écriture sur ce seul dépôt) dans
+  `/etc/antiseche/github.env` (`GITHUB_TOKEN=…`, root:root 600), jamais dans
+  le dépôt.
+- Unités systemd versionnées dans `serveur/systemd/` (copiées dans
+  `/etc/systemd/system/`) ; le service redémarre seul après chaque déploiement.
+- Aperçu du prochain récapitulatif sans rien envoyer :
+  `sudo -u antiseche PROPOSITIONS_DOSSIER=/srv/antiseche/propositions node /srv/antiseche/repo/serveur/recap.js --essai`
+- Journaux : `journalctl -u antiseche-propositions -u antiseche-recap`
 
 ## Contribuer
 

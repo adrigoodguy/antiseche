@@ -153,7 +153,7 @@ function carteReforme(r, pid) {
     <div class="col debat"><h4>Débat contemporain</h4><p>${glose(r.deb)}</p></div>
     <div class="col bilan"><h4>Bilan factuel, avec le recul</h4><p>${glose(r.bil)}</p></div>
   </div>
-  <div class="pied"><a class="lien-ancre" href="#${terme}" title="Lien direct vers cette réforme">#lien</a><span class="src">${srcs}</span></div>
+  <div class="pied"><span class="src">${srcs}</span><span class="pied-actions"><button type="button" class="proposer" data-cible="${terme}" data-titre="${esc(`${r.an} · ${r.t}`)}">Proposer une correction</button><a class="lien-ancre" href="#${terme}" title="Lien direct vers cette réforme">#lien</a></span></div>
 </details>`;
 }
 
@@ -190,8 +190,35 @@ function annexe() {
 <li><b>Glossaire</b> : définitions courtes des termes techniques (stagflation, Bretton Woods, politique de l'offre…), avec une source pour approfondir — <a href="/glossaire">antiseche.org/glossaire</a>.</li>
 <li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="/sources">antiseche.org/sources</a>.</li>
 </ul>
-<h3>Corrections et remarques</h3>
-<p>Une erreur, une source plus solide, une réforme qui manque, ou une remarque sur la méthode&nbsp;? Ouvrez une <a href="https://github.com/adrigoodguy/antiseche/issues" target="_blank" rel="noopener">issue sur GitHub ↗</a> en précisant la réforme concernée (le lien <code>#lien</code> de sa carte suffit).</p>`;
+<h3 id="corrections">Corrections et remarques</h3>
+<p>Une erreur sur une réforme&nbsp;? Le bouton «&nbsp;Proposer une correction&nbsp;» de sa carte suffit, sans compte ni inscription. Pour une source plus solide, une réforme qui manque ou une remarque sur la méthode&nbsp;:</p>
+<p><button type="button" class="proposer" data-cible="general" data-titre="Remarque générale (méthode, sélection, site)">Faire une remarque générale</button></p>
+<p>Les propositions sont relues chaque semaine. Pour contribuer directement aux données ou au code, voir le <a href="https://github.com/adrigoodguy/antiseche" target="_blank" rel="noopener">dépôt GitHub ↗</a>.</p>`;
+}
+
+/* --- Formulaire de proposition de correction (une seule fenêtre par page, ouverte
+   par les boutons .proposer ; envoi géré par runtime.js vers serveur/propositions.js).
+   site_web : champ piège, invisible pour un humain, rempli par les robots. --- */
+function dialogueProposition() {
+  return `<dialog id="proposition" aria-labelledby="proposition-titre">
+  <form method="dialog" class="proposition-form">
+    <p class="proposition-kicker">Proposer une correction</p>
+    <h2 id="proposition-titre"></h2>
+    <label><span>Qu'est-ce qui est faux, incomplet ou peu clair&nbsp;?</span>
+      <textarea name="message" required minlength="10" maxlength="2000" rows="5"></textarea></label>
+    <label><span>Une source pour appuyer la correction <small>(facultatif)</small></span>
+      <input name="source" maxlength="500" placeholder="Lien ou référence"></label>
+    <label><span>Votre e-mail, si vous acceptez d'être recontacté·e <small>(facultatif)</small></span>
+      <input name="email" type="email" maxlength="200" autocomplete="email"></label>
+    <label class="piege" aria-hidden="true">Site web <input name="site_web" tabindex="-1" autocomplete="off"></label>
+    <p class="proposition-note">Relu chaque semaine. Le texte et la source peuvent être repris publiquement sur GitHub&nbsp;; l'e-mail reste privé, n'est utilisé que pour vous répondre et est effacé au bout de 12 mois.</p>
+    <p class="proposition-statut" role="status"></p>
+    <div class="proposition-actions">
+      <button type="button" class="proposition-annuler" value="annuler">Annuler</button>
+      <button type="submit" class="cta">Envoyer</button>
+    </div>
+  </form>
+</dialog>`;
 }
 
 /* --- Page « Frise » (contenu de l'ex-page unique, déplacé tel quel sur /frise, issue #9) --- */
@@ -231,9 +258,11 @@ ${nav("frise")}
 <section id="annexe-conteneur"><main id="annexe">${annexe()}</main></section>
 
 <footer>
-  Sources principales&nbsp;: INSEE (séries longues), Vie-publique.fr, Légifrance, Cour des comptes, France Stratégie, Banque mondiale, archives INA. Les liens de la v1 sont des points d'entrée (notices Vie-publique / Wikipédia) destinés à être remplacés par les sources primaires en v2. Les chiffres du bandeau et des encadrés contexte sont des ordres de grandeur à re-vérifier ligne à ligne avant publication. Document ouvert aux corrections — c'est le principe&nbsp;: <a href="https://github.com/adrigoodguy/antiseche/issues" target="_blank" rel="noopener">proposer une correction ↗</a>.
+  Sources principales&nbsp;: INSEE (séries longues), Vie-publique.fr, Légifrance, Cour des comptes, France Stratégie, Banque mondiale, archives INA. Les liens de la v1 sont des points d'entrée (notices Vie-publique / Wikipédia) destinés à être remplacés par les sources primaires en v2. Les chiffres du bandeau et des encadrés contexte sont des ordres de grandeur à re-vérifier ligne à ligne avant publication. Document ouvert aux corrections — c'est le principe&nbsp;: <a href="#corrections">proposer une correction</a>.
   <p class="pied-sources">${piedSources()}</p>
 </footer>
+
+${dialogueProposition()}
 
 <script>window.__DONNEES_INDIC__=${DONNEES_INDIC_JSON};window.__GLOSSAIRE__=${JSON.stringify(Object.fromEntries(GLOSSAIRE.map(g => [g.id, g]))).replace(/</g, "\\u003c")};</script>
 <script src="/runtime.js"></script>
@@ -411,7 +440,7 @@ ${kpiNotes}
 </main>
 
 <footer>
-  Document ouvert aux corrections (<a href="https://github.com/adrigoodguy/antiseche/issues" target="_blank" rel="noopener">proposer une correction ↗</a>) — voir <a href="/frise#annexe-conteneur">l'annexe de la frise</a> pour la méthode générale du projet.
+  Document ouvert aux corrections (<a href="/frise#corrections">proposer une correction</a>) — voir <a href="/frise#annexe-conteneur">l'annexe de la frise</a> pour la méthode générale du projet.
 </footer>
 
 </body>

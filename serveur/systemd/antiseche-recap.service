@@ -1,0 +1,19 @@
+[Unit]
+Description=Antisèche : issue GitHub récapitulative des propositions de la semaine
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=antiseche
+Group=antiseche
+# GITHUB_TOKEN=… (jeton à grain fin, Issues en écriture sur ce seul dépôt),
+# lu par systemd avant de passer à l'utilisateur antiseche. Fichier root:root 600.
+EnvironmentFile=-/etc/antiseche/github.env
+Environment=PROPOSITIONS_DOSSIER=/srv/antiseche/propositions
+ExecStart=/usr/bin/node /srv/antiseche/repo/serveur/recap.js
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/srv/antiseche/propositions

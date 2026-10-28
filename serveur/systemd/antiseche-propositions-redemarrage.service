@@ -1,0 +1,6 @@
+[Unit]
+Description=Antisèche : redémarrage du service de propositions après déploiement
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart antiseche-propositions.service

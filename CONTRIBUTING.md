@@ -1,14 +1,17 @@
 # Contribuer à Antisèche
 
 Merci de vouloir améliorer ce document. Deux façons de contribuer : proposer une
-**correction ponctuelle** (issue GitHub) ou une **modification du
+**correction ponctuelle** (formulaire du site ou issue GitHub) ou une **modification du
 contenu** (pull request sur les données).
 
 ## Corrections ponctuelles
 
-Pour signaler une erreur ou proposer une source, ouvrez une
-[issue](https://github.com/adrigoodguy/antiseche/issues) en indiquant la réforme concernée (le lien `#lien` de sa
-carte sur le site suffit). Toute correction sourcée est bienvenue.
+Pour signaler une erreur ou proposer une source, le plus simple est le bouton
+« Proposer une correction » de la carte concernée sur le site (aucun compte
+nécessaire). Les propositions sont relues chaque semaine. Vous pouvez aussi
+ouvrir directement une [issue](https://github.com/adrigoodguy/antiseche/issues)
+en indiquant la réforme concernée (le lien `#lien` de sa carte suffit). Toute
+correction sourcée est bienvenue.
 
 ## Modifier le contenu (pull request)
 
