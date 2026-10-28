@@ -253,6 +253,60 @@ ${nav("frise")}
 `;
 }
 
+/* --- Essai /sample7 (issue #18) : la frise avec un « mode effet » du bandeau ---
+   À l'ouverture d'une carte, le bandeau montre la fenêtre qui suit la réforme
+   (src/effets.js). Indicateurs visés et horizon renseignés à la main pour
+   quelques réformes, à titre d'illustration ; les autres prennent 10 ans et
+   tous les indicateurs. Non liée depuis le site, en noindex. */
+const EFFETS_ESSAI = {
+  "gprf-secu": { horizon: 25, cibles: ["Espérance de vie"] },
+  "mitterrand-rigueur83": { horizon: 5, cibles: ["Inflation", "Chômage"] },
+  "chirac-35h": { horizon: 5, cibles: ["Chômage", "Croissance PIB"] },
+  "macron-qqec": { horizon: 5, cibles: ["Dette publique", "Croissance PIB"] },
+};
+const CSS_SAMPLE7 = `<style>
+.essai-bandeau{padding:var(--sp-2) 5vw;font-size:var(--tx-label);color:var(--gris);border-bottom:1px solid var(--trait);text-align:center}
+.essai-bandeau b{color:var(--accent)}
+.spark .fenetre{fill:var(--gc, var(--accent));fill-opacity:0}
+.spark .jalon{stroke:var(--gris);stroke-width:1;opacity:0}
+#bandeau.mode-effet .spark .fenetre{fill-opacity:.16}
+#bandeau.mode-effet .spark .jalon{opacity:1}
+#bandeau.mode-effet{border-bottom-color:var(--violet)}
+.spark{transition:opacity var(--transition)}
+#bandeau.mode-effet .spark.estompe{opacity:.3}
+.spark .val .delta{font-family:var(--corps);font-weight:600;font-size:var(--tx-micro);color:var(--gris)}
+.spark .val .borne{font-family:var(--corps);font-weight:400;font-size:.6rem;color:var(--gris)}
+#annee-curseur small{font-size:.6em;color:var(--texte)}
+.effet-ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-2) var(--sp-4);padding:var(--sp-3) var(--sp-5);border-top:1px solid var(--trait);background:color-mix(in srgb, var(--violet) 10%, var(--surface))}
+.effet-titre{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--violet-clair)}
+.effet-horizons{display:inline-flex;gap:var(--sp-1)}
+.effet-horizons button{font:600 var(--tx-label)/1 var(--corps);color:var(--texte);background:none;border:1px solid var(--trait);border-radius:999px;padding:.45em .9em;cursor:pointer}
+.effet-horizons button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--nuit)}
+.effet-cibles{font-size:var(--tx-label);color:var(--gris)}
+</style>`;
+
+function pageSample7() {
+  const parTerme = new Map(PERIODES.flatMap(p => p.reformes.map(r => [`${p.id}-${r.id}`, r])));
+  for (const [terme, e] of Object.entries(EFFETS_ESSAI)) {
+    if (!parTerme.has(terme)) throw new Error(`EFFETS_ESSAI : réforme inconnue ${terme}`);
+    for (const lab of e.cibles) if (!INDIC_PAR_LAB.has(lab)) throw new Error(`EFFETS_ESSAI : indicateur inconnu ${lab}`);
+  }
+  const remplacer = (html, avant, apres) => {
+    if (!html.includes(avant)) throw new Error(`pageSample7 : motif absent de la frise : ${avant}`);
+    return html.replace(avant, apres);
+  };
+  let html = pageFrise().replace(/<details class="reforme" id="([a-z0-9-]+)">/g, (_, terme) => {
+    const an = String(parTerme.get(terme).an).match(/\d{4}/)[0];
+    const e = EFFETS_ESSAI[terme] || { horizon: 10, cibles: [] };
+    return `<details class="reforme" id="${terme}" data-an="${an}" data-horizon="${e.horizon}"${e.cibles.length ? ` data-cibles="${esc(e.cibles.join("|"))}"` : ""}>`;
+  });
+  html = remplacer(html, "<title>Socle commun · 1944–2026 · Réformes, promesses et résultats</title>", `<meta name="robots" content="noindex">\n<title>Effets dans le temps · Essai 7 · Antisèche</title>`);
+  html = remplacer(html, "</head>", `${CSS_SAMPLE7}\n</head>`);
+  html = remplacer(html, "<body>\n", `<body>\n<div class="essai-bandeau">Essai 7 · <b>Effets dans le temps</b> : ouvrez une carte réforme, le bandeau montre ce qui suit (5, 10 ou 25 ans). Horizons et indicateurs visés renseignés à titre d'exemple sur la Sécurité sociale, le tournant de la rigueur, les 35 heures et le « quoi qu'il en coûte ». · <a href="/frise">Frise actuelle</a></div>\n`);
+  html = remplacer(html, '<script src="/runtime.js"></script>', '<script src="/runtime.js"></script>\n<script src="/effets.js"></script>');
+  return html;
+}
+
 /* --- Page d'accueil (mission du projet, issue #9) --- */
 function pageAccueil() {
   return `<!DOCTYPE html>
@@ -833,7 +887,7 @@ ${note ? '<script src="/runtime.js"></script>' : ""}
 }
 
 // Icônes et manifest, injectés dans le <head> de chaque page (favoris, écran d'accueil mobile).
-// Polices du design system (issue #18), sauf sur les pages d'essai qui chargent les leurs.
+// Polices du design system (issue #18), sauf sur les pages qui chargent déjà les leurs (essais 1 à 6).
 const POLICES = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;600&display=swap">
@@ -844,13 +898,20 @@ const ICONES = `<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">`;
 
+// Empreinte de contenu dans l'URL des CSS/JS (?v=…) : sans en-tête Cache-Control
+// côté serveur, les navigateurs gardent l'ancien fichier en cache et l'associent
+// au nouveau HTML. Chaque modification change l'URL et force le rechargement.
+const ACTIFS = ["styles.css", "runtime.js", "effets.js"];
+const EMPREINTES = new Map(ACTIFS.map(f => [f, require("crypto").createHash("sha256").update(fs.readFileSync(path.join(SRC, f))).digest("hex").slice(0, 10)]));
+
 function ecrire(fichier, html) {
   // Une balise de glossaire mal formée ([[texte]] sans id, id en majuscules...) ne doit pas finir en ligne.
   // (Les guillemets sont exclus : le JSON embarqué contient des [["…", "…"]] légitimes.)
   const reste = html.match(/\[\[[^\]"<>]*\]\]/);
   if (reste) throw new Error(`Balise de glossaire non convertie dans ${fichier} : ${reste[0]}`);
   if (!html.includes("</head>")) throw new Error(`Pas de </head> dans ${fichier}`);
-  html = html.replace("</head>", `${fichier.startsWith("sample") ? "" : POLICES}${ICONES}\n</head>`);
+  html = html.replace("</head>", `${html.includes("fonts.googleapis.com/css2") ? "" : POLICES}${ICONES}\n</head>`);
+  for (const [f, v] of EMPREINTES) html = html.replaceAll(`"/${f}"`, `"/${f}?v=${v}"`);
   const dest = path.join(DIST, fichier);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
   fs.writeFileSync(dest, html);
@@ -869,8 +930,10 @@ function build() {
   CANDIDATS.forEach(c => ecrire(`programmes/${c.id}/index.html`, pageProgramme(c)));
   // Essais du futur design system (issue #18), non liés depuis le site.
   pagesSamples(INDIC_PAR_LAB).forEach(p => ecrire(p.fichier, p.html));
+  ecrire("sample7/index.html", pageSample7());
   fs.copyFileSync(path.join(SRC, "styles.css"), path.join(DIST, "styles.css"));
   fs.copyFileSync(path.join(SRC, "runtime.js"), path.join(DIST, "runtime.js"));
+  fs.copyFileSync(path.join(SRC, "effets.js"), path.join(DIST, "effets.js"));
   fs.copyFileSync(path.join(SRC, "site.webmanifest"), path.join(DIST, "site.webmanifest"));
   fs.cpSync(path.join(SRC, "icons"), path.join(DIST, "icons"), { recursive: true });
   // Certains navigateurs et outils demandent /favicon.ico d'office, sans lire les <link>.
