@@ -1,16 +1,14 @@
 # Contribuer à Antisèche
 
 Merci de vouloir améliorer ce document. Deux façons de contribuer : proposer une
-**correction ponctuelle** (commentaire sur une réforme) ou une **modification du
+**correction ponctuelle** (issue GitHub) ou une **modification du
 contenu** (pull request sur les données).
 
-## Corrections et discussions
+## Corrections ponctuelles
 
-Chaque réforme a son propre espace de discussion, propulsé par
-[Giscus](https://giscus.app) (adossé aux Discussions GitHub de ce dépôt). Ouvrez
-la carte de la réforme concernée sur le site et connectez-vous avec un compte
-GitHub pour commenter, signaler une erreur ou proposer une source. Toute
-correction sourcée est bienvenue.
+Pour signaler une erreur ou proposer une source, ouvrez une
+[issue](https://github.com/adrigoodguy/antiseche/issues) en indiquant la réforme concernée (le lien `#lien` de sa
+carte sur le site suffit). Toute correction sourcée est bienvenue.
 
 ## Modifier le contenu (pull request)
 
@@ -60,7 +58,8 @@ Une réforme est retenue dans ce document si elle remplit ces critères :
   (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du
   discours d'époque).
 - Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte
-  à contestation — c'est précisément la fonction des commentaires.
+  à contestation — c'est précisément ce que les corrections sourcées doivent
+  faire évoluer.
 
 Toute pull request qui ajoute ou modifie une affirmation chiffrée ou factuelle
 doit inclure une source vérifiable dans le champ `src` de la réforme

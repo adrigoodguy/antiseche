@@ -154,11 +154,7 @@ function carteReforme(r, pid) {
     <div class="col bilan"><h4>Bilan factuel, avec le recul</h4><p>${glose(r.bil)}</p></div>
   </div>
   <div class="pied"><a class="lien-ancre" href="#${terme}" title="Lien direct vers cette réforme">#lien</a><span class="src">${srcs}</span></div>
-  <div class="commentaires" data-terme="${terme}">
-    <h5>Commentaires &amp; corrections</h5>
-    <div class="note">Espace public propulsé par Giscus (GitHub Discussions) — connectez-vous avec un compte GitHub pour publier. Sources bienvenues.</div>
-    <div class="giscus-zone"><p class="giscus-attente">Chargement des commentaires…</p></div>
-  </div></details>`;
+</details>`;
 }
 
 /* --- Sections période --- */
@@ -190,19 +186,12 @@ function annexe() {
 <ul>
 <li><b>v1 (ce document)</b> : liens « points d'entrée » — notices Vie-publique.fr, Wikipédia, institutions d'évaluation (France Stratégie, Cour des comptes, COR, DARES, DREES, CEVIPOF).</li>
 <li><b>v2 (objectif)</b> : chaque affirmation chiffrée liée à sa source primaire (texte Légifrance, série INSEE, rapport d'évaluation paginé, archive INA du discours d'époque).</li>
-<li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément la fonction des commentaires. Elles décrivent l'état des évaluations et du débat, pas l'opinion du site : « Consensus » signifie que les évaluations convergent ou, pour une réforme de société, que plus aucun grand parti ne la remet en cause — pas qu'elle a toujours été majoritaire dans l'opinion.</li>
+<li>Mentions « Consensus / Débattu / Retrait » : appréciation éditoriale ouverte à contestation — c'est précisément ce que les corrections sourcées doivent faire évoluer. Elles décrivent l'état des évaluations et du débat, pas l'opinion du site : « Consensus » signifie que les évaluations convergent ou, pour une réforme de société, que plus aucun grand parti ne la remet en cause — pas qu'elle a toujours été majoritaire dans l'opinion.</li>
 <li><b>Glossaire</b> : définitions courtes des termes techniques (stagflation, Bretton Woods, politique de l'offre…), avec une source pour approfondir — <a href="/glossaire">antiseche.org/glossaire</a>.</li>
 <li><b>Données sources</b> : détail du fact-checking des indicateurs du bandeau, année par année, avec sources et niveau de fiabilité — <a href="/sources">antiseche.org/sources</a>.</li>
 </ul>
-<h3>Discussion générale</h3>
-<p>Une remarque sur la sélection des réformes, la méthode, ou une autre grille de lecture à appliquer à l'ensemble du document plutôt qu'à une seule réforme ? C'est ici, pas dans les commentaires d'une carte en particulier.</p>
-<details class="reforme">
-  <summary><span class="fleche">›</span><span class="titre">Ouvrir la discussion générale</span></summary>
-  <div class="commentaires" data-terme="discussion-generale">
-    <div class="note">Espace public propulsé par Giscus (GitHub Discussions) — connectez-vous avec un compte GitHub pour publier.</div>
-    <div class="giscus-zone"><p class="giscus-attente">Chargement des commentaires…</p></div>
-  </div>
-</details>`;
+<h3>Corrections et remarques</h3>
+<p>Une erreur, une source plus solide, une réforme qui manque, ou une remarque sur la méthode&nbsp;? Ouvrez une <a href="https://github.com/adrigoodguy/antiseche/issues" target="_blank" rel="noopener">issue sur GitHub ↗</a> en précisant la réforme concernée (le lien <code>#lien</code> de sa carte suffit).</p>`;
 }
 
 /* --- Page « Frise » (contenu de l'ex-page unique, déplacé tel quel sur /frise, issue #9) --- */
@@ -242,7 +231,7 @@ ${nav("frise")}
 <section id="annexe-conteneur"><main id="annexe">${annexe()}</main></section>
 
 <footer>
-  Sources principales&nbsp;: INSEE (séries longues), Vie-publique.fr, Légifrance, Cour des comptes, France Stratégie, Banque mondiale, archives INA. Les liens de la v1 sont des points d'entrée (notices Vie-publique / Wikipédia) destinés à être remplacés par les sources primaires en v2. Les chiffres du bandeau et des encadrés contexte sont des ordres de grandeur à re-vérifier ligne à ligne avant publication. Document ouvert aux commentaires et aux corrections — c'est le principe.
+  Sources principales&nbsp;: INSEE (séries longues), Vie-publique.fr, Légifrance, Cour des comptes, France Stratégie, Banque mondiale, archives INA. Les liens de la v1 sont des points d'entrée (notices Vie-publique / Wikipédia) destinés à être remplacés par les sources primaires en v2. Les chiffres du bandeau et des encadrés contexte sont des ordres de grandeur à re-vérifier ligne à ligne avant publication. Document ouvert aux corrections — c'est le principe&nbsp;: <a href="https://github.com/adrigoodguy/antiseche/issues" target="_blank" rel="noopener">proposer une correction ↗</a>.
   <p class="pied-sources">${piedSources()}</p>
 </footer>
 
@@ -422,7 +411,7 @@ ${kpiNotes}
 </main>
 
 <footer>
-  Document ouvert aux commentaires et aux corrections — voir <a href="/frise#annexe-conteneur">l'annexe de la frise</a> pour la méthode générale du projet.
+  Document ouvert aux corrections (<a href="https://github.com/adrigoodguy/antiseche/issues" target="_blank" rel="noopener">proposer une correction ↗</a>) — voir <a href="/frise#annexe-conteneur">l'annexe de la frise</a> pour la méthode générale du projet.
 </footer>
 
 </body>

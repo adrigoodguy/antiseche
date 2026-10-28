@@ -153,18 +153,6 @@
   .lien-ancre{float:right;font-size:var(--tx-micro);color:var(--gris);text-decoration:none;transition:color var(--transition)}
   .lien-ancre:hover{color:var(--accent)}
 
-  /* ---------- Commentaires (Giscus) ---------- */
-  .commentaires{background:var(--nuit);padding:var(--sp-4) var(--sp-5);border-top:1px solid var(--trait)}
-  .commentaires h5{font-family:var(--display);font-weight:800;font-size:var(--tx-micro);letter-spacing:.12em;text-transform:uppercase;color:var(--texte);margin-bottom:var(--sp-2)}
-  .commentaires .note{font-size:var(--tx-label);color:var(--gris);margin-bottom:var(--sp-2)}
-  .giscus-zone{margin-top:var(--sp-2)}
-  .giscus-attente{font-size:var(--tx-label);color:var(--gris)}
-  /* Hauteur bornée + défilement interne : contourne un bug du composant giscus-widget
-     où plusieurs instances ouvertes en même temps peuvent hériter de la hauteur les
-     unes des autres (github.com/giscus/giscus/issues/1636). */
-  giscus-widget{display:block}
-  giscus-widget::part(iframe){min-height:420px;max-height:420px;overflow-y:auto}
-
   /* ---------- Annexe ---------- */
   #annexe{padding-top:var(--sp-8);padding-bottom:var(--sp-6)}
   #annexe h2{font-family:var(--display);font-weight:800;font-size:clamp(1.9rem,4vw,2.75rem);letter-spacing:-.02em;line-height:1.05;margin:var(--sp-7) 0 var(--sp-3)}

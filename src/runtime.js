@@ -1,4 +1,4 @@
-/* ================= RENDU DYNAMIQUE (curseur de lecture + commentaires Giscus) ================= */
+/* ================= RENDU DYNAMIQUE (curseur de lecture, filtre, survols, glossaire) ================= */
 // window.__DONNEES_INDIC__ n'est posé que sur /frise (curseur, filtre) : les
 // pages /analyse/{slug} incluent ce script uniquement pour le survol de leur
 // propre graphique (bloc plus bas, qui lit ses données depuis le DOM).
@@ -40,7 +40,7 @@ function valeurA(ind, annee) {
 }
 
 // Absent sur sources.html (pas de bandeau ni de sections période) : le reste
-// du fichier (filtre, graphique, commentaires) doit rester utilisable là-bas.
+// du fichier (filtre, graphique, glossaire) doit rester utilisable là-bas.
 if (anneeEl) {
   const majCurseur = () => {
     const mid = window.innerHeight * 0.4;
@@ -146,71 +146,6 @@ if (graphiqueSvg && graphiqueSurvol && graphiqueCrosshair && graphiqueTooltip) {
     graphiqueTooltip.hidden = true;
   });
 }
-
-/* --- Commentaires (giscus-widget, un widget indépendant par réforme, chargé au premier dépli) ---
-   Le script client.js "classique" de Giscus cherche le premier élément .giscus
-   dans TOUT le document (pas seulement le sien) : sur une page à plusieurs widgets,
-   seul le premier ouvert fonctionne, les suivants recyclent silencieusement son
-   conteneur et ne s'affichent jamais. Le web component giscus-widget isole chaque
-   instance dans son propre Shadow DOM et n'a pas ce défaut. Thème fixe "transparent_dark" :
-   le site est sombre uniquement (issue #18), le widget prend le fond de la zone.
-   "preferred_color_scheme" le rendrait en clair chez qui a un système clair. */
-let moduleGiscus = null;
-function assurerModuleGiscus() {
-  if (!moduleGiscus) {
-    moduleGiscus = new Promise((resolve, reject) => {
-      const s = document.createElement("script");
-      s.type = "module";
-      s.src = "https://esm.sh/giscus";
-      s.onload = resolve;
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  }
-  return moduleGiscus;
-}
-function chargerGiscus(zone, terme) {
-  if (zone.dataset.charge) return;
-  zone.dataset.charge = "1";
-  const attente = zone.querySelector(".giscus-attente");
-  assurerModuleGiscus().then(() => {
-    const w = document.createElement("giscus-widget");
-    w.setAttribute("repo", "adrigoodguy/antiseche");
-    w.setAttribute("repoid", "R_kgDOTk9rOw");
-    w.setAttribute("category", "Commentaires");
-    w.setAttribute("categoryid", "DIC_kwDOTk9rO84DCE01");
-    w.setAttribute("mapping", "specific");
-    w.setAttribute("term", terme);
-    w.setAttribute("strict", "1");
-    w.setAttribute("reactionsenabled", "1");
-    w.setAttribute("emitmetadata", "0");
-    w.setAttribute("inputposition", "bottom");
-    w.setAttribute("theme", "transparent_dark");
-    w.setAttribute("lang", "fr");
-    w.setAttribute("loading", "lazy");
-    if (attente) attente.replaceWith(w); else zone.appendChild(w);
-    // Bug connu du composant (github.com/giscus/giscus/issues/1636) : son
-    // message-listener n'ignore pas les messages venant du widget d'un AUTRE
-    // instance, donc plusieurs widgets ouverts en même temps peuvent se voir
-    // appliquer la hauteur les uns des autres. La zone a une hauteur/scroll
-    // fixes (styles.css) pour absorber ça ; on retire aussi l'attribut
-    // "scrolling" (fixé par le composant) qui empêcherait le défilement interne.
-    w.updateComplete?.then(() => {
-      w.shadowRoot?.querySelector("iframe")?.removeAttribute("scrolling");
-    });
-  }).catch(() => {
-    moduleGiscus = null;
-    zone.dataset.charge = "";
-    if (attente) attente.textContent = "Échec du chargement des commentaires — repliez puis dépliez la carte pour réessayer.";
-  });
-}
-document.querySelectorAll(".commentaires").forEach(zone => {
-  const terme = zone.dataset.terme;
-  const giscusZone = zone.querySelector(".giscus-zone");
-  zone.closest("details").addEventListener("toggle", e => {
-    if (e.target.open) chargerGiscus(giscusZone, terme);
-  });
-});
 
 /* --- Ouvrir la carte ciblée par l'URL --- */
 if (location.hash) { const el = document.querySelector(location.hash); if (el && el.tagName === "DETAILS") { el.open = true; el.scrollIntoView() } }

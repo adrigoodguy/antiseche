@@ -45,8 +45,8 @@ data/                  contenu éditorial, en JSON
 src/
   styles.css              feuille de style (design du document)
   runtime.js              JS de la page générée : curseur de lecture au
-                          scroll, ouverture d'une carte via l'URL, chargement
-                          différé des commentaires Giscus
+                          scroll, filtre du bandeau, ouverture d'une carte via
+                          l'URL, survol des graphiques, bulles du glossaire
   site.webmanifest        manifest (nom, couleurs, icônes) pour les favoris
                           et l'ajout à l'écran d'accueil
   icons/                  favicon (SVG + ICO), apple-touch-icon, icônes
@@ -107,12 +107,10 @@ en 5 minutes au plus, sans secret ni clé du serveur stockés côté GitHub.
 - Forcer un redéploiement : `sudo -u antiseche /usr/local/bin/antiseche-deploy --force`
 - Consulter les déploiements : `journalctl -u antiseche-deploy`
 
-## Commentaires et corrections
+## Corrections
 
-Chaque réforme a son propre fil de discussion, propulsé par
-[Giscus](https://giscus.app) (adossé aux Discussions GitHub de ce dépôt). Le
-widget correspondant à une réforme ne se charge qu'à l'ouverture de sa carte,
-pour ne jamais alourdir le chargement initial de la page.
+Les corrections passent par les [issues GitHub](https://github.com/adrigoodguy/antiseche/issues), liées depuis
+l'annexe de la frise et le pied de page.
 
 ## Contribuer
 
