@@ -1,6 +1,6 @@
 /*
- * Pages d'essai du futur design system (issue #18) : /sample1 … /sample5.
- * Cinq directions visuelles autonomes (CSS inline, polices Google Fonts),
+ * Pages d'essai du futur design system (issue #18) : /sample1 … /sample6.
+ * Cinq directions visuelles autonomes, puis une synthèse (6) des retours (CSS inline, polices Google Fonts),
  * sombres par défaut, pensées pour un public jeune et peu politisé. Texte en
  * lorem ipsum, mais graphiques tracés à partir des vraies séries de
  * data/indicateurs.json pour juger le rendu sur des données réelles.
@@ -14,7 +14,7 @@ const LOREM = [
   "Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo.",
 ];
 
-const NOMS = ["Nuit fluo", "Le classement", "Scrollytelling", "Pop gaufre", "Éditorial"];
+const NOMS = ["Nuit fluo", "Le classement", "Scrollytelling", "Pop gaufre", "Éditorial", "Synthèse"];
 
 function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -131,14 +131,14 @@ function page(n, { titre, polices, css, corps, script = "" }) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex">
 <meta name="color-scheme" content="dark">
-<title>${esc(titre)} · Essai ${n}/5 · Antisèche</title>
+<title>${esc(titre)} · Essai ${n}/${NOMS.length} · Antisèche</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?${polices}&display=swap">
 <style>${CSS_BASE}${css}</style>
 </head>
 <body>
-<div class="essai"><span>Design system · essai ${n}/5 : <b>${esc(NOMS[n - 1])}</b></span><nav aria-label="Échantillons">${liens}</nav></div>
+<div class="essai"><span>Design system · essai ${n}/${NOMS.length} : <b>${esc(NOMS[n - 1])}</b></span><nav aria-label="Échantillons">${liens}</nav></div>
 ${corps}
 <footer class="pied">Page d'essai (issue #18) · texte factice, données réelles · <a href="/">retour au site</a></footer>
 ${script}
@@ -372,8 +372,66 @@ h1 em{color:var(--accent)}
   });
 }
 
+/*
+ * 6. Synthèse des retours sur 1 à 5 : base du classement (2) pour la typo et
+ * le graphique, palette fluo de la nuit (1), en-tête sur deux colonnes (5),
+ * et tout le texte aligné sur la largeur du graphique (corps en deux colonnes).
+ */
+function sample6(S) {
+  const s = serie(S, "Inflation");
+  const dec = new Map();
+  for (const [a, v] of s.pts) {
+    const k = Math.floor(a / 10) * 10;
+    if (!dec.has(k)) dec.set(k, []);
+    dec.get(k).push(v);
+  }
+  const rangs = [...dec].map(([k, vs]) => ({ k, v: vs.reduce((x, y) => x + y, 0) / vs.length, n: vs.length }))
+    .sort((a, b) => b.v - a.v);
+  const max = rangs[0].v;
+  // Dégradé fluo citron → violet selon le rang.
+  const teinte = i => `hsl(${78 + i / (rangs.length - 1) * 174} 100% 64%)`;
+  const barres = rangs.map((r, i) => `<li style="--w:${(r.v / max * 100).toFixed(1)}%;--c:${teinte(i)};--i:${i}"><span class="rg">${String(i + 1).padStart(2, "0")}</span><span class="nom">Années ${r.k}${r.n < 10 ? `<small>${r.n} ans</small>` : ""}</span><span class="bar"><i></i><b>${fr(r.v)} %</b></span></li>`).join("");
+  return page(6, {
+    titre: "Synthèse",
+    polices: "family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Inter:wght@400;600",
+    css: `:root{--bg:#0B0D12;--fg:#F2F4F8;--mute:#8B93A7;--trait:#232836;--accent:#C6FF3D;--violet:#7A5CFF;--corps:"Inter",system-ui,sans-serif;--display:"Bricolage Grotesque",system-ui,sans-serif}
+.tete{padding-block:80px 40px;display:grid;grid-template-columns:1.3fr 1fr;gap:24px 56px;align-items:end}
+.etiq{grid-column:1 / -1;justify-self:start;font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--bg);background:var(--accent);padding:4px 12px;border-radius:999px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(42px,6.5vw,84px);line-height:.95;letter-spacing:-.025em}
+h1 em{font-style:normal;color:var(--accent)}
+.chapo{font-size:clamp(19px,1.2vw + 13px,23px);color:var(--mute)}
+.panneau{background:#11141C;border:1px solid var(--trait);border-radius:28px;padding:32px clamp(16px,3vw,40px);margin:24px 0 40px}
+.panneau h2{font-family:var(--display);font-size:26px;font-weight:800;margin-bottom:6px}
+.panneau .sous{color:var(--mute);font-size:15px;margin-bottom:28px}
+ol{list-style:none;display:grid;gap:14px}
+li{display:grid;grid-template-columns:44px minmax(90px,150px) 1fr;align-items:center;gap:12px}
+.rg{font-family:var(--display);font-weight:800;font-size:24px;color:var(--c)}
+.nom{font-weight:600;font-size:17px;line-height:1.2}
+.nom small{display:block;font-weight:400;font-size:13px;color:var(--mute)}
+.bar{position:relative;height:40px;display:flex;align-items:center}
+.bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,color-mix(in srgb,var(--c) 25%,transparent),var(--c));border-radius:0 10px 10px 0;box-shadow:0 0 18px color-mix(in srgb,var(--c) 35%,transparent);transform-origin:left;animation:pousse .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 70ms)}
+.bar b{font-family:var(--display);font-weight:800;font-size:18px;margin-left:10px;white-space:nowrap}
+@keyframes pousse{from{transform:scaleX(0)}}
+.legende{display:flex;align-items:center;gap:12px;margin-top:28px;font-size:14px;color:var(--mute)}
+.legende i{flex:0 0 160px;height:10px;border-radius:5px;background:linear-gradient(90deg,hsl(78 100% 64%),hsl(165 100% 64%),hsl(252 100% 64%))}
+.cles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:56px}
+.cles div{border:1px solid var(--trait);border-radius:20px;padding:20px}
+.cles strong{display:block;font-family:var(--display);font-size:40px;font-weight:800;line-height:1;background:linear-gradient(120deg,var(--accent),#5CFFC8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cles span{font-size:15px;color:var(--mute)}
+.corps{columns:2;column-gap:56px;text-align:justify;hyphens:auto}
+.corps p{margin:0 0 1.2em}
+.corps blockquote{break-inside:avoid;font-family:var(--display);font-weight:800;font-size:clamp(24px,1.6vw + 14px,32px);line-height:1.15;text-align:left;hyphens:manual;border-left:4px solid var(--violet);padding-left:20px;margin:0 0 1.2em}
+@media (max-width:760px){.tete{grid-template-columns:1fr}.corps{columns:1}}
+@media (max-width:520px){li{grid-template-columns:34px 1fr}.bar{grid-column:1 / -1}}`,
+    corps: `<header class="wrap tete"><span class="etiq">Classé · Inflation</span><h1>Lorem ipsum : quelle décennie a le plus <em>dolor</em> ?</h1><p class="chapo">${LOREM[0]}</p></header>
+<section class="wrap"><div class="panneau"><h2>Inflation moyenne par décennie</h2><p class="sous">Hausse annuelle moyenne des prix à la consommation, classée du plus fort au plus faible · source INSEE</p><ol>${barres}</ol><div class="legende"><span>plus forte</span><i></i><span>plus faible</span></div></div>
+<div class="cles"><div><strong>${fr(rangs[0].v)} %</strong><span>Années ${rangs[0].k}, lorem ipsum dolor sit amet</span></div><div><strong>×${fr(rangs[0].v / rangs.at(-1).v, 0)}</strong><span>entre la première et la dernière, consectetur</span></div><div><strong>${s.pts.length} ans</strong><span>de données, adipiscing elit sed do</span></div></div></section>
+<article class="wrap corps"><p>${LOREM[1]} ${LOREM[0]}</p><p>${LOREM[2]}</p><blockquote>Curabitur blandit tempus porttitor, etiam porta sem malesuada.</blockquote><p>${LOREM[3]} ${LOREM[1]}</p><p>${LOREM[2]}</p></article>`,
+  });
+}
+
 function pagesSamples(INDIC_PAR_LAB) {
-  return [sample1, sample2, sample3, sample4, sample5].map((f, i) => ({ fichier: `sample${i + 1}/index.html`, html: f(INDIC_PAR_LAB) }));
+  return [sample1, sample2, sample3, sample4, sample5, sample6].map((f, i) => ({ fichier: `sample${i + 1}/index.html`, html: f(INDIC_PAR_LAB) }));
 }
 
 module.exports = { pagesSamples };
