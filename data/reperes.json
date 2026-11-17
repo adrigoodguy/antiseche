@@ -1,0 +1,77 @@
+{
+  "indicateurs": [
+    {
+      "id": "deficit",
+      "titre": "Déficit public visé en fin de quinquennat",
+      "unite": "% du PIB",
+      "axe": [0, 4],
+      "graduations": [0, 1, 2, 3, 4],
+      "precision": "Objectif de déficit public annoncé pour 2032 ou la fin du quinquennat. « Sous X % » est placé à X. Les objectifs exprimés en dette, en milliards d'euros ou en dépense sont cités tels quels, sans conversion.",
+      "valeurs": [
+        {"candidat": "edouard-philippe", "valeur": 2.5, "libelle": "sous 2,5 % à la fin du quinquennat", "mesure": "Inscrire par référendum, dès le début du quinquennat"},
+        {"candidat": "gabriel-attal", "valeur": 3, "libelle": "sous 3 % avant 2032", "mesure": "Ramener le déficit public sous 3 %"},
+        {"candidat": "bruno-retailleau", "valeur": 2.2, "libelle": "2,2 % en 2032 (sous 3 % en 2031)", "mesure": "Atteindre 197 Md€ d'économies"}
+      ],
+      "autrement": [
+        {"candidat": "marine-le-pen", "texte": "dette publique ramenée de 121 % à 112 % du PIB d'ici 2032", "mesure": "Réaliser 140 Md€ nets"},
+        {"candidat": "jean-luc-melenchon", "texte": "25 Md€ consacrés à la réduction de la dette et du déficit dans le budget 2027", "mesure": "Consacrer 25 milliards"},
+        {"candidat": "raphael-glucksmann", "texte": "dette publique stabilisée à l'horizon 2032", "mesure": "Stabiliser la dette publique"},
+        {"candidat": "david-lisnard", "texte": "dépense publique réduite de 200 Md€ à l'horizon 2032", "mesure": "Réduire la dépense publique de 80 Md€"},
+        {"candidat": "nicolas-dupont-aignan", "texte": "déficit réduit de 50 Md€", "mesure": "Dégager 100 Md€ d'économies"}
+      ]
+    },
+    {
+      "id": "smic",
+      "titre": "SMIC visé",
+      "unite": "€ net par mois",
+      "axe": [1400, 2400],
+      "graduations": [1400, 1600, 1800, 2000, 2200, 2400],
+      "precision": "Montant mensuel net du SMIC annoncé. Un montant annoncé en brut n'est pas converti en net : il est cité tel quel.",
+      "valeurs": [
+        {"candidat": "jean-luc-melenchon", "valeur": 1700, "libelle": "1 700 € net, « immédiatement »", "mesure": "Porter le SMIC à 1 700 euros net par mois."},
+        {"candidat": "raphael-glucksmann", "valeur": 1700, "libelle": "1 700 € net au 1er septembre 2027", "mesure": "Porter le SMIC à 1 700 euros net par mois, en combinant"},
+        {"candidat": "nicolas-dupont-aignan", "valeur": 1600, "libelle": "1 600 € net", "mesure": "Porter le SMIC à 1 600"},
+        {"candidat": "nathalie-arthaud", "valeur": 2200, "libelle": "2 200 € net", "mesure": "Porter le SMIC à 2 200"}
+      ],
+      "autrement": [
+        {"candidat": "marine-tondelier", "texte": "2 000 € brut par mois dès 2027", "mesure": "Porter le SMIC à 2 000"}
+      ]
+    },
+    {
+      "id": "retraite",
+      "titre": "Âge légal de départ à la retraite visé",
+      "unite": "ans",
+      "axe": [58, 66],
+      "graduations": [58, 60, 62, 64, 66],
+      "precision": "Âge minimal de départ annoncé. Une fourchette (âge différent selon la carrière, ou âge minimal et âge du taux plein) est affichée comme une fourchette.",
+      "valeurs": [
+        {"candidat": "marine-le-pen", "valeur": [60, 62], "libelle": "de 60 à 62 ans selon l'âge du premier emploi stable", "mesure": "Abroger la réforme de 2023 au 1er janvier 2028"},
+        {"candidat": "jean-luc-melenchon", "valeur": [60, 62], "libelle": "62 ans dès 2027, puis 60 ans au cours du mandat", "mesure": "Abroger la réforme des retraites de 2023, revenir"},
+        {"candidat": "raphael-glucksmann", "valeur": 62, "libelle": "62 ans", "mesure": "Abroger la réforme des retraites de 2023 et ramener"},
+        {"candidat": "edouard-philippe", "valeur": 65, "libelle": "65 ans en moins de dix ans, avec 45 ans de cotisation", "mesure": "Porter progressivement l'âge légal"},
+        {"candidat": "bruno-retailleau", "valeur": [63, 65], "libelle": "63 ans avec décote, taux plein automatique à 65 ans", "mesure": "Fixer l'âge minimal de départ à 63 ans"}
+      ],
+      "autrement": []
+    },
+    {
+      "id": "enseignants",
+      "titre": "Hausse du salaire des enseignants",
+      "unite": "%",
+      "axe": [0, 30],
+      "graduations": [0, 10, 20, 30],
+      "precision": "Hausse annoncée en pourcentage, avec sa durée. Une hausse annoncée en euros n'est pas convertie en pourcentage : elle est citée telle quelle.",
+      "valeurs": [
+        {"candidat": "raphael-glucksmann", "valeur": [10, 25], "libelle": "+10 % pour tous, jusqu'à +25 % selon la carrière", "mesure": "Augmenter de 10 % le salaire de tous les enseignants"},
+        {"candidat": "edouard-philippe", "valeur": 20, "libelle": "+20 % en moyenne sur le quinquennat", "mesure": "Augmenter de 20 % la rémunération moyenne"},
+        {"candidat": "david-lisnard", "valeur": 20, "libelle": "+20 % en cinq ans, sous condition d'une réorganisation du métier", "mesure": "Augmenter de 20 % la rémunération des enseignants"},
+        {"candidat": "marine-tondelier", "valeur": 15, "libelle": "+15 % en cinq ans, en plus de l'inflation", "mesure": "Augmenter de 15 % en cinq ans"},
+        {"candidat": "nicolas-dupont-aignan", "valeur": 15, "libelle": "+15 % net en quatre ans", "mesure": "Augmenter de 30 % les heures de français"}
+      ],
+      "autrement": [
+        {"candidat": "gabriel-attal", "texte": "+200 € nets par mois dès 2027, jusqu'à +500 € en milieu de carrière", "mesure": "Augmenter de 200 € nets par mois"},
+        {"candidat": "bruno-retailleau", "texte": "+135 € nets par mois en début de carrière, environ +300 € en milieu de carrière", "mesure": "Augmenter le traitement indiciaire des professeurs"}
+      ]
+    }
+  ],
+  "reportes": "Nucléaire (nombre de nouveaux réacteurs) : seules deux candidatures donnent un chiffre à ce jour, Édouard Philippe (8 EPR en plus des 6 prévus) et Jean-Luc Mélenchon (aucun). Immigration : les objectifs sont exprimés dans des unités sans commune mesure (nombre d'immigrés, flux légal, titres de séjour, entrées annuelles). Ces repères seront ajoutés quand une échelle commune sera possible sans conversion."
+}

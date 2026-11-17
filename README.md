@@ -43,6 +43,12 @@ data/                  contenu éditorial, en JSON
                           (AAAA-MM-JJ, affichées, alerte au-delà de 14 jours
                           dans le build et le récapitulatif hebdomadaire) et
                           journal des modifications
+  reperes.json            Repères communs (/programmes/reperes) : par
+                          indicateur, une unité et un axe, les objectifs
+                          annoncés reliés à une ligne de programmes.json
+                          (début de la proposition), ou cités tels quels
+                          s'ils sont exprimés autrement ; sans note ni
+                          indicateur synthétique
   glossaire.json          définitions courtes des termes techniques, page
                           /glossaire ; dans les textes, un terme se balise
                           [[texte affiché|id]] (bulle de définition sur la frise)

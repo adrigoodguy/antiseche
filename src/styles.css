@@ -248,6 +248,26 @@
   .programme-table .remarque{margin:var(--sp-2) 0 0;font-size:var(--tx-label);color:var(--texte-2)}
   .journal{font-size:var(--tx-sm);max-width:58em}
   .journal .date{color:var(--gris);white-space:nowrap}
+  /* Repères communs (issue #21) : une ligne par candidature, une piste graduée par indicateur */
+  .repere{margin-top:var(--sp-7)}
+  .rep-liste{list-style:none;padding:0;margin:var(--sp-4) 0 0;max-width:60em}
+  .rep-ligne{display:grid;grid-template-columns:11rem minmax(8rem,1fr) minmax(12rem,1.3fr);column-gap:var(--sp-4);align-items:center;padding:.35rem 0;border-bottom:1px solid var(--trait)}
+  .rep-nom{font-size:var(--tx-sm);font-weight:600}
+  .rep-piste{position:relative;height:1.1rem;border-left:1px solid var(--trait);border-right:1px solid var(--trait);background:linear-gradient(var(--trait),var(--trait)) center/100% 1px no-repeat}
+  .rep-point{position:absolute;top:50%;width:.8rem;height:.8rem;margin:-.4rem 0 0 -.4rem;border-radius:50%;background:var(--accent)}
+  .rep-plage{position:absolute;top:50%;height:.5rem;margin-top:-.25rem;border-radius:.25rem;background:var(--accent);min-width:.5rem}
+  .rep-note{font-size:var(--tx-label);color:var(--texte-2)}
+  .rep-vide .rep-nom{color:var(--gris);font-weight:400}
+  .rep-na{color:var(--gris)}
+  .rep-autre{color:var(--gris)}
+  .rep-axe{border-bottom:0}
+  .rep-graduations{border:0;background:none;font-family:var(--mono);font-size:var(--tx-micro);color:var(--gris)}
+  .rep-graduations span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+  @media (max-width:40rem){
+    .rep-ligne{grid-template-columns:1fr 1.4fr;row-gap:.2rem}
+    .rep-note{grid-column:1 / -1}
+    .rep-axe .rep-note{display:none}
+  }
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}

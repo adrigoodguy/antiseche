@@ -19,6 +19,7 @@ const SOURCES = JSON.parse(fs.readFileSync(path.join(DATA, "sources.json"), "utf
 const GLOSSAIRE = JSON.parse(fs.readFileSync(path.join(DATA, "glossaire.json"), "utf8"));
 const GLOSSAIRE_PAR_ID = new Map(GLOSSAIRE.map(g => [g.id, g]));
 const PROGRAMMES = JSON.parse(fs.readFileSync(path.join(DATA, "programmes.json"), "utf8"));
+const REPERES = JSON.parse(fs.readFileSync(path.join(DATA, "reperes.json"), "utf8"));
 
 // indicateurs.json est indexé par année (une clé par année, un sous-objet par KPI)
 // pour rester facile à relire/vérifier ; on le remet ici sous la forme
@@ -513,6 +514,7 @@ const VERIFICATION_MAX_JOURS = 14;
   const ids = new Set();
   for (const c of CANDIDATS) {
     if (ids.has(c.id)) throw new Error(`Candidature en double dans data/programmes.json : ${c.id}`);
+    if (c.id === "reperes") throw new Error("L'identifiant « reperes » est réservé à la page /programmes/reperes");
     ids.add(c.id);
     const ici = `data/programmes.json, ${c.id}`;
     for (const champ of ["maj", "verification"]) {
@@ -616,6 +618,7 @@ ${nav("programmes")}
 
 <main id="annexe">
 ${encadreSondage()}
+<p class="cta-groupe liens-candidat"><a class="cta" href="/programmes/reperes">Repères communs : les objectifs annoncés sur une même échelle →</a></p>
 <ul class="analyse-liste">${CLASSEES.map(item).join("")}</ul>
 ${autres}
 <h3>Règles de lecture</h3>
@@ -632,14 +635,111 @@ ${sectionMethode()}
 `;
 }
 
+/* --- Repères communs (issue #21) : objectifs annoncés, une échelle par indicateur, sans note ni score --- */
+const PAR_ID = new Map(CANDIDATS.map(c => [c.id, c]));
+// Résout une mesure par le début de sa proposition, dans la fiche de la candidature (une seule source par chiffre).
+function mesureRepere(cid, prefixe, ou) {
+  const c = PAR_ID.get(cid);
+  if (!c) throw new Error(`Candidature inconnue (${ou}) : ${cid}`);
+  const r = c.mesures.filter(m => m.proposition.startsWith(prefixe));
+  if (r.length !== 1) throw new Error(`${r.length} mesure(s) pour « ${prefixe} » dans ${cid} (${ou})`);
+  return { c, m: r[0], i: c.mesures.indexOf(r[0]) };
+}
+for (const ind of REPERES.indicateurs) {
+  const ou = `data/reperes.json, ${ind.id}`, vus = new Set();
+  for (const v of [...ind.valeurs, ...ind.autrement]) {
+    if (vus.has(v.candidat)) throw new Error(`Candidature en double (${ou}) : ${v.candidat}`);
+    vus.add(v.candidat);
+    mesureRepere(v.candidat, v.mesure, ou);
+  }
+  for (const v of ind.valeurs) {
+    for (const x of [].concat(v.valeur)) {
+      if (typeof x !== "number" || x < ind.axe[0] || x > ind.axe[1]) throw new Error(`Valeur hors de l'axe (${ou}, ${v.candidat}) : ${x}`);
+    }
+  }
+}
+const nombre = x => String(x).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, "&nbsp;");
+function sectionRepere(ind) {
+  const [a0, a1] = ind.axe, pos = x => `${((x - a0) / (a1 - a0) * 100).toFixed(2)}%`;
+  const val = new Map(ind.valeurs.map(v => [v.candidat, v])), aut = new Map(ind.autrement.map(v => [v.candidat, v]));
+  const lien = (cid, prefixe, texte) => { const { c, m, i } = mesureRepere(cid, prefixe, ind.id); return `<a href="/programmes/${c.id}#m${i}">${glose(esc(texte))}</a>${m.statut && m.statut !== "annoncé" ? ` <span class="statut statut-${m.statut.normalize("NFD").replace(/[\u0300-\u036f]/g, "")}"${m.remarque ? ` title="${esc(m.remarque)}"` : ""}>${STATUTS[m.statut]}</span>` : ""}`; };
+  const lignes = CANDIDATS.map(c => {
+    const v = val.get(c.id), w = aut.get(c.id);
+    let piste = "", note;
+    if (v) {
+      const [lo, hi] = [].concat(v.valeur).length === 2 ? v.valeur : [v.valeur, v.valeur];
+      piste = lo === hi
+        ? `<span class="rep-point" style="left:${pos(lo)}"></span>`
+        : `<span class="rep-plage" style="left:${pos(lo)};width:calc(${pos(hi)} - ${pos(lo)})"></span>`;
+      note = lien(c.id, v.mesure, v.libelle);
+    } else if (w) {
+      note = `<span class="rep-autre">Exprimé autrement : </span>${lien(c.id, w.mesure, w.texte)}`;
+    } else {
+      note = `<span class="rep-na">Non annoncé dans les sources relevées</span>`;
+    }
+    return `<li class="rep-ligne${v ? "" : " rep-vide"}"><span class="rep-nom">${esc(c.nom)}</span><span class="rep-piste" aria-hidden="true">${piste}</span><span class="rep-note">${note}</span></li>`;
+  }).join("");
+  const axe = ind.graduations.map(g => `<span style="left:${pos(g)}">${nombre(g)}</span>`).join("");
+  return `<section class="repere" id="${ind.id}">
+<h2>${esc(ind.titre)} <span class="unit">(${esc(ind.unite)})</span></h2>
+<p class="note-themes">${esc(ind.precision)}</p>
+<ul class="rep-liste">${lignes}<li class="rep-ligne rep-axe" aria-hidden="true"><span class="rep-nom"></span><span class="rep-piste rep-graduations">${axe}</span><span class="rep-note"></span></li></ul>
+</section>`;
+}
+
+function pageReperes() {
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repères communs · Programmes 2027 · Socle commun</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+${nav("programmes")}
+
+<header class="hero">
+  <div class="eyebrow">Programmes 2027</div>
+  <h1>Repères communs</h1>
+  <p class="standfirst">Les objectifs annoncés par les candidatures, placés sur une même échelle quand ils s'expriment dans la même unité. Chaque point renvoie à la ligne sourcée de la fiche du candidat.</p>
+  <p class="standfirst"><a href="/programmes">← Toutes les candidatures</a></p>
+</header>
+
+<main id="annexe">
+<div class="avert"><b>Ni note ni classement</b> — Ces repères comparent des objectifs annoncés, pas des résultats probables : Antisèche ne projette pas les effets des programmes et ne les chiffre pas. Aucun indicateur synthétique n'est calculé. Les lignes suivent l'ordre de la page Programmes (sondage de référence), pas une valeur.</div>
+${REPERES.indicateurs.map(sectionRepere).join("\n")}
+<h3>Règles de lecture</h3>
+<ul>
+<li>Seuls figurent des objectifs annoncés par les candidatures elles-mêmes, chacun relié à la ligne de sa fiche, avec sa source et sa date.</li>
+<li>Une seule unité par échelle, sans conversion : un SMIC annoncé en brut, une hausse annoncée en euros ou un objectif de dette ne sont pas convertis, ils sont cités tels quels (« exprimé autrement »).</li>
+<li>Une fourchette est affichée comme une fourchette ; un objectif « sous X » est placé à X.</li>
+<li>« Non annoncé dans les sources relevées » ne veut pas dire que la candidature n'a pas de position : seulement qu'aucun objectif de ce type ne figure dans les sources relevées à ce jour.</li>
+<li>Le statut de la ligne d'origine (confirmé, contradictoire) est rappelé à côté de l'objectif ; il porte sur l'ensemble de la ligne (par exemple son chiffrage), expliqué dans la fiche et au survol.</li>
+<li>Un chiffrage ou une projection indépendants pourront être ajoutés à côté de l'objectif annoncé, en nommant leur auteur.</li>
+</ul>
+<h3>Repères reportés</h3>
+<p class="note-themes">${esc(REPERES.reportes)}</p>
+</main>
+
+<footer>
+  ${piedSources()}
+</footer>
+
+</body>
+</html>
+`;
+}
+
 function pageProgramme(c) {
   const s = PROGRAMMES.sondage;
   const lienSource = src => `<a href="${src[1]}" target="_blank" rel="noopener">${esc(src[0])} ↗</a>`;
   const lignes = THEMES.flatMap(theme => {
     const ms = c.mesures.filter(m => m.theme === theme);
-    return ms.map((m, k) => `<tr${m.statut === "abandonné" ? ' class="abandonne"' : ""}>
+    return ms.map((m, k) => `<tr id="m${c.mesures.indexOf(m)}"${m.statut === "abandonné" ? ' class="abandonne"' : ""}>
       ${k === 0 ? `<th scope="row" rowspan="${ms.length}">${esc(theme)}</th>` : ""}
-      <td><span class="statut statut-${(m.statut || "annoncé").normalize("NFD").replace(/[̀-ͯ]/g, "")}">${STATUTS[m.statut || "annoncé"]}</span> ${glose(esc(m.proposition))}${m.remarque ? `<p class="remarque">${glose(esc(m.remarque))}</p>` : ""}</td>
+      <td><span class="statut statut-${(m.statut || "annoncé").normalize("NFD").replace(/[\u0300-\u036f]/g, "")}">${STATUTS[m.statut || "annoncé"]}</span> ${glose(esc(m.proposition))}${m.remarque ? `<p class="remarque">${glose(esc(m.remarque))}</p>` : ""}</td>
       <td>${esc(m.chiffrage || "non chiffré")}</td>
       <td>${lienSource(m.source)}<br><span class="date">${esc(m.date)}</span></td>
       <td>${(m.precedents || []).map(a => { const r = REFORMES_PAR_ANCRE.get(a); return `<a href="/frise#${a}">${esc(r.t)} (${esc(r.an)}) →</a>`; }).join("<br>") || "—"}</td>
@@ -976,6 +1076,7 @@ function build() {
   ecrire("sources/index.html", pageSources());
   ecrire("glossaire/index.html", pageGlossaire());
   ecrire("programmes/index.html", pageProgrammesIndex());
+  ecrire("programmes/reperes/index.html", pageReperes());
   CANDIDATS.forEach(c => ecrire(`programmes/${c.id}/index.html`, pageProgramme(c)));
   // Essais du futur design system (issue #18), non liés depuis le site.
   pagesSamples(INDIC_PAR_LAB).forEach(p => ecrire(p.fichier, p.html));
