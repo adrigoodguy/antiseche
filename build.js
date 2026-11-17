@@ -497,13 +497,39 @@ const REFORMES_PAR_ANCRE = new Map(PERIODES.flatMap(p => p.reformes.map(r => [`$
 const CANDIDATS = [...PROGRAMMES.candidats].sort((a, b) => b.score - a.score);
 // Grille commune, calée sur les grands thèmes du Comparative Agendas Project (champ cap).
 const THEMES = PROGRAMMES.themes.map(t => t.nom);
+// Statut d'une mesure (issue #20). « annoncé » par défaut : relevé dans une seule source.
+const STATUTS = {
+  "annoncé": "Annoncé",
+  "confirmé": "Confirmé",
+  "contradictoire": "Contradictoire",
+  "abandonné": "Abandonné",
+};
+const ISO = /^\d{4}-\d{2}-\d{2}$/;
+const MOIS = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+const dateLongue = iso => { const [a, m, j] = iso.split("-").map(Number); return `${j === 1 ? "1er" : j} ${MOIS[m - 1]} ${a}`; };
+// Au-delà, la fiche est signalée dans le journal du build et dans le récapitulatif hebdomadaire (serveur/recap.js).
+const VERIFICATION_MAX_JOURS = 14;
 {
   const ids = new Set();
   for (const c of CANDIDATS) {
     if (ids.has(c.id)) throw new Error(`Candidature en double dans data/programmes.json : ${c.id}`);
     ids.add(c.id);
+    const ici = `data/programmes.json, ${c.id}`;
+    for (const champ of ["maj", "verification"]) {
+      if (c[champ] && !ISO.test(c[champ])) throw new Error(`Date ${champ} au format AAAA-MM-JJ attendue (${ici}) : ${c[champ]}`);
+    }
+    if (c.mesures.length && (!c.maj || !c.verification)) throw new Error(`Fiche dépouillée sans dates maj / verification (${ici})`);
+    for (const e of c.journal || []) {
+      if (!ISO.test(e.date) || !e.texte) throw new Error(`Entrée de journal invalide (${ici}) : ${JSON.stringify(e)}`);
+    }
+    if (c.verification) {
+      const jours = Math.floor((Date.now() - Date.parse(c.verification)) / 86400e3);
+      if (jours > VERIFICATION_MAX_JOURS) console.warn(`⚠ Fiche ${c.id} : sources vérifiées il y a ${jours} jours (le ${c.verification}), au-delà de ${VERIFICATION_MAX_JOURS}.`);
+    }
     for (const m of c.mesures) {
-      const ou = `data/programmes.json, ${c.id}`;
+      const ou = ici;
+      if (m.statut && !STATUTS[m.statut]) throw new Error(`Statut inconnu (${ou}) : ${m.statut}, attendu ${Object.keys(STATUTS).join(", ")}`);
+      if (m.statut === "contradictoire" && !m.remarque) throw new Error(`Mesure contradictoire sans remarque explicative (${ou}) : ${m.proposition}`);
       if (!THEMES.includes(m.theme)) throw new Error(`Thème hors grille commune (${ou}) : ${m.theme}`);
       if (!m.source || !m.date) throw new Error(`Mesure sans source ou sans date (${ou}) : ${m.proposition}`);
       for (const ancre of m.precedents || []) {
@@ -565,7 +591,7 @@ function pageProgrammesIndex() {
 <li class="analyse-item programme-item">
   <a href="/programmes/${c.id}"><b>${esc(c.nom)}</b> <span class="unit">— ${esc(c.parti)}</span></a>
   <span class="score">${pct(c.score)}${exAequo(c) ? ' <span class="ex-aequo">ex æquo</span>' : ""}</span>
-  <p>${c.scenario ? `Scénario ${esc(c.scenario)} · ` : ""}${c.relecture ? "En relecture · " : ""}${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}</p>
+  <p>${c.scenario ? `Scénario ${esc(c.scenario)} · ` : ""}${c.relecture ? "En relecture · " : ""}${c.mesures.length ? `${c.mesures.length} élément${c.mesures.length > 1 ? "s" : ""} clé${c.mesures.length > 1 ? "s" : ""} relevé${c.mesures.length > 1 ? "s" : ""}` : "Programme pas encore dépouillé"}${c.maj ? ` · mise à jour le ${dateLongue(c.maj)}` : ""}</p>
 </li>`;
   const autres = AUTRE_SCENARIO.length ? `
 <h3>Testées dans un autre scénario du même sondage</h3>
@@ -611,9 +637,9 @@ function pageProgramme(c) {
   const lienSource = src => `<a href="${src[1]}" target="_blank" rel="noopener">${esc(src[0])} ↗</a>`;
   const lignes = THEMES.flatMap(theme => {
     const ms = c.mesures.filter(m => m.theme === theme);
-    return ms.map((m, k) => `<tr>
+    return ms.map((m, k) => `<tr${m.statut === "abandonné" ? ' class="abandonne"' : ""}>
       ${k === 0 ? `<th scope="row" rowspan="${ms.length}">${esc(theme)}</th>` : ""}
-      <td>${glose(esc(m.proposition))}</td>
+      <td><span class="statut statut-${(m.statut || "annoncé").normalize("NFD").replace(/[̀-ͯ]/g, "")}">${STATUTS[m.statut || "annoncé"]}</span> ${glose(esc(m.proposition))}${m.remarque ? `<p class="remarque">${glose(esc(m.remarque))}</p>` : ""}</td>
       <td>${esc(m.chiffrage || "non chiffré")}</td>
       <td>${lienSource(m.source)}<br><span class="date">${esc(m.date)}</span></td>
       <td>${(m.precedents || []).map(a => { const r = REFORMES_PAR_ANCRE.get(a); return `<a href="/frise#${a}">${esc(r.t)} (${esc(r.an)}) →</a>`; }).join("<br>") || "—"}</td>
@@ -654,8 +680,13 @@ ${nav("programmes")}
 <main id="annexe">
 <h2>Éléments clés du programme</h2>
 ${c.relecture ? `<div class="avert relecture"><b>Fiche en cours de relecture</b> — premier relevé, pas encore validé : les engagements et leurs sources peuvent encore être corrigés.</div>` : ""}
+${c.maj ? `<p class="dates-fiche">Dernière mise à jour : <b>${dateLongue(c.maj)}</b> · Dernière vérification des sources : <b>${dateLongue(c.verification)}</b></p>` : ""}
+${(c.journal || []).length ? `<div class="avert nouveautes"><b>Nouveautés du ${dateLongue(c.journal[0].date)}</b> — ${glose(esc(c.journal[0].texte))}${c.journal.length > 1 ? ` <a href="#journal">Journal des modifications ↓</a>` : ""}</div>` : ""}
 ${c.note ? `<div class="avert"><b>Sources</b> — ${esc(c.note)}</div>` : ""}
 ${tableau}
+${c.mesures.length ? `<p class="note-themes">Statuts : <b>Annoncé</b>, relevé dans une seule source ; <b>Confirmé</b>, repris par la candidature dans au moins deux sources à des dates différentes, ou précisé depuis (expliqué sous la ligne) ; <b>Contradictoire</b>, des sources de la candidature divergent sans que l'une ait remplacé l'autre ; <b>Abandonné</b>, retiré ou démenti par la candidature.</p>` : ""}
+${(c.journal || []).length > 1 ? `<h3 id="journal">Journal des modifications</h3>
+<ul class="journal">${c.journal.map(e => `<li><span class="date">${dateLongue(e.date)}</span> — ${glose(esc(e.texte))}</li>`).join("")}</ul>` : ""}
 <h3>Règles de lecture</h3>
 ${REGLES_PROGRAMMES}
 </main>

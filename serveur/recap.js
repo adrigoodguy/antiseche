@@ -2,7 +2,9 @@
  * Récapitulatif hebdomadaire des propositions de correction : lit les envois
  * reçus depuis le dernier récapitulatif et en fait UNE issue GitHub, classée
  * par réforme. Les e-mails ne sortent jamais du serveur (l'issue est publique).
- * Rien de neuf : pas d'issue. Purge les envois de plus de 12 mois.
+ * Signale aussi les fiches Programmes 2027 dont les sources n'ont pas été
+ * vérifiées depuis plus de 14 jours (issue #20).
+ * Rien de neuf et aucune fiche en retard : pas d'issue. Purge les envois de plus de 12 mois.
  *
  *   node recap.js            crée l'issue (GITHUB_TOKEN requis)
  *   node recap.js --essai    affiche l'issue sans rien envoyer ni marquer
@@ -20,6 +22,15 @@ const ESSAI = process.argv.includes("--essai");
 const periodes = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "periodes.json"), "utf8"));
 const TITRES = new Map([["general", "Remarques générales (méthode, sélection, site)"]]);
 for (const p of periodes) for (const r of p.reformes) TITRES.set(`${p.id}-${r.id}`, `${r.an} · ${r.t}`);
+
+// Fiches dépouillées dont la dernière vérification (champ verification, AAAA-MM-JJ) dépasse le délai.
+const VERIFICATION_MAX_JOURS = 14;
+const programmes = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "programmes.json"), "utf8"));
+const fichesEnRetard = () => programmes.candidats
+  .filter(c => c.mesures.length && c.verification)
+  .map(c => ({ c, jours: Math.floor((Date.now() - Date.parse(c.verification)) / 86400e3) }))
+  .filter(x => x.jours > VERIFICATION_MAX_JOURS)
+  .sort((a, b) => b.jours - a.jours);
 
 const lire = () => fs.existsSync(STOCKAGE)
   ? fs.readFileSync(STOCKAGE, "utf8").split("\n").filter(Boolean).map(l => { try { return JSON.parse(l) } catch { return null } }).filter(Boolean)
@@ -40,21 +51,25 @@ async function main() {
   const toutes = lire();
   const nouvelles = toutes.filter(e => e.recu > etat.depuis);
   const jusqua = toutes.reduce((m, e) => (e.recu > m ? e.recu : m), etat.depuis);
+  const retard = fichesEnRetard();
 
-  if (nouvelles.length) {
+  if (nouvelles.length || retard.length) {
     const parCible = new Map();
     for (const e of nouvelles) {
       if (!parCible.has(e.cible)) parCible.set(e.cible, []);
       parCible.get(e.cible).push(e);
     }
     const [annee, semaine] = numeroSemaine(new Date());
-    const titre = `Propositions de correction · semaine ${semaine} (${annee}) · ${nouvelles.length} envoi${nouvelles.length > 1 ? "s" : ""}`;
+    const titre = nouvelles.length
+      ? `Propositions de correction · semaine ${semaine} (${annee}) · ${nouvelles.length} envoi${nouvelles.length > 1 ? "s" : ""}${retard.length ? ` · ${retard.length} fiche${retard.length > 1 ? "s" : ""} à revérifier` : ""}`
+      : `Fiches à revérifier · semaine ${semaine} (${annee}) · ${retard.length} fiche${retard.length > 1 ? "s" : ""}`;
+    const blocRetard = retard.length ? `## Fiches Programmes 2027 à revérifier\n\nSources non vérifiées depuis plus de ${VERIFICATION_MAX_JOURS} jours. Revérifier, puis mettre à jour \`verification\` (et \`maj\`, \`journal\` si le contenu change) dans \`data/programmes.json\`.\n\n${retard.map(({ c, jours }) => `- [ ] [${c.nom}](https://antiseche.org/programmes/${c.id}) · vérifiée le ${c.verification}, il y a ${jours} jours`).join("\n")}\n\n` : "";
     const sections = [...parCible].map(([cible, es]) => {
       const lien = cible === "general" ? "https://antiseche.org/frise#corrections" : `https://antiseche.org/frise#${cible}`;
       return `### [${TITRES.get(cible) || cible}](${lien})\n\n` + es.map(e =>
         `- [ ] Reçu le ${e.recu.slice(0, 10)}${e.email ? " · contact laissé (sur le serveur)" : ""}\n\n${citation(e.message)}${e.source ? `\n>\n> **Source proposée :** ${neutre(e.source)}` : ""}\n`).join("\n");
     });
-    const corps = `Envois reçus via le formulaire du site depuis le précédent récapitulatif, classés par réforme. Texte des visiteurs tel quel, non vérifié. Les adresses e-mail restent sur le serveur (\`${STOCKAGE}\`).\n\nCocher une case une fois la proposition traitée (corrigée, transformée en issue dédiée, ou écartée), puis fermer l'issue.\n\n${sections.join("\n")}`;
+    const corps = blocRetard + (nouvelles.length ? `Envois reçus via le formulaire du site depuis le précédent récapitulatif, classés par réforme. Texte des visiteurs tel quel, non vérifié. Les adresses e-mail restent sur le serveur (\`${STOCKAGE}\`).\n\nCocher une case une fois la proposition traitée (corrigée, transformée en issue dédiée, ou écartée), puis fermer l'issue.\n\n${sections.join("\n")}` : "Aucune proposition de correction cette semaine.");
 
     if (ESSAI) {
       console.log(`${titre}\n\n${corps}`);
@@ -70,10 +85,10 @@ async function main() {
     if (!r.ok) throw new Error(`GitHub a répondu ${r.status} : ${await r.text()}`);
     console.log(`Issue créée : ${(await r.json()).html_url}`);
   } else if (ESSAI) {
-    console.log("Aucune nouvelle proposition.");
+    console.log("Aucune nouvelle proposition, aucune fiche à revérifier.");
     return;
   } else {
-    console.log("Aucune nouvelle proposition, pas d'issue cette semaine.");
+    console.log("Aucune nouvelle proposition ni fiche à revérifier, pas d'issue cette semaine.");
   }
 
   // Marque le récapitulatif fait, puis purge les envois trop anciens.

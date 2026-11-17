@@ -237,6 +237,17 @@
   .avert.relecture{border-color:var(--violet)}
   .avert.relecture b{color:var(--violet-clair)}
   .note-themes{font-size:var(--tx-sm);color:var(--gris);margin-top:var(--sp-3);max-width:58em}
+  /* Dates, statuts et journal d'une fiche (issue #20) */
+  .dates-fiche{font-size:var(--tx-sm);color:var(--texte-2);margin-bottom:var(--sp-3)}
+  .avert.nouveautes{border-color:var(--accent)}
+  .statut{display:inline-block;font-family:var(--mono);font-size:var(--tx-micro);letter-spacing:.06em;text-transform:uppercase;padding:.1em .45em;border:1px solid var(--trait);border-radius:var(--radius-micro);color:var(--gris);margin-right:.3em;vertical-align:.1em}
+  .statut-confirme{color:var(--menthe);border-color:var(--menthe)}
+  .statut-contradictoire{color:var(--rose);border-color:var(--rose)}
+  .statut-abandonne{text-decoration:line-through}
+  .programme-table tr.abandonne td{color:var(--gris)}
+  .programme-table .remarque{margin:var(--sp-2) 0 0;font-size:var(--tx-label);color:var(--texte-2)}
+  .journal{font-size:var(--tx-sm);max-width:58em}
+  .journal .date{color:var(--gris);white-space:nowrap}
 
   /* ---------- Index /analyse (issue #9) ---------- */
   .analyse-liste{list-style:none;padding-left:0;max-width:60em}

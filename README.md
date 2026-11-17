@@ -37,7 +37,12 @@ data/                  contenu éditorial, en JSON
                           d'affichage), grille de thèmes commune, et par
                           candidature : parti, score, liens, mesures clés
                           (thème, proposition, chiffrage, source datée,
-                          précédents = ancres de la frise « periode-reforme »)
+                          précédents = ancres de la frise « periode-reforme »,
+                          statut annoncé/confirmé/contradictoire/abandonné,
+                          remarque) ; par fiche, dates maj et verification
+                          (AAAA-MM-JJ, affichées, alerte au-delà de 14 jours
+                          dans le build et le récapitulatif hebdomadaire) et
+                          journal des modifications
   glossaire.json          définitions courtes des termes techniques, page
                           /glossaire ; dans les textes, un terme se balise
                           [[texte affiché|id]] (bulle de définition sur la frise)
