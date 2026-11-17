@@ -670,7 +670,7 @@ ${nav("programmes")}
   <h1>${esc(c.nom)}</h1>
   <p class="standfirst">${esc(c.parti)}</p>
   <div class="cta-groupe liens-candidat">
-    <a class="cta" href="${c.site}" target="_blank" rel="noopener">Site du parti ↗</a>
+    ${c.site ? `<a class="cta" href="${c.site}" target="_blank" rel="noopener">Site du parti ↗</a>` : ""}
     <a class="cta" href="${encodeURI(c.wiki)}" target="_blank" rel="noopener">Page Wikipédia ↗</a>
   </div>
   <p class="standfirst">Intentions de vote : <b>${pct(c.score)}</b>${exAequo(c) ? " (ex æquo)" : ""}${c.scenario ? ` dans le scénario ${esc(c.scenario)}` : ""} — ${esc(s.institut)} pour ${esc(s.commanditaire)}, ${esc(s.terrain)}.${c.programme ? ` Programme de référence : <a href="${c.programme.url}" target="_blank" rel="noopener">${esc(c.programme.titre)} ↗</a> (${esc(c.programme.date)}).` : ""}</p>
